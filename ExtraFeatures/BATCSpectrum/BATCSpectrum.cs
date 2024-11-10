@@ -183,7 +183,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 _autoTuneMode = 0;
                 SpectrumTuneTimer.Enabled = false;
             }
-            
         }
 
         public void Close()

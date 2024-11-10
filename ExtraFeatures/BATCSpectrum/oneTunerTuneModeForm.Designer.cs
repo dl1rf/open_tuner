@@ -53,7 +53,6 @@
             this.avoidBeacon1.AutoSize = true;
             this.avoidBeacon1.Checked = true;
             this.avoidBeacon1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.avoidBeacon1.Enabled = false;
             this.avoidBeacon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.avoidBeacon1.Location = new System.Drawing.Point(177, 21);
             this.avoidBeacon1.Name = "avoidBeacon1";
@@ -64,7 +63,6 @@
             // 
             // tuneMode1
             // 
-            this.tuneMode1.Enabled = false;
             this.tuneMode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.tuneMode1.FormattingEnabled = true;
             this.tuneMode1.Items.AddRange(new object[] {

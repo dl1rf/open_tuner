@@ -75,7 +75,6 @@
             this.avoidBeacon4.AutoSize = true;
             this.avoidBeacon4.Checked = true;
             this.avoidBeacon4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.avoidBeacon4.Enabled = false;
             this.avoidBeacon4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.avoidBeacon4.Location = new System.Drawing.Point(177, 121);
             this.avoidBeacon4.Name = "avoidBeacon4";
@@ -89,7 +88,6 @@
             this.avoidBeacon3.AutoSize = true;
             this.avoidBeacon3.Checked = true;
             this.avoidBeacon3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.avoidBeacon3.Enabled = false;
             this.avoidBeacon3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.avoidBeacon3.Location = new System.Drawing.Point(177, 91);
             this.avoidBeacon3.Name = "avoidBeacon3";
@@ -103,7 +101,6 @@
             this.avoidBeacon2.AutoSize = true;
             this.avoidBeacon2.Checked = true;
             this.avoidBeacon2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.avoidBeacon2.Enabled = false;
             this.avoidBeacon2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.avoidBeacon2.Location = new System.Drawing.Point(177, 61);
             this.avoidBeacon2.Name = "avoidBeacon2";
@@ -117,7 +114,6 @@
             this.avoidBeacon1.AutoSize = true;
             this.avoidBeacon1.Checked = true;
             this.avoidBeacon1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.avoidBeacon1.Enabled = false;
             this.avoidBeacon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.avoidBeacon1.Location = new System.Drawing.Point(177, 31);
             this.avoidBeacon1.Name = "avoidBeacon1";
@@ -128,7 +124,6 @@
             // 
             // tuneMode4
             // 
-            this.tuneMode4.Enabled = false;
             this.tuneMode4.FormattingEnabled = true;
             this.tuneMode4.Items.AddRange(new object[] {
             "Manual",
@@ -140,7 +135,6 @@
             // 
             // tuneMode3
             // 
-            this.tuneMode3.Enabled = false;
             this.tuneMode3.FormattingEnabled = true;
             this.tuneMode3.Items.AddRange(new object[] {
             "Manual",
@@ -152,7 +146,6 @@
             // 
             // tuneMode2
             // 
-            this.tuneMode2.Enabled = false;
             this.tuneMode2.FormattingEnabled = true;
             this.tuneMode2.Items.AddRange(new object[] {
             "Manual",
@@ -164,7 +157,6 @@
             // 
             // tuneMode1
             // 
-            this.tuneMode1.Enabled = false;
             this.tuneMode1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.tuneMode1.FormattingEnabled = true;
             this.tuneMode1.Items.AddRange(new object[] {

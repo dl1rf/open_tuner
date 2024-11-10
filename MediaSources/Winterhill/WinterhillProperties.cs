@@ -751,7 +751,6 @@ namespace opentuner.MediaSources.Winterhill
             _tuner_properties[device].UpdateValue("volume_slider_" + device.ToString(), new_volume.ToString());
         }
 
-
         public override void ToggleMute(int device)
         {
             if (!muted[device])
@@ -776,6 +775,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             return muted[device];
         }
+
         public override int GetVolume(int device)
         {
             if (device >= _media_player.Count() || device < 0)

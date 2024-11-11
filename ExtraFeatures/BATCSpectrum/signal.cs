@@ -11,9 +11,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 {
     class signal
     {
-
-        public int beacon_strength = -1;
-
         //struct for signal information
         public struct Sig
         {
@@ -44,21 +41,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 this.dbb = _dbb;
             }
 
-            public Sig(Sig old, string _callsign)
-            {
-                this.fft_start = old.fft_start;
-                this.fft_stop = old.fft_stop;
-                this.fft_centre = old.fft_centre;
-                this.text_pos = old.text_pos;
-                this.fft_strength = old.fft_strength;
-                this.frequency = old.frequency;
-                this.sr = old.sr;
-                this.callsign = _callsign;
-                this.overpower = old.overpower;
-                this.max_strength = old.max_strength;
-                this.dbb = old.dbb;
-            }
-
             public Sig(Sig old, float _text_pos, string _callsign, double _frequency, float _sr)
             {
                 this.fft_start = old.fft_start;
@@ -73,27 +55,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 this.max_strength = old.max_strength;
                 this.dbb = old.dbb;
             }
-
-            public Sig(Sig old, string _callsign, double _frequency, float _sr)
-            {
-                this.fft_start = old.fft_start;
-                this.fft_stop = old.fft_stop;
-                this.fft_centre = old.fft_centre;
-                this.text_pos = old.text_pos;
-                this.fft_strength = old.fft_strength;
-                this.frequency = _frequency;
-                this.sr = _sr;
-                this.callsign = _callsign;
-                this.overpower = old.overpower;
-                this.max_strength = old.max_strength;
-                this.dbb = old.dbb;
-            }
-
-            public void updateCallsign(string _callsign)
-            {
-                this.callsign = _callsign;
-            }
-
         }
 
         public Action<string> debug;
@@ -103,7 +64,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         public List<Sig> signals = new List<Sig>();         // actual list of signals (processed)
         private const double start_freq = 10490.4754901;
         private float minsr = 0.065f;
-        private int num_rx_scan = 1;
         private int num_rx = 1;
 
         public signal(object _list_lock)
@@ -111,6 +71,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             list_lock = _list_lock;
         }
 
+        private int beacon_strength = -1;
         private bool avoid_beacon = false;
 
         private Sig[] last_sig = new Sig[8];             //last tune signal - detail
@@ -128,19 +89,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             last_sig[rx] = s;
         }
 
-        public void set_minsr(float _minsr)
-        {
-            minsr = _minsr;
-        }
-
         public void set_num_rx(int _num_rx)
         {
             num_rx = _num_rx;
-        }
-
-        public void set_num_rx_scan(int _num_rx_scan)
-        {
-            num_rx_scan = _num_rx_scan;
         }
 
         public void clear(int rx)

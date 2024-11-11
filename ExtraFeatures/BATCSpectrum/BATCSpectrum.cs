@@ -31,47 +31,47 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         private static readonly int bandplan_height = 30;
         private const double start_freq = 10490.4754901;
 
-        Bitmap bmp;
-        static Bitmap bmp2;
-        Pen greyPen = new Pen(Color.FromArgb(200, 123, 123, 123));
-        Pen greyPen2 = new Pen(Color.FromArgb(200, 123, 123, 123));
-        Pen whitePen = new Pen(Color.FromArgb(200, 255, 255, 255));
-        Pen overpowerPen = new Pen(Color.FromArgb(200, Color.Red));
-        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(200, Color.Gray));
-        SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(180, 250, 250, 255));
-        SolidBrush overpowerBrush = new SolidBrush(Color.FromArgb(128, Color.Red));
+        private Bitmap bmp;
+        private static Bitmap bmp2;
+        private Pen greyPen = new Pen(Color.FromArgb(200, 123, 123, 123));
+        private Pen greyPen2 = new Pen(Color.FromArgb(200, 123, 123, 123));
+        private Pen whitePen = new Pen(Color.FromArgb(200, 255, 255, 255));
+        private Pen overpowerPen = new Pen(Color.FromArgb(200, Color.Red));
+        private SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(200, Color.Gray));
+        private SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(180, 250, 250, 255));
+        private SolidBrush overpowerBrush = new SolidBrush(Color.FromArgb(128, Color.Red));
 
-        SolidBrush tuner1Brush = new SolidBrush(Color.FromArgb(50, Color.Blue));
-        SolidBrush tuner2Brush = new SolidBrush(Color.FromArgb(50, Color.Green));
+        private SolidBrush tuner1Brush = new SolidBrush(Color.FromArgb(50, Color.Blue));
+        private SolidBrush tuner2Brush = new SolidBrush(Color.FromArgb(50, Color.Green));
 
-        Graphics tmp;
-        Graphics tmp2;
+        private Graphics tmp;
+        private Graphics tmp2;
 
-        float[,] rx_blocks = new float[4, 3];
+        private float[,] rx_blocks = new float[4, 3];
 
-        XElement bandplan;
-        Rectangle[] channels;
-        IList<XElement> indexedbandplan;
-        string InfoText;
-        string TX_Text;  //dh3cs
+        private XElement bandplan;
+        private Rectangle[] channels;
+        private IList<XElement> indexedbandplan;
+        private string InfoText;
+        private string TX_Text;  //dh3cs
 
-        List<string> blocks = new List<string>();
+        private List<string> blocks = new List<string>();
 
-        socket web_socket;
-        signal sigs;
+        private socket web_socket;
+        private signal sigs;
 
-        int num_rxs_to_scan = 1;
+        private int num_rxs_to_scan = 1;
 
         private PictureBox _spectrum;
         private int _tuners;
 
-        Timer SpectrumTuneTimer;
-        Timer websocketTimer;
+        private Timer SpectrumTuneTimer;
+        private Timer websocketTimer;
 
         private int _autoTuneMode = 0;
 
-        int connect_retries = 5;
-        int connect_retry_count = 0;
+        private int connect_retries = 5;
+        private int connect_retry_count = 0;
 
         private int mousePos_x = 0;
         private int mousePos_y = 0;

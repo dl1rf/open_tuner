@@ -98,20 +98,20 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
         public Action<string> debug;
 
-        Object list_lock;
+        private Object list_lock;
         public List<Sig> newSignals = new List<Sig>();      // list of signals new arrived from websocket
         public List<Sig> signals = new List<Sig>();         // actual list of signals (processed)
         private const double start_freq = 10490.4754901;
-        float minsr = 0.065f;
-        int num_rx_scan = 1;
-        int num_rx = 1;
+        private float minsr = 0.065f;
+        private int num_rx_scan = 1;
+        private int num_rx = 1;
 
         public signal(object _list_lock)
         {
             list_lock = _list_lock;
         }
 
-        bool avoid_beacon = false;
+        private bool avoid_beacon = false;
 
         private Sig[] last_sig = new Sig[8];             //last tune signal - detail
         private Sig[] next_sig = new Sig[8];             //last tune signal - detail

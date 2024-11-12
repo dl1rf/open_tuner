@@ -119,7 +119,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     if ((t.Minutes * 60) + t.Seconds > time)
                     {
                         //Log.Information("elapsed: " + rx.ToString());
-                        next_sig[rx] = find_next(rx);
+                        next_sig[rx] = find_next(last_sig[rx]);
 
                         if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                         {
@@ -128,9 +128,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     }
                     else
                     {
-                        if (!find_signal(last_sig[rx], rx))      //if the selected signal goes off then find another one to tune to
+                        if (!find_signal(last_sig[rx]))     //if the selected signal goes off then find another one to tune to
                         {
-                            next_sig[rx] = find_next(rx);
+                            next_sig[rx] = find_next(last_sig[rx]);
 
                             if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                             {
@@ -141,9 +141,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 }
                 else
                 {
-                    if (!find_signal(last_sig[rx], rx))  //if the selected signal goes off then find another one to tune to
+                    if (!find_signal(last_sig[rx]))         //if the selected signal goes off then find another one to tune to
                     {
-                        next_sig[rx] = find_next(rx);
+                        next_sig[rx] = find_next(last_sig[rx]);
 
                         if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                         {
@@ -166,7 +166,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
         }
 
-        public bool find_signal(Sig lastsig, int rx)
+        public bool find_signal(Sig lastsig)
         {
             float span;
             bool found = false;
@@ -182,7 +182,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 {
                     span = 0.05f;
                 }
-                if (s.frequency > (last_sig[rx].frequency - span) && s.frequency < (last_sig[rx].frequency + span) && s.sr == last_sig[rx].sr)      // +/- span, signal freq varies!
+                if (s.frequency > (lastsig.frequency - span) && s.frequency < (lastsig.frequency + span) && s.sr == lastsig.sr)      // +/- span, signal freq varies!
                 {
                     found = true;
                 }
@@ -279,7 +279,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
         }
 
-        private Sig find_next(int rx)
+        private Sig find_next(Sig lastsig)
         {
             Sig newsig = new Sig();
             int n = 0;
@@ -306,7 +306,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     }
                 }
                 //Log.Information("Available=" + newfreq.ToString());
-                if (s.frequency > startfreq && s.frequency > (last_sig[rx].frequency + 0.05) && s.sr >= minsr && newfreq)      // +/- span, signal freq varies!
+                if (s.frequency > startfreq && s.frequency > (lastsig.frequency + 0.05) && s.sr >= minsr && newfreq)      // +/- span, signal freq varies!
                 {
                     newsig = s;
                     break;
@@ -330,7 +330,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                         }
                     }
                     //Log.Information("Available="+newfreq.ToString());
-                    if (s.frequency > startfreq && s.frequency < (last_sig[rx].frequency - 0.05) && s.sr >= minsr && newfreq)
+                    if (s.frequency > startfreq && s.frequency < (lastsig.frequency - 0.05) && s.sr >= minsr && newfreq)
                     {
                         newsig = s;
                         break;
@@ -521,7 +521,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
             else if (width < 0.060f)
             {
-                return 0.035f;
+                return 0.033f;
             }
             else if (width < 0.086f)
             {

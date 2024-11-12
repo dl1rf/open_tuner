@@ -26,6 +26,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         public event SignalSelected OnSignalSelected;
 
         private static readonly Object list_lock = new Object();
+        private static readonly Object tune_lock = new Object();
 
         private const int height = 246;    //makes things easier
         private static readonly int bandplan_height = 30;
@@ -33,14 +34,15 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
         private Bitmap bmp;
         private static Bitmap bmp2;
+
         private Pen greyPen = new Pen(Color.FromArgb(200, 123, 123, 123));
         private Pen greyPen2 = new Pen(Color.FromArgb(200, 123, 123, 123));
         private Pen whitePen = new Pen(Color.FromArgb(200, 255, 255, 255));
         private Pen overpowerPen = new Pen(Color.FromArgb(200, Color.Red));
+
         private SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(200, Color.Gray));
         private SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(180, 250, 250, 255));
         private SolidBrush overpowerBrush = new SolidBrush(Color.FromArgb(128, Color.Red));
-
         private SolidBrush tuner1Brush = new SolidBrush(Color.FromArgb(50, Color.Blue));
         private SolidBrush tuner2Brush = new SolidBrush(Color.FromArgb(50, Color.Green));
 
@@ -52,6 +54,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         private XElement bandplan;
         private Rectangle[] channels;
         private IList<XElement> indexedbandplan;
+
         private string InfoText;
         private string TX_Text;  //dh3cs
 
@@ -60,12 +63,14 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         private socket web_socket;
         private signal sigs;
 
-        private int num_rxs_to_scan = 1;
+        //private int num_rxs_to_scan = 1;
 
         private PictureBox spectrum;
         private int tuners;
 
+        private spectrumTune batc_spectrumTune;
         private Timer SpectrumTuneTimer;
+
         private Timer websocketTimer;
 
         private int _autoTuneMode = 0;
@@ -87,7 +92,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         public BATCSpectrum(PictureBox _spectrum, int Tuners) 
         {
             spectrumSettings = new BATCSpectrumSettings();
-            batc_settingsManager = new SettingsManager<BATCSpectrumSettings>("tunemode_settings");
+            batc_settingsManager = new SettingsManager<BATCSpectrumSettings>("spectrum_settings");
 
             spectrumSettings = batc_settingsManager.LoadSettings(spectrumSettings);
 
@@ -128,23 +133,20 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
             web_socket = new socket();
 
-            sigs = new signal(list_lock);
             web_socket.callback += drawspectrum;
             web_socket.ConnectionStatusChanged += Web_socket_ConnectionStatusChanged;
-            sigs.debug += debug;
 
             // try to connect
             web_socket.start();
 
-            sigs.set_num_rx_scan(num_rxs_to_scan);
-            sigs.set_num_rx(1);
-
+            sigs = new signal(list_lock);
+            sigs.debug += debug;
+            //sigs.set_num_rx_scan(num_rxs_to_scan);
+            sigs.set_num_rx(Tuners);
             sigs.set_avoidbeacon(true);
 
-            SpectrumTuneTimer = new Timer();
-            SpectrumTuneTimer.Enabled = false;
-            SpectrumTuneTimer.Interval = 1500;
-            SpectrumTuneTimer.Tick += new System.EventHandler(this.SpectrumTuneTimer_Tick);
+            // must be below allocating sigs
+            batc_spectrumTune = new spectrumTune(tune_lock, Tuners, spectrumSettings);
 
             websocketTimer = new Timer();
             websocketTimer.Interval = 2000;
@@ -180,8 +182,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             else
             {
                 // if we lost connection then disable autotune
-                _autoTuneMode = 0;
-                SpectrumTuneTimer.Enabled = false;
+                //batc_spectrumTune.tuneMode = 0;
+                batc_spectrumTune.tuneTimer.Enabled = false;
             }
         }
 
@@ -190,8 +192,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             websocketTimer?.Stop();
             websocketTimer?.Dispose();
 
-            SpectrumTuneTimer?.Stop();
-            SpectrumTuneTimer?.Dispose();
+            batc_spectrumTune.tuneTimer?.Stop();
+            batc_spectrumTune.tuneTimer?.Dispose();
             
             // stop socket
             web_socket?.stop();
@@ -224,40 +226,39 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
         }
 
-        public void changeTuneMode(int mode)
-        {
-            _autoTuneMode = mode;
+        //public void changeTuneMode(int mode)
+        //{
+        //    _autoTuneMode = mode;
 
-            if (mode == 0)
-            {
-                SpectrumTuneTimer?.Stop();
-            }
-            else
-            {
-                SpectrumTuneTimer?.Start();
-            }
+        //    if (mode == 0)
+        //    {
+        //        batc_spectrumTune.tuneTimer?.Stop();
+        //    }
+        //    else
+        //    {
+        //        batc_spectrumTune.tuneTimer?.Start();
+        //    }
 
-        }
+        //}
 
-        private void SpectrumTuneTimer_Tick(object sender, EventArgs e)
-        {
-            int mode = _autoTuneMode;
-            float spectrum_w = spectrum.Width;
-            float spectrum_wScale = spectrum_w / fft_data_length;
+        //private void SpectrumTuneTimer_Tick(object sender, EventArgs e)
+        //{
+        //    int mode = _autoTuneMode;
+        //    float spectrum_w = spectrum.Width;
+        //    float spectrum_wScale = spectrum_w / fft_data_length;
 
-            ushort autotuneWait = 30;
+        //    ushort autotuneWait = 30;
 
-            Tuple<signal.Sig, int> ret = sigs.tune(mode, Convert.ToInt16(autotuneWait), 0);
-            if (ret.Item1.frequency > 0)      //above 0 is a change in signal
-            {
-                System.Threading.Thread.Sleep(100);
-                selectSignal(Convert.ToInt32(ret.Item1.text_pos * spectrum_wScale), 0);
-                sigs.set_tuned(ret.Item1, 0);
-                rx_blocks[0, 0] = ret.Item1.text_pos;
-                rx_blocks[0, 1] = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
-            }
-
-        }
+        //    Tuple<signal.Sig, int> ret = sigs.tune(mode, Convert.ToInt16(autotuneWait), 0);
+        //    if (ret.Item1.frequency > 0)      //above 0 is a change in signal
+        //    {
+        //        System.Threading.Thread.Sleep(100);
+        //        selectSignal(Convert.ToInt32(ret.Item1.text_pos * spectrum_wScale), 0);
+        //        sigs.set_tuned(ret.Item1, 0);
+        //        rx_blocks[0, 0] = ret.Item1.text_pos;
+        //        rx_blocks[0, 1] = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
+        //    }
+        //}
 
         private void debug(string msg)
         {
@@ -401,6 +402,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         private void drawspectrum(UInt16[] fft_data)
         {
             fft_data_length = fft_data.Length;
+            //batc_spectrumTune.fft_data_length = fft_data_length;
             tmp.Clear(Color.Black);     //clear canvas
 
             int spectrum_h = spectrum.Height - bandplan_height;

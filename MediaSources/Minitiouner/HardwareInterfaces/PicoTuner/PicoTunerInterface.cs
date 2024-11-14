@@ -654,7 +654,6 @@ namespace opentuner
 
 
             usbContext = new UsbContext();
-            usbContext.SetDebugLevel(LibUsbDotNet.LogLevel.Debug);
             usbDeviceCollection = usbContext.List();
 
             i2c_pt_device = null;

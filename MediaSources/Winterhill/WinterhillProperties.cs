@@ -27,6 +27,18 @@ namespace opentuner.MediaSources.Winterhill
 
         private List<StoredFrequency> _frequency_presets = null;
 
+        Dictionary<int, string> scanstate_lookup = new Dictionary<int, string>()
+        {
+            { 0 , "Hunting" },
+            { 1 , "Header" },
+            { 2 , "Lock DVB-S2" },
+            { 3 , "Lock DVB-S" },
+            { 0x80 , "Lost" },
+            { 0x81 , "Timeout" },
+            { 0x82 , "Idle" },
+        };
+
+
         private bool BuildSourceProperties()
         {
             if (_parent == null)
@@ -175,7 +187,6 @@ namespace opentuner.MediaSources.Winterhill
                     }
                     break;
                 case "ts_addr":
-
                     // get local ip's
                     if (_LocalIp.Length == 0)
                     {
@@ -389,16 +400,9 @@ namespace opentuner.MediaSources.Winterhill
                     }
                     else
                     {
-                        if (demodstate[tuner] == 3 || demodstate[tuner] == 2)
-                        {
-                            _streamer[tuner].stream = true;
-//                            SetIndicator(ref indicatorStatus[tuner], PropertyIndicators.StreamingIndicator);
-                            _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.PaleTurquoise);
-                        }
-                        else
-                        {
-                            Log.Error("Can't stream, not locked to a signal");
-                        }
+                        _streamer[tuner].stream = true;
+//                        SetIndicator(ref indicatorStatus[tuner], PropertyIndicators.StreamingIndicator);
+                        _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.PaleTurquoise);
                     }
 
                     _tuner_properties[tuner].UpdateValue("media_controls_" + tuner.ToString(), indicatorStatus[tuner].ToString());
@@ -574,7 +578,7 @@ namespace opentuner.MediaSources.Winterhill
                         }
                     }
                     
-                    _tuner_properties[c].UpdateValue("demodstate", lookups.demod_state_lookup[rx.scanstate]);
+                    _tuner_properties[c].UpdateValue("demodstate", scanstate_lookup[rx.scanstate]);
                     _tuner_properties[c].UpdateValue("mer", rx.mer);
                     _tuner_properties[c].UpdateValue("frequency", GetFrequency(c, true).ToString("#,##0") + "  (" + GetFrequency(c, false).ToString("#,##0") + ")");
                     _tuner_properties[c].UpdateValue("offset", _current_offset[c].ToString());
@@ -665,7 +669,7 @@ namespace opentuner.MediaSources.Winterhill
                     VideoChangeCB?.Invoke(c + 1, false);
                     playing[c] = false;
                     _tuner_properties[c].UpdateColor("demodstate", Color.PaleVioletRed);
-                    _tuner_properties[c].UpdateValue("demodstate", lookups.demod_state_lookup[demodstate[c]]);
+                    _tuner_properties[c].UpdateValue("demodstate", scanstate_lookup[demodstate[c]]);
 
                     //var data = _tuner_properties[c].GetAll();
                     //OnSourceData?.Invoke(c, data, "Tuner " + c.ToString());

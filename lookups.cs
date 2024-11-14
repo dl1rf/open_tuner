@@ -235,10 +235,7 @@ namespace opentuner
             { 0 , "Hunting" },
             { 1 , "Header" },
             { 2 , "Lock DVB-S2" },
-            { 3 , "Lock DVB-S" },
-            { 0x80 , "Lost" },
-            { 0x81 , "Timeout" },
-            { 0x82 , "Idle" },
+            { 3 , "Lock DVB-S" }
         };
 
         public static Dictionary<uint, string> modcod_lookup_dvbs = new Dictionary<uint, string>()

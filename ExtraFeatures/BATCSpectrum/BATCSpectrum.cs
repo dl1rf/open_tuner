@@ -16,6 +16,14 @@ using opentuner.Utilities;
 
 namespace opentuner.ExtraFeatures.BATCSpectrum
 {
+    public struct RX
+    {
+        public float fft_centre;    // signal center position in spectrum
+        public float sr;            // aligend symbolrate
+        public bool locked;         // demode locked state
+        public bool switching;      // switching flag
+    }
+
     public class BATCSpectrum
     {
         private BATCSpectrumSettings spectrumSettings;
@@ -49,7 +57,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
         private static readonly Object drawing_lock = new Object();
 
-        float[,] rx_blocks = new float[4, 3];
+        RX[] rx_blocks;
 
         XElement bandplan;
         Rectangle[] channels;
@@ -96,6 +104,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             _spectrum = Spectrum;
 
             _tuners = Tuners;
+            rx_blocks = new RX[Tuners];
 
             _spectrum.Click += new System.EventHandler(this.spectrum_Click);
             _spectrum.MouseLeave += new System.EventHandler(this.spectrum_MouseLeave);
@@ -261,8 +270,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 System.Threading.Thread.Sleep(100);
                 selectSignal(Convert.ToInt32(ret.Item1.text_pos * spectrum_wScale), 0);
                 sigs.set_tuned(ret.Item1, 0);
-                rx_blocks[0, 0] = ret.Item1.text_pos;
-                rx_blocks[0, 1] = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
+                rx_blocks[0].fft_centre = ret.Item1.text_pos;
+                rx_blocks[0].sr = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
             }
 
         }
@@ -461,9 +470,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     y = tuner * (spectrum_h / _tuners);
 
                     //draw block showing signal selected
-                    if (rx_blocks[tuner, 0] > 0.0f)
+                    if (rx_blocks[tuner].fft_centre > 0.0f)
                     {
-                        tmp.FillRectangle(shadowBrush, new RectangleF(rx_blocks[tuner, 0] * spectrum_wScale - ((rx_blocks[tuner, 1] * spectrum_wScale) / 2), y, rx_blocks[tuner, 1] * spectrum_wScale, (spectrum_h / _tuners)));
+                        tmp.FillRectangle(shadowBrush, new RectangleF(rx_blocks[tuner].fft_centre * spectrum_wScale - ((rx_blocks[tuner].sr * spectrum_wScale) / 2), y, rx_blocks[tuner].sr * spectrum_wScale, (spectrum_h / _tuners)));
                     }
                 }
 
@@ -509,7 +518,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
                 for (i = 0; i < _tuners; i++)
                 {
-                    if (spectrumSettings.tuneMode[i] == 1 && rx_blocks[0, 2] == 0.0f)
+                    if (spectrumSettings.tuneMode[i] == 1 && rx_blocks[0].locked == false)
                     {
                         Tuple<signal.Sig, int> ret = sigs.tune(spectrumSettings.tuneMode[i], 30, i);
                         if (ret.Item1.frequency > 0)      //above 0 is a change in signal
@@ -517,8 +526,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                             //System.Threading.Thread.Sleep(100);
                             selectSignal(Convert.ToInt32(ret.Item1.text_pos * spectrum_wScale), y);
                             sigs.set_tuned(ret.Item1, i);
-                            rx_blocks[i, 0] = ret.Item1.text_pos;
-                            rx_blocks[i, 1] = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
+                            rx_blocks[i].fft_centre = ret.Item1.text_pos;
+                            rx_blocks[i].sr = ret.Item1.sr * 100.0f / fft_data_length / 9.0f;
                         }
                     }
 
@@ -661,15 +670,15 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         {
             if (demod_locked)
             {
-                rx_blocks[tuner, 0] = Convert.ToSingle((freq - start_freq) * fft_data_length / 9.0f);
-                rx_blocks[tuner, 1] = sr * fft_data_length / 9.0f;
+                rx_blocks[tuner].fft_centre = Convert.ToSingle((freq - start_freq) * fft_data_length / 9.0f);
+                rx_blocks[tuner].sr = sr * fft_data_length / 9.0f;
             }
         }
 
         public void switchTuner(int tuner, double freq, float sr)
         {
-            rx_blocks[tuner, 0] = Convert.ToSingle((freq - start_freq) * fft_data_length / 9.0f);
-            rx_blocks[tuner, 1] = sr * fft_data_length / 9.0f;
+            rx_blocks[tuner].fft_centre = Convert.ToSingle((freq - start_freq) * fft_data_length / 9.0f);
+            rx_blocks[tuner].sr = sr * fft_data_length / 9.0f;
         }
 
         private int determine_rx(int pos)
@@ -701,8 +710,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                         if ((X / spectrum_wScale) > s.fft_start & (X / spectrum_wScale) < s.fft_stop)
                         {
                             sigs.set_tuned(s, rx);
-                            rx_blocks[rx, 0] = s.text_pos;
-                            rx_blocks[rx, 1] = s.sr * 100.0f / fft_data_length / 9.0f;
+                            rx_blocks[rx].fft_centre = s.text_pos;
+                            rx_blocks[rx].sr = s.sr * 100.0f / fft_data_length / 9.0f;
                             UInt32 freq = Convert.ToUInt32((s.frequency) * 1000);
                             UInt32 sr = Convert.ToUInt32((s.sr * 1000.0));
 

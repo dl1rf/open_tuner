@@ -474,9 +474,7 @@ namespace opentuner
                 Log.Information("Nim Thread: Closed");
                 Thread.ResetAbort();
             }
-
         }
-
     }
 
     public class StatusEvent : EventArgs

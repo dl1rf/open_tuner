@@ -461,6 +461,7 @@ namespace opentuner
                             initialConfig = true;
                             reset = true;
                         }
+                        get_nim_status();
                     }
                     else
                     {

@@ -239,7 +239,6 @@
     <Compile Include="ExtraFeatures\BATCSpectrum\oneTunerTuneModeForm.Designer.cs">
       <DependentUpon>oneTunerTuneModeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtraFeatures\BATCSpectrum\tune.cs" />
     <Compile Include="ExtraFeatures\BATCSpectrum\SRForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -45,8 +45,13 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.overPowerIndicatorLayout = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.autoTuneTimeValue = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autoTuneTimeValue)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -127,7 +132,9 @@
             this.tuneMode4.FormattingEnabled = true;
             this.tuneMode4.Items.AddRange(new object[] {
             "Manual",
-            "Auto"});
+            "Auto (Hold)",
+            "Auto (Next new)",
+            "Auto (Timed)"});
             this.tuneMode4.Location = new System.Drawing.Point(50, 120);
             this.tuneMode4.Name = "tuneMode4";
             this.tuneMode4.Size = new System.Drawing.Size(121, 21);
@@ -138,7 +145,9 @@
             this.tuneMode3.FormattingEnabled = true;
             this.tuneMode3.Items.AddRange(new object[] {
             "Manual",
-            "Auto"});
+            "Auto (Hold)",
+            "Auto (Next new)",
+            "Auto (Timed)"});
             this.tuneMode3.Location = new System.Drawing.Point(50, 90);
             this.tuneMode3.Name = "tuneMode3";
             this.tuneMode3.Size = new System.Drawing.Size(121, 21);
@@ -149,7 +158,9 @@
             this.tuneMode2.FormattingEnabled = true;
             this.tuneMode2.Items.AddRange(new object[] {
             "Manual",
-            "Auto"});
+            "Auto (Hold)",
+            "Auto (Next new)",
+            "Auto (Timed)"});
             this.tuneMode2.Location = new System.Drawing.Point(50, 60);
             this.tuneMode2.Name = "tuneMode2";
             this.tuneMode2.Size = new System.Drawing.Size(121, 21);
@@ -161,7 +172,9 @@
             this.tuneMode1.FormattingEnabled = true;
             this.tuneMode1.Items.AddRange(new object[] {
             "Manual",
-            "Auto"});
+            "Auto (Hold)",
+            "Auto (Next new)",
+            "Auto (Timed)"});
             this.tuneMode1.Location = new System.Drawing.Point(50, 30);
             this.tuneMode1.Name = "tuneMode1";
             this.tuneMode1.Size = new System.Drawing.Size(121, 21);
@@ -210,7 +223,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(111, 239);
+            this.btnCancel.Location = new System.Drawing.Point(111, 305);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
@@ -221,7 +234,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(219, 239);
+            this.btnSave.Location = new System.Drawing.Point(219, 305);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 28);
@@ -233,7 +246,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.overPowerIndicatorLayout);
-            this.groupBox2.Location = new System.Drawing.Point(15, 172);
+            this.groupBox2.Location = new System.Drawing.Point(15, 238);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(304, 60);
             this.groupBox2.TabIndex = 5;
@@ -255,12 +268,56 @@
             this.overPowerIndicatorLayout.Size = new System.Drawing.Size(162, 21);
             this.overPowerIndicatorLayout.TabIndex = 0;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.autoTuneTimeValue);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Location = new System.Drawing.Point(15, 172);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(304, 60);
+            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Auto Tune Timer";
+            // 
+            // autoTuneTimeValue
+            // 
+            this.autoTuneTimeValue.Location = new System.Drawing.Point(50, 27);
+            this.autoTuneTimeValue.Maximum = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            this.autoTuneTimeValue.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.autoTuneTimeValue.Name = "autoTuneTimeValue";
+            this.autoTuneTimeValue.Size = new System.Drawing.Size(120, 20);
+            this.autoTuneTimeValue.TabIndex = 5;
+            this.autoTuneTimeValue.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label5.Location = new System.Drawing.Point(176, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 16);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Seconds";
+            // 
             // BATCSpectrumSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 275);
+            this.ClientSize = new System.Drawing.Size(335, 345);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
@@ -273,6 +330,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.autoTuneTimeValue)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,5 +356,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox overPowerIndicatorLayout;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown autoTuneTimeValue;
     }
 }

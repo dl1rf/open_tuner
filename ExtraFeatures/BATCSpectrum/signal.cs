@@ -44,21 +44,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 this.dbb = _dbb;
             }
 
-            public Sig(Sig old, string _callsign)
-            {
-                this.fft_start = old.fft_start;
-                this.fft_stop = old.fft_stop;
-                this.fft_centre = old.fft_centre;
-                this.text_pos = old.text_pos;
-                this.fft_strength = old.fft_strength;
-                this.frequency = old.frequency;
-                this.sr = old.sr;
-                this.callsign = _callsign;
-                this.overpower = old.overpower;
-                this.max_strength = old.max_strength;
-                this.dbb = old.dbb;
-            }
-
             public Sig(Sig old, float _text_pos, string _callsign, double _frequency, float _sr)
             {
                 this.fft_start = old.fft_start;
@@ -73,27 +58,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 this.max_strength = old.max_strength;
                 this.dbb = old.dbb;
             }
-
-            public Sig(Sig old, string _callsign, double _frequency, float _sr)
-            {
-                this.fft_start = old.fft_start;
-                this.fft_stop = old.fft_stop;
-                this.fft_centre = old.fft_centre;
-                this.text_pos = old.text_pos;
-                this.fft_strength = old.fft_strength;
-                this.frequency = _frequency;
-                this.sr = _sr;
-                this.callsign = _callsign;
-                this.overpower = old.overpower;
-                this.max_strength = old.max_strength;
-                this.dbb = old.dbb;
-            }
-
-            public void updateCallsign(string _callsign)
-            {
-                this.callsign = _callsign;
-            }
-
         }
 
         public Action<string> debug;
@@ -103,7 +67,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         public List<Sig> signals = new List<Sig>();         // actual list of signals (processed)
         private const double start_freq = 10490.4754901;
         float minsr = 0.065f;
-        int num_rx_scan = 1;
         int num_rx = 1;
 
         public signal(object _list_lock)
@@ -111,17 +74,42 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             list_lock = _list_lock;
         }
 
-        bool avoid_beacon = false;
+        private void print_Signal(Sig _sig, int index, string name)
+        {
+            Log.Information(name.ToString() + "[" + index.ToString() + "]");
+            Log.Information(" fft_start    : " + _sig.fft_start.ToString());
+            Log.Information(" fft_centre   : " + _sig.fft_centre.ToString());
+            Log.Information(" fft_stop     : " + _sig.fft_stop.ToString());
+            Log.Information(" fft_strength : " + _sig.fft_strength.ToString());
+            Log.Information(" frequency    : " + _sig.frequency.ToString());
+            Log.Information(" sr           : " + _sig.sr.ToString());
+            Log.Information(" callsign     : " + _sig.callsign.ToString());
+            Log.Information(" text_pos     : " + _sig.text_pos.ToString());
+            Log.Information(" max_strength : " + _sig.max_strength.ToString());
+            Log.Information(" overpower    : " + _sig.overpower.ToString());
+            Log.Information(" dbb          : " + _sig.dbb.ToString());
+            Log.Information("");
+        }
+
+        private void print_if_diff_signals()
+        {
+            int count = Math.Max(newSignals.Count, signals.Count);
+            for (int i = 0; i < count; i++)
+            {
+                if (newSignals.Count != signals.Count)
+                {
+                    if (i < newSignals.Count)
+                        print_Signal(newSignals[i], i, "newSignals");
+                    if (i < signals.Count)
+                        print_Signal(signals[i], i, "signals");
+                }
+            }
+        }
 
         private Sig[] last_sig = new Sig[8];             //last tune signal - detail
         private Sig[] next_sig = new Sig[8];             //next tune signal - detail
 
         private DateTime[] last_tuned_time = new DateTime[8];   //time the last signal was tuned
-
-        public void set_avoidbeacon(bool b)
-        {
-            avoid_beacon = b;
-        }
 
         public void set_tuned(Sig s, int rx)
         {
@@ -138,25 +126,21 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             num_rx = _num_rx;
         }
 
-        public void set_num_rx_scan(int _num_rx_scan)
-        {
-            num_rx_scan = _num_rx_scan;
-        }
-
         public void clear(int rx)
         {
             last_sig[rx] = new Sig();
         }
 
         //function to find out whether to change tuning and which signal to tune to - auto tune mode
-        public Tuple<Sig, int> tune(int mode, int time, int rx)
+        public Tuple<Sig, int> tune(int mode, bool avoidBeacon, int time, int rx)
         {
             // int rx = 0;
             bool change = false;
             //mode
             //0=manual
             //1=auto wait
-            //2=auto timed
+            //2=auto next new
+            //3=auto timed
             //Log.Information(rx);
             TimeSpan t = DateTime.Now - last_tuned_time[rx];
 
@@ -168,7 +152,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     if ((t.Minutes * 60) + t.Seconds > time)
                     {
                         //Log.Information("elapsed: " + rx.ToString());
-                        next_sig[rx] = find_next(rx);
+                        next_sig[rx] = find_next(rx, avoidBeacon);
 
                         if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                         {
@@ -179,7 +163,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     {
                         if (!find_signal(last_sig[rx], rx))      //if the selected signal goes off then find another one to tune to
                         {
-                            next_sig[rx] = find_next(rx);
+                            next_sig[rx] = find_next(rx, avoidBeacon);
 
                             if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                             {
@@ -190,13 +174,25 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 }
                 else
                 {
-                    if (!find_signal(last_sig[rx], rx))  //if the selected signal goes off then find another one to tune to
+                    if (avoidBeacon && last_sig[rx].frequency < 10492.0)
                     {
-                        next_sig[rx] = find_next(rx);
+                        next_sig[rx] = find_next(rx, avoidBeacon);
 
                         if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
                         {
                             change = true;
+                        }
+                    }
+                    else
+                    {
+                        if (!find_signal(last_sig[rx], rx))  //if the selected signal goes off then find another one to tune to
+                        {
+                            next_sig[rx] = find_next(rx, avoidBeacon);
+
+                            if (diff_signals(last_sig[rx], next_sig[rx]) && next_sig[rx].frequency > 0)       //check if next is not the same as current
+                            {
+                                change = true;
+                            }
                         }
                     }
                 }
@@ -331,7 +327,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
         }
 
-        private Sig find_next(int rx)
+        private Sig find_next(int rx, bool avoid_beacon)
         {
             Sig newsig = new Sig();
             int n = 0;
@@ -559,8 +555,10 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                         }
                     }
                 }
+                //print_if_diff_signals();
                 updateSignalList();
             }
+            //print_if_diff_signals();
             return newSignals;
         }
 

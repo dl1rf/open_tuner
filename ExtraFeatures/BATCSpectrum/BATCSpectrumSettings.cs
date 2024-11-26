@@ -10,6 +10,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
     {
         public int[] tuneMode = { 1, 1, 1, 1 };
         public bool[] avoidBeacon = { true, true, true, true };
+        public int autoTuneTimeValue = 30;
         public int overPowerIndicatorLayout = 0;
     }
 }

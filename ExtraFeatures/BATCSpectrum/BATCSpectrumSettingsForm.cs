@@ -24,6 +24,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             tuneMode3.SelectedIndex = spectrumSettings.tuneMode[2];
             tuneMode4.SelectedIndex = spectrumSettings.tuneMode[3];
 
+            autoTuneTimeValue.Value = Convert.ToDecimal(spectrumSettings.autoTuneTimeValue);
+
             avoidBeacon1.Checked = spectrumSettings.avoidBeacon[0];
             avoidBeacon2.Checked = spectrumSettings.avoidBeacon[1];
             avoidBeacon3.Checked = spectrumSettings.avoidBeacon[2];
@@ -44,6 +46,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             spectrumSettings.tuneMode[1] = tuneMode2.SelectedIndex;
             spectrumSettings.tuneMode[2] = tuneMode3.SelectedIndex;
             spectrumSettings.tuneMode[3] = tuneMode4.SelectedIndex;
+
+            spectrumSettings.autoTuneTimeValue = Convert.ToInt32(autoTuneTimeValue.Value);
 
             spectrumSettings.avoidBeacon[0] = avoidBeacon1.Checked;
             spectrumSettings.avoidBeacon[1] = avoidBeacon2.Checked;

@@ -181,7 +181,7 @@ namespace opentuner.ExtraFeatures.DATVReporter
 
             string json_output = JsonConvert.SerializeObject(message, Formatting.Indented);
 
-            Log.Information(json_output);
+            //Log.Information(json_output);
 
             _last_callsign = message.target_callsign;
             _last_send_timestamp = DateTime.Now;

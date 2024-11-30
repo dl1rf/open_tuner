@@ -21,7 +21,22 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             avoidBeacon = _avoidBeacon;
             InitializeComponent();
 
-            tuneMode1.SelectedIndex = tuneMode;
+            switch (tuneMode)
+            {
+                case 0:
+                    radioButton1.Checked = true;
+                    break;
+                case 1:
+                    radioButton2.Checked = true;
+                    break;
+                case 2:
+                    radioButton3.Checked = true;
+                    break;
+                case 3:
+                    radioButton4.Checked = true;
+                    break;
+            }
+            //tuneMode1.SelectedIndex = tuneMode;
             avoidBeacon1.Checked = avoidBeacon;
             label1.Text = "RX " + _tuner.ToString() + ":";
         }
@@ -44,7 +59,10 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            tuneMode = tuneMode1.SelectedIndex;
+            if (radioButton1.Checked) { tuneMode = 0; }
+            if (radioButton2.Checked) { tuneMode = 1; }
+            if (radioButton3.Checked) { tuneMode = 2; }
+            if (radioButton4.Checked) { tuneMode = 3; }
             avoidBeacon = avoidBeacon1.Checked;
 
             DialogResult = DialogResult.OK;

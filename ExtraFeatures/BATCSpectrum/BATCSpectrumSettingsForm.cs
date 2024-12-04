@@ -24,6 +24,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             tuneMode3.SelectedIndex = spectrumSettings.tuneMode[2];
             tuneMode4.SelectedIndex = spectrumSettings.tuneMode[3];
 
+            treshHold.Value = Convert.ToDecimal(spectrumSettings.treshHold);
             autoHoldTimeValue.Value = Convert.ToDecimal(spectrumSettings.autoHoldTimeValue);
             autoTuneTimeValue.Value = Convert.ToDecimal(spectrumSettings.autoTuneTimeValue);
 
@@ -48,6 +49,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             spectrumSettings.tuneMode[2] = tuneMode3.SelectedIndex;
             spectrumSettings.tuneMode[3] = tuneMode4.SelectedIndex;
 
+            spectrumSettings.treshHold = Convert.ToSingle(treshHold.Value);
             spectrumSettings.autoHoldTimeValue = Convert.ToInt32(autoHoldTimeValue.Value);
             spectrumSettings.autoTuneTimeValue = Convert.ToInt32(autoTuneTimeValue.Value);
 
@@ -60,6 +62,86 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void tuneMode1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tuneMode1.SelectedIndex < 3)
+            {
+                avoidBeacon1.Visible = false;
+                if (tuneMode1.SelectedIndex == 0)   // "manual" mode
+                {
+                    avoidBeacon1.Checked = false;
+                }
+                else
+                {
+                    avoidBeacon1.Checked = true;
+                }
+            }
+            else
+            {
+                avoidBeacon1.Visible = true;
+            }
+        }
+
+        private void tuneMode2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tuneMode2.SelectedIndex < 3)
+            {
+                avoidBeacon2.Visible = false;
+                if (tuneMode2.SelectedIndex == 0)   // "manual" mode
+                {
+                    avoidBeacon2.Checked = false;
+                }
+                else
+                {
+                    avoidBeacon2.Checked = true;
+                }
+            }
+            else
+            {
+                avoidBeacon2.Visible = true;
+            }
+        }
+
+        private void tuneMode3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tuneMode3.SelectedIndex < 3)
+            {
+                avoidBeacon3.Visible = false;
+                if (tuneMode3.SelectedIndex == 0)   // "manual" mode
+                {
+                    avoidBeacon3.Checked = false;
+                }
+                else
+                {
+                    avoidBeacon3.Checked = true;
+                }
+            }
+            else
+            {
+                avoidBeacon3.Visible = true;
+            }
+        }
+
+        private void tuneMode4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tuneMode4.SelectedIndex < 3)
+            {
+                avoidBeacon4.Visible = false;
+                if (tuneMode4.SelectedIndex == 0)   // "manual" mode
+                {
+                    avoidBeacon4.Checked = false;
+                }
+                else
+                {
+                    avoidBeacon4.Checked = true;
+                }
+            }
+            else
+            {
+                avoidBeacon4.Visible = true;
+            }
         }
     }
 }

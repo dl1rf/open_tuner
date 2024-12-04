@@ -68,5 +68,41 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                avoidBeacon1.Visible = false;
+                avoidBeacon1.Checked = false;
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                avoidBeacon1.Visible = false;
+                avoidBeacon1.Checked = true;
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                avoidBeacon1.Visible = false;
+                avoidBeacon1.Checked = true;
+            }
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                avoidBeacon1.Visible = true;
+                avoidBeacon1.Checked = avoidBeacon;
+            }
+        }
     }
 }

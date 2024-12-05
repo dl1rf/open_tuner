@@ -153,8 +153,11 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 {
                     if (0 == compareFrequency(s.frequency, frequency, sr))
                     {
-                        found = true;
-                        break;
+                        if (s.sr == sr)
+                        {
+                            found = true;
+                            break;
+                        }
                     }
                 }
             }

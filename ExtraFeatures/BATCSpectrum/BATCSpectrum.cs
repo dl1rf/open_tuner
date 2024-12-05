@@ -720,6 +720,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                                 selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
                                 rx_blocks[i].dateTime = DateTime.Now;
                                 rx_blocks[i].signalLost = false;
+                                return;
                             }
                             break;
                         default:
@@ -734,26 +735,25 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 switch (spectrumSettings.tuneMode[i])
                 {
                     case 1:
+                    case 2:
                         if (rx_blocks[i].signalLost)
                         {
                             signal.Sig ret = sigs.findNextSignal(sig_tuned, rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i], spectrumSettings.treshHold);
                             if (ret.frequency > 0)      //above 0 is a change in signal
                             {
-                                Log.Information("new Signal to tune: " + ret.frequency.ToString() + ", " + ret.sr.ToString());
                                 if ((t > TimeSpan.FromSeconds(spectrumSettings.autoHoldTimeValue) && spectrumSettings.tuneMode[i] == 1) ||
                                     (spectrumSettings.avoidBeacon[i] && rx_blocks[i].frequency < 10492.0))
                                 {
+                                    Log.Information("new Signal to tune: " + ret.frequency.ToString() + ", " + ret.sr.ToString());
                                     int mul = (_spectrum.Height - bandplan_height) / _tuners;
                                     selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
                                     rx_blocks[i].dateTime = DateTime.Now;
                                     rx_blocks[i].signalLost = false;
                                     i = _tuners;    // break for loop
-                                    break;
+                                    return;
                                 }
                             }
                         }
-                        break;
-                    case 2:
                         break;
                     case 3:
                         bool signalLost = sigs.signalLost(rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i]);
@@ -765,11 +765,12 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                             {
                                 if (0 != sigs.compareFrequency(ret.frequency, rx_blocks[i].frequency, rx_blocks[i].sr))
                                 {
+                                    Log.Information("timed Signal to tune: " + ret.frequency.ToString() + ", " + ret.sr.ToString());
                                     int mul = (_spectrum.Height - bandplan_height) / _tuners;
                                     selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
                                     rx_blocks[i].dateTime = DateTime.Now;
                                     rx_blocks[i].signalLost = false;
-                                    break;
+                                    return;
                                 }
                             }
                         }

@@ -383,25 +383,11 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                         tmp.DrawLine(whitePen, Convert.ToInt16(s.fft_start * spectrum_wScale), height - Convert.ToInt16(s.fft_strength / height), Convert.ToInt16(s.fft_stop * spectrum_wScale), height - Convert.ToInt16(s.fft_strength / height));
                         tmp.DrawLine(whitePen, Convert.ToInt16(s.fft_start * spectrum_wScale), height - Convert.ToInt16(s.fft_strength / height), Convert.ToInt16(s.fft_start * spectrum_wScale), height);
                         tmp.DrawLine(whitePen, Convert.ToInt16(s.fft_stop * spectrum_wScale), height - Convert.ToInt16(s.fft_strength / height), Convert.ToInt16(s.fft_stop * spectrum_wScale), height);
-                        if (s.overpower && spectrumSettings.overPowerIndicatorLayout > 2)
-                        {
-                            tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks") + "\n " + s.dbb.ToString("#0.0dBb"), new Font("Tahoma", 10), Brushes.Red, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
-                        }
-                        else
-                        {
-                            tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks") + "\n " + s.dbb.ToString("#0.0dBb"), new Font("Tahoma", 10), Brushes.White, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
-                        }
+                        tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks") + "\n " + s.dbb.ToString("#0.0dBb"), new Font("Tahoma", 10), Brushes.White, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
                     }
                     else
                     {
-                        if (s.overpower && spectrumSettings.overPowerIndicatorLayout > 2)
-                        {
-                            tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.Red, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
-                        }
-                        else
-                        {
-                            tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.White, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
-                        }
+                        tmp.DrawString(s.callsign + "\n" + s.frequency.ToString("#0.000") + "\n " + (s.sr * 1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.White, new PointF(s.text_pos * spectrum_wScale - 30.0f, height - Convert.ToSingle(s.fft_strength / height + 50)));
                     }
                 }
             }
@@ -520,7 +506,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                             case 4:     // line only
                                 tmp.DrawLine(overpowerPen, Convert.ToInt16(sig.fft_start * spectrum_wScale - 15), height - Convert.ToInt16(sig.max_strength / height), Convert.ToInt16(sig.fft_stop * spectrum_wScale + 15), height - Convert.ToInt16(sig.max_strength / height));
                                 break;
-                            default:    // no indication
+                            default:
                                 break;
                         }
                     }

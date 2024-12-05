@@ -325,8 +325,7 @@
             "classic + line",
             "box from top to line",
             "box from line to bottom",
-            "line",
-            "off"});
+            "line"});
             this.overPowerIndicatorLayout.Location = new System.Drawing.Point(9, 25);
             this.overPowerIndicatorLayout.Name = "overPowerIndicatorLayout";
             this.overPowerIndicatorLayout.Size = new System.Drawing.Size(162, 21);

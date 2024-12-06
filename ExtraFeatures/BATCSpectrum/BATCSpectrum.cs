@@ -689,43 +689,49 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 }
             }
 
-            // first round: go through the list of tuners and look for new signal at last tuned frequncy of tuner 
+            // first round: go through the list of tuners and look for signal with same frequency at last tuned frequncy of tuner 
             for (int i = 0; i < _tuners; i++)
             {
                 if (rx_blocks[i].signalLost)
                 {
                     switch (spectrumSettings.tuneMode[i])
                     {
-                        case 1:
-                        case 2:
+                        case 1: // Auto (Hold)
+                        case 2: // Auto (Next new)
                             signal.Sig ret = sigs.findSameSignal(rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i], spectrumSettings.treshHold);
-                            if (ret.frequency > 0)      //above 0 is a change in signal
+                            if (ret.frequency > 0)      //above 0 signal found
                             {
-                                Log.Information("same Signal to retune: " + ret.frequency.ToString() + ", " + ret.sr.ToString());
-                                int mul = (_spectrum.Height - bandplan_height) / _tuners;
-                                selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
+                                Log.Information("same Signal: " + ret.frequency.ToString() + ", " + ret.sr.ToString());
+                                if (ret.sr != rx_blocks[i].sr)
+                                {
+                                    Log.Information("same Signal diff SR retune: " + rx_blocks[i].sr.ToString() + ", " + ret.sr.ToString());
+                                    int mul = (_spectrum.Height - bandplan_height) / _tuners;
+                                    selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
+                                }
                                 rx_blocks[i].dateTime = DateTime.Now;
                                 rx_blocks[i].signalLost = false;
                                 return;
                             }
                             break;
-                        default:
+                        default: // Auto (Timed) or Manual or invalid
                             break;
                     }
                 }
             }
 
+            // second round: go through the list of tuners and look for next nearest signal
+            //  also process "Auto (Timed)" tuners here
             for (int i = 0; i < _tuners; i++)
             {
                 TimeSpan t = DateTime.Now - rx_blocks[i].dateTime;
                 switch (spectrumSettings.tuneMode[i])
                 {
-                    case 1:
-                    case 2:
+                    case 1: // Auto (Hold)
+                    case 2: // Auto (Next new)
                         if (rx_blocks[i].signalLost)
                         {
-                            signal.Sig ret = sigs.findNextSignal(sig_tuned, rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i], spectrumSettings.treshHold);
-                            if (ret.frequency > 0)      //above 0 is a change in signal
+                            signal.Sig ret = sigs.findNextNearestSignal(sig_tuned, rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i], spectrumSettings.treshHold);
+                            if (ret.frequency > 0)      //above 0 signal found
                             {
                                 if ((t > TimeSpan.FromSeconds(spectrumSettings.autoHoldTimeValue) && spectrumSettings.tuneMode[i] == 1) ||
                                     (spectrumSettings.avoidBeacon[i] && rx_blocks[i].frequency < 10492.0))
@@ -735,19 +741,16 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                                     selectSignal(Convert.ToInt32(ret.text_pos * spectrum_wScale), i * mul);
                                     rx_blocks[i].dateTime = DateTime.Now;
                                     rx_blocks[i].signalLost = false;
-                                    i = _tuners;    // break for loop
-                                    return;
+                                    return; // exit here
                                 }
                             }
                         }
                         break;
-                    case 3:
-                        bool signalLost = sigs.signalLost(rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i]);
-                        rx_blocks[i].signalLost = signalLost;
-                        if (t > TimeSpan.FromSeconds(spectrumSettings.autoTuneTimeValue) || signalLost)
+                    case 3: // Auto (Timed)
+                        if (t > TimeSpan.FromSeconds(spectrumSettings.autoTuneTimeValue) || rx_blocks[i].signalLost)
                         {
                             signal.Sig ret = sigs.findNextSignalTimed(rx_blocks[i].frequency, rx_blocks[i].sr, spectrumSettings.avoidBeacon[i], spectrumSettings.treshHold);
-                            if (ret.frequency > 0)      //above 0 is a change in signal
+                            if (ret.frequency > 0)      //above 0 signal found
                             {
                                 if (0 != sigs.compareFrequency(ret.frequency, rx_blocks[i].frequency, rx_blocks[i].sr))
                                 {
@@ -761,7 +764,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                             }
                         }
                         break;
-                    default:
+                    default:    // Manual or invalid
                         break;
                 }
             }
@@ -826,8 +829,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
             try
             {
-                List<signal.Sig> signals = new List<signal.Sig>();
-                signals = sigs.newSignals;
+                List<signal.Sig> signals = new List<signal.Sig>(sigs.signals);
 
                 foreach (signal.Sig s in signals)
                 {

@@ -198,7 +198,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             return newSig;
         }
 
-        public Sig findNextSignal(List<RX_Sig> inuse, double frequency, float sr, bool avoidBeacon, float treshHold)
+        public Sig findNextNearestSignal(List<RX_Sig> inuse, double frequency, float sr, bool avoidBeacon, float treshHold)
         {
             Sig newSig = new Sig();
             List<Sig> notTunedSignals = new List<Sig>();

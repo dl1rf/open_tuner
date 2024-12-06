@@ -8,7 +8,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 {
     public class BATCSpectrumSettings
     {
-        public int[] tuneMode = { 1, 1, 1, 1 };
+        public int[] tuneMode = { 0, 0, 0, 0 };
         public bool[] avoidBeacon = { true, true, true, true };
         public float treshHold = -6.0f;
         public int autoHoldTimeValue = 5;

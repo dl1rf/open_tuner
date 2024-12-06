@@ -112,7 +112,7 @@
             0,
             -2147418112});
             this.treshHold.Minimum = new decimal(new int[] {
-            63,
+            69,
             0,
             0,
             -2147418112});

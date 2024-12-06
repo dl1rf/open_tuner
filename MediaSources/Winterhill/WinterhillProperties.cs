@@ -330,7 +330,7 @@ namespace opentuner.MediaSources.Winterhill
 
                         // reset status
 
-                        VideoChangeCB?.Invoke(option[0] + 1, false);
+                        VideoChangeCB?.Invoke(option[0], false);
                         playing[option[0]] = false;
                         _tuner_properties[option[0]].UpdateColor("demodstate", Color.PaleVioletRed);
                         demodstate[option[0]] = -1;
@@ -674,7 +674,7 @@ namespace opentuner.MediaSources.Winterhill
                     demodstate[c] = 0x81;   // timeout
                     Log.Information("Stopping " + c.ToString() + " - " + demodstate[c].ToString());
 
-                    VideoChangeCB?.Invoke(c + 1, false);
+                    VideoChangeCB?.Invoke(c, false);
                     playing[c] = false;
                     _tuner_properties[c].UpdateColor("demodstate", Color.PaleVioletRed);
                     _tuner_properties[c].UpdateValue("demodstate", scanstate_lookup[demodstate[c]]);

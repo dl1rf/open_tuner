@@ -165,7 +165,7 @@ namespace opentuner.MediaSources.Winterhill
                 ts_threads[c] = new TSThread(ts_data_queue[c], flush_ts, read_ts, "WH TS" + c.ToString());
                 ts_thread_t[c] = new Thread(ts_threads[c].worker_thread);
                 ts_thread_t[c].Start();
-                VideoChangeCB?.Invoke(c + 1, false); ;
+                VideoChangeCB?.Invoke(c, false); ;
             }
 
             BuildSourceProperties(mute_at_startup);
@@ -439,6 +439,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             Log.Information("SetFrequency: " + device.ToString() + "," + frequency.ToString() + "," + symbol_rate.ToString() + "," + offset_included.ToString());
 
+            demodstate[device] = 0;
 
             if (offset_included)
             {
@@ -455,7 +456,7 @@ namespace opentuner.MediaSources.Winterhill
             {
                 switch (hw_device)
                 {
-                    case 1:  WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
+                    case 1: WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
                     case 2: UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;

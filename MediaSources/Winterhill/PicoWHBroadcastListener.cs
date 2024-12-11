@@ -56,9 +56,8 @@ namespace opentuner.MediaSources.Winterhill
                     //Log.Information(remoteEndPoint.ToString());
                     //Log.Information(receivedMessage);
                 } 
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Log.Error(ex.Message);
                 }
                 
 

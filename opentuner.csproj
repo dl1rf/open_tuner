@@ -632,7 +632,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\picotuner\LibUsbDotNet\src\LibUsbDotNet\LibUsbDotNet.csproj">
+    <ProjectReference Include="..\LibUsbDotNet\src\LibUsbDotNet\LibUsbDotNet.csproj">
       <Project>{165d23f3-fdc1-444a-b350-93cc5b5dd2fb}</Project>
       <Name>LibUsbDotNet</Name>
     </ProjectReference>

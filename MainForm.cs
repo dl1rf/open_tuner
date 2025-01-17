@@ -1230,6 +1230,7 @@ namespace opentuner
             if (m.Msg == 0X0100 && (Keys)m.WParam.ToInt32() == Keys.P && ModifierKeys == Keys.Control)
             {
                 TogglePropertiesPanel(!properties_hidden);
+                _settings.hide_properties = properties_hidden;
                 return true;
             }
 

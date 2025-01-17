@@ -849,7 +849,6 @@ namespace opentuner
         {
             byte err = 0;
 
-        
             if (supply_enable)
             {
                 // set voltage
@@ -865,7 +864,6 @@ namespace opentuner
                         Log.Information("Enable LNB1 VSEL");
                         gpio_write(GPIO_LNB1_VSEL, true);
                     }
-
                 }
                 else
                 {
@@ -906,13 +904,9 @@ namespace opentuner
                     Log.Information("Disable LNB1 Power");
                     gpio_write(GPIO_LNB1_ENABLE, false);
                     gpio_write(GPIO_LNB1_VSEL, false);
-
                 }
             }
-
-            
             return err;
-
         }
     }
 

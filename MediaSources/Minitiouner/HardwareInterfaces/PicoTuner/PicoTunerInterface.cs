@@ -658,11 +658,21 @@ namespace opentuner
                 {
                     if (Name.Contains("i2c"))
                     {
-                        usbRegistry.Open(out i2c_pt_device);
+                        if (!usbRegistry.Open(out i2c_pt_device))
+                        {
+                            Log.Error("PicoTuner I2C device open failed");
+                            hw_close();
+                            return 1;
+                        }
                     }
                     else if (Name.Contains("TS"))
                     {
-                        usbRegistry.Open(out ts_pt_device);
+                        if (!usbRegistry.Open(out ts_pt_device))
+                        {
+                            Log.Error("PicoTuner TS device open failed");
+                            hw_close();
+                            return 1;
+                        }
                     }
                 }
             }

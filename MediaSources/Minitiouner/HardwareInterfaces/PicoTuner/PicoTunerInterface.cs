@@ -739,6 +739,9 @@ namespace opentuner
             ts2EndPointReader?.Dispose();
             i2c_pt_device?.Close();
             ts_pt_device?.Close();
+            // Free usb resources.
+            // This is necessary for libusb-1.0 and Linux compatibility.
+            UsbDevice.Exit();
         }
 
         byte gpio_write(byte pin_id, bool pin_value)

@@ -566,7 +566,7 @@ namespace opentuner
                     for (int i = 0; i < videoSource.GetVideoSourceCount(); i++)
                     {
                         ChangeVideo(i, false);
-                        _mediaPlayers[i].Close();
+                        _mediaPlayers?[i]?.Close();
                     }
                 }
 
@@ -575,20 +575,20 @@ namespace opentuner
                 // close ts streamers
                 for (int c = 0; c < _ts_streamers.Count; c++)
                 {
-                    _ts_streamers[c].Close();
+                    _ts_streamers?[c]?.Close();
                 }
 
 
                 // close ts recorders
                 for (int c = 0; c < _ts_recorders.Count; c++) 
                 {
-                    _ts_recorders[c].Close();
+                    _ts_recorders?[c]?.Close();
                 }
 
                 // close available media sources
                 for (int c = 0; c < _availableSources.Count; c++)
                 {
-                    _availableSources[c].Close();
+                    _availableSources?[c]?.Close();
                 }
 
             }

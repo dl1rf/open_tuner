@@ -626,47 +626,51 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
         public float align_symbolrate(float width)
         {
-            if (width < 0.022f)
+            if (width < 0.020f)
             {
                 return 0;
+            }
+            if (width < 0.030f)
+            {
+                return 0.025f;
             }
             else if (width < 0.060f)
             {
                 return 0.033f;
             }
-            else if (width < 0.096f)
+            else if (width < 0.100f)
             {
                 return 0.066f;
             }
-            else if (width < 0.185f)
+            else if (width < 0.190f)
             {
                 return 0.125f;
             }
-            else if (width < 0.277f)
+            else if (width < 0.292f)
             {
                 return 0.250f;
             }
-            else if (width < 0.388f)
+            else if (width < 0.417f)
             {
                 return 0.333f;
             }
-            else if (width < 0.7f)
+            else if (width < 0.625f)
             {
                 return 0.500f;
             }
-            else if (width < 0.85f)
+            else if (width < 0.875f)
             {
                 return 0.750f;
             }
-            else if (width < 1.2f)
+            else if (width < 1.25f)
             {
                 return 1.000f;
             }
-            else if (width < 1.6f)
+            else if (width < 1.75f)
             {
                 return 1.500f;
             }
-            else if (width < 2.2f)
+            else if (width < 2.5f)
             {
                 return 2.000f;
             }

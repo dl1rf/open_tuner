@@ -634,7 +634,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             {
                 return 0.033f;
             }
-            else if (width < 0.086f)
+            else if (width < 0.096f)
             {
                 return 0.066f;
             }

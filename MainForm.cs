@@ -165,6 +165,14 @@ namespace opentuner
                         _settings.hide_properties = false;
                         break;
 
+                    case "--showextratools":
+                        _settings.hide_ExtraTool = false;
+                        break;
+
+                    case "--hideextratools":
+                        _settings.hide_ExtraTool = true;
+                        break;
+
                     case "--hidevideoinfo":
                         for (int j = 0; j < 4; j++)
                             _settings.show_video_overlays[j] = false;

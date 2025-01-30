@@ -25,7 +25,7 @@ namespace opentuner.MediaSources.Longmynd
             txtMqttIpAddress.Text = _settings.LongmyndMqttHost;
             txtMqttPort.Text = _settings.LongmyndMqttPort.ToString();
             txtBaseCmdTopic.Text = _settings.CmdTopic;
-            txtTuner1FreqOffset.Text = _settings.Offset1.ToString();
+            txtTuner1FreqOffset.Text = _settings.DefaultOffset.ToString();
             txtTSPort.Text = _settings.TS_Port.ToString();
         }
 
@@ -72,7 +72,7 @@ namespace opentuner.MediaSources.Longmynd
             _settings.LongmyndWSPort = wsport;
             _settings.LongmyndMqttHost = txtMqttIpAddress.Text;
             _settings.LongmyndMqttPort  = mqttport;
-            _settings.Offset1 = offset;
+            _settings.DefaultOffset = offset;
             _settings.CmdTopic = txtBaseCmdTopic.Text;
 
             DialogResult = DialogResult.OK;

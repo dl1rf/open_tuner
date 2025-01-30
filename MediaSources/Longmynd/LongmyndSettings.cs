@@ -22,7 +22,11 @@ namespace opentuner.MediaSources.Longmynd
 
         public byte DefaultInterface = 0;   // 0 = ws 1 = mqtt
 
-        public uint Offset1 = 9750000;
+        public uint RFPort = 0;
+
+        public uint DefaultFrequency = 10491500;
+        public uint DefaultSR = 1500;
+        public uint DefaultOffset =  9750000;
         public uint DefaultVolume = 50;
         public bool DefaultMuted = true;
         public bool DefaultUDPStreaming = false;

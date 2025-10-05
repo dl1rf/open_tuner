@@ -491,6 +491,7 @@
             // 
             this.splitContainer3.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
+            this.splitContainer3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer3_MouseDoubleClick);
             // 
             // splitContainer4
             // 
@@ -505,6 +506,7 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer4_MouseDoubleClick);
             // 
             // splitContainer5
             // 
@@ -519,6 +521,7 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer5_MouseDoubleClick);
             // 
             // ExtraToolsTab
             // 

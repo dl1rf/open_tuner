@@ -1398,6 +1398,31 @@ namespace opentuner
         {
             System.Diagnostics.Process.Start("https://www.zr6tg.co.za/opentuner-datv-reporter/");
         }
+
+        private void splitContainer3_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            splitContainer3.SplitterDistance = (int)(splitContainer3.Height * 0.5);
+            if (splitContainer4.Panel2Collapsed == false)
+                splitContainer4.SplitterDistance = (int)(splitContainer4.Width * 0.5);
+            if (splitContainer5.Panel2Collapsed == false)
+                splitContainer5.SplitterDistance = (int)(splitContainer5.Width * 0.5);
+        }
+
+        private void splitContainer4_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            splitContainer3.SplitterDistance = (int)(splitContainer3.Height * 0.5);
+            splitContainer4.SplitterDistance = (int)(splitContainer4.Width * 0.5);
+            if (splitContainer5.Panel2Collapsed == false)
+                splitContainer5.SplitterDistance = (int)(splitContainer5.Width * 0.5);
+        }
+
+        private void splitContainer5_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            splitContainer3.SplitterDistance = (int)(splitContainer3.Height * 0.5);
+            if (splitContainer4.Panel2Collapsed == false)
+                splitContainer4.SplitterDistance = (int)(splitContainer4.Width * 0.5);
+            splitContainer5.SplitterDistance = (int)(splitContainer5.Width * 0.5);
+        }
     }
 
 

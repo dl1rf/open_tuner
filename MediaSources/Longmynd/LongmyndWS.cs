@@ -1,13 +1,9 @@
 ﻿using Newtonsoft.Json;
-using opentuner.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebSocketSharp;
 using System.Drawing;
 using Serilog;
+using System.Globalization;
 
 namespace opentuner.MediaSources.Longmynd
 {
@@ -16,17 +12,22 @@ namespace opentuner.MediaSources.Longmynd
         // ws interface
         private WebSocket controlWS;        // longmynd control ws websocket
         private WebSocket monitorWS;        // longmynd monitor ws websocket
+        private bool controlDisconnect;
+        private bool monitorDisconnect;
+        private bool controlConnected;
+        private bool monitorConnected;
+        private bool controlClosed;
+        private bool monitorClosed;
 
+        private void WSSetFrequency(uint frequency, uint symbol_rate)
+        {
+            controlWS.Send("C" + (frequency - _settings.DefaultOffset).ToString() + "," + symbol_rate.ToString());
+        }
 
         public void WSSetTS(string ip, int port)
         {
             Log.Information(ip.ToString() + " - " + port.ToString());
             controlWS.Send("U" + ip + ":" + port);
-        }
-
-        private void WSSetFrequency(uint frequency, uint symbol_rate)
-        {
-            controlWS.Send("C" + (frequency - _settings.Offset1).ToString() + "," + symbol_rate.ToString());
         }
 
         private void connectWebsockets()
@@ -38,19 +39,39 @@ namespace opentuner.MediaSources.Longmynd
             monitorWS.OnOpen += Monitorws_OnOpen;
             monitorWS.OnMessage += Monitorws_OnMessage;
             monitorWS.OnClose += Monitorws_OnClose;
+            monitorWS.OnError += MonitorWS_OnError;
             monitorWS.ConnectAsync();
+            monitorDisconnect = true;
+            monitorConnected = false;
+            monitorClosed = false;
 
             controlWS = new WebSocket(url, "control");
             controlWS.OnClose += Controlws_OnClose;
             controlWS.OnMessage += Controlws_OnMessage;
             controlWS.OnOpen += Controlws_OnOpen;
+            controlWS.OnError += ControlWS_OnError;
             controlWS.ConnectAsync();
+            controlDisconnect = true;
+            controlConnected = false;
+            controlClosed = false;
+        }
+
+        private void ControlWS_OnError(object sender, ErrorEventArgs e)
+        {
+            debug("ControlWS_OnError: " + e.ToString());
+        }
+
+        private void MonitorWS_OnError(object sender, ErrorEventArgs e)
+        {
+            debug("MonitorWS_OnError: " + e.ToString());
         }
 
         private void Monitorws_OnOpen(object sender, EventArgs e)
         {
             debug("Success: Monitor WS Open");
-            _connected = true;
+            monitorConnected = true;
+            if (controlConnected)
+                _connected = true;
         }
 
 
@@ -63,6 +84,7 @@ namespace opentuner.MediaSources.Longmynd
         private void Controlws_OnOpen(object sender, EventArgs e)
         {
             debug("Success: Control WS Open");
+            controlConnected = true;
         }
 
 
@@ -72,140 +94,61 @@ namespace opentuner.MediaSources.Longmynd
 
         private void Controlws_OnClose(object sender, CloseEventArgs e)
         {
-            debug("Error: Control WS Closed - Check WS IP");
-            debug("Attempting to reconnect...");
-            controlWS.Connect();
+            if (!controlDisconnect)
+            {
+                debug("Error: Control WS Closed - Check WS IP");
+                debug("Attempting to reconnect...");
+                controlWS.ConnectAsync();
+            }
+            else
+            {
+                controlClosed = true;
+                debug("Control WS Closed");
+            }
         }
 
         private void Monitorws_OnClose(object sender, CloseEventArgs e)
         {
-            debug("Error: Monitor WS Closed - Check WS IP");
-            debug("Attempting to reconnect...");
-            monitorWS.Connect();
+            if (!monitorDisconnect)
+            {
+                debug("Error: Monitor WS Closed - Check WS IP");
+                debug("Attempting to reconnect...");
+                monitorWS.ConnectAsync();
+            }
+            else
+            {
+                monitorClosed = true;
+                debug("Monitor WS Closed");
+            }
         }
 
         private void Monitorws_OnMessage(object sender, MessageEventArgs e)
         {
             monitorMessage mm = JsonConvert.DeserializeObject<monitorMessage>(e.Data);
-
-            if (demodState != mm.packet.rx.demod_state)
-            {
-                if (mm.packet.rx.demod_state < 3)
-                {
-                    Log.Information("Stopping");
-                    VideoChangeCB?.Invoke(0, false);
-                    playing = false;
-                }
-                else
-                {
-                    Log.Information("Playing");
-                    VideoChangeCB?.Invoke(0, true);
-                    playing = true;
-                }
-
-                demodState = mm.packet.rx.demod_state;
-            }
-
-
-            current_frequency_0 = (uint)mm.packet.rx.frequency;
-            current_sr_0 = (uint)mm.packet.rx.symbolrate;
-
-            UpdatePropertiesWs(mm);
-
+            UpdateInfo(mm);
         }
 
-        private void UpdatePropertiesWs(monitorMessage monitor_message)
+        public void DisconnectWebsockets()
         {
-            double mer = Convert.ToDouble(monitor_message.packet.rx.mer) / 10;
-            double db_margin = 0;
-            string modcod_text = "";
-
-            _tuner1_properties.UpdateValue("requested_freq", "(" + GetFrequency(0, true).ToString("N0") + ") (" + GetFrequency(0, false).ToString("N0") + ")");
-            _tuner1_properties.UpdateValue("symbol_rate", (monitor_message.packet.rx.symbolrate / 1000).ToString());
-            _tuner1_properties.UpdateValue("demodstate", demod_state_lookup[monitor_message.packet.rx.demod_state]);
-            _tuner1_properties.UpdateValue("ber", monitor_message.packet.rx.ber.ToString());
-
-            if (monitor_message.packet.rx.demod_state < 3)
-                _tuner1_properties.UpdateColor("demodstate", Color.PaleVioletRed);
-            else
-                _tuner1_properties.UpdateColor("demodstate", Color.PaleGreen);
-
-
-            try
+            _connected = false;
+            
+            if (monitorWS != null)
             {
-                switch (monitor_message.packet.rx.demod_state)
+                if (monitorWS.IsAlive)
                 {
-                    case 3:
-                        modcod_text = modcod_lookup_dvbs[monitor_message.packet.rx.modcod];
-                        db_margin = (mer - modcod_lookup_dvbs_threshold[monitor_message.packet.rx.modcod]);
-                        break;
-                    case 4:
-                        modcod_text = modcod_lookup_dvbs2[monitor_message.packet.rx.modcod];
-                        db_margin = (mer - modcod_lookup_dvbs2_threshold[monitor_message.packet.rx.modcod]);
-                        break;
-                    default:
-                        break;
+                    monitorDisconnect = true;
+                    monitorWS?.Close();
                 }
             }
-            catch (Exception Ex)
+
+            if (controlWS != null)
             {
-                debug("Unknown ModCod : " + Ex.Message);
-                debug(monitor_message.packet.rx.modcod.ToString());
-            }
-
-            last_mer_0 = mer.ToString();
-            last_dbm_0 = "D" + db_margin.ToString("N1").ToString();
-            _tuner1_properties.UpdateBigLabel("D" + db_margin.ToString("N1"));
-            //_tuner1_properties.UpdateValue("db_margin", "D" + db_margin.ToString("N1"));
-            _tuner1_properties.UpdateValue("modcod", modcod_text);
-            _tuner1_properties.UpdateValue("mer", mer.ToString() + " dB");
-
-            _tuner1_properties.UpdateValue("rf_input", (monitor_message.packet.rx.rfport == 0 ? "A" : "B"));
-
-            _tuner1_properties.UpdateValue("service_name_provider", monitor_message.packet.ts.service_provider_name);
-            _tuner1_properties.UpdateValue("service_name", monitor_message.packet.ts.service_name);
-
-            last_service_name_0 = monitor_message.packet.ts.service_name;
-            last_service_provider_0 = monitor_message.packet.ts.service_provider_name;
-
-            _tuner1_properties.UpdateValue("null_packets", monitor_message.packet.ts.null_ratio + "%");
-
-            _source_properties.UpdateValue("source_ts_ip", monitor_message.packet.rx.ts_ip_addr + ":" + monitor_message.packet.rx.ts_ip_port.ToString());
-
-            if (_LocalIp + ":" + _settings.TS_Port != monitor_message.packet.rx.ts_ip_addr + ":" + monitor_message.packet.rx.ts_ip_port.ToString())
-            {
-                _source_properties.UpdateColor("source_ts_ip", Color.PaleVioletRed);
-            }
-            else
-            {
-                _source_properties.UpdateColor("source_ts_ip", Color.Bisque);
-            }
-
-            //_source_properties.UpdateValue("source_ip", _settings.LongmyndWSHost);
-
-            // lost lock
-            if (monitor_message.packet.rx.demod_state < 3)
-            {
-                _tuner1_properties.UpdateValue("service_name_provider", "");
-                _tuner1_properties.UpdateValue("service_name", "");
-                _tuner1_properties.UpdateValue("stream_format", "");
-
-                _tuner1_properties.UpdateValue("video_codec", "");
-                _tuner1_properties.UpdateValue("video_resolution", "");
-                _tuner1_properties.UpdateValue("audio_codec", "");
-                _tuner1_properties.UpdateValue("audio_rate", "");
-
-                // stop recording if we lost lock
-                if (_recorder.record)
+                if (controlWS.IsAlive)
                 {
-                    _recorder.record = false;    // stop recording
-//                    ClearIndicator(ref indicatorStatus, PropertyIndicators.RecordingIndicator);
-                    _tuner1_properties.UpdateRecordButtonColor("media_controls_1", Color.Transparent);
-                    _tuner1_properties.UpdateValue("media_controls", indicatorStatus.ToString());
+                    controlDisconnect = true;
+                    controlWS?.Close();
                 }
-
             }
-
         }
 
     }

@@ -14,6 +14,7 @@ using LibVLCSharp.Shared;
 using Vortice.MediaFoundation;
 using Serilog;
 using System.Globalization;
+using opentuner.ExtraFeatures.BATCSpectrum;
 
 namespace opentuner.MediaSources.Longmynd
 {
@@ -36,18 +37,19 @@ namespace opentuner.MediaSources.Longmynd
 
     public partial class LongmyndSource
     {
-        public override event SourceDataChange OnSourceData;
-
         // properties management
-        Control _parent = null;
+        private Control _parent = null;
 
-        private static DynamicPropertyGroup _tuner1_properties = null;
-        private static DynamicPropertyGroup _source_properties = null;
+        private DynamicPropertyGroup _tuner1_properties = null;
+        private DynamicPropertyGroup _source_properties = null;
 
         // context menu strip
         ContextMenuStrip _genericContextStrip;
 
         private List<StoredFrequency> _frequency_presets = null;
+
+        private bool muted = true;
+        private int preMute = 50;
 
         private bool BuildSourceProperties(bool mute_at_startup)
         {
@@ -60,8 +62,31 @@ namespace opentuner.MediaSources.Longmynd
             _genericContextStrip = new ContextMenuStrip();
             _genericContextStrip.Opening += _genericContextStrip_Opening;
 
+            _tuner1_properties = new DynamicPropertyGroup("Tuner 0", _parent);
+            _tuner1_properties.OnSlidersChanged += DynamicPropertyGroup_OnSliderChanged;
+            _tuner1_properties.OnMediaButtonPressed += LongmyndSource_OnMediaButtonPressed;
 
-            _tuner1_properties = ConfigureTunerProperties(1);
+            _tuner1_properties.AddItem("demodstate", "Demod State", Color.PaleVioletRed);
+            _tuner1_properties.AddItem("mer", "Mer");
+            //_tuner1_properties.AddItem("db_margin", "db Margin");
+            //_tuner1_properties.AddItem("rf_input_level", "RF Input Level");
+            _tuner1_properties.AddItem("rf_input", "RF Input");
+            _tuner1_properties.AddItem("requested_freq", "Requested Freq"); //, _genericContextStrip);
+            _tuner1_properties.AddItem("symbol_rate", "Symbol Rate");
+            _tuner1_properties.AddItem("modcod", "Modcod");
+            //_tuner1_properties.AddItem("lna_gain", "LNA Gain");
+            _tuner1_properties.AddItem("ber", "Ber");
+            //_tuner1_properties.AddItem("freq_carrier_offset", "Freq Carrier Offset");
+            //_tuner1_properties.AddItem("stream_format", "Stream Format");
+            _tuner1_properties.AddItem("service_name", "Service Name");
+            _tuner1_properties.AddItem("service_name_provider", "Service Name Provider");
+            _tuner1_properties.AddItem("null_packets", "Null Packets");
+            _tuner1_properties.AddItem("video_codec", "Video Codec");
+            _tuner1_properties.AddItem("video_resolution", "Video Resolution");
+            _tuner1_properties.AddItem("audio_codec", "Audio Codec");
+            _tuner1_properties.AddItem("audio_rate", "Audio Rate");
+            _tuner1_properties.AddSlider("volume_slider_0", "Volume", 0, 200);
+            _tuner1_properties.AddMediaControls("media_controls_0", "Media Controls");
 
             if (mute_at_startup)
             {
@@ -90,56 +115,23 @@ namespace opentuner.MediaSources.Longmynd
             _source_properties.AddItem("source_ts_ip", "TS IP", _genericContextStrip);
             _source_properties.UpdateColor("source_ts_ip", Color.PaleVioletRed);
 
+            _tuner_forms = new List<TunerControlForm>();
+
+            // tuner for each device
+            var tunerControl = new TunerControlForm(0, 0, 0, (int)current_offset_0, this);
+            tunerControl.OnTunerChange += TunerControl_OnTunerChange;
+            _tuner_forms.Add(tunerControl);
+
             return true;
         }
 
-        private DynamicPropertyGroup ConfigureTunerProperties(int tuner)
+        private void TunerControl_OnTunerChange(int id, uint freq)
         {
-            DynamicPropertyGroup dynamicPropertyGroup = new DynamicPropertyGroup("Tuner " + tuner.ToString(), _parent);
-            dynamicPropertyGroup.OnSlidersChanged += DynamicPropertyGroup_OnSliderChanged;
-            dynamicPropertyGroup.OnMediaButtonPressed += DynamicPropertyGroup_OnMediaButtonPressed;
-
-            dynamicPropertyGroup.AddItem("demodstate", "Demod State", Color.PaleVioletRed);
-            dynamicPropertyGroup.AddItem("mer", "Mer");
-            //dynamicPropertyGroup.AddItem("db_margin", "db Margin");
-            //dynamicPropertyGroup.AddItem("rf_input_level", "RF Input Level");
-            dynamicPropertyGroup.AddItem("rf_input", "RF Input");
-            dynamicPropertyGroup.AddItem("requested_freq", "Requested Freq"); //, _genericContextStrip);
-            dynamicPropertyGroup.AddItem("symbol_rate", "Symbol Rate");
-            dynamicPropertyGroup.AddItem("modcod", "Modcod");
-            //dynamicPropertyGroup.AddItem("lna_gain", "LNA Gain");
-            dynamicPropertyGroup.AddItem("ber", "Ber");
-            //dynamicPropertyGroup.AddItem("freq_carrier_offset", "Freq Carrier Offset");
-            dynamicPropertyGroup.AddItem("stream_format", "Stream Format");
-            dynamicPropertyGroup.AddItem("service_name", "Service Name");
-            dynamicPropertyGroup.AddItem("service_name_provider", "Service Name Provider");
-            dynamicPropertyGroup.AddItem("null_packets", "Null Packets");
-            dynamicPropertyGroup.AddItem("video_codec", "Video Codec");
-            dynamicPropertyGroup.AddItem("video_resolution", "Video Resolution");
-            dynamicPropertyGroup.AddItem("audio_codec", "Audio Codec");
-            dynamicPropertyGroup.AddItem("audio_rate", "Audio Rate");
-            dynamicPropertyGroup.AddSlider("volume_slider_" + (tuner - 1).ToString(), "Volume", 0, 200);
-            dynamicPropertyGroup.AddMediaControls("media_controls_" + (tuner - 1).ToString(), "Media Controls");
-            return dynamicPropertyGroup;
+            Log.Information("set frequency : " + id.ToString() + "," + freq.ToString());
+            SetFrequency(id, freq, (uint)current_sr_0, false);
         }
 
-
-        private int preMute = 50;
-        private bool muted = true;
-        private int indicatorStatus = 0;
-
-
-//        public void SetIndicator(ref int indicatorInput, PropertyIndicators indicator)
-//        {
-//            indicatorInput |= (byte)(1 << (int)indicator);
-//        }
-
-//        public void ClearIndicator(ref int indicatorInput, PropertyIndicators indicator)
-//        {
-//            indicatorInput &= (byte)~(1 << (int)indicator);
-//        }
-
-        private void DynamicPropertyGroup_OnMediaButtonPressed(string key, int function)
+        private void LongmyndSource_OnMediaButtonPressed(string key, int function)
         {
             switch (function)
             {
@@ -157,8 +149,7 @@ namespace opentuner.MediaSources.Longmynd
                     if (_recorder.record)
                     {
                         _recorder.record = false;    // stop recording
-//                        ClearIndicator(ref indicatorStatus, PropertyIndicators.RecordingIndicator);
-                        _tuner1_properties.UpdateRecordButtonColor("media_controls_1", Color.Transparent);
+                        _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.Transparent);
                     }
                     else
                     {
@@ -166,17 +157,13 @@ namespace opentuner.MediaSources.Longmynd
                         if (demodState >= 3)
                         {
                             _recorder.record = true;     // start recording
-//                            SetIndicator(ref indicatorStatus, PropertyIndicators.RecordingIndicator);
-                            _tuner1_properties.UpdateRecordButtonColor("media_controls_1", Color.PaleVioletRed);
+                            _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.PaleVioletRed);
                         }
                         else
                         {
                             Log.Information("Can't record, not locked to a signal");
                         }
                     }
-
-                    _tuner1_properties.UpdateValue("media_controls_1", indicatorStatus.ToString());
-
                     break;
 
                 case 3: // stream
@@ -186,18 +173,13 @@ namespace opentuner.MediaSources.Longmynd
                     if ( _streamer.stream)
                     {
                         _settings.DefaultUDPStreaming = _streamer.stream = false;   
-//                        ClearIndicator(ref indicatorStatus, PropertyIndicators.StreamingIndicator);
-                        _tuner1_properties.UpdateStreamButtonColor("media_controls_1", Color.Transparent);
+                        _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.Transparent);
                     }
                     else
                     {
                         _settings.DefaultUDPStreaming = _streamer.stream = true;
-//                        SetIndicator(ref indicatorStatus, PropertyIndicators.StreamingIndicator);
-                        _tuner1_properties.UpdateStreamButtonColor("media_controls_1", Color.PaleTurquoise);
+                        _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.PaleTurquoise);
                     }
-
-                    _tuner1_properties.UpdateValue("media_controls_1", indicatorStatus.ToString());
-
                     break;
 
             }
@@ -233,8 +215,151 @@ namespace opentuner.MediaSources.Longmynd
             _tuner.UpdateValue("audio_rate", audio_rate);
         }
 
+        private void UpdateInfo(monitorMessage mm)
+        {
+            try
+            {
+                // still setting up
+                if (!_Ready)
+                    return;
+
+                if (_tuner1_properties == null)
+                    return;
 
 
+                //Log.Information("REady for info");
+                if (demodState != mm.packet.rx.demod_state)
+                {
+                    if (mm.packet.rx.demod_state < 3)
+                    {
+                        Log.Information("Stopping");
+                        VideoChangeCB?.Invoke(0, false);
+                        playing = false;
+                    }
+                    else
+                    {
+                        Log.Information("Playing");
+                        VideoChangeCB?.Invoke(0, true);
+                        playing = true;
+                    }
+
+                    demodState = mm.packet.rx.demod_state;
+                }
+
+                current_frequency_0 = (uint)mm.packet.rx.frequency;
+                current_sr_0 = (uint)mm.packet.rx.symbolrate;
+
+                double mer = Convert.ToDouble(mm.packet.rx.mer) / 10;
+                double db_margin = 0;
+                string modcod_text = "";
+
+                _tuner1_properties.UpdateValue("requested_freq", "(" + GetFrequency(0, true).ToString("N0") + ") (" + GetFrequency(0, false).ToString("N0") + ")");
+                _tuner1_properties.UpdateValue("symbol_rate", (mm.packet.rx.symbolrate / 1000).ToString());
+                _tuner1_properties.UpdateValue("demodstate", demod_state_lookup[mm.packet.rx.demod_state]);
+                _tuner1_properties.UpdateValue("ber", mm.packet.rx.ber.ToString());
+
+                if (mm.packet.rx.demod_state < 3)
+                    _tuner1_properties.UpdateColor("demodstate", Color.PaleVioletRed);
+                else
+                    _tuner1_properties.UpdateColor("demodstate", Color.PaleGreen);
+
+                try
+                {
+                    switch (mm.packet.rx.demod_state)
+                    {
+                        case 3:
+                            modcod_text = modcod_lookup_dvbs[mm.packet.rx.modcod];
+                            db_margin = (mer - modcod_lookup_dvbs_threshold[mm.packet.rx.modcod]);
+                            break;
+                        case 4:
+                            modcod_text = modcod_lookup_dvbs2[mm.packet.rx.modcod];
+                            db_margin = (mer - modcod_lookup_dvbs2_threshold[mm.packet.rx.modcod]);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    debug("Unknown ModCod : " + Ex.Message);
+                    debug(mm.packet.rx.modcod.ToString());
+                }
+
+                last_mer_0 = mer.ToString();
+                last_dbm_0 = "D" + db_margin.ToString("N1").ToString();
+                _tuner1_properties.UpdateBigLabel("D" + db_margin.ToString("N1"));
+                //_tuner1_properties.UpdateValue("db_margin", "D" + db_margin.ToString("N1"));
+                _tuner1_properties.UpdateValue("modcod", modcod_text);
+                _tuner1_properties.UpdateValue("mer", mer.ToString() + " dB");
+
+                _tuner1_properties.UpdateValue("rf_input", (mm.packet.rx.rfport == 0 ? "A" : "B"));
+
+                _tuner1_properties.UpdateValue("service_name_provider", mm.packet.ts.service_provider_name);
+                _tuner1_properties.UpdateValue("service_name", mm.packet.ts.service_name);
+
+                last_service_name_0 = mm.packet.ts.service_name;
+                last_service_provider_0 = mm.packet.ts.service_provider_name;
+
+                _tuner1_properties.UpdateValue("null_packets", mm.packet.ts.null_ratio + "%");
+                _source_properties.UpdateValue("source_ts_ip", mm.packet.rx.ts_ip_addr + ":" + mm.packet.rx.ts_ip_port.ToString());
+
+                if (_LocalIp + ":" + _settings.TS_Port != mm.packet.rx.ts_ip_addr + ":" + mm.packet.rx.ts_ip_port.ToString())
+                {
+                    _source_properties.UpdateColor("source_ts_ip", Color.PaleVioletRed);
+                }
+                else
+                {
+                    _source_properties.UpdateColor("source_ts_ip", Color.Bisque);
+                }
+
+                //_source_properties.UpdateValue("source_ip", _settings.LongmyndWSHost);
+
+                // lost lock
+                if (mm.packet.rx.demod_state < 3)
+                {
+                    _tuner1_properties.UpdateValue("service_name_provider", "");
+                    _tuner1_properties.UpdateValue("service_name", "");
+                    _tuner1_properties.UpdateValue("stream_format", "");
+
+                    _tuner1_properties.UpdateValue("video_codec", "");
+                    _tuner1_properties.UpdateValue("video_resolution", "");
+                    _tuner1_properties.UpdateValue("audio_codec", "");
+                    _tuner1_properties.UpdateValue("audio_rate", "");
+
+                    // stop recording if we lost lock
+                    if (_recorder.record)
+                    {
+                        _recorder.record = false;    // stop recording
+                        _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.Transparent);
+                    }
+
+                }
+                CultureInfo specific_culture = CultureInfo.CreateSpecificCulture("en-US");
+
+                var source_data = new OTSourceData();
+                source_data.frequency = GetFrequency(0, true);
+                source_data.video_number = 0;
+                source_data.mer = mer;
+
+                source_data.db_margin = db_margin;
+                source_data.symbol_rate = (int)mm.packet.rx.symbolrate / 1000;
+                source_data.demod_locked = (mm.packet.rx.demod_state == 3 || mm.packet.rx.demod_state == 4);
+                source_data.service_name = mm.packet.ts.service_name;
+                source_data.modcode = modcod_text;
+
+                if (_media_player != null)
+                    source_data.volume = _media_player.GetVolume();
+
+                source_data.streaming = _streamer.stream;
+                source_data.recording = _recorder.record;
+
+                OnSourceData?.Invoke(0, source_data, "Tuner 0");
+            }
+            catch (Exception Ex)
+            {
+                Log.Warning(Ex, "Error");
+            }
+        }
 
         private void _genericContextStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -271,7 +396,6 @@ namespace opentuner.MediaSources.Longmynd
             {
                 properties_OnPropertyMenuSelect(command, option);
             };
-
             return item;
         }
 
@@ -289,7 +413,7 @@ namespace opentuner.MediaSources.Longmynd
                 data.Add("dbMargin", last_dbm_0);
                 data.Add("Mer", last_mer_0);
                 data.Add("SR", current_sr_0.ToString());
-                data.Add("Frequency", ((float)(current_frequency_0 + _settings.Offset1) / 1000.0f).ToString("F", nfi));
+                data.Add("Frequency", ((float)(current_frequency_0 + _settings.DefaultOffset) / 1000.0f).ToString("F", nfi));
             }
 
             return data;

@@ -48,7 +48,7 @@ namespace opentuner.MediaSources.Longmynd
             Log.Information(frequency.ToString() + " - " + symbol_rate.ToString());
             Log.Information("freq set: " + _settings.CmdTopic + "frequency");
             Log.Information("sr set: " + _settings.CmdTopic + "sr");
-            SendMqttStatus(_settings.CmdTopic + "frequency", (frequency - _settings.Offset1).ToString());
+            SendMqttStatus(_settings.CmdTopic + "frequency", (frequency - _settings.DefaultOffset).ToString());
             SendMqttStatus(_settings.CmdTopic + "sr", (symbol_rate).ToString());
         }
 
@@ -76,6 +76,11 @@ namespace opentuner.MediaSources.Longmynd
             _mqtt_client.ApplicationMessageReceivedAsync += _mqtt_client_ApplicationMessageReceivedAsync;
 
             var connectResult = _mqtt_client.ConnectAsync(options);
+        }
+
+        public void DisconnectMqtt()
+        {
+            _mqtt_client.DisconnectAsync();
         }
 
         private Task _mqtt_client_ApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)

@@ -465,7 +465,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     if (diff_signals(signals[x], freq, sr) == false)
                     {
                         //debug("updateCurrentSignal: found! Index: " + x.ToString() + ", Call: " + callsign + ", QRG: " + freq.ToString() + ", SR: " + sr.ToString());
-                        signals[x] = new Sig(signals[x], Convert.ToSingle(Math.Round((freq - start_freq) * 102.0f, 1)), callsign, freq, sr);
+//                        signals[x] = new Sig(signals[x], Convert.ToSingle(Math.Round((freq - start_freq) * 102.0f, 1)), callsign, freq, sr);
+                        signals[x] = new Sig(signals[x], signals[x].text_pos, callsign, signals[x].frequency, signals[x].sr);
                         break;
                     }
                 }

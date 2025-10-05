@@ -393,6 +393,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         }
 
         // Entrypoint with new fft_data from websocket
+        int autoTuneStartupDelay = 12;
+
         private void new_fft_data(UInt16[] _fft_data)
         {
             fft_data = _fft_data;
@@ -400,7 +402,10 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
 
             sigs.detect_signals(fft_data);  // detect new signals and remove lost signals
 
-            autoTune();
+            if (autoTuneStartupDelay > 0)   // delay the auto tune function at startup
+                autoTuneStartupDelay--;
+            else
+                autoTune();
 
             thread_wait_event_handles[2].Set(); // fire worker thread to draw new fft_data
         }

@@ -20,19 +20,13 @@ namespace opentuner.MediaSources.Longmynd
 {
     public partial class LongmyndSource : OTSource
     {
-        private bool _connected = false;
-
-
-        private System.Timers.Timer sessionTimer;
-
         private LongmyndSettings _settings;
         private SettingsManager<LongmyndSettings> _settingsManager;
 
-        private int demodState = -1;
+        public override event SourceDataChange OnSourceData;
 
-        private UDPClient udp_client;
-
-        bool playing = false;
+        private bool _connected = false;
+        public override bool DeviceConnected => _connected;
 
         private VideoChangeCallback VideoChangeCB;
 
@@ -40,17 +34,23 @@ namespace opentuner.MediaSources.Longmynd
         TSThread ts_thread;
 
         // todo: fix double buffer read
-        private CircularBuffer udp_buffer = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
-        public CircularBuffer ts_data_queue = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
+        private CircularBuffer udp_buffer; // = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
+        public CircularBuffer ts_data_queue; // = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
 
         private OTMediaPlayer _media_player;
         private TSRecorder _recorder;
         private TSUdpStreamer _streamer;
-
-        public override bool DeviceConnected => _connected;
+        private List<TunerControlForm> _tuner_forms;
 
         // properties
+        private UDPClient udp_client;
+
+        string _mediaPath = "";
+
+        private string _LocalIp;
+
         private uint current_frequency_0 = 0;
+        private uint current_offset_0 = 0;
         private uint current_sr_0 = 0;
 
         private string last_service_name_0 = "";
@@ -58,9 +58,11 @@ namespace opentuner.MediaSources.Longmynd
         private string last_dbm_0 = "";
         private string last_mer_0 = "";
 
-        string _mediaPath = "";
+        private int demodState = -1;
 
-        private string _LocalIp;
+        bool playing = false;
+
+        bool _Ready = false;
 
         public LongmyndSource()
         {
@@ -70,27 +72,174 @@ namespace opentuner.MediaSources.Longmynd
             _settings = (_settingsManager.LoadSettings(_settings));
         }
 
+        public override int Initialize(VideoChangeCallback VideoChangeCB, Control Parent, bool mute_at_startup)
+        {
+            _parent = Parent;
+            this.VideoChangeCB = VideoChangeCB;
+
+            current_offset_0 = _settings.DefaultOffset;
+            // connect websockets
+            switch (_settings.DefaultInterface)
+            {
+                case 0:
+                    connectWebsockets();
+                    while (!_connected)
+                    {
+                        if (monitorConnected && controlConnected)
+                            _connected = true;
+
+                        if (!_connected)
+                        {
+                            Log.Information("Waiting on websockets to connect");
+                            Thread.Sleep(1000);
+                            if (monitorClosed || controlClosed)
+                            {
+                                DisconnectWebsockets();
+                                return -1;
+                            }
+                        }
+                    }
+                    monitorDisconnect = false;
+                    controlDisconnect = false;
+
+                    break;
+                case 1:
+                    ConnectMqtt();
+                    break;
+            }
+
+            // open udp port
+            udp_buffer = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
+            ts_data_queue = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
+
+            udp_client = new UDPClient(_settings.TS_Port);
+            udp_client.ConnectionStatusChanged += Longmynd_ConnectionStatusChanged;
+            udp_client.DataReceived += Longmynd_DataReceived;
+            udp_client.Connect();
+
+            ts_thread = new TSThread(ts_data_queue, FlushTS2, ReadTS2, "LM TS");
+            ts_thread_t = new Thread(ts_thread.worker_thread);
+            ts_thread_t.Start();
+
+            BuildSourceProperties(mute_at_startup);
+
+            switch (_settings.DefaultInterface)
+            {
+                case 0:
+                    _source_properties.UpdateValue("source_ip", _settings.LongmyndWSHost);
+                    break;
+                case 1:
+                    _source_properties.UpdateValue("source_ip", _settings.LongmyndMqttHost);
+                    break;
+
+            }
+
+
+            // get local ip
+            List<string> detected_ips = CommonFunctions.determineIP();
+
+            if (detected_ips.Count > 0)
+                _LocalIp = detected_ips[0];
+
+            return 1;
+        }
+
+        void FlushTS2()
+        {
+            udp_buffer.Clear();
+        }
+
+        byte ReadTS2(ref byte[] data, ref uint dataRead)
+        {
+            int read = udp_buffer.Count;
+            uint written = 0;
+
+            if (udp_buffer.Count > 4000)
+            {
+                read = 4000;
+            }
+
+            for (int c = 0; c < read; c++)
+            {
+                data[c] = udp_buffer.Dequeue();
+                written += 1;
+            }
+
+            dataRead = written;
+
+            return 0;
+        }
+
+        private void Longmynd_DataReceived(object sender, byte[] e)
+        {
+            if (!playing)
+                return;
+
+            for (int c = 0; c < e.Length; c++)
+            {
+                udp_buffer.Enqueue(e[c]);
+            }
+            ts_thread.NewDataPresent();
+        }
+
+        private void Longmynd_ConnectionStatusChanged(object sender, bool connection_status)
+        {
+            Log.Information("Connection Status " + ((UDPClient)sender).getID() + " : " + (connection_status ? "Connected" : "Disconnected"));
+        }
+
         public override void Start()
         {
+            SetFrequency(0, _settings.DefaultFrequency, _settings.DefaultSR, true);
+            _Ready = true;
         }
 
         public override void Close()
         {
+            _Ready = false;
+
+            Log.Information("Closing Winterhill Source");
+
+            int defaultInterface = _settings.DefaultInterface;
             _settingsManager.SaveSettings(_settings);
 
-            if (_settings.DefaultInterface == 0)
+            if (defaultInterface == 0)
             {
-                monitorWS?.Close();
-                controlWS?.Close();
+                DisconnectWebsockets();
             }
+            else
+            {
+                DisconnectMqtt();
+            }
+            ts_thread_t?.Abort();
+            udp_client?.Disconnect();
+        }
 
-            udp_client?.Close();
+        public override void ConfigureMediaPath(string MediaPath)
+        {
+            _mediaPath = MediaPath;
+        }
+
+        public override void ConfigureTSRecorders(List<TSRecorder> TSRecorders)
+        {
+            _recorder = TSRecorders[0];
+        }
+
+        public override void ConfigureTSStreamers(List<TSUdpStreamer> TSStreamers)
+        {
+            _streamer = TSStreamers[0];
+            _streamer.onStreamStatusChange += LongmyndSource_onStreamStatusChange;
+            _streamer.stream = _settings.DefaultUDPStreaming;
+        }
+
+        private void LongmyndSource_onStreamStatusChange(object sender, bool e)
+        {
+            Log.Information(((TSUdpStreamer)(sender)).ID.ToString() + " streaming status : " + e.ToString());
         }
 
         public override void ConfigureVideoPlayers(List<OTMediaPlayer> MediaPlayers)
         {
             _media_player = MediaPlayers[0];
-            _media_player.onVideoOut += _media_player_onVideoOut;
+            _media_player.onVideoOut += LongmyndSource_onVideoOut;
             if (_settings.DefaultMuted)
             {
                 _media_player.SetVolume(0);
@@ -101,7 +250,7 @@ namespace opentuner.MediaSources.Longmynd
             }
         }
 
-        private void _media_player_onVideoOut(object sender, MediaStatus e)
+        private void LongmyndSource_onVideoOut(object sender, MediaStatus e)
         {
             preMute = (int)_settings.DefaultVolume;
             muted = _settings.DefaultMuted;
@@ -113,6 +262,7 @@ namespace opentuner.MediaSources.Longmynd
             {
                 _media_player.SetVolume(preMute);
             }
+
             UpdateMediaProperties(0, e);
         }
 
@@ -134,10 +284,7 @@ namespace opentuner.MediaSources.Longmynd
 
         public override long GetFrequency(int device, bool offset_included)
         {
-            if (offset_included)
-                return current_frequency_0 + _settings.Offset1;
-
-            return current_frequency_0;
+            return current_frequency_0 + (offset_included ? current_offset_0 : 0);
         }
 
         public override string GetName()
@@ -154,7 +301,6 @@ namespace opentuner.MediaSources.Longmynd
                 _tuner1_properties.UpdateMuteButtonColor("media_controls_0", Color.PaleVioletRed);
                 muted = _settings.DefaultMuted = true;
                 _settings.DefaultVolume = (uint)preMute;                            // restore DefaultVolume
-                _settings.DefaultMuted = true;
             }
         }
 
@@ -168,126 +314,51 @@ namespace opentuner.MediaSources.Longmynd
             return 1;
         }
 
-        private void Udp_client_DataReceived(object sender, byte[] e)
-        {
-            if (!playing) { return; }
-
-            for (int c = 0; c < e.Length; c++)
-            {
-                udp_buffer.Enqueue(e[c]);
-            }
-            ts_thread.NewDataPresent();
-        }
-
-        private void Udp_client_ConnectionStatusChanged(object sender, bool connection_status)
-        {
-            debug("udp: Connection status changed: " + (connection_status ? "Connected" : "Disconnected"));
-        }
-
-
-
-        public override int Initialize(VideoChangeCallback VideoChangeCB, Control Parent, bool mute_at_startup)
-        {
-            _parent = Parent;
-
-
-
-            // connect websockets
-            switch (_settings.DefaultInterface)
-            {
-                case 0:  
-                    connectWebsockets(); 
-                    break;
-                case 1:
-                    ConnectMqtt();
-                    break;
-            }
-
-            // open udp port
-            udp_client = new UDPClient(_settings.TS_Port);
-            udp_client.ConnectionStatusChanged += Udp_client_ConnectionStatusChanged;
-            udp_client.DataReceived += Udp_client_DataReceived;
-            udp_client.Connect();
-
-            ts_thread = new TSThread(ts_data_queue, FlushTS2, ReadTS2, "LM TS");
-            ts_thread_t = new Thread(ts_thread.worker_thread);
-            ts_thread_t.Start();
-
-            BuildSourceProperties(mute_at_startup);
-
-            switch(_settings.DefaultInterface)
-            {
-                case 0:
-                    _source_properties.UpdateValue("source_ip", _settings.LongmyndWSHost);
-                    break;
-                case 1:
-                    _source_properties.UpdateValue("source_ip", _settings.LongmyndMqttHost);
-                    break;
-
-            }
-
-
-            // get local ip
-            List<string> detected_ips = CommonFunctions.determineIP();
-
-            if (detected_ips.Count > 0)
-                _LocalIp = detected_ips[0];
-
-            this.VideoChangeCB = VideoChangeCB;
-
-            return 1;
-        }
-
-        void FlushTS2()
-        {
-            udp_buffer.Clear();
-        }
-
-        byte ReadTS2(ref byte[] data, ref uint dataRead)
-        {
-            int read = udp_buffer.Count;
-            uint written = 0;
-
-            if (udp_buffer.Count > 4000) 
-            {
-                read = 4000;
-            }
-
-            for (int c = 0; c < read; c++)
-            {
-                data[c] = udp_buffer.Dequeue();
-                written += 1;
-            }
-
-            dataRead = written;
-
-            return 0;
-        }
-
-
         public override void RegisterTSConsumer(int device, CircularBuffer ts_buffer_queue)
         {
             ts_thread.RegisterTSConsumer(ts_buffer_queue);
         }
 
+        public void SetRFPort(int device, int port)
+        {
+            Console.WriteLine("Set Device: " + device.ToString() + "," + port.ToString());
+            _settings.RFPort = (uint)port;
+
+            SetFrequency(0, current_frequency_0, current_sr_0, false);
+        }
 
         public override void SetFrequency(int device, uint frequency, uint symbol_rate, bool offset_included)
         {
-            switch (_settings.DefaultInterface)
+            Log.Information("SetFrequency: " + device.ToString() + "," + frequency.ToString() + "," + symbol_rate.ToString() + "," + offset_included.ToString());
+
+            demodState = 0;
+
+            if (offset_included)
             {
-                case 0: 
-                    WSSetFrequency(frequency, symbol_rate); break;
-                case 1:
-                    MqttSetFrequency(frequency, symbol_rate); break;
+                switch (_settings.DefaultInterface)
+                {
+                    case 0:
+                        WSSetFrequency(frequency, symbol_rate); break;
+                    case 1:
+                        MqttSetFrequency(frequency, symbol_rate); break;
+                }
             }
-
-
-            demodState = -1;
+            else
+            {
+                switch (_settings.DefaultInterface)
+                {
+                    case 0:
+                        WSSetFrequency(frequency + current_offset_0, symbol_rate); break;
+                    case 1:
+                        MqttSetFrequency(frequency + current_offset_0, symbol_rate); break;
+                }
+            }
         }
 
         public override void ShowSettings()
         {
             LongmyndSettingsForm settingsForm = new LongmyndSettingsForm(ref _settings);
+
             if (settingsForm.ShowDialog() == DialogResult.OK)
             {
                 _settingsManager.SaveSettings(_settings);
@@ -306,31 +377,9 @@ namespace opentuner.MediaSources.Longmynd
                 ts_thread.stop_ts();
         }
 
-        public override void ConfigureTSRecorders(List<TSRecorder> TSRecorders)
-        {
-            _recorder = TSRecorders[0];
-        }
-
-        public override void ConfigureTSStreamers(List<TSUdpStreamer> TSStreamers)
-        {
-            _streamer = TSStreamers[0];
-            _streamer.onStreamStatusChange += LongmyndSource_onStreamStatusChange;
-            _streamer.stream = _settings.DefaultUDPStreaming;
-        }
-
-        private void LongmyndSource_onStreamStatusChange(object sender, bool e)
-        {
-            Log.Information(((TSUdpStreamer)(sender)).ID.ToString() + " streaming status : " + e.ToString());
-        }
-
-        public override void ConfigureMediaPath(string MediaPath)
-        {
-            _mediaPath = MediaPath;
-        }
-
         public override void InvokeOnMediaButtonPressed(string key, int function)
         {
-            DynamicPropertyGroup_OnMediaButtonPressed(key, function);
+            LongmyndSource_OnMediaButtonPressed(key, function);
         }
 
         public override string GetMoreInfoLink()

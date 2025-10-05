@@ -44,9 +44,6 @@
             this.linkOpenTunerUpdates = new System.Windows.Forms.Label();
             this.linkDocumentation = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.LinkDatvReportMoreInfo = new System.Windows.Forms.Label();
-            this.linkDATVReporterSettings = new System.Windows.Forms.Label();
-            this.checkDATVReporter = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.linkQuickTuneSettings = new System.Windows.Forms.Label();
@@ -88,7 +85,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qO100WidebandChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dATVReporterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -242,9 +238,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.LinkDatvReportMoreInfo);
-            this.groupBox2.Controls.Add(this.linkDATVReporterSettings);
-            this.groupBox2.Controls.Add(this.checkDATVReporter);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.linkQuickTuneSettings);
@@ -262,29 +255,6 @@
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
-            // 
-            // LinkDatvReportMoreInfo
-            // 
-            resources.ApplyResources(this.LinkDatvReportMoreInfo, "LinkDatvReportMoreInfo");
-            this.LinkDatvReportMoreInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LinkDatvReportMoreInfo.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.LinkDatvReportMoreInfo.Name = "LinkDatvReportMoreInfo";
-            this.LinkDatvReportMoreInfo.Click += new System.EventHandler(this.LinkDatvReportMoreInfo_Click);
-            // 
-            // linkDATVReporterSettings
-            // 
-            resources.ApplyResources(this.linkDATVReporterSettings, "linkDATVReporterSettings");
-            this.linkDATVReporterSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkDATVReporterSettings.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.linkDATVReporterSettings.Name = "linkDATVReporterSettings";
-            this.linkDATVReporterSettings.Click += new System.EventHandler(this.linkDATVReporterSettings_Click);
-            // 
-            // checkDATVReporter
-            // 
-            resources.ApplyResources(this.checkDATVReporter, "checkDATVReporter");
-            this.checkDATVReporter.Name = "checkDATVReporter";
-            this.checkDATVReporter.UseVisualStyleBackColor = true;
-            this.checkDATVReporter.CheckedChanged += new System.EventHandler(this.checkDATVReporter_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -555,7 +525,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openTunerToolStripMenuItem,
             this.qO100WidebandChatToolStripMenuItem,
-            this.dATVReporterToolStripMenuItem,
             this.plutoToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
@@ -611,12 +580,6 @@
             this.qO100WidebandChatToolStripMenuItem.Name = "qO100WidebandChatToolStripMenuItem";
             resources.ApplyResources(this.qO100WidebandChatToolStripMenuItem, "qO100WidebandChatToolStripMenuItem");
             this.qO100WidebandChatToolStripMenuItem.Click += new System.EventHandler(this.qO100WidebandChatToolStripMenuItem_Click);
-            // 
-            // dATVReporterToolStripMenuItem
-            // 
-            this.dATVReporterToolStripMenuItem.Name = "dATVReporterToolStripMenuItem";
-            resources.ApplyResources(this.dATVReporterToolStripMenuItem, "dATVReporterToolStripMenuItem");
-            this.dATVReporterToolStripMenuItem.Click += new System.EventHandler(this.dATVReporterToolStripMenuItem_Click);
             // 
             // plutoToolStripMenuItem
             // 
@@ -763,13 +726,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuManageFrequencyPresets;
         private System.Windows.Forms.ToolStripMenuItem toolstripConnectToggle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.Label linkDATVReporterSettings;
-        private System.Windows.Forms.CheckBox checkDATVReporter;
         private System.Windows.Forms.TabControl ExtraToolsTab;
         private System.Windows.Forms.TabPage ExtraSpectrumTab;
         private System.Windows.Forms.PictureBox spectrum;
-        private System.Windows.Forms.Label LinkDatvReportMoreInfo;
-        private System.Windows.Forms.ToolStripMenuItem dATVReporterToolStripMenuItem;
     }
 }
 

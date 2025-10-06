@@ -1585,7 +1585,7 @@
     <value>437, 14</value>
   </metadata>
   <data name="contextSpectrumMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
+    <value>61, 4</value>
   </data>
   <data name="&gt;&gt;contextSpectrumMenu.Name" xml:space="preserve">
     <value>contextSpectrumMenu</value>
@@ -1632,6 +1632,24 @@
   <data name="openTunerToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Main</value>
   </data>
+  <data name="hidePanelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="hidePanelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hide Properties</value>
+  </data>
+  <data name="hidePanelToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="hideExtraToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 20</value>
+  </data>
+  <data name="hideExtraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Hide Spectrum</value>
+  </data>
+  <data name="hideExtraToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="qO100WidebandChatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 20</value>
   </data>
@@ -1642,13 +1660,13 @@
     <value>False</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Control Window</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="configureCallsignToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
@@ -1663,7 +1681,7 @@
     <value>System Functions</value>
   </data>
   <data name="commandsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>161, 22</value>
   </data>
   <data name="commandsToolStripMenuItem.Text" xml:space="preserve">
     <value>Commands</value>
@@ -2287,6 +2305,18 @@
     <value>quitToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;quitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hidePanelToolStripMenuItem.Name" xml:space="preserve">
+    <value>hidePanelToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hidePanelToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;hideExtraToolStripMenuItem.Name" xml:space="preserve">
+    <value>hideExtraToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;hideExtraToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;qO100WidebandChatToolStripMenuItem.Name" xml:space="preserve">

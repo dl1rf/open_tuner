@@ -191,6 +191,7 @@ namespace opentuner.MediaSources.Winterhill
                 for (int c = 0; c < detected_ips.Count; c++)
                 {
                     Log.Warning(detected_ips[c]);
+                    _LocalIp = detected_ips[c];
                 }
                 Log.Warning("Multiple IP's detected, using " + _LocalIp);
             }

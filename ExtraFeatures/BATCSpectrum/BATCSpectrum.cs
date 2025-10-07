@@ -576,6 +576,68 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                         case MouseButtons.Left:
                             if (Control.ModifierKeys == Keys.Control)
                             {
+                                int tuner = determine_rx(Y);
+                                using (oneTunerTuneModeForm oTTMForm = new oneTunerTuneModeForm(
+                                    tuner + 1,
+                                    spectrumSettings.tuneMode[tuner],
+                                    spectrumSettings.avoidBeacon[tuner]))      //open up the single tune mode select form
+                                {
+                                    Point spectrum_screen_location = _spectrum.PointToScreen(_spectrum.Location);
+                                    Point new_oTTMForm_location = spectrum_screen_location;
+                                    int spectrum_width = _spectrum.Size.Width;
+                                    int oTTMForm_width = oTTMForm.Size.Width;
+
+                                    if (X > (oTTMForm_width / 2))
+                                        new_oTTMForm_location.X = spectrum_screen_location.X + X - oTTMForm.Size.Width / 2;
+                                    if (X > (spectrum_width - oTTMForm.Size.Width / 2))
+                                        new_oTTMForm_location.X = spectrum_screen_location.X + (spectrum_width - oTTMForm.Size.Width);
+
+                                    oTTMForm.StartPosition = FormStartPosition.Manual;
+                                    oTTMForm.Location = new_oTTMForm_location;
+                                    DialogResult result = oTTMForm.ShowDialog();
+                                    if (result == DialogResult.OK)
+                                    {
+                                        spectrumSettings.tuneMode[tuner] = oTTMForm.getTuneMode();
+                                        spectrumSettings.avoidBeacon[tuner] = oTTMForm.getAvoidBeacon();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                selectSignal(X, Y);
+                            }
+                            break;
+                        case MouseButtons.Middle:
+                            {
+                                int tuner = determine_rx(Y);
+                                using (oneTunerTuneModeForm oTTMForm = new oneTunerTuneModeForm(
+                                    tuner + 1,
+                                    spectrumSettings.tuneMode[tuner],
+                                    spectrumSettings.avoidBeacon[tuner]))      //open up the single tune mode select form
+                                {
+                                    Point spectrum_screen_location = _spectrum.PointToScreen(_spectrum.Location);
+                                    Point new_oTTMForm_location = spectrum_screen_location;
+                                    int spectrum_width = _spectrum.Size.Width;
+                                    int oTTMForm_width = oTTMForm.Size.Width;
+
+                                    if (X > (oTTMForm_width / 2))
+                                        new_oTTMForm_location.X = spectrum_screen_location.X + X - oTTMForm.Size.Width / 2;
+                                    if (X > (spectrum_width - oTTMForm.Size.Width / 2))
+                                        new_oTTMForm_location.X = spectrum_screen_location.X + (spectrum_width - oTTMForm.Size.Width);
+
+                                    oTTMForm.StartPosition = FormStartPosition.Manual;
+                                    oTTMForm.Location = new_oTTMForm_location;
+                                    DialogResult result = oTTMForm.ShowDialog();
+                                    if (result == DialogResult.OK)
+                                    {
+                                        spectrumSettings.tuneMode[tuner] = oTTMForm.getTuneMode();
+                                        spectrumSettings.avoidBeacon[tuner] = oTTMForm.getAvoidBeacon();
+                                    }
+                                }
+                            }
+                            break;
+                        case MouseButtons.Right:
+                            {
                                 uint freq = Convert.ToUInt32((start_freq + (X / spectrum_wScale / 922.0) * 9.0) * 1000.0);
 
                                 using (opentuner.SRForm srForm = new opentuner.SRForm(freq))      //open up the manual sr select form
@@ -597,37 +659,6 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                                     {
                                         OnSignalSelected?.Invoke(determine_rx(Y), freq, srForm.getsr());
                                     }
-                                }
-                            }
-                            else
-                            {
-                                selectSignal(X, Y);
-                            }
-                            break;
-                        case MouseButtons.Right:
-                            int tuner = determine_rx(Y);
-                            using (oneTunerTuneModeForm oTTMForm = new oneTunerTuneModeForm(
-                                tuner + 1,
-                                spectrumSettings.tuneMode[tuner],
-                                spectrumSettings.avoidBeacon[tuner]))      //open up the single tune mode select form
-                            {
-                                Point spectrum_screen_location = _spectrum.PointToScreen(_spectrum.Location);
-                                Point new_oTTMForm_location = spectrum_screen_location;
-                                int spectrum_width = _spectrum.Size.Width;
-                                int oTTMForm_width = oTTMForm.Size.Width;
-
-                                if (X > (oTTMForm_width / 2))
-                                    new_oTTMForm_location.X = spectrum_screen_location.X + X - oTTMForm.Size.Width / 2;
-                                if (X > (spectrum_width - oTTMForm.Size.Width / 2))
-                                    new_oTTMForm_location.X = spectrum_screen_location.X + (spectrum_width - oTTMForm.Size.Width);
-
-                                oTTMForm.StartPosition = FormStartPosition.Manual;
-                                oTTMForm.Location = new_oTTMForm_location;
-                                DialogResult result = oTTMForm.ShowDialog();
-                                if (result == DialogResult.OK)
-                                {
-                                    spectrumSettings.tuneMode[tuner] = oTTMForm.getTuneMode();
-                                    spectrumSettings.avoidBeacon[tuner] = oTTMForm.getAvoidBeacon();
                                 }
                             }
                             break;

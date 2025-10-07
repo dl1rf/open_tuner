@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -98,6 +100,22 @@ namespace opentuner.MediaSources.Winterhill
             for (int c = 0; c < 4; c++)
                 _current_offset[c] = (int)_settings.DefaultOffset[c];
 
+            // check if tuner is connectable and get local ip
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
+                try
+                {
+                    socket.Connect(_settings.WinterhillWSHost, _settings.WinterhillWSUdpBasePort);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    _LocalIp = endPoint.Address.ToString();
+                    socket.Close();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Socket Connect Exception: " + ex.Message);
+                    return -2;
+                }
+                Log.Information("Local IP used " + _LocalIp);
+
             // connect interface
             switch (defaultInterface)
             {
@@ -179,22 +197,6 @@ namespace opentuner.MediaSources.Winterhill
             }
 
             BuildSourceProperties(mute_at_startup);
-
-            // get local ip
-            List<string> detected_ips = CommonFunctions.determineIP();
-
-            if (detected_ips.Count > 0)
-                _LocalIp = detected_ips[0];
-
-            if (detected_ips.Count > 1)
-            {
-                for (int c = 0; c < detected_ips.Count; c++)
-                {
-                    Log.Warning(detected_ips[c]);
-                    _LocalIp = detected_ips[c];
-                }
-                Log.Warning("Multiple IP's detected, using " + _LocalIp);
-            }
 
             return ts_devices;
         }
@@ -280,6 +282,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             for (int c = 0; c < ts_devices; c++)
             {
+                WSSetTS(c);
                 SetFrequency(c, _settings.DefaultFrequency[c], _settings.DefaultSR[c], true);
             }
             _Ready = true;

@@ -288,6 +288,7 @@ namespace opentuner.MediaSources.Winterhill
                 }
                 SetFrequency(c, _settings.DefaultFrequency[c], _settings.DefaultSR[c], true);
             }
+            Task.Delay(2000);   // short delay to allow WinterHill to get to stable state
             _Ready = true;
         }
 

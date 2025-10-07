@@ -282,7 +282,10 @@ namespace opentuner.MediaSources.Winterhill
         {
             for (int c = 0; c < ts_devices; c++)
             {
-                WSSetTS(c);
+                if (hw_device == 1)
+                {
+                    WSSetTS(c);
+                }
                 SetFrequency(c, _settings.DefaultFrequency[c], _settings.DefaultSR[c], true);
             }
             _Ready = true;

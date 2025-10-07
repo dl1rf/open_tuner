@@ -516,6 +516,9 @@
   <data name="linkQuickTuneSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="linkQuickTuneSettings.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="linkQuickTuneSettings.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
@@ -648,6 +651,9 @@
   <data name="linkQuickTuneDocumentation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="linkQuickTuneDocumentation.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="linkQuickTuneDocumentation.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
@@ -680,6 +686,9 @@
   </data>
   <data name="checkQuicktune.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="checkQuicktune.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="checkQuicktune.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 52</value>

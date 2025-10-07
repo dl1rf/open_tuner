@@ -375,6 +375,8 @@ namespace opentuner
             tabControl1.TabPages.Remove(SourcePage);
             debugPage.Hide();                           // remove debugPage for now.
             tabControl1.TabPages.Remove(debugPage);
+            tabControl1.Width = 100;
+            tabControl1.Update();
             videoSource.OnSourceData += VideoSource_OnSourceData;
 
             return true;

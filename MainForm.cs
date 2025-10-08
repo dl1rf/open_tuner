@@ -1062,13 +1062,6 @@ namespace opentuner
                 batc_chat = new BATCChat(videoSource);
             }
 
-            // inactivate Quicktune for now
-            if (checkQuicktune.Checked)
-            {
-                checkQuicktune.Checked = false;
-                _settings.enable_quicktune_checkbox = checkQuicktune.Checked;
-            }
-
             if (checkQuicktune.Checked)
             {
                 quickTune_control = new QuickTuneControl(videoSource);

@@ -9,47 +9,47 @@ namespace opentuner
         public const ushort STV0910_START_ADDR = RSTV0910_MID;
         public const ushort STV0910_END_ADDR = RSTV0910_TSTTSRS;
 
-		/*
-		 * @DVB-S/DVB-S2 STMicroelectronics STV0900 register definitions
-		 * Author Manfred Voelkel, August 2013
-		 * (c) 2013 Digital Devices GmbH Germany.  All rights reserved
-		 *
-		 * =======================================================================
-		 * Registers Declaration (Internal ST, All Applications )
-		 * -------------------------
-		 * Each register (RSTV0910__XXXXX) is defined by its address (2 bytes).
-		 * Each field (FSTV0910__XXXXX) is defined as follow:
-		 * [register address -- 2bytes][field offset -- 4 bits][unused -- 3 bits]
-		 * [field sign -- 1 bit][field mask -- 1byte]
-		 * =======================================================================
-		 */
+        /*
+         * @DVB-S/DVB-S2 STMicroelectronics STV0900 register definitions
+         * Author Manfred Voelkel, August 2013
+         * (c) 2013 Digital Devices GmbH Germany.  All rights reserved
+         *
+         * =======================================================================
+         * Registers Declaration (Internal ST, All Applications )
+         * -------------------------
+         * Each register (RSTV0910__XXXXX) is defined by its address (2 bytes).
+         * Each field (FSTV0910__XXXXX) is defined as follow:
+         * [register address -- 2bytes][field offset -- 4 bits][unused -- 3 bits]
+         * [field sign -- 1 bit][field mask -- 1byte]
+         * =======================================================================
+         */
 
-		/* MID */
+        /* MID */
         public const ushort RSTV0910_MID = 0xf100;
         public const UInt32 FSTV0910_MCHIP_IDENT = 0xf10040f0;
         public const UInt32 FSTV0910_MRELEASE = 0xf100000f;
 
-		/* DID */
+        /* DID */
         public const ushort RSTV0910_DID = 0xf101;
         public const UInt32 FSTV0910_DEVICE_ID = 0xf10100ff;
 
-		/* DACR1 */
+        /* DACR1 */
         public const ushort RSTV0910_DACR1 = 0xf113;
         public const UInt32 FSTV0910_DAC_MODE = 0xf11350e0;
         public const UInt32 FSTV0910_DAC_VALUE1 = 0xf113000f;
 
-		/* DACR2 */
+        /* DACR2 */
         public const ushort RSTV0910_DACR2 = 0xf114;
         public const UInt32 FSTV0910_DAC_VALUE0 = 0xf11400ff;
 
-		/* PADCFG */
+        /* PADCFG */
         public const ushort RSTV0910_PADCFG = 0xf11a;
         public const UInt32 FSTV0910_AGCRF2_OPD = 0xf11a3008;
         public const UInt32 FSTV0910_AGCRF2_XOR = 0xf11a2004;
         public const UInt32 FSTV0910_AGCRF1_OPD = 0xf11a1002;
         public const UInt32 FSTV0910_AGCRF1_XOR = 0xf11a0001;
 
-		/* OUTCFG2 */
+        /* OUTCFG2 */
         public const ushort RSTV0910_OUTCFG2 = 0xf11b;
         public const UInt32 FSTV0910_TS2_ERROR_XOR = 0xf11b7080;
         public const UInt32 FSTV0910_TS2_DPN_XOR = 0xf11b6040;
@@ -60,7 +60,7 @@ namespace opentuner
         public const UInt32 FSTV0910_TS1_STROUT_XOR = 0xf11b1002;
         public const UInt32 FSTV0910_TS1_CLOCKOUT_XOR = 0xf11b0001;
 
-		/* OUTCFG */
+        /* OUTCFG */
         public const ushort RSTV0910_OUTCFG = 0xf11c;
         public const UInt32 FSTV0910_TS2_OUTSER_HZ = 0xf11c5020;
         public const UInt32 FSTV0910_TS1_OUTSER_HZ = 0xf11c4010;
@@ -68,7 +68,7 @@ namespace opentuner
         public const UInt32 FSTV0910_TS1_OUTPAR_HZ = 0xf11c2004;
         public const UInt32 FSTV0910_TS_SERDATA0 = 0xf11c1002;
 
-		/* IRQSTATUS3 */
+        /* IRQSTATUS3 */
         public const ushort RSTV0910_IRQSTATUS3 = 0xf120;
         public const UInt32 FSTV0910_SPLL_LOCK = 0xf1205020;
         public const UInt32 FSTV0910_SSTREAM_LCK_1 = 0xf1204010;
@@ -76,7 +76,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SDVBS1_PRF_2 = 0xf1201002;
         public const UInt32 FSTV0910_SDVBS1_PRF_1 = 0xf1200001;
 
-		/* IRQSTATUS2 */
+        /* IRQSTATUS2 */
         public const ushort RSTV0910_IRQSTATUS2 = 0xf121;
         public const UInt32 FSTV0910_SSPY_ENDSIM_1 = 0xf1217080;
         public const UInt32 FSTV0910_SSPY_ENDSIM_2 = 0xf1216040;
@@ -86,7 +86,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SPKTDEL_ERROR_1 = 0xf1211002;
         public const UInt32 FSTV0910_SPKTDEL_LOCKB_1 = 0xf1210001;
 
-		/* IRQSTATUS1 */
+        /* IRQSTATUS1 */
         public const ushort RSTV0910_IRQSTATUS1 = 0xf122;
         public const UInt32 FSTV0910_SPKTDEL_LOCK_1 = 0xf1227080;
         public const UInt32 FSTV0910_SFEC_LOCKB_2 = 0xf1226040;
@@ -97,7 +97,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SDEMOD_LOCK_2 = 0xf1221002;
         public const UInt32 FSTV0910_SDEMOD_IRQ_2 = 0xf1220001;
 
-		/* IRQSTATUS0 */
+        /* IRQSTATUS0 */
         public const ushort RSTV0910_IRQSTATUS0 = 0xf123;
         public const UInt32 FSTV0910_SDEMOD_LOCKB_1 = 0xf1237080;
         public const UInt32 FSTV0910_SDEMOD_LOCK_1 = 0xf1236040;
@@ -106,7 +106,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SDISEQC2_IRQ = 0xf1232004;
         public const UInt32 FSTV0910_SDISEQC1_IRQ = 0xf1230001;
 
-		/* IRQMASK3 */
+        /* IRQMASK3 */
         public const ushort RSTV0910_IRQMASK3 = 0xf124;
         public const UInt32 FSTV0910_MPLL_LOCK = 0xf1245020;
         public const UInt32 FSTV0910_MSTREAM_LCK_1 = 0xf1244010;
@@ -114,7 +114,7 @@ namespace opentuner
         public const UInt32 FSTV0910_MDVBS1_PRF_2 = 0xf1241002;
         public const UInt32 FSTV0910_MDVBS1_PRF_1 = 0xf1240001;
 
-		/* IRQMASK2 */
+        /* IRQMASK2 */
         public const ushort RSTV0910_IRQMASK2 = 0xf125;
         public const UInt32 FSTV0910_MSPY_ENDSIM_1 = 0xf1257080;
         public const UInt32 FSTV0910_MSPY_ENDSIM_2 = 0xf1256040;
@@ -124,7 +124,7 @@ namespace opentuner
         public const UInt32 FSTV0910_MPKTDEL_ERROR_1 = 0xf1251002;
         public const UInt32 FSTV0910_MPKTDEL_LOCKB_1 = 0xf1250001;
 
-		/* IRQMASK1 */
+        /* IRQMASK1 */
         public const ushort RSTV0910_IRQMASK1 = 0xf126;
         public const UInt32 FSTV0910_MPKTDEL_LOCK_1 = 0xf1267080;
         public const UInt32 FSTV0910_MFEC_LOCKB_2 = 0xf1266040;
@@ -135,7 +135,7 @@ namespace opentuner
         public const UInt32 FSTV0910_MDEMOD_LOCK_2 = 0xf1261002;
         public const UInt32 FSTV0910_MDEMOD_IRQ_2 = 0xf1260001;
 
-		/* IRQMASK0 */
+        /* IRQMASK0 */
         public const ushort RSTV0910_IRQMASK0 = 0xf127;
         public const UInt32 FSTV0910_MDEMOD_LOCKB_1 = 0xf1277080;
         public const UInt32 FSTV0910_MDEMOD_LOCK_1 = 0xf1276040;
@@ -144,12 +144,12 @@ namespace opentuner
         public const UInt32 FSTV0910_MDISEQC2_IRQ = 0xf1272004;
         public const UInt32 FSTV0910_MDISEQC1_IRQ = 0xf1270001;
 
-		/* I2CCFG */
+        /* I2CCFG */
         public const ushort RSTV0910_I2CCFG = 0xf129;
         public const UInt32 FSTV0910_I2C_FASTMODE = 0xf1293008;
         public const UInt32 FSTV0910_I2CADDR_INC = 0xf1290003;
 
-		/* P1_I2CRPT */
+        /* P1_I2CRPT */
         public const ushort RSTV0910_P1_I2CRPT = 0xf12a;
         public const UInt32 FSTV0910_P1_I2CT_ON = 0xf12a7080;
         public const UInt32 FSTV0910_P1_ENARPT_LEVEL = 0xf12a4070;
@@ -157,7 +157,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_STOP_ENABLE = 0xf12a2004;
         public const UInt32 FSTV0910_P1_STOP_SDAT2SDA = 0xf12a1002;
 
-		/* P2_I2CRPT */
+        /* P2_I2CRPT */
         public const ushort RSTV0910_P2_I2CRPT = 0xf12b;
         public const UInt32 FSTV0910_P2_I2CT_ON = 0xf12b7080;
         public const UInt32 FSTV0910_P2_ENARPT_LEVEL = 0xf12b4070;
@@ -165,181 +165,181 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_STOP_ENABLE = 0xf12b2004;
         public const UInt32 FSTV0910_P2_STOP_SDAT2SDA = 0xf12b1002;
 
-		/* GPIO0CFG */
+        /* GPIO0CFG */
         public const ushort RSTV0910_GPIO0CFG = 0xf140;
         public const UInt32 FSTV0910_GPIO0_OPD = 0xf1407080;
         public const UInt32 FSTV0910_GPIO0_CONFIG = 0xf140107e;
         public const UInt32 FSTV0910_GPIO0_XOR = 0xf1400001;
 
-		/* GPIO1CFG */
+        /* GPIO1CFG */
         public const ushort RSTV0910_GPIO1CFG = 0xf141;
         public const UInt32 FSTV0910_GPIO1_OPD = 0xf1417080;
         public const UInt32 FSTV0910_GPIO1_CONFIG = 0xf141107e;
         public const UInt32 FSTV0910_GPIO1_XOR = 0xf1410001;
 
-		/* GPIO2CFG */
+        /* GPIO2CFG */
         public const ushort RSTV0910_GPIO2CFG = 0xf142;
         public const UInt32 FSTV0910_GPIO2_OPD = 0xf1427080;
         public const UInt32 FSTV0910_GPIO2_CONFIG = 0xf142107e;
         public const UInt32 FSTV0910_GPIO2_XOR = 0xf1420001;
 
-		/* GPIO3CFG */
+        /* GPIO3CFG */
         public const ushort RSTV0910_GPIO3CFG = 0xf143;
         public const UInt32 FSTV0910_GPIO3_OPD = 0xf1437080;
         public const UInt32 FSTV0910_GPIO3_CONFIG = 0xf143107e;
         public const UInt32 FSTV0910_GPIO3_XOR = 0xf1430001;
 
-		/* GPIO4CFG */
+        /* GPIO4CFG */
         public const ushort RSTV0910_GPIO4CFG = 0xf144;
         public const UInt32 FSTV0910_GPIO4_OPD = 0xf1447080;
         public const UInt32 FSTV0910_GPIO4_CONFIG = 0xf144107e;
         public const UInt32 FSTV0910_GPIO4_XOR = 0xf1440001;
 
-		/* GPIO5CFG */
+        /* GPIO5CFG */
         public const ushort RSTV0910_GPIO5CFG = 0xf145;
         public const UInt32 FSTV0910_GPIO5_OPD = 0xf1457080;
         public const UInt32 FSTV0910_GPIO5_CONFIG = 0xf145107e;
         public const UInt32 FSTV0910_GPIO5_XOR = 0xf1450001;
 
-		/* GPIO6CFG */
+        /* GPIO6CFG */
         public const ushort RSTV0910_GPIO6CFG = 0xf146;
         public const UInt32 FSTV0910_GPIO6_OPD = 0xf1467080;
         public const UInt32 FSTV0910_GPIO6_CONFIG = 0xf146107e;
         public const UInt32 FSTV0910_GPIO6_XOR = 0xf1460001;
 
-		/* GPIO7CFG */
+        /* GPIO7CFG */
         public const ushort RSTV0910_GPIO7CFG = 0xf147;
         public const UInt32 FSTV0910_GPIO7_OPD = 0xf1477080;
         public const UInt32 FSTV0910_GPIO7_CONFIG = 0xf147107e;
         public const UInt32 FSTV0910_GPIO7_XOR = 0xf1470001;
 
-		/* GPIO8CFG */
+        /* GPIO8CFG */
         public const ushort RSTV0910_GPIO8CFG = 0xf148;
         public const UInt32 FSTV0910_GPIO8_OPD = 0xf1487080;
         public const UInt32 FSTV0910_GPIO8_CONFIG = 0xf148107e;
         public const UInt32 FSTV0910_GPIO8_XOR = 0xf1480001;
 
-		/* GPIO9CFG */
+        /* GPIO9CFG */
         public const ushort RSTV0910_GPIO9CFG = 0xf149;
         public const UInt32 FSTV0910_GPIO9_OPD = 0xf1497080;
         public const UInt32 FSTV0910_GPIO9_CONFIG = 0xf149107e;
         public const UInt32 FSTV0910_GPIO9_XOR = 0xf1490001;
 
-		/* GPIO10CFG */
+        /* GPIO10CFG */
         public const ushort RSTV0910_GPIO10CFG = 0xf14a;
         public const UInt32 FSTV0910_GPIO10_OPD = 0xf14a7080;
         public const UInt32 FSTV0910_GPIO10_CONFIG = 0xf14a107e;
         public const UInt32 FSTV0910_GPIO10_XOR = 0xf14a0001;
 
-		/* GPIO11CFG */
+        /* GPIO11CFG */
         public const ushort RSTV0910_GPIO11CFG = 0xf14b;
         public const UInt32 FSTV0910_GPIO11_OPD = 0xf14b7080;
         public const UInt32 FSTV0910_GPIO11_CONFIG = 0xf14b107e;
         public const UInt32 FSTV0910_GPIO11_XOR = 0xf14b0001;
 
-		/* GPIO12CFG */
+        /* GPIO12CFG */
         public const ushort RSTV0910_GPIO12CFG = 0xf14c;
         public const UInt32 FSTV0910_GPIO12_OPD = 0xf14c7080;
         public const UInt32 FSTV0910_GPIO12_CONFIG = 0xf14c107e;
         public const UInt32 FSTV0910_GPIO12_XOR = 0xf14c0001;
 
-		/* GPIO13CFG */
+        /* GPIO13CFG */
         public const ushort RSTV0910_GPIO13CFG = 0xf14d;
         public const UInt32 FSTV0910_GPIO13_OPD = 0xf14d7080;
         public const UInt32 FSTV0910_GPIO13_CONFIG = 0xf14d107e;
         public const UInt32 FSTV0910_GPIO13_XOR = 0xf14d0001;
 
-		/* GPIO14CFG */
+        /* GPIO14CFG */
         public const ushort RSTV0910_GPIO14CFG = 0xf14e;
         public const UInt32 FSTV0910_GPIO14_OPD = 0xf14e7080;
         public const UInt32 FSTV0910_GPIO14_CONFIG = 0xf14e107e;
         public const UInt32 FSTV0910_GPIO14_XOR = 0xf14e0001;
 
-		/* GPIO15CFG */
+        /* GPIO15CFG */
         public const ushort RSTV0910_GPIO15CFG = 0xf14f;
         public const UInt32 FSTV0910_GPIO15_OPD = 0xf14f7080;
         public const UInt32 FSTV0910_GPIO15_CONFIG = 0xf14f107e;
         public const UInt32 FSTV0910_GPIO15_XOR = 0xf14f0001;
 
-		/* GPIO16CFG */
+        /* GPIO16CFG */
         public const ushort RSTV0910_GPIO16CFG = 0xf150;
         public const UInt32 FSTV0910_GPIO16_OPD = 0xf1507080;
         public const UInt32 FSTV0910_GPIO16_CONFIG = 0xf150107e;
         public const UInt32 FSTV0910_GPIO16_XOR = 0xf1500001;
 
-		/* GPIO17CFG */
+        /* GPIO17CFG */
         public const ushort RSTV0910_GPIO17CFG = 0xf151;
         public const UInt32 FSTV0910_GPIO17_OPD = 0xf1517080;
         public const UInt32 FSTV0910_GPIO17_CONFIG = 0xf151107e;
         public const UInt32 FSTV0910_GPIO17_XOR = 0xf1510001;
 
-		/* GPIO18CFG */
+        /* GPIO18CFG */
         public const ushort RSTV0910_GPIO18CFG = 0xf152;
         public const UInt32 FSTV0910_GPIO18_OPD = 0xf1527080;
         public const UInt32 FSTV0910_GPIO18_CONFIG = 0xf152107e;
         public const UInt32 FSTV0910_GPIO18_XOR = 0xf1520001;
 
-		/* GPIO19CFG */
+        /* GPIO19CFG */
         public const ushort RSTV0910_GPIO19CFG = 0xf153;
         public const UInt32 FSTV0910_GPIO19_OPD = 0xf1537080;
         public const UInt32 FSTV0910_GPIO19_CONFIG = 0xf153107e;
         public const UInt32 FSTV0910_GPIO19_XOR = 0xf1530001;
 
-		/* GPIO20CFG */
+        /* GPIO20CFG */
         public const ushort RSTV0910_GPIO20CFG = 0xf154;
         public const UInt32 FSTV0910_GPIO20_OPD = 0xf1547080;
         public const UInt32 FSTV0910_GPIO20_CONFIG = 0xf154107e;
         public const UInt32 FSTV0910_GPIO20_XOR = 0xf1540001;
 
-		/* GPIO21CFG */
+        /* GPIO21CFG */
         public const ushort RSTV0910_GPIO21CFG = 0xf155;
         public const UInt32 FSTV0910_GPIO21_OPD = 0xf1557080;
         public const UInt32 FSTV0910_GPIO21_CONFIG = 0xf155107e;
         public const UInt32 FSTV0910_GPIO21_XOR = 0xf1550001;
 
-		/* GPIO22CFG */
+        /* GPIO22CFG */
         public const ushort RSTV0910_GPIO22CFG = 0xf156;
         public const UInt32 FSTV0910_GPIO22_OPD = 0xf1567080;
         public const UInt32 FSTV0910_GPIO22_CONFIG = 0xf156107e;
         public const UInt32 FSTV0910_GPIO22_XOR = 0xf1560001;
 
-		/* STRSTATUS1 */
+        /* STRSTATUS1 */
         public const ushort RSTV0910_STRSTATUS1 = 0xf16a;
         public const UInt32 FSTV0910_STRSTATUS_SEL2 = 0xf16a40f0;
         public const UInt32 FSTV0910_STRSTATUS_SEL1 = 0xf16a000f;
 
-		/* STRSTATUS2 */
+        /* STRSTATUS2 */
         public const ushort RSTV0910_STRSTATUS2 = 0xf16b;
         public const UInt32 FSTV0910_STRSTATUS_SEL4 = 0xf16b40f0;
         public const UInt32 FSTV0910_STRSTATUS_SEL3 = 0xf16b000f;
 
-		/* STRSTATUS3 */
+        /* STRSTATUS3 */
         public const ushort RSTV0910_STRSTATUS3 = 0xf16c;
         public const UInt32 FSTV0910_STRSTATUS_SEL6 = 0xf16c40f0;
         public const UInt32 FSTV0910_STRSTATUS_SEL5 = 0xf16c000f;
 
-		/* FSKTFC2 */
+        /* FSKTFC2 */
         public const ushort RSTV0910_FSKTFC2 = 0xf170;
         public const UInt32 FSTV0910_FSKT_KMOD = 0xf17020fc;
         public const UInt32 FSTV0910_FSKT_CAR2 = 0xf1700003;
 
-		/* FSKTFC1 */
+        /* FSKTFC1 */
         public const ushort RSTV0910_FSKTFC1 = 0xf171;
         public const UInt32 FSTV0910_FSKT_CAR1 = 0xf17100ff;
 
-		/* FSKTFC0 */
+        /* FSKTFC0 */
         public const ushort RSTV0910_FSKTFC0 = 0xf172;
         public const UInt32 FSTV0910_FSKT_CAR0 = 0xf17200ff;
 
-		/* FSKTDELTAF1 */
+        /* FSKTDELTAF1 */
         public const ushort RSTV0910_FSKTDELTAF1 = 0xf173;
         public const UInt32 FSTV0910_FSKT_DELTAF1 = 0xf173000f;
 
-		/* FSKTDELTAF0 */
+        /* FSKTDELTAF0 */
         public const ushort RSTV0910_FSKTDELTAF0 = 0xf174;
         public const UInt32 FSTV0910_FSKT_DELTAF0 = 0xf17400ff;
 
-		/* FSKTCTRL */
+        /* FSKTCTRL */
         public const ushort RSTV0910_FSKTCTRL = 0xf175;
         public const UInt32 FSTV0910_FSKT_PINSEL = 0xf1757080;
         public const UInt32 FSTV0910_FSKT_EN_SGN = 0xf1756040;
@@ -347,129 +347,129 @@ namespace opentuner
         public const UInt32 FSTV0910_FSKT_MOD_EN = 0xf175201c;
         public const UInt32 FSTV0910_FSKT_DACMODE = 0xf1750003;
 
-		/* FSKRFC2 */
+        /* FSKRFC2 */
         public const ushort RSTV0910_FSKRFC2 = 0xf176;
         public const UInt32 FSTV0910_FSKR_DETSGN = 0xf1766040;
         public const UInt32 FSTV0910_FSKR_OUTSGN = 0xf1765020;
         public const UInt32 FSTV0910_FSKR_KAGC = 0xf176201c;
         public const UInt32 FSTV0910_FSKR_CAR2 = 0xf1760003;
 
-		/* FSKRFC1 */
+        /* FSKRFC1 */
         public const ushort RSTV0910_FSKRFC1 = 0xf177;
         public const UInt32 FSTV0910_FSKR_CAR1 = 0xf17700ff;
 
-		/* FSKRFC0 */
+        /* FSKRFC0 */
         public const ushort RSTV0910_FSKRFC0 = 0xf178;
         public const UInt32 FSTV0910_FSKR_CAR0 = 0xf17800ff;
 
-		/* FSKRK1 */
+        /* FSKRK1 */
         public const ushort RSTV0910_FSKRK1 = 0xf179;
         public const UInt32 FSTV0910_FSKR_K1_EXP = 0xf17950e0;
         public const UInt32 FSTV0910_FSKR_K1_MANT = 0xf179001f;
 
-		/* FSKRK2 */
+        /* FSKRK2 */
         public const ushort RSTV0910_FSKRK2 = 0xf17a;
         public const UInt32 FSTV0910_FSKR_K2_EXP = 0xf17a50e0;
         public const UInt32 FSTV0910_FSKR_K2_MANT = 0xf17a001f;
 
-		/* FSKRAGCR */
+        /* FSKRAGCR */
         public const ushort RSTV0910_FSKRAGCR = 0xf17b;
         public const UInt32 FSTV0910_FSKR_OUTCTL = 0xf17b60c0;
         public const UInt32 FSTV0910_FSKR_AGC_REF = 0xf17b003f;
 
-		/* FSKRAGC */
+        /* FSKRAGC */
         public const ushort RSTV0910_FSKRAGC = 0xf17c;
         public const UInt32 FSTV0910_FSKR_AGC_ACCU = 0xf17c00ff;
 
-		/* FSKRALPHA */
+        /* FSKRALPHA */
         public const ushort RSTV0910_FSKRALPHA = 0xf17d;
         public const UInt32 FSTV0910_FSKR_ALPHA_EXP = 0xf17d201c;
         public const UInt32 FSTV0910_FSKR_ALPHA_M = 0xf17d0003;
 
-		/* FSKRPLTH1 */
+        /* FSKRPLTH1 */
         public const ushort RSTV0910_FSKRPLTH1 = 0xf17e;
         public const UInt32 FSTV0910_FSKR_BETA = 0xf17e40f0;
         public const UInt32 FSTV0910_FSKR_PLL_TRESH1 = 0xf17e000f;
 
-		/* FSKRPLTH0 */
+        /* FSKRPLTH0 */
         public const ushort RSTV0910_FSKRPLTH0 = 0xf17f;
         public const UInt32 FSTV0910_FSKR_PLL_TRESH0 = 0xf17f00ff;
 
-		/* FSKRDF1 */
+        /* FSKRDF1 */
         public const ushort RSTV0910_FSKRDF1 = 0xf180;
         public const UInt32 FSTV0910_FSKR_OUT = 0xf1807080;
         public const UInt32 FSTV0910_FSKR_STATE = 0xf1805060;
         public const UInt32 FSTV0910_FSKR_DELTAF1 = 0xf180001f;
 
-		/* FSKRDF0 */
+        /* FSKRDF0 */
         public const ushort RSTV0910_FSKRDF0 = 0xf181;
         public const UInt32 FSTV0910_FSKR_DELTAF0 = 0xf18100ff;
 
-		/* FSKRSTEPP */
+        /* FSKRSTEPP */
         public const ushort RSTV0910_FSKRSTEPP = 0xf182;
         public const UInt32 FSTV0910_FSKR_STEP_PLUS = 0xf18200ff;
 
-		/* FSKRSTEPM */
+        /* FSKRSTEPM */
         public const ushort RSTV0910_FSKRSTEPM = 0xf183;
         public const UInt32 FSTV0910_FSKR_STEP_MINUS = 0xf18300ff;
 
-		/* FSKRDET1 */
+        /* FSKRDET1 */
         public const ushort RSTV0910_FSKRDET1 = 0xf184;
         public const UInt32 FSTV0910_FSKR_DETECT = 0xf1847080;
         public const UInt32 FSTV0910_FSKR_CARDET_ACCU1 = 0xf184000f;
 
-		/* FSKRDET0 */
+        /* FSKRDET0 */
         public const ushort RSTV0910_FSKRDET0 = 0xf185;
         public const UInt32 FSTV0910_FSKR_CARDET_ACCU0 = 0xf18500ff;
 
-		/* FSKRDTH1 */
+        /* FSKRDTH1 */
         public const ushort RSTV0910_FSKRDTH1 = 0xf186;
         public const UInt32 FSTV0910_FSKR_CARLOSS_THRESH1 = 0xf18640f0;
         public const UInt32 FSTV0910_FSKR_CARDET_THRESH1 = 0xf186000f;
 
-		/* FSKRDTH0 */
+        /* FSKRDTH0 */
         public const ushort RSTV0910_FSKRDTH0 = 0xf187;
         public const UInt32 FSTV0910_FSKR_CARDET_THRESH0 = 0xf18700ff;
 
-		/* FSKRLOSS */
+        /* FSKRLOSS */
         public const ushort RSTV0910_FSKRLOSS = 0xf188;
         public const UInt32 FSTV0910_FSKR_CARLOSS_THRESH0 = 0xf18800ff;
 
-		/* NCOARSE */
+        /* NCOARSE */
         public const ushort RSTV0910_NCOARSE = 0xf1b3;
         public const UInt32 FSTV0910_CP = 0xf1b330f8;
         public const UInt32 FSTV0910_IDF = 0xf1b30007;
 
-		/* NCOARSE1 */
+        /* NCOARSE1 */
         public const ushort RSTV0910_NCOARSE1 = 0xf1b4;
         public const UInt32 FSTV0910_N_DIV = 0xf1b400ff;
 
-		/* NCOARSE2 */
+        /* NCOARSE2 */
         public const ushort RSTV0910_NCOARSE2 = 0xf1b5;
         public const UInt32 FSTV0910_ODF = 0xf1b5003f;
 
-		/* SYNTCTRL */
+        /* SYNTCTRL */
         public const ushort RSTV0910_SYNTCTRL = 0xf1b6;
         public const UInt32 FSTV0910_STANDBY = 0xf1b67080;
         public const UInt32 FSTV0910_BYPASSPLLCORE = 0xf1b66040;
         public const UInt32 FSTV0910_STOP_PLL = 0xf1b63008;
         public const UInt32 FSTV0910_OSCI_E = 0xf1b61002;
 
-		/* FILTCTRL */
+        /* FILTCTRL */
         public const ushort RSTV0910_FILTCTRL = 0xf1b7;
         public const UInt32 FSTV0910_INV_CLKFSK = 0xf1b71002;
         public const UInt32 FSTV0910_BYPASS_APPLI = 0xf1b70001;
 
-		/* PLLSTAT */
+        /* PLLSTAT */
         public const ushort RSTV0910_PLLSTAT = 0xf1b8;
         public const UInt32 FSTV0910_PLLLOCK = 0xf1b80001;
 
-		/* STOPCLK1 */
+        /* STOPCLK1 */
         public const ushort RSTV0910_STOPCLK1 = 0xf1c2;
         public const UInt32 FSTV0910_INV_CLKADCI2 = 0xf1c22004;
         public const UInt32 FSTV0910_INV_CLKADCI1 = 0xf1c20001;
 
-		/* STOPCLK2 */
+        /* STOPCLK2 */
         public const ushort RSTV0910_STOPCLK2 = 0xf1c3;
         public const UInt32 FSTV0910_STOP_DVBS2FEC2 = 0xf1c35020;
         public const UInt32 FSTV0910_STOP_DVBS2FEC = 0xf1c34010;
@@ -478,47 +478,47 @@ namespace opentuner
         public const UInt32 FSTV0910_STOP_DEMOD2 = 0xf1c31002;
         public const UInt32 FSTV0910_STOP_DEMOD = 0xf1c30001;
 
-		/* PREGCTL */
+        /* PREGCTL */
         public const ushort RSTV0910_PREGCTL = 0xf1c8;
         public const UInt32 FSTV0910_REG3V3TO2V5_POFF = 0xf1c87080;
 
-		/* TSTTNR0 */
+        /* TSTTNR0 */
         public const ushort RSTV0910_TSTTNR0 = 0xf1df;
         public const UInt32 FSTV0910_FSK_PON = 0xf1df2004;
 
-		/* TSTTNR1 */
+        /* TSTTNR1 */
         public const ushort RSTV0910_TSTTNR1 = 0xf1e0;
         public const UInt32 FSTV0910_ADC1_PON = 0xf1e01002;
 
-		/* TSTTNR2 */
+        /* TSTTNR2 */
         public const ushort RSTV0910_TSTTNR2 = 0xf1e1;
         public const UInt32 FSTV0910_I2C_DISEQC_PON = 0xf1e15020;
         public const UInt32 FSTV0910_DISEQC_CLKDIV = 0xf1e1000f;
 
-		/* TSTTNR3 */
+        /* TSTTNR3 */
         public const ushort RSTV0910_TSTTNR3 = 0xf1e2;
         public const UInt32 FSTV0910_ADC2_PON = 0xf1e21002;
 
-		/* P2_IQCONST */
+        /* P2_IQCONST */
         public const ushort RSTV0910_P2_IQCONST = 0xf200;
         public const UInt32 FSTV0910_P2_CONSTEL_SELECT = 0xf2005060;
         public const UInt32 FSTV0910_P2_IQSYMB_SEL = 0xf200001f;
 
-		/* P2_NOSCFG */
+        /* P2_NOSCFG */
         public const ushort RSTV0910_P2_NOSCFG = 0xf201;
         public const UInt32 FSTV0910_P2_DUMMYPL_NOSDATA = 0xf2015020;
         public const UInt32 FSTV0910_P2_NOSPLH_BETA = 0xf2013018;
         public const UInt32 FSTV0910_P2_NOSDATA_BETA = 0xf2010007;
 
-		/* P2_ISYMB */
+        /* P2_ISYMB */
         public const ushort RSTV0910_P2_ISYMB = 0xf202;
         public const UInt32 FSTV0910_P2_I_SYMBOL = 0xf20201ff;
 
-		/* P2_QSYMB */
+        /* P2_QSYMB */
         public const ushort RSTV0910_P2_QSYMB = 0xf203;
         public const UInt32 FSTV0910_P2_Q_SYMBOL = 0xf20301ff;
 
-		/* P2_AGC1CFG */
+        /* P2_AGC1CFG */
         public const ushort RSTV0910_P2_AGC1CFG = 0xf204;
         public const UInt32 FSTV0910_P2_DC_FROZEN = 0xf2047080;
         public const UInt32 FSTV0910_P2_DC_CORRECT = 0xf2046040;
@@ -527,70 +527,70 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_QUAD_FROZEN = 0xf2043008;
         public const UInt32 FSTV0910_P2_QUAD_CORRECT = 0xf2042004;
 
-		/* P2_AGC1CN */
+        /* P2_AGC1CN */
         public const ushort RSTV0910_P2_AGC1CN = 0xf206;
         public const UInt32 FSTV0910_P2_AGC1_LOCKED = 0xf2067080;
         public const UInt32 FSTV0910_P2_AGC1_MINPOWER = 0xf2064010;
         public const UInt32 FSTV0910_P2_AGCOUT_FAST = 0xf2063008;
         public const UInt32 FSTV0910_P2_AGCIQ_BETA = 0xf2060007;
 
-		/* P2_AGC1REF */
+        /* P2_AGC1REF */
         public const ushort RSTV0910_P2_AGC1REF = 0xf207;
         public const UInt32 FSTV0910_P2_AGCIQ_REF = 0xf20700ff;
 
-		/* P2_IDCCOMP */
+        /* P2_IDCCOMP */
         public const ushort RSTV0910_P2_IDCCOMP = 0xf208;
         public const UInt32 FSTV0910_P2_IAVERAGE_ADJ = 0xf20801ff;
 
-		/* P2_QDCCOMP */
+        /* P2_QDCCOMP */
         public const ushort RSTV0910_P2_QDCCOMP = 0xf209;
         public const UInt32 FSTV0910_P2_QAVERAGE_ADJ = 0xf20901ff;
 
-		/* P2_POWERI */
+        /* P2_POWERI */
         public const ushort RSTV0910_P2_POWERI = 0xf20a;
         public const UInt32 FSTV0910_P2_POWER_I = 0xf20a00ff;
 
-		/* P2_POWERQ */
+        /* P2_POWERQ */
         public const ushort RSTV0910_P2_POWERQ = 0xf20b;
         public const UInt32 FSTV0910_P2_POWER_Q = 0xf20b00ff;
 
-		/* P2_AGC1AMM */
+        /* P2_AGC1AMM */
         public const ushort RSTV0910_P2_AGC1AMM = 0xf20c;
         public const UInt32 FSTV0910_P2_AMM_VALUE = 0xf20c00ff;
 
-		/* P2_AGC1QUAD */
+        /* P2_AGC1QUAD */
         public const ushort RSTV0910_P2_AGC1QUAD = 0xf20d;
         public const UInt32 FSTV0910_P2_QUAD_VALUE = 0xf20d01ff;
 
-		/* P2_AGCIQIN1 */
+        /* P2_AGCIQIN1 */
         public const ushort RSTV0910_P2_AGCIQIN1 = 0xf20e;
         public const UInt32 FSTV0910_P2_AGCIQ_VALUE1 = 0xf20e00ff;
 
-		/* P2_AGCIQIN0 */
+        /* P2_AGCIQIN0 */
         public const ushort RSTV0910_P2_AGCIQIN0 = 0xf20f;
         public const UInt32 FSTV0910_P2_AGCIQ_VALUE0 = 0xf20f00ff;
 
-		/* P2_DEMOD */
+        /* P2_DEMOD */
         public const ushort RSTV0910_P2_DEMOD = 0xf210;
         public const UInt32 FSTV0910_P2_MANUALS2_ROLLOFF = 0xf2107080;
         public const UInt32 FSTV0910_P2_SPECINV_CONTROL = 0xf2104030;
         public const UInt32 FSTV0910_P2_MANUALSX_ROLLOFF = 0xf2102004;
         public const UInt32 FSTV0910_P2_ROLLOFF_CONTROL = 0xf2100003;
 
-		/* P2_DMDMODCOD */
+        /* P2_DMDMODCOD */
         public const ushort RSTV0910_P2_DMDMODCOD = 0xf211;
         public const UInt32 FSTV0910_P2_MANUAL_MODCOD = 0xf2117080;
         public const UInt32 FSTV0910_P2_DEMOD_MODCOD = 0xf211207c;
         public const UInt32 FSTV0910_P2_DEMOD_TYPE = 0xf2110003;
 
-		/* P2_DSTATUS */
+        /* P2_DSTATUS */
         public const ushort RSTV0910_P2_DSTATUS = 0xf212;
         public const UInt32 FSTV0910_P2_CAR_LOCK = 0xf2127080;
         public const UInt32 FSTV0910_P2_TMGLOCK_QUALITY = 0xf2125060;
         public const UInt32 FSTV0910_P2_LOCK_DEFINITIF = 0xf2123008;
         public const UInt32 FSTV0910_P2_OVADC_DETECT = 0xf2120001;
 
-		/* P2_DSTATUS2 */
+        /* P2_DSTATUS2 */
         public const ushort RSTV0910_P2_DSTATUS2 = 0xf213;
         public const UInt32 FSTV0910_P2_DEMOD_DELOCK = 0xf2137080;
         public const UInt32 FSTV0910_P2_MODCODRQ_SYNCTAG = 0xf2135020;
@@ -600,7 +600,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_CFR_OVERFLOW = 0xf2131002;
         public const UInt32 FSTV0910_P2_GAMMA_OVERUNDER = 0xf2130001;
 
-		/* P2_DMDCFGMD */
+        /* P2_DMDCFGMD */
         public const ushort RSTV0910_P2_DMDCFGMD = 0xf214;
         public const UInt32 FSTV0910_P2_DVBS2_ENABLE = 0xf2147080;
         public const UInt32 FSTV0910_P2_DVBS1_ENABLE = 0xf2146040;
@@ -608,503 +608,503 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_CFR_AUTOSCAN = 0xf2143008;
         public const UInt32 FSTV0910_P2_TUN_RNG = 0xf2140003;
 
-		/* P2_DMDCFG2 */
+        /* P2_DMDCFG2 */
         public const ushort RSTV0910_P2_DMDCFG2 = 0xf215;
         public const UInt32 FSTV0910_P2_S1S2_SEQUENTIAL = 0xf2156040;
         public const UInt32 FSTV0910_P2_INFINITE_RELOCK = 0xf2154010;
 
-		/* P2_DMDISTATE */
+        /* P2_DMDISTATE */
         public const ushort RSTV0910_P2_DMDISTATE = 0xf216;
         public const UInt32 FSTV0910_P2_I2C_NORESETDMODE = 0xf2167080;
         public const UInt32 FSTV0910_P2_I2C_DEMOD_MODE = 0xf216001f;
 
-		/* P2_DMDT0M */
+        /* P2_DMDT0M */
         public const ushort RSTV0910_P2_DMDT0M = 0xf217;
         public const UInt32 FSTV0910_P2_DMDT0_MIN = 0xf21700ff;
 
-		/* P2_DMDSTATE */
+        /* P2_DMDSTATE */
         public const ushort RSTV0910_P2_DMDSTATE = 0xf21b;
         public const UInt32 FSTV0910_P2_HEADER_MODE = 0xf21b5060;
 
-		/* P2_DMDFLYW */
+        /* P2_DMDFLYW */
         public const ushort RSTV0910_P2_DMDFLYW = 0xf21c;
         public const UInt32 FSTV0910_P2_I2C_IRQVAL = 0xf21c40f0;
         public const UInt32 FSTV0910_P2_FLYWHEEL_CPT = 0xf21c000f;
 
-		/* P2_DSTATUS3 */
+        /* P2_DSTATUS3 */
         public const ushort RSTV0910_P2_DSTATUS3 = 0xf21d;
         public const UInt32 FSTV0910_P2_CFR_ZIGZAG = 0xf21d7080;
         public const UInt32 FSTV0910_P2_DEMOD_CFGMODE = 0xf21d5060;
         public const UInt32 FSTV0910_P2_GAMMA_LOWBAUDRATE = 0xf21d4010;
 
-		/* P2_DMDCFG3 */
+        /* P2_DMDCFG3 */
         public const ushort RSTV0910_P2_DMDCFG3 = 0xf21e;
         public const UInt32 FSTV0910_P2_NOSTOP_FIFOFULL = 0xf21e3008;
 
-		/* P2_DMDCFG4 */
+        /* P2_DMDCFG4 */
         public const ushort RSTV0910_P2_DMDCFG4 = 0xf21f;
         public const UInt32 FSTV0910_P2_DIS_VITLOCK = 0xf21f7080;
         public const UInt32 FSTV0910_P2_DIS_CLKENABLE = 0xf21f2004;
 
-		/* P2_CORRELMANT */
+        /* P2_CORRELMANT */
         public const ushort RSTV0910_P2_CORRELMANT = 0xf220;
         public const UInt32 FSTV0910_P2_CORREL_MANT = 0xf22000ff;
 
-		/* P2_CORRELABS */
+        /* P2_CORRELABS */
         public const ushort RSTV0910_P2_CORRELABS = 0xf221;
         public const UInt32 FSTV0910_P2_CORREL_ABS = 0xf22100ff;
 
-		/* P2_CORRELEXP */
+        /* P2_CORRELEXP */
         public const ushort RSTV0910_P2_CORRELEXP = 0xf222;
         public const UInt32 FSTV0910_P2_CORREL_ABSEXP = 0xf22240f0;
         public const UInt32 FSTV0910_P2_CORREL_EXP = 0xf222000f;
 
-		/* P2_PLHMODCOD */
+        /* P2_PLHMODCOD */
         public const ushort RSTV0910_P2_PLHMODCOD = 0xf224;
         public const UInt32 FSTV0910_P2_SPECINV_DEMOD = 0xf2247080;
         public const UInt32 FSTV0910_P2_PLH_MODCOD = 0xf224207c;
         public const UInt32 FSTV0910_P2_PLH_TYPE = 0xf2240003;
 
-		/* P2_DMDREG */
+        /* P2_DMDREG */
         public const ushort RSTV0910_P2_DMDREG = 0xf225;
         public const UInt32 FSTV0910_P2_DECIM_PLFRAMES = 0xf2250001;
 
-		/* P2_AGCNADJ */
+        /* P2_AGCNADJ */
         public const ushort RSTV0910_P2_AGCNADJ = 0xf226;
         public const UInt32 FSTV0910_P2_RADJOFF_AGC2 = 0xf2267080;
         public const UInt32 FSTV0910_P2_RADJOFF_AGC1 = 0xf2266040;
         public const UInt32 FSTV0910_P2_AGC_NADJ = 0xf226013f;
 
-		/* P2_AGCKS */
+        /* P2_AGCKS */
         public const ushort RSTV0910_P2_AGCKS = 0xf227;
         public const UInt32 FSTV0910_P2_RSADJ_MANUALCFG = 0xf2277080;
         public const UInt32 FSTV0910_P2_RSADJ_CCMMODE = 0xf2276040;
         public const UInt32 FSTV0910_P2_RADJ_SPSK = 0xf227013f;
 
-		/* P2_AGCKQ */
+        /* P2_AGCKQ */
         public const ushort RSTV0910_P2_AGCKQ = 0xf228;
         public const UInt32 FSTV0910_P2_RADJON_DVBS1 = 0xf2286040;
         public const UInt32 FSTV0910_P2_RADJ_QPSK = 0xf228013f;
 
-		/* P2_AGCK8 */
+        /* P2_AGCK8 */
         public const ushort RSTV0910_P2_AGCK8 = 0xf229;
         public const UInt32 FSTV0910_P2_RADJ_8PSK = 0xf229013f;
 
-		/* P2_AGCK16 */
+        /* P2_AGCK16 */
         public const ushort RSTV0910_P2_AGCK16 = 0xf22a;
         public const UInt32 FSTV0910_P2_R2ADJOFF_16APSK = 0xf22a6040;
         public const UInt32 FSTV0910_P2_R1ADJOFF_16APSK = 0xf22a5020;
         public const UInt32 FSTV0910_P2_RADJ_16APSK = 0xf22a011f;
 
-		/* P2_AGCK32 */
+        /* P2_AGCK32 */
         public const ushort RSTV0910_P2_AGCK32 = 0xf22b;
         public const UInt32 FSTV0910_P2_R3ADJOFF_32APSK = 0xf22b7080;
         public const UInt32 FSTV0910_P2_R2ADJOFF_32APSK = 0xf22b6040;
         public const UInt32 FSTV0910_P2_R1ADJOFF_32APSK = 0xf22b5020;
         public const UInt32 FSTV0910_P2_RADJ_32APSK = 0xf22b011f;
 
-		/* P2_AGC2O */
+        /* P2_AGC2O */
         public const ushort RSTV0910_P2_AGC2O = 0xf22c;
         public const UInt32 FSTV0910_P2_CSTENV_MODE = 0xf22c60c0;
         public const UInt32 FSTV0910_P2_AGC2_COEF = 0xf22c0007;
 
-		/* P2_AGC2REF */
+        /* P2_AGC2REF */
         public const ushort RSTV0910_P2_AGC2REF = 0xf22d;
         public const UInt32 FSTV0910_P2_AGC2_REF = 0xf22d00ff;
 
-		/* P2_AGC1ADJ */
+        /* P2_AGC1ADJ */
         public const ushort RSTV0910_P2_AGC1ADJ = 0xf22e;
         public const UInt32 FSTV0910_P2_AGC1_ADJUSTED = 0xf22e007f;
 
-		/* P2_AGCRSADJ */
+        /* P2_AGCRSADJ */
         public const ushort RSTV0910_P2_AGCRSADJ = 0xf22f;
         public const UInt32 FSTV0910_P2_RS_ADJUSTED = 0xf22f007f;
 
-		/* P2_AGCRQADJ */
+        /* P2_AGCRQADJ */
         public const ushort RSTV0910_P2_AGCRQADJ = 0xf230;
         public const UInt32 FSTV0910_P2_RQ_ADJUSTED = 0xf230007f;
 
-		/* P2_AGCR8ADJ */
+        /* P2_AGCR8ADJ */
         public const ushort RSTV0910_P2_AGCR8ADJ = 0xf231;
         public const UInt32 FSTV0910_P2_R8_ADJUSTED = 0xf231007f;
 
-		/* P2_AGCR1ADJ */
+        /* P2_AGCR1ADJ */
         public const ushort RSTV0910_P2_AGCR1ADJ = 0xf232;
         public const UInt32 FSTV0910_P2_R1_ADJUSTED = 0xf232007f;
 
-		/* P2_AGCR2ADJ */
+        /* P2_AGCR2ADJ */
         public const ushort RSTV0910_P2_AGCR2ADJ = 0xf233;
         public const UInt32 FSTV0910_P2_R2_ADJUSTED = 0xf233007f;
 
-		/* P2_AGCR3ADJ */
+        /* P2_AGCR3ADJ */
         public const ushort RSTV0910_P2_AGCR3ADJ = 0xf234;
         public const UInt32 FSTV0910_P2_R3_ADJUSTED = 0xf234007f;
 
-		/* P2_AGCREFADJ */
+        /* P2_AGCREFADJ */
         public const ushort RSTV0910_P2_AGCREFADJ = 0xf235;
         public const UInt32 FSTV0910_P2_AGC2REF_ADJUSTED = 0xf235007f;
 
-		/* P2_AGC2I1 */
+        /* P2_AGC2I1 */
         public const ushort RSTV0910_P2_AGC2I1 = 0xf236;
         public const UInt32 FSTV0910_P2_AGC2_INTEGRATOR1 = 0xf23600ff;
 
-		/* P2_AGC2I0 */
+        /* P2_AGC2I0 */
         public const ushort RSTV0910_P2_AGC2I0 = 0xf237;
         public const UInt32 FSTV0910_P2_AGC2_INTEGRATOR0 = 0xf23700ff;
 
-		/* P2_CARCFG */
+        /* P2_CARCFG */
         public const ushort RSTV0910_P2_CARCFG = 0xf238;
         public const UInt32 FSTV0910_P2_ROTAON = 0xf2382004;
         public const UInt32 FSTV0910_P2_PH_DET_ALGO = 0xf2380003;
 
-		/* P2_ACLC */
+        /* P2_ACLC */
         public const ushort RSTV0910_P2_ACLC = 0xf239;
         public const UInt32 FSTV0910_P2_CAR_ALPHA_MANT = 0xf2394030;
         public const UInt32 FSTV0910_P2_CAR_ALPHA_EXP = 0xf239000f;
 
-		/* P2_BCLC */
+        /* P2_BCLC */
         public const ushort RSTV0910_P2_BCLC = 0xf23a;
         public const UInt32 FSTV0910_P2_CAR_BETA_MANT = 0xf23a4030;
         public const UInt32 FSTV0910_P2_CAR_BETA_EXP = 0xf23a000f;
 
-		/* P2_ACLCS2 */
+        /* P2_ACLCS2 */
         public const ushort RSTV0910_P2_ACLCS2 = 0xf23b;
         public const UInt32 FSTV0910_P2_CARS2_APLHA_MANTISSE = 0xf23b4030;
         public const UInt32 FSTV0910_P2_CARS2_ALPHA_EXP = 0xf23b000f;
 
-		/* P2_BCLCS2 */
+        /* P2_BCLCS2 */
         public const ushort RSTV0910_P2_BCLCS2 = 0xf23c;
         public const UInt32 FSTV0910_P2_CARS2_BETA_MANTISSE = 0xf23c4030;
         public const UInt32 FSTV0910_P2_CARS2_BETA_EXP = 0xf23c000f;
 
-		/* P2_CARFREQ */
+        /* P2_CARFREQ */
         public const ushort RSTV0910_P2_CARFREQ = 0xf23d;
         public const UInt32 FSTV0910_P2_KC_COARSE_EXP = 0xf23d40f0;
         public const UInt32 FSTV0910_P2_BETA_FREQ = 0xf23d000f;
 
-		/* P2_CARHDR */
+        /* P2_CARHDR */
         public const ushort RSTV0910_P2_CARHDR = 0xf23e;
         public const UInt32 FSTV0910_P2_K_FREQ_HDR = 0xf23e00ff;
 
-		/* P2_LDT */
+        /* P2_LDT */
         public const ushort RSTV0910_P2_LDT = 0xf23f;
         public const UInt32 FSTV0910_P2_CARLOCK_THRES = 0xf23f01ff;
 
-		/* P2_LDT2 */
+        /* P2_LDT2 */
         public const ushort RSTV0910_P2_LDT2 = 0xf240;
         public const UInt32 FSTV0910_P2_CARLOCK_THRES2 = 0xf24001ff;
 
-		/* P2_CFRICFG */
+        /* P2_CFRICFG */
         public const ushort RSTV0910_P2_CFRICFG = 0xf241;
         public const UInt32 FSTV0910_P2_NEG_CFRSTEP = 0xf2410001;
 
-		/* P2_CFRUP1 */
+        /* P2_CFRUP1 */
         public const ushort RSTV0910_P2_CFRUP1 = 0xf242;
         public const UInt32 FSTV0910_P2_CFR_UP1 = 0xf24201ff;
 
-		/* P2_CFRUP0 */
+        /* P2_CFRUP0 */
         public const ushort RSTV0910_P2_CFRUP0 = 0xf243;
         public const UInt32 FSTV0910_P2_CFR_UP0 = 0xf24300ff;
 
-		/* P2_CFRIBASE1 */
+        /* P2_CFRIBASE1 */
         public const ushort RSTV0910_P2_CFRIBASE1 = 0xf244;
         public const UInt32 FSTV0910_P2_CFRINIT_BASE1 = 0xf24400ff;
 
-		/* P2_CFRIBASE0 */
+        /* P2_CFRIBASE0 */
         public const ushort RSTV0910_P2_CFRIBASE0 = 0xf245;
         public const UInt32 FSTV0910_P2_CFRINIT_BASE0 = 0xf24500ff;
 
-		/* P2_CFRLOW1 */
+        /* P2_CFRLOW1 */
         public const ushort RSTV0910_P2_CFRLOW1 = 0xf246;
         public const UInt32 FSTV0910_P2_CFR_LOW1 = 0xf24601ff;
 
-		/* P2_CFRLOW0 */
+        /* P2_CFRLOW0 */
         public const ushort RSTV0910_P2_CFRLOW0 = 0xf247;
         public const UInt32 FSTV0910_P2_CFR_LOW0 = 0xf24700ff;
 
-		/* P2_CFRINIT1 */
+        /* P2_CFRINIT1 */
         public const ushort RSTV0910_P2_CFRINIT1 = 0xf248;
         public const UInt32 FSTV0910_P2_CFR_INIT1 = 0xf24801ff;
 
-		/* P2_CFRINIT0 */
+        /* P2_CFRINIT0 */
         public const ushort RSTV0910_P2_CFRINIT0 = 0xf249;
         public const UInt32 FSTV0910_P2_CFR_INIT0 = 0xf24900ff;
 
-		/* P2_CFRINC1 */
+        /* P2_CFRINC1 */
         public const ushort RSTV0910_P2_CFRINC1 = 0xf24a;
         public const UInt32 FSTV0910_P2_MANUAL_CFRINC = 0xf24a7080;
         public const UInt32 FSTV0910_P2_CFR_INC1 = 0xf24a003f;
 
-		/* P2_CFRINC0 */
+        /* P2_CFRINC0 */
         public const ushort RSTV0910_P2_CFRINC0 = 0xf24b;
         public const UInt32 FSTV0910_P2_CFR_INC0 = 0xf24b00ff;
 
-		/* P2_CFR2 */
+        /* P2_CFR2 */
         public const ushort RSTV0910_P2_CFR2 = 0xf24c;
         public const UInt32 FSTV0910_P2_CAR_FREQ2 = 0xf24c01ff;
 
-		/* P2_CFR1 */
+        /* P2_CFR1 */
         public const ushort RSTV0910_P2_CFR1 = 0xf24d;
         public const UInt32 FSTV0910_P2_CAR_FREQ1 = 0xf24d00ff;
 
-		/* P2_CFR0 */
+        /* P2_CFR0 */
         public const ushort RSTV0910_P2_CFR0 = 0xf24e;
         public const UInt32 FSTV0910_P2_CAR_FREQ0 = 0xf24e00ff;
 
-		/* P2_LDI */
+        /* P2_LDI */
         public const ushort RSTV0910_P2_LDI = 0xf24f;
         public const UInt32 FSTV0910_P2_LOCK_DET_INTEGR = 0xf24f01ff;
 
-		/* P2_TMGCFG */
+        /* P2_TMGCFG */
         public const ushort RSTV0910_P2_TMGCFG = 0xf250;
         public const UInt32 FSTV0910_P2_TMGLOCK_BETA = 0xf25060c0;
         public const UInt32 FSTV0910_P2_DO_TIMING_CORR = 0xf2504010;
         public const UInt32 FSTV0910_P2_TMG_MINFREQ = 0xf2500003;
 
-		/* P2_RTC */
+        /* P2_RTC */
         public const ushort RSTV0910_P2_RTC = 0xf251;
         public const UInt32 FSTV0910_P2_TMGALPHA_EXP = 0xf25140f0;
         public const UInt32 FSTV0910_P2_TMGBETA_EXP = 0xf251000f;
 
-		/* P2_RTCS2 */
+        /* P2_RTCS2 */
         public const ushort RSTV0910_P2_RTCS2 = 0xf252;
         public const UInt32 FSTV0910_P2_TMGALPHAS2_EXP = 0xf25240f0;
         public const UInt32 FSTV0910_P2_TMGBETAS2_EXP = 0xf252000f;
 
-		/* P2_TMGTHRISE */
+        /* P2_TMGTHRISE */
         public const ushort RSTV0910_P2_TMGTHRISE = 0xf253;
         public const UInt32 FSTV0910_P2_TMGLOCK_THRISE = 0xf25300ff;
 
-		/* P2_TMGTHFALL */
+        /* P2_TMGTHFALL */
         public const ushort RSTV0910_P2_TMGTHFALL = 0xf254;
         public const UInt32 FSTV0910_P2_TMGLOCK_THFALL = 0xf25400ff;
 
-		/* P2_SFRUPRATIO */
+        /* P2_SFRUPRATIO */
         public const ushort RSTV0910_P2_SFRUPRATIO = 0xf255;
         public const UInt32 FSTV0910_P2_SFR_UPRATIO = 0xf25500ff;
 
-		/* P2_SFRLOWRATIO */
+        /* P2_SFRLOWRATIO */
         public const ushort RSTV0910_P2_SFRLOWRATIO = 0xf256;
         public const UInt32 FSTV0910_P2_SFR_LOWRATIO = 0xf25600ff;
 
-		/* P2_KTTMG */
+        /* P2_KTTMG */
         public const ushort RSTV0910_P2_KTTMG = 0xf257;
         public const UInt32 FSTV0910_P2_KT_TMG_EXP = 0xf25740f0;
 
-		/* P2_KREFTMG */
+        /* P2_KREFTMG */
         public const ushort RSTV0910_P2_KREFTMG = 0xf258;
         public const UInt32 FSTV0910_P2_KREF_TMG = 0xf25800ff;
 
-		/* P2_SFRSTEP */
+        /* P2_SFRSTEP */
         public const ushort RSTV0910_P2_SFRSTEP = 0xf259;
         public const UInt32 FSTV0910_P2_SFR_SCANSTEP = 0xf25940f0;
         public const UInt32 FSTV0910_P2_SFR_CENTERSTEP = 0xf259000f;
 
-		/* P2_TMGCFG2 */
+        /* P2_TMGCFG2 */
         public const ushort RSTV0910_P2_TMGCFG2 = 0xf25a;
         public const UInt32 FSTV0910_P2_DIS_AUTOSAMP = 0xf25a3008;
         public const UInt32 FSTV0910_P2_SFRRATIO_FINE = 0xf25a0001;
 
-		/* P2_KREFTMG2 */
+        /* P2_KREFTMG2 */
         public const ushort RSTV0910_P2_KREFTMG2 = 0xf25b;
         public const UInt32 FSTV0910_P2_KREF_TMG2 = 0xf25b00ff;
 
-		/* P2_TMGCFG3 */
+        /* P2_TMGCFG3 */
         public const ushort RSTV0910_P2_TMGCFG3 = 0xf25d;
         public const UInt32 FSTV0910_P2_CONT_TMGCENTER = 0xf25d3008;
         public const UInt32 FSTV0910_P2_AUTO_GUP = 0xf25d2004;
         public const UInt32 FSTV0910_P2_AUTO_GLOW = 0xf25d1002;
 
-		/* P2_SFRINIT1 */
+        /* P2_SFRINIT1 */
         public const ushort RSTV0910_P2_SFRINIT1 = 0xf25e;
         public const UInt32 FSTV0910_P2_SFR_INIT1 = 0xf25e00ff;
 
-		/* P2_SFRINIT0 */
+        /* P2_SFRINIT0 */
         public const ushort RSTV0910_P2_SFRINIT0 = 0xf25f;
         public const UInt32 FSTV0910_P2_SFR_INIT0 = 0xf25f00ff;
 
-		/* P2_SFRUP1 */
+        /* P2_SFRUP1 */
         public const ushort RSTV0910_P2_SFRUP1 = 0xf260;
         public const UInt32 FSTV0910_P2_SYMB_FREQ_UP1 = 0xf26000ff;
 
-		/* P2_SFRUP0 */
+        /* P2_SFRUP0 */
         public const ushort RSTV0910_P2_SFRUP0 = 0xf261;
         public const UInt32 FSTV0910_P2_SYMB_FREQ_UP0 = 0xf26100ff;
 
-		/* P2_SFRLOW1 */
+        /* P2_SFRLOW1 */
         public const ushort RSTV0910_P2_SFRLOW1 = 0xf262;
         public const UInt32 FSTV0910_P2_SYMB_FREQ_LOW1 = 0xf26200ff;
 
-		/* P2_SFRLOW0 */
+        /* P2_SFRLOW0 */
         public const ushort RSTV0910_P2_SFRLOW0 = 0xf263;
         public const UInt32 FSTV0910_P2_SYMB_FREQ_LOW0 = 0xf26300ff;
 
-		/* P2_SFR3 */
+        /* P2_SFR3 */
         public const ushort RSTV0910_P2_SFR3 = 0xf264;
         public const UInt32 FSTV0910_P2_SYMB_FREQ3 = 0xf26400ff;
 
-		/* P2_SFR2 */
+        /* P2_SFR2 */
         public const ushort RSTV0910_P2_SFR2 = 0xf265;
         public const UInt32 FSTV0910_P2_SYMB_FREQ2 = 0xf26500ff;
 
-		/* P2_SFR1 */
+        /* P2_SFR1 */
         public const ushort RSTV0910_P2_SFR1 = 0xf266;
         public const UInt32 FSTV0910_P2_SYMB_FREQ1 = 0xf26600ff;
 
-		/* P2_SFR0 */
+        /* P2_SFR0 */
         public const ushort RSTV0910_P2_SFR0 = 0xf267;
         public const UInt32 FSTV0910_P2_SYMB_FREQ0 = 0xf26700ff;
 
-		/* P2_TMGREG2 */
+        /* P2_TMGREG2 */
         public const ushort RSTV0910_P2_TMGREG2 = 0xf268;
         public const UInt32 FSTV0910_P2_TMGREG2 = 0xf26800ff;
 
-		/* P2_TMGREG1 */
+        /* P2_TMGREG1 */
         public const ushort RSTV0910_P2_TMGREG1 = 0xf269;
         public const UInt32 FSTV0910_P2_TMGREG1 = 0xf26900ff;
 
-		/* P2_TMGREG0 */
+        /* P2_TMGREG0 */
         public const ushort RSTV0910_P2_TMGREG0 = 0xf26a;
         public const UInt32 FSTV0910_P2_TMGREG0 = 0xf26a00ff;
 
-		/* P2_TMGLOCK1 */
+        /* P2_TMGLOCK1 */
         public const ushort RSTV0910_P2_TMGLOCK1 = 0xf26b;
         public const UInt32 FSTV0910_P2_TMGLOCK_LEVEL1 = 0xf26b01ff;
 
-		/* P2_TMGLOCK0 */
+        /* P2_TMGLOCK0 */
         public const ushort RSTV0910_P2_TMGLOCK0 = 0xf26c;
         public const UInt32 FSTV0910_P2_TMGLOCK_LEVEL0 = 0xf26c00ff;
 
-		/* P2_TMGOBS */
+        /* P2_TMGOBS */
         public const ushort RSTV0910_P2_TMGOBS = 0xf26d;
         public const UInt32 FSTV0910_P2_ROLLOFF_STATUS = 0xf26d60c0;
 
-		/* P2_EQUALCFG */
+        /* P2_EQUALCFG */
         public const ushort RSTV0910_P2_EQUALCFG = 0xf26f;
         public const UInt32 FSTV0910_P2_EQUAL_ON = 0xf26f6040;
         public const UInt32 FSTV0910_P2_MU_EQUALDFE = 0xf26f0007;
 
-		/* P2_EQUAI1 */
+        /* P2_EQUAI1 */
         public const ushort RSTV0910_P2_EQUAI1 = 0xf270;
         public const UInt32 FSTV0910_P2_EQUA_ACCI1 = 0xf27001ff;
 
-		/* P2_EQUAQ1 */
+        /* P2_EQUAQ1 */
         public const ushort RSTV0910_P2_EQUAQ1 = 0xf271;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ1 = 0xf27101ff;
 
-		/* P2_EQUAI2 */
+        /* P2_EQUAI2 */
         public const ushort RSTV0910_P2_EQUAI2 = 0xf272;
         public const UInt32 FSTV0910_P2_EQUA_ACCI2 = 0xf27201ff;
 
-		/* P2_EQUAQ2 */
+        /* P2_EQUAQ2 */
         public const ushort RSTV0910_P2_EQUAQ2 = 0xf273;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ2 = 0xf27301ff;
 
-		/* P2_EQUAI3 */
+        /* P2_EQUAI3 */
         public const ushort RSTV0910_P2_EQUAI3 = 0xf274;
         public const UInt32 FSTV0910_P2_EQUA_ACCI3 = 0xf27401ff;
 
-		/* P2_EQUAQ3 */
+        /* P2_EQUAQ3 */
         public const ushort RSTV0910_P2_EQUAQ3 = 0xf275;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ3 = 0xf27501ff;
 
-		/* P2_EQUAI4 */
+        /* P2_EQUAI4 */
         public const ushort RSTV0910_P2_EQUAI4 = 0xf276;
         public const UInt32 FSTV0910_P2_EQUA_ACCI4 = 0xf27601ff;
 
-		/* P2_EQUAQ4 */
+        /* P2_EQUAQ4 */
         public const ushort RSTV0910_P2_EQUAQ4 = 0xf277;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ4 = 0xf27701ff;
 
-		/* P2_EQUAI5 */
+        /* P2_EQUAI5 */
         public const ushort RSTV0910_P2_EQUAI5 = 0xf278;
         public const UInt32 FSTV0910_P2_EQUA_ACCI5 = 0xf27801ff;
 
-		/* P2_EQUAQ5 */
+        /* P2_EQUAQ5 */
         public const ushort RSTV0910_P2_EQUAQ5 = 0xf279;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ5 = 0xf27901ff;
 
-		/* P2_EQUAI6 */
+        /* P2_EQUAI6 */
         public const ushort RSTV0910_P2_EQUAI6 = 0xf27a;
         public const UInt32 FSTV0910_P2_EQUA_ACCI6 = 0xf27a01ff;
 
-		/* P2_EQUAQ6 */
+        /* P2_EQUAQ6 */
         public const ushort RSTV0910_P2_EQUAQ6 = 0xf27b;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ6 = 0xf27b01ff;
 
-		/* P2_EQUAI7 */
+        /* P2_EQUAI7 */
         public const ushort RSTV0910_P2_EQUAI7 = 0xf27c;
         public const UInt32 FSTV0910_P2_EQUA_ACCI7 = 0xf27c01ff;
 
-		/* P2_EQUAQ7 */
+        /* P2_EQUAQ7 */
         public const ushort RSTV0910_P2_EQUAQ7 = 0xf27d;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ7 = 0xf27d01ff;
 
-		/* P2_EQUAI8 */
+        /* P2_EQUAI8 */
         public const ushort RSTV0910_P2_EQUAI8 = 0xf27e;
         public const UInt32 FSTV0910_P2_EQUA_ACCI8 = 0xf27e01ff;
 
-		/* P2_EQUAQ8 */
+        /* P2_EQUAQ8 */
         public const ushort RSTV0910_P2_EQUAQ8 = 0xf27f;
         public const UInt32 FSTV0910_P2_EQUA_ACCQ8 = 0xf27f01ff;
 
-		/* P2_NNOSDATAT1 */
+        /* P2_NNOSDATAT1 */
         public const ushort RSTV0910_P2_NNOSDATAT1 = 0xf280;
         public const UInt32 FSTV0910_P2_NOSDATAT_NORMED1 = 0xf28000ff;
 
-		/* P2_NNOSDATAT0 */
+        /* P2_NNOSDATAT0 */
         public const ushort RSTV0910_P2_NNOSDATAT0 = 0xf281;
         public const UInt32 FSTV0910_P2_NOSDATAT_NORMED0 = 0xf28100ff;
 
-		/* P2_NNOSDATA1 */
+        /* P2_NNOSDATA1 */
         public const ushort RSTV0910_P2_NNOSDATA1 = 0xf282;
         public const UInt32 FSTV0910_P2_NOSDATA_NORMED1 = 0xf28200ff;
 
-		/* P2_NNOSDATA0 */
+        /* P2_NNOSDATA0 */
         public const ushort RSTV0910_P2_NNOSDATA0 = 0xf283;
         public const UInt32 FSTV0910_P2_NOSDATA_NORMED0 = 0xf28300ff;
 
-		/* P2_NNOSPLHT1 */
+        /* P2_NNOSPLHT1 */
         public const ushort RSTV0910_P2_NNOSPLHT1 = 0xf284;
         public const UInt32 FSTV0910_P2_NOSPLHT_NORMED1 = 0xf28400ff;
 
-		/* P2_NNOSPLHT0 */
+        /* P2_NNOSPLHT0 */
         public const ushort RSTV0910_P2_NNOSPLHT0 = 0xf285;
         public const UInt32 FSTV0910_P2_NOSPLHT_NORMED0 = 0xf28500ff;
 
-		/* P2_NNOSPLH1 */
+        /* P2_NNOSPLH1 */
         public const ushort RSTV0910_P2_NNOSPLH1 = 0xf286;
         public const UInt32 FSTV0910_P2_NOSPLH_NORMED1 = 0xf28600ff;
 
-		/* P2_NNOSPLH0 */
+        /* P2_NNOSPLH0 */
         public const ushort RSTV0910_P2_NNOSPLH0 = 0xf287;
         public const UInt32 FSTV0910_P2_NOSPLH_NORMED0 = 0xf28700ff;
 
-		/* P2_NOSDATAT1 */
+        /* P2_NOSDATAT1 */
         public const ushort RSTV0910_P2_NOSDATAT1 = 0xf288;
         public const UInt32 FSTV0910_P2_NOSDATAT_UNNORMED1 = 0xf28800ff;
 
-		/* P2_NOSDATAT0 */
+        /* P2_NOSDATAT0 */
         public const ushort RSTV0910_P2_NOSDATAT0 = 0xf289;
         public const UInt32 FSTV0910_P2_NOSDATAT_UNNORMED0 = 0xf28900ff;
 
-		/* P2_NNOSFRAME1 */
+        /* P2_NNOSFRAME1 */
         public const ushort RSTV0910_P2_NNOSFRAME1 = 0xf28a;
         public const UInt32 FSTV0910_P2_NOSFRAME_NORMED1 = 0xf28a00ff;
 
-		/* P2_NNOSFRAME0 */
+        /* P2_NNOSFRAME0 */
         public const ushort RSTV0910_P2_NNOSFRAME0 = 0xf28b;
         public const UInt32 FSTV0910_P2_NOSFRAME_NORMED0 = 0xf28b00ff;
 
-		/* P2_NNOSRAD1 */
+        /* P2_NNOSRAD1 */
         public const ushort RSTV0910_P2_NNOSRAD1 = 0xf28c;
         public const UInt32 FSTV0910_P2_NOSRADIAL_NORMED1 = 0xf28c00ff;
 
-		/* P2_NNOSRAD0 */
+        /* P2_NNOSRAD0 */
         public const ushort RSTV0910_P2_NNOSRAD0 = 0xf28d;
         public const UInt32 FSTV0910_P2_NOSRADIAL_NORMED0 = 0xf28d00ff;
 
-		/* P2_NOSCFGF1 */
+        /* P2_NOSCFGF1 */
         public const ushort RSTV0910_P2_NOSCFGF1 = 0xf28e;
         public const UInt32 FSTV0910_P2_LOWNOISE_MESURE = 0xf28e7080;
         public const UInt32 FSTV0910_P2_NOS_DELFRAME = 0xf28e6040;
@@ -1112,177 +1112,177 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_FRAMESEL_TYPESEL = 0xf28e200c;
         public const UInt32 FSTV0910_P2_FRAMESEL_TYPE = 0xf28e0003;
 
-		/* P2_NOSCFGF2 */
+        /* P2_NOSCFGF2 */
         public const ushort RSTV0910_P2_NOSCFGF2 = 0xf28f;
         public const UInt32 FSTV0910_P2_DIS_NOSPILOTS = 0xf28f7080;
         public const UInt32 FSTV0910_P2_FRAMESEL_MODCODSEL = 0xf28f5060;
         public const UInt32 FSTV0910_P2_FRAMESEL_MODCOD = 0xf28f001f;
 
-		/* P2_CAR2CFG */
+        /* P2_CAR2CFG */
         public const ushort RSTV0910_P2_CAR2CFG = 0xf290;
         public const UInt32 FSTV0910_P2_ROTA2ON = 0xf2902004;
         public const UInt32 FSTV0910_P2_PH_DET_ALGO2 = 0xf2900003;
 
-		/* P2_CFR2CFR1 */
+        /* P2_CFR2CFR1 */
         public const ushort RSTV0910_P2_CFR2CFR1 = 0xf291;
         public const UInt32 FSTV0910_P2_EN_S2CAR2CENTER = 0xf2915020;
         public const UInt32 FSTV0910_P2_CFR2TOCFR1_BETA = 0xf2910007;
 
-		/* P2_CAR3CFG */
+        /* P2_CAR3CFG */
         public const ushort RSTV0910_P2_CAR3CFG = 0xf292;
         public const UInt32 FSTV0910_P2_CARRIER23_MODE = 0xf29260c0;
         public const UInt32 FSTV0910_P2_CAR3INTERM_DVBS1 = 0xf2925020;
         public const UInt32 FSTV0910_P2_ABAMPLIF_MODE = 0xf2923018;
         public const UInt32 FSTV0910_P2_CARRIER3_ALPHA3DL = 0xf2920007;
 
-		/* P2_CFR22 */
+        /* P2_CFR22 */
         public const ushort RSTV0910_P2_CFR22 = 0xf293;
         public const UInt32 FSTV0910_P2_CAR2_FREQ2 = 0xf29301ff;
 
-		/* P2_CFR21 */
+        /* P2_CFR21 */
         public const ushort RSTV0910_P2_CFR21 = 0xf294;
         public const UInt32 FSTV0910_P2_CAR2_FREQ1 = 0xf29400ff;
 
-		/* P2_CFR20 */
+        /* P2_CFR20 */
         public const ushort RSTV0910_P2_CFR20 = 0xf295;
         public const UInt32 FSTV0910_P2_CAR2_FREQ0 = 0xf29500ff;
 
-		/* P2_ACLC2S2Q */
+        /* P2_ACLC2S2Q */
         public const ushort RSTV0910_P2_ACLC2S2Q = 0xf297;
         public const UInt32 FSTV0910_P2_ENAB_SPSKSYMB = 0xf2977080;
         public const UInt32 FSTV0910_P2_CAR2S2_Q_ALPH_M = 0xf2974030;
         public const UInt32 FSTV0910_P2_CAR2S2_Q_ALPH_E = 0xf297000f;
 
-		/* P2_ACLC2S28 */
+        /* P2_ACLC2S28 */
         public const ushort RSTV0910_P2_ACLC2S28 = 0xf298;
         public const UInt32 FSTV0910_P2_CAR2S2_8_ALPH_M = 0xf2984030;
         public const UInt32 FSTV0910_P2_CAR2S2_8_ALPH_E = 0xf298000f;
 
-		/* P2_ACLC2S216A */
+        /* P2_ACLC2S216A */
         public const ushort RSTV0910_P2_ACLC2S216A = 0xf299;
         public const UInt32 FSTV0910_P2_CAR2S2_16A_ALPH_M = 0xf2994030;
         public const UInt32 FSTV0910_P2_CAR2S2_16A_ALPH_E = 0xf299000f;
 
-		/* P2_ACLC2S232A */
+        /* P2_ACLC2S232A */
         public const ushort RSTV0910_P2_ACLC2S232A = 0xf29a;
         public const UInt32 FSTV0910_P2_CAR2S2_32A_ALPH_M = 0xf29a4030;
         public const UInt32 FSTV0910_P2_CAR2S2_32A_ALPH_E = 0xf29a000f;
 
-		/* P2_BCLC2S2Q */
+        /* P2_BCLC2S2Q */
         public const ushort RSTV0910_P2_BCLC2S2Q = 0xf29c;
         public const UInt32 FSTV0910_P2_CAR2S2_Q_BETA_M = 0xf29c4030;
         public const UInt32 FSTV0910_P2_CAR2S2_Q_BETA_E = 0xf29c000f;
 
-		/* P2_BCLC2S28 */
+        /* P2_BCLC2S28 */
         public const ushort RSTV0910_P2_BCLC2S28 = 0xf29d;
         public const UInt32 FSTV0910_P2_CAR2S2_8_BETA_M = 0xf29d4030;
         public const UInt32 FSTV0910_P2_CAR2S2_8_BETA_E = 0xf29d000f;
 
-		/* P2_BCLC2S216A */
+        /* P2_BCLC2S216A */
         public const ushort RSTV0910_P2_BCLC2S216A = 0xf29e;
         public const UInt32 FSTV0910_P2_DVBS2S216A_NIP = 0xf29e7080;
         public const UInt32 FSTV0910_P2_CAR2S2_16A_BETA_M = 0xf29e4030;
         public const UInt32 FSTV0910_P2_CAR2S2_16A_BETA_E = 0xf29e000f;
 
-		/* P2_BCLC2S232A */
+        /* P2_BCLC2S232A */
         public const ushort RSTV0910_P2_BCLC2S232A = 0xf29f;
         public const UInt32 FSTV0910_P2_DVBS2S232A_NIP = 0xf29f7080;
         public const UInt32 FSTV0910_P2_CAR2S2_32A_BETA_M = 0xf29f4030;
         public const UInt32 FSTV0910_P2_CAR2S2_32A_BETA_E = 0xf29f000f;
 
-		/* P2_PLROOT2 */
+        /* P2_PLROOT2 */
         public const ushort RSTV0910_P2_PLROOT2 = 0xf2ac;
         public const UInt32 FSTV0910_P2_PLSCRAMB_MODE = 0xf2ac200c;
         public const UInt32 FSTV0910_P2_PLSCRAMB_ROOT2 = 0xf2ac0003;
 
-		/* P2_PLROOT1 */
+        /* P2_PLROOT1 */
         public const ushort RSTV0910_P2_PLROOT1 = 0xf2ad;
         public const UInt32 FSTV0910_P2_PLSCRAMB_ROOT1 = 0xf2ad00ff;
 
-		/* P2_PLROOT0 */
+        /* P2_PLROOT0 */
         public const ushort RSTV0910_P2_PLROOT0 = 0xf2ae;
         public const UInt32 FSTV0910_P2_PLSCRAMB_ROOT0 = 0xf2ae00ff;
 
-		/* P2_MODCODLST0 */
+        /* P2_MODCODLST0 */
         public const ushort RSTV0910_P2_MODCODLST0 = 0xf2b0;
         public const UInt32 FSTV0910_P2_NACCES_MODCODCH = 0xf2b00001;
 
-		/* P2_MODCODLST1 */
+        /* P2_MODCODLST1 */
         public const ushort RSTV0910_P2_MODCODLST1 = 0xf2b1;
         public const UInt32 FSTV0910_P2_SYMBRATE_FILTER = 0xf2b13008;
         public const UInt32 FSTV0910_P2_NRESET_MODCODLST = 0xf2b12004;
         public const UInt32 FSTV0910_P2_DIS_32PSK_9_10 = 0xf2b10003;
 
-		/* P2_MODCODLST2 */
+        /* P2_MODCODLST2 */
         public const ushort RSTV0910_P2_MODCODLST2 = 0xf2b2;
         public const UInt32 FSTV0910_P2_DIS_32PSK_8_9 = 0xf2b240f0;
         public const UInt32 FSTV0910_P2_DIS_32PSK_5_6 = 0xf2b2000f;
 
-		/* P2_MODCODLST3 */
+        /* P2_MODCODLST3 */
         public const ushort RSTV0910_P2_MODCODLST3 = 0xf2b3;
         public const UInt32 FSTV0910_P2_DIS_32PSK_4_5 = 0xf2b340f0;
         public const UInt32 FSTV0910_P2_DIS_32PSK_3_4 = 0xf2b3000f;
 
-		/* P2_MODCODLST4 */
+        /* P2_MODCODLST4 */
         public const ushort RSTV0910_P2_MODCODLST4 = 0xf2b4;
         public const UInt32 FSTV0910_P2_DUMMYPL_PILOT = 0xf2b47080;
         public const UInt32 FSTV0910_P2_DUMMYPL_NOPILOT = 0xf2b46040;
         public const UInt32 FSTV0910_P2_DIS_16PSK_9_10 = 0xf2b44030;
         public const UInt32 FSTV0910_P2_DIS_16PSK_8_9 = 0xf2b4000f;
 
-		/* P2_MODCODLST5 */
+        /* P2_MODCODLST5 */
         public const ushort RSTV0910_P2_MODCODLST5 = 0xf2b5;
         public const UInt32 FSTV0910_P2_DIS_16PSK_5_6 = 0xf2b540f0;
         public const UInt32 FSTV0910_P2_DIS_16PSK_4_5 = 0xf2b5000f;
 
-		/* P2_MODCODLST6 */
+        /* P2_MODCODLST6 */
         public const ushort RSTV0910_P2_MODCODLST6 = 0xf2b6;
         public const UInt32 FSTV0910_P2_DIS_16PSK_3_4 = 0xf2b640f0;
         public const UInt32 FSTV0910_P2_DIS_16PSK_2_3 = 0xf2b6000f;
 
-		/* P2_MODCODLST7 */
+        /* P2_MODCODLST7 */
         public const ushort RSTV0910_P2_MODCODLST7 = 0xf2b7;
         public const UInt32 FSTV0910_P2_MODCOD_NNOSFILTER = 0xf2b77080;
         public const UInt32 FSTV0910_P2_DIS_8PSK_9_10 = 0xf2b74030;
         public const UInt32 FSTV0910_P2_DIS_8PSK_8_9 = 0xf2b7000f;
 
-		/* P2_MODCODLST8 */
+        /* P2_MODCODLST8 */
         public const ushort RSTV0910_P2_MODCODLST8 = 0xf2b8;
         public const UInt32 FSTV0910_P2_DIS_8PSK_5_6 = 0xf2b840f0;
         public const UInt32 FSTV0910_P2_DIS_8PSK_3_4 = 0xf2b8000f;
 
-		/* P2_MODCODLST9 */
+        /* P2_MODCODLST9 */
         public const ushort RSTV0910_P2_MODCODLST9 = 0xf2b9;
         public const UInt32 FSTV0910_P2_DIS_8PSK_2_3 = 0xf2b940f0;
         public const UInt32 FSTV0910_P2_DIS_8PSK_3_5 = 0xf2b9000f;
 
-		/* P2_MODCODLSTA */
+        /* P2_MODCODLSTA */
         public const ushort RSTV0910_P2_MODCODLSTA = 0xf2ba;
         public const UInt32 FSTV0910_P2_NOSFILTER_LIMITE = 0xf2ba7080;
         public const UInt32 FSTV0910_P2_DIS_QPSK_9_10 = 0xf2ba4030;
         public const UInt32 FSTV0910_P2_DIS_QPSK_8_9 = 0xf2ba000f;
 
-		/* P2_MODCODLSTB */
+        /* P2_MODCODLSTB */
         public const ushort RSTV0910_P2_MODCODLSTB = 0xf2bb;
         public const UInt32 FSTV0910_P2_DIS_QPSK_5_6 = 0xf2bb40f0;
         public const UInt32 FSTV0910_P2_DIS_QPSK_4_5 = 0xf2bb000f;
 
-		/* P2_MODCODLSTC */
+        /* P2_MODCODLSTC */
         public const ushort RSTV0910_P2_MODCODLSTC = 0xf2bc;
         public const UInt32 FSTV0910_P2_DIS_QPSK_3_4 = 0xf2bc40f0;
         public const UInt32 FSTV0910_P2_DIS_QPSK_2_3 = 0xf2bc000f;
 
-		/* P2_MODCODLSTD */
+        /* P2_MODCODLSTD */
         public const ushort RSTV0910_P2_MODCODLSTD = 0xf2bd;
         public const UInt32 FSTV0910_P2_DIS_QPSK_3_5 = 0xf2bd40f0;
         public const UInt32 FSTV0910_P2_DIS_QPSK_1_2 = 0xf2bd000f;
 
-		/* P2_MODCODLSTE */
+        /* P2_MODCODLSTE */
         public const ushort RSTV0910_P2_MODCODLSTE = 0xf2be;
         public const UInt32 FSTV0910_P2_DIS_QPSK_2_5 = 0xf2be40f0;
         public const UInt32 FSTV0910_P2_DIS_QPSK_1_3 = 0xf2be000f;
 
-		/* P2_MODCODLSTF */
+        /* P2_MODCODLSTF */
         public const ushort RSTV0910_P2_MODCODLSTF = 0xf2bf;
         public const UInt32 FSTV0910_P2_DIS_QPSK_1_4 = 0xf2bf40f0;
         public const UInt32 FSTV0910_P2_DEMOD_INVMODLST = 0xf2bf3008;
@@ -1290,30 +1290,30 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_DDEMOD_NSET = 0xf2bf1002;
         public const UInt32 FSTV0910_P2_MODCOD_NSTOCK = 0xf2bf0001;
 
-		/* P2_GAUSSR0 */
+        /* P2_GAUSSR0 */
         public const ushort RSTV0910_P2_GAUSSR0 = 0xf2c0;
         public const UInt32 FSTV0910_P2_EN_CCIMODE = 0xf2c07080;
         public const UInt32 FSTV0910_P2_R0_GAUSSIEN = 0xf2c0007f;
 
-		/* P2_CCIR0 */
+        /* P2_CCIR0 */
         public const ushort RSTV0910_P2_CCIR0 = 0xf2c1;
         public const UInt32 FSTV0910_P2_CCIDETECT_PLHONLY = 0xf2c17080;
         public const UInt32 FSTV0910_P2_R0_CCI = 0xf2c1007f;
 
-		/* P2_CCIQUANT */
+        /* P2_CCIQUANT */
         public const ushort RSTV0910_P2_CCIQUANT = 0xf2c2;
         public const UInt32 FSTV0910_P2_CCI_BETA = 0xf2c250e0;
         public const UInt32 FSTV0910_P2_CCI_QUANT = 0xf2c2001f;
 
-		/* P2_CCITHRES */
+        /* P2_CCITHRES */
         public const ushort RSTV0910_P2_CCITHRES = 0xf2c3;
         public const UInt32 FSTV0910_P2_CCI_THRESHOLD = 0xf2c300ff;
 
-		/* P2_CCIACC */
+        /* P2_CCIACC */
         public const ushort RSTV0910_P2_CCIACC = 0xf2c4;
         public const UInt32 FSTV0910_P2_CCI_VALUE = 0xf2c400ff;
 
-		/* P2_DSTATUS4 */
+        /* P2_DSTATUS4 */
         public const ushort RSTV0910_P2_DSTATUS4 = 0xf2c5;
         public const UInt32 FSTV0910_P2_RAINFADE_DETECT = 0xf2c57080;
         public const UInt32 FSTV0910_P2_NOTHRES2_FAIL = 0xf2c56040;
@@ -1322,234 +1322,234 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_CSTENV_DETECT = 0xf2c51002;
         public const UInt32 FSTV0910_P2_DETECTION_TRIAX = 0xf2c50001;
 
-		/* P2_DMDRESCFG */
+        /* P2_DMDRESCFG */
         public const ushort RSTV0910_P2_DMDRESCFG = 0xf2c6;
         public const UInt32 FSTV0910_P2_DMDRES_RESET = 0xf2c67080;
         public const UInt32 FSTV0910_P2_DMDRES_STRALL = 0xf2c63008;
         public const UInt32 FSTV0910_P2_DMDRES_NEWONLY = 0xf2c62004;
         public const UInt32 FSTV0910_P2_DMDRES_NOSTORE = 0xf2c61002;
 
-		/* P2_DMDRESADR */
+        /* P2_DMDRESADR */
         public const ushort RSTV0910_P2_DMDRESADR = 0xf2c7;
         public const UInt32 FSTV0910_P2_DMDRES_VALIDCFR = 0xf2c76040;
         public const UInt32 FSTV0910_P2_DMDRES_MEMFULL = 0xf2c74030;
         public const UInt32 FSTV0910_P2_DMDRES_RESNBR = 0xf2c7000f;
 
-		/* P2_DMDRESDATA7 */
+        /* P2_DMDRESDATA7 */
         public const ushort RSTV0910_P2_DMDRESDATA7 = 0xf2c8;
         public const UInt32 FSTV0910_P2_DMDRES_DATA7 = 0xf2c800ff;
 
-		/* P2_DMDRESDATA6 */
+        /* P2_DMDRESDATA6 */
         public const ushort RSTV0910_P2_DMDRESDATA6 = 0xf2c9;
         public const UInt32 FSTV0910_P2_DMDRES_DATA6 = 0xf2c900ff;
 
-		/* P2_DMDRESDATA5 */
+        /* P2_DMDRESDATA5 */
         public const ushort RSTV0910_P2_DMDRESDATA5 = 0xf2ca;
         public const UInt32 FSTV0910_P2_DMDRES_DATA5 = 0xf2ca00ff;
 
-		/* P2_DMDRESDATA4 */
+        /* P2_DMDRESDATA4 */
         public const ushort RSTV0910_P2_DMDRESDATA4 = 0xf2cb;
         public const UInt32 FSTV0910_P2_DMDRES_DATA4 = 0xf2cb00ff;
 
-		/* P2_DMDRESDATA3 */
+        /* P2_DMDRESDATA3 */
         public const ushort RSTV0910_P2_DMDRESDATA3 = 0xf2cc;
         public const UInt32 FSTV0910_P2_DMDRES_DATA3 = 0xf2cc00ff;
 
-		/* P2_DMDRESDATA2 */
+        /* P2_DMDRESDATA2 */
         public const ushort RSTV0910_P2_DMDRESDATA2 = 0xf2cd;
         public const UInt32 FSTV0910_P2_DMDRES_DATA2 = 0xf2cd00ff;
 
-		/* P2_DMDRESDATA1 */
+        /* P2_DMDRESDATA1 */
         public const ushort RSTV0910_P2_DMDRESDATA1 = 0xf2ce;
         public const UInt32 FSTV0910_P2_DMDRES_DATA1 = 0xf2ce00ff;
 
-		/* P2_DMDRESDATA0 */
+        /* P2_DMDRESDATA0 */
         public const ushort RSTV0910_P2_DMDRESDATA0 = 0xf2cf;
         public const UInt32 FSTV0910_P2_DMDRES_DATA0 = 0xf2cf00ff;
 
-		/* P2_FFEI1 */
+        /* P2_FFEI1 */
         public const ushort RSTV0910_P2_FFEI1 = 0xf2d0;
         public const UInt32 FSTV0910_P2_FFE_ACCI1 = 0xf2d001ff;
 
-		/* P2_FFEQ1 */
+        /* P2_FFEQ1 */
         public const ushort RSTV0910_P2_FFEQ1 = 0xf2d1;
         public const UInt32 FSTV0910_P2_FFE_ACCQ1 = 0xf2d101ff;
 
-		/* P2_FFEI2 */
+        /* P2_FFEI2 */
         public const ushort RSTV0910_P2_FFEI2 = 0xf2d2;
         public const UInt32 FSTV0910_P2_FFE_ACCI2 = 0xf2d201ff;
 
-		/* P2_FFEQ2 */
+        /* P2_FFEQ2 */
         public const ushort RSTV0910_P2_FFEQ2 = 0xf2d3;
         public const UInt32 FSTV0910_P2_FFE_ACCQ2 = 0xf2d301ff;
 
-		/* P2_FFEI3 */
+        /* P2_FFEI3 */
         public const ushort RSTV0910_P2_FFEI3 = 0xf2d4;
         public const UInt32 FSTV0910_P2_FFE_ACCI3 = 0xf2d401ff;
 
-		/* P2_FFEQ3 */
+        /* P2_FFEQ3 */
         public const ushort RSTV0910_P2_FFEQ3 = 0xf2d5;
         public const UInt32 FSTV0910_P2_FFE_ACCQ3 = 0xf2d501ff;
 
-		/* P2_FFEI4 */
+        /* P2_FFEI4 */
         public const ushort RSTV0910_P2_FFEI4 = 0xf2d6;
         public const UInt32 FSTV0910_P2_FFE_ACCI4 = 0xf2d601ff;
 
-		/* P2_FFEQ4 */
+        /* P2_FFEQ4 */
         public const ushort RSTV0910_P2_FFEQ4 = 0xf2d7;
         public const UInt32 FSTV0910_P2_FFE_ACCQ4 = 0xf2d701ff;
 
-		/* P2_FFECFG */
+        /* P2_FFECFG */
         public const ushort RSTV0910_P2_FFECFG = 0xf2d8;
         public const UInt32 FSTV0910_P2_EQUALFFE_ON = 0xf2d86040;
         public const UInt32 FSTV0910_P2_EQUAL_USEDSYMB = 0xf2d84030;
         public const UInt32 FSTV0910_P2_MU_EQUALFFE = 0xf2d80007;
 
-		/* P2_TNRCFG2 */
+        /* P2_TNRCFG2 */
         public const ushort RSTV0910_P2_TNRCFG2 = 0xf2e1;
         public const UInt32 FSTV0910_P2_TUN_IQSWAP = 0xf2e17080;
 
-		/* P2_SMAPCOEF7 */
+        /* P2_SMAPCOEF7 */
         public const ushort RSTV0910_P2_SMAPCOEF7 = 0xf300;
         public const UInt32 FSTV0910_P2_DIS_QSCALE = 0xf3007080;
         public const UInt32 FSTV0910_P2_SMAPCOEF_Q_LLR12 = 0xf300017f;
 
-		/* P2_SMAPCOEF6 */
+        /* P2_SMAPCOEF6 */
         public const ushort RSTV0910_P2_SMAPCOEF6 = 0xf301;
         public const UInt32 FSTV0910_P2_DIS_AGC2SCALE = 0xf3017080;
         public const UInt32 FSTV0910_P2_ADJ_8PSKLLR1 = 0xf3012004;
         public const UInt32 FSTV0910_P2_OLD_8PSKLLR1 = 0xf3011002;
         public const UInt32 FSTV0910_P2_DIS_AB8PSK = 0xf3010001;
 
-		/* P2_SMAPCOEF5 */
+        /* P2_SMAPCOEF5 */
         public const ushort RSTV0910_P2_SMAPCOEF5 = 0xf302;
         public const UInt32 FSTV0910_P2_DIS_8SCALE = 0xf3027080;
         public const UInt32 FSTV0910_P2_SMAPCOEF_8P_LLR23 = 0xf302017f;
 
-		/* P2_SMAPCOEF4 */
+        /* P2_SMAPCOEF4 */
         public const ushort RSTV0910_P2_SMAPCOEF4 = 0xf303;
         public const UInt32 FSTV0910_P2_SMAPCOEF_16APSK_LLR12 = 0xf303017f;
 
-		/* P2_SMAPCOEF3 */
+        /* P2_SMAPCOEF3 */
         public const ushort RSTV0910_P2_SMAPCOEF3 = 0xf304;
         public const UInt32 FSTV0910_P2_SMAPCOEF_16APSK_LLR34 = 0xf304017f;
 
-		/* P2_SMAPCOEF2 */
+        /* P2_SMAPCOEF2 */
         public const ushort RSTV0910_P2_SMAPCOEF2 = 0xf305;
         public const UInt32 FSTV0910_P2_SMAPCOEF_32APSK_R2R3 = 0xf30541f0;
         public const UInt32 FSTV0910_P2_SMAPCOEF_32APSK_LLR2 = 0xf305010f;
 
-		/* P2_SMAPCOEF1 */
+        /* P2_SMAPCOEF1 */
         public const ushort RSTV0910_P2_SMAPCOEF1 = 0xf306;
         public const UInt32 FSTV0910_P2_DIS_16SCALE = 0xf3067080;
         public const UInt32 FSTV0910_P2_SMAPCOEF_32_LLR34 = 0xf306017f;
 
-		/* P2_SMAPCOEF0 */
+        /* P2_SMAPCOEF0 */
         public const ushort RSTV0910_P2_SMAPCOEF0 = 0xf307;
         public const UInt32 FSTV0910_P2_DIS_32SCALE = 0xf3077080;
         public const UInt32 FSTV0910_P2_SMAPCOEF_32_LLR15 = 0xf307017f;
 
-		/* P2_NOSTHRES1 */
+        /* P2_NOSTHRES1 */
         public const ushort RSTV0910_P2_NOSTHRES1 = 0xf309;
         public const UInt32 FSTV0910_P2_NOS_THRESHOLD1 = 0xf30900ff;
 
-		/* P2_NOSTHRES2 */
+        /* P2_NOSTHRES2 */
         public const ushort RSTV0910_P2_NOSTHRES2 = 0xf30a;
         public const UInt32 FSTV0910_P2_NOS_THRESHOLD2 = 0xf30a00ff;
 
-		/* P2_NOSDIFF1 */
+        /* P2_NOSDIFF1 */
         public const ushort RSTV0910_P2_NOSDIFF1 = 0xf30b;
         public const UInt32 FSTV0910_P2_NOSTHRES1_DIFF = 0xf30b00ff;
 
-		/* P2_RAINFADE */
+        /* P2_RAINFADE */
         public const ushort RSTV0910_P2_RAINFADE = 0xf30c;
         public const UInt32 FSTV0910_P2_NOSTHRES_DATAT = 0xf30c7080;
         public const UInt32 FSTV0910_P2_RAINFADE_CNLIMIT = 0xf30c4070;
         public const UInt32 FSTV0910_P2_RAINFADE_TIMEOUT = 0xf30c0007;
 
-		/* P2_NOSRAMCFG */
+        /* P2_NOSRAMCFG */
         public const ushort RSTV0910_P2_NOSRAMCFG = 0xf30d;
         public const UInt32 FSTV0910_P2_NOSRAM_ACTIVATION = 0xf30d4030;
         public const UInt32 FSTV0910_P2_NOSRAM_CNRONLY = 0xf30d3008;
         public const UInt32 FSTV0910_P2_NOSRAM_LGNCNR1 = 0xf30d0007;
 
-		/* P2_NOSRAMPOS */
+        /* P2_NOSRAMPOS */
         public const ushort RSTV0910_P2_NOSRAMPOS = 0xf30e;
         public const UInt32 FSTV0910_P2_NOSRAM_LGNCNR0 = 0xf30e40f0;
         public const UInt32 FSTV0910_P2_NOSRAM_VALIDE = 0xf30e2004;
         public const UInt32 FSTV0910_P2_NOSRAM_CNRVAL1 = 0xf30e0003;
 
-		/* P2_NOSRAMVAL */
+        /* P2_NOSRAMVAL */
         public const ushort RSTV0910_P2_NOSRAMVAL = 0xf30f;
         public const UInt32 FSTV0910_P2_NOSRAM_CNRVAL0 = 0xf30f00ff;
 
-		/* P2_DMDPLHSTAT */
+        /* P2_DMDPLHSTAT */
         public const ushort RSTV0910_P2_DMDPLHSTAT = 0xf320;
         public const UInt32 FSTV0910_P2_PLH_STATISTIC = 0xf32000ff;
 
-		/* P2_LOCKTIME3 */
+        /* P2_LOCKTIME3 */
         public const ushort RSTV0910_P2_LOCKTIME3 = 0xf322;
         public const UInt32 FSTV0910_P2_DEMOD_LOCKTIME3 = 0xf32200ff;
 
-		/* P2_LOCKTIME2 */
+        /* P2_LOCKTIME2 */
         public const ushort RSTV0910_P2_LOCKTIME2 = 0xf323;
         public const UInt32 FSTV0910_P2_DEMOD_LOCKTIME2 = 0xf32300ff;
 
-		/* P2_LOCKTIME1 */
+        /* P2_LOCKTIME1 */
         public const ushort RSTV0910_P2_LOCKTIME1 = 0xf324;
         public const UInt32 FSTV0910_P2_DEMOD_LOCKTIME1 = 0xf32400ff;
 
-		/* P2_LOCKTIME0 */
+        /* P2_LOCKTIME0 */
         public const ushort RSTV0910_P2_LOCKTIME0 = 0xf325;
         public const UInt32 FSTV0910_P2_DEMOD_LOCKTIME0 = 0xf32500ff;
 
-		/* P2_VITSCALE */
+        /* P2_VITSCALE */
         public const ushort RSTV0910_P2_VITSCALE = 0xf332;
         public const UInt32 FSTV0910_P2_NVTH_NOSRANGE = 0xf3327080;
         public const UInt32 FSTV0910_P2_VERROR_MAXMODE = 0xf3326040;
         public const UInt32 FSTV0910_P2_NSLOWSN_LOCKED = 0xf3323008;
         public const UInt32 FSTV0910_P2_DIS_RSFLOCK = 0xf3321002;
 
-		/* P2_FECM */
+        /* P2_FECM */
         public const ushort RSTV0910_P2_FECM = 0xf333;
         public const UInt32 FSTV0910_P2_DSS_DVB = 0xf3337080;
         public const UInt32 FSTV0910_P2_DSS_SRCH = 0xf3334010;
         public const UInt32 FSTV0910_P2_SYNCVIT = 0xf3331002;
         public const UInt32 FSTV0910_P2_IQINV = 0xf3330001;
 
-		/* P2_VTH12 */
+        /* P2_VTH12 */
         public const ushort RSTV0910_P2_VTH12 = 0xf334;
         public const UInt32 FSTV0910_P2_VTH12 = 0xf33400ff;
 
-		/* P2_VTH23 */
+        /* P2_VTH23 */
         public const ushort RSTV0910_P2_VTH23 = 0xf335;
         public const UInt32 FSTV0910_P2_VTH23 = 0xf33500ff;
 
-		/* P2_VTH34 */
+        /* P2_VTH34 */
         public const ushort RSTV0910_P2_VTH34 = 0xf336;
         public const UInt32 FSTV0910_P2_VTH34 = 0xf33600ff;
 
-		/* P2_VTH56 */
+        /* P2_VTH56 */
         public const ushort RSTV0910_P2_VTH56 = 0xf337;
         public const UInt32 FSTV0910_P2_VTH56 = 0xf33700ff;
 
-		/* P2_VTH67 */
+        /* P2_VTH67 */
         public const ushort RSTV0910_P2_VTH67 = 0xf338;
         public const UInt32 FSTV0910_P2_VTH67 = 0xf33800ff;
 
-		/* P2_VTH78 */
+        /* P2_VTH78 */
         public const ushort RSTV0910_P2_VTH78 = 0xf339;
         public const UInt32 FSTV0910_P2_VTH78 = 0xf33900ff;
 
-		/* P2_VITCURPUN */
+        /* P2_VITCURPUN */
         public const ushort RSTV0910_P2_VITCURPUN = 0xf33a;
         public const UInt32 FSTV0910_P2_VIT_CURPUN = 0xf33a001f;
 
-		/* P2_VERROR */
+        /* P2_VERROR */
         public const ushort RSTV0910_P2_VERROR = 0xf33b;
         public const UInt32 FSTV0910_P2_REGERR_VIT = 0xf33b00ff;
 
-		/* P2_PRVIT */
+        /* P2_PRVIT */
         public const ushort RSTV0910_P2_PRVIT = 0xf33c;
         public const UInt32 FSTV0910_P2_DIS_VTHLOCK = 0xf33c6040;
         public const UInt32 FSTV0910_P2_E7_8VIT = 0xf33c5020;
@@ -1559,7 +1559,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_E2_3VIT = 0xf33c1002;
         public const UInt32 FSTV0910_P2_E1_2VIT = 0xf33c0001;
 
-		/* P2_VAVSRVIT */
+        /* P2_VAVSRVIT */
         public const ushort RSTV0910_P2_VAVSRVIT = 0xf33d;
         public const UInt32 FSTV0910_P2_AMVIT = 0xf33d7080;
         public const UInt32 FSTV0910_P2_FROZENVIT = 0xf33d6040;
@@ -1567,52 +1567,52 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TOVVIT = 0xf33d200c;
         public const UInt32 FSTV0910_P2_HYPVIT = 0xf33d0003;
 
-		/* P2_VSTATUSVIT */
+        /* P2_VSTATUSVIT */
         public const ushort RSTV0910_P2_VSTATUSVIT = 0xf33e;
         public const UInt32 FSTV0910_P2_PRFVIT = 0xf33e4010;
         public const UInt32 FSTV0910_P2_LOCKEDVIT = 0xf33e3008;
 
-		/* P2_VTHINUSE */
+        /* P2_VTHINUSE */
         public const ushort RSTV0910_P2_VTHINUSE = 0xf33f;
         public const UInt32 FSTV0910_P2_VIT_INUSE = 0xf33f00ff;
 
-		/* P2_KDIV12 */
+        /* P2_KDIV12 */
         public const ushort RSTV0910_P2_KDIV12 = 0xf340;
         public const UInt32 FSTV0910_P2_K_DIVIDER_12 = 0xf340007f;
 
-		/* P2_KDIV23 */
+        /* P2_KDIV23 */
         public const ushort RSTV0910_P2_KDIV23 = 0xf341;
         public const UInt32 FSTV0910_P2_K_DIVIDER_23 = 0xf341007f;
 
-		/* P2_KDIV34 */
+        /* P2_KDIV34 */
         public const ushort RSTV0910_P2_KDIV34 = 0xf342;
         public const UInt32 FSTV0910_P2_K_DIVIDER_34 = 0xf342007f;
 
-		/* P2_KDIV56 */
+        /* P2_KDIV56 */
         public const ushort RSTV0910_P2_KDIV56 = 0xf343;
         public const UInt32 FSTV0910_P2_K_DIVIDER_56 = 0xf343007f;
 
-		/* P2_KDIV67 */
+        /* P2_KDIV67 */
         public const ushort RSTV0910_P2_KDIV67 = 0xf344;
         public const UInt32 FSTV0910_P2_K_DIVIDER_67 = 0xf344007f;
 
-		/* P2_KDIV78 */
+        /* P2_KDIV78 */
         public const ushort RSTV0910_P2_KDIV78 = 0xf345;
         public const UInt32 FSTV0910_P2_K_DIVIDER_78 = 0xf345007f;
 
-		/* P2_TSPIDFLT1 */
+        /* P2_TSPIDFLT1 */
         public const ushort RSTV0910_P2_TSPIDFLT1 = 0xf346;
         public const UInt32 FSTV0910_P2_PIDFLT_ADDR = 0xf34600ff;
 
-		/* P2_TSPIDFLT0 */
+        /* P2_TSPIDFLT0 */
         public const ushort RSTV0910_P2_TSPIDFLT0 = 0xf347;
         public const UInt32 FSTV0910_P2_PIDFLT_DATA = 0xf34700ff;
 
-		/* P2_PDELCTRL0 */
+        /* P2_PDELCTRL0 */
         public const ushort RSTV0910_P2_PDELCTRL0 = 0xf34f;
         public const UInt32 FSTV0910_P2_ISIOBS_MODE = 0xf34f4030;
 
-		/* P2_PDELCTRL1 */
+        /* P2_PDELCTRL1 */
         public const ushort RSTV0910_P2_PDELCTRL1 = 0xf350;
         public const UInt32 FSTV0910_P2_INV_MISMASK = 0xf3507080;
         public const UInt32 FSTV0910_P2_FILTER_EN = 0xf3505020;
@@ -1621,68 +1621,68 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_EN_MIS00 = 0xf3501002;
         public const UInt32 FSTV0910_P2_ALGOSWRST = 0xf3500001;
 
-		/* P2_PDELCTRL2 */
+        /* P2_PDELCTRL2 */
         public const ushort RSTV0910_P2_PDELCTRL2 = 0xf351;
         public const UInt32 FSTV0910_P2_FORCE_CONTINUOUS = 0xf3517080;
         public const UInt32 FSTV0910_P2_RESET_UPKO_COUNT = 0xf3516040;
         public const UInt32 FSTV0910_P2_USER_PKTDELIN_NB = 0xf3515020;
         public const UInt32 FSTV0910_P2_FRAME_MODE = 0xf3511002;
 
-		/* P2_HYSTTHRESH */
+        /* P2_HYSTTHRESH */
         public const ushort RSTV0910_P2_HYSTTHRESH = 0xf354;
         public const UInt32 FSTV0910_P2_DELIN_LOCKTHRES = 0xf35440f0;
         public const UInt32 FSTV0910_P2_DELIN_UNLOCKTHRES = 0xf354000f;
 
-		/* P2_UPLCCST0 */
+        /* P2_UPLCCST0 */
         public const ushort RSTV0910_P2_UPLCCST0 = 0xf358;
         public const UInt32 FSTV0910_P2_UPL_CST0 = 0xf35830f8;
         public const UInt32 FSTV0910_P2_UPL_MODE = 0xf3580007;
 
-		/* P2_ISIENTRY */
+        /* P2_ISIENTRY */
         public const ushort RSTV0910_P2_ISIENTRY = 0xf35e;
         public const UInt32 FSTV0910_P2_ISI_ENTRY = 0xf35e00ff;
 
-		/* P2_ISIBITENA */
+        /* P2_ISIBITENA */
         public const ushort RSTV0910_P2_ISIBITENA = 0xf35f;
         public const UInt32 FSTV0910_P2_ISI_BIT_EN = 0xf35f00ff;
 
-		/* P2_MATSTR1 */
+        /* P2_MATSTR1 */
         public const ushort RSTV0910_P2_MATSTR1 = 0xf360;
         public const UInt32 FSTV0910_P2_MATYPE_CURRENT1 = 0xf36000ff;
 
-		/* P2_MATSTR0 */
+        /* P2_MATSTR0 */
         public const ushort RSTV0910_P2_MATSTR0 = 0xf361;
         public const UInt32 FSTV0910_P2_MATYPE_CURRENT0 = 0xf36100ff;
 
-		/* P2_UPLSTR1 */
+        /* P2_UPLSTR1 */
         public const ushort RSTV0910_P2_UPLSTR1 = 0xf362;
         public const UInt32 FSTV0910_P2_UPL_CURRENT1 = 0xf36200ff;
 
-		/* P2_UPLSTR0 */
+        /* P2_UPLSTR0 */
         public const ushort RSTV0910_P2_UPLSTR0 = 0xf363;
         public const UInt32 FSTV0910_P2_UPL_CURRENT0 = 0xf36300ff;
 
-		/* P2_DFLSTR1 */
+        /* P2_DFLSTR1 */
         public const ushort RSTV0910_P2_DFLSTR1 = 0xf364;
         public const UInt32 FSTV0910_P2_DFL_CURRENT1 = 0xf36400ff;
 
-		/* P2_DFLSTR0 */
+        /* P2_DFLSTR0 */
         public const ushort RSTV0910_P2_DFLSTR0 = 0xf365;
         public const UInt32 FSTV0910_P2_DFL_CURRENT0 = 0xf36500ff;
 
-		/* P2_SYNCSTR */
+        /* P2_SYNCSTR */
         public const ushort RSTV0910_P2_SYNCSTR = 0xf366;
         public const UInt32 FSTV0910_P2_SYNC_CURRENT = 0xf36600ff;
 
-		/* P2_SYNCDSTR1 */
+        /* P2_SYNCDSTR1 */
         public const ushort RSTV0910_P2_SYNCDSTR1 = 0xf367;
         public const UInt32 FSTV0910_P2_SYNCD_CURRENT1 = 0xf36700ff;
 
-		/* P2_SYNCDSTR0 */
+        /* P2_SYNCDSTR0 */
         public const ushort RSTV0910_P2_SYNCDSTR0 = 0xf368;
         public const UInt32 FSTV0910_P2_SYNCD_CURRENT0 = 0xf36800ff;
 
-		/* P2_PDELSTATUS1 */
+        /* P2_PDELSTATUS1 */
         public const ushort RSTV0910_P2_PDELSTATUS1 = 0xf369;
         public const UInt32 FSTV0910_P2_PKTDELIN_DELOCK = 0xf3697080;
         public const UInt32 FSTV0910_P2_SYNCDUPDFL_BADDFL = 0xf3696040;
@@ -1691,33 +1691,33 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_PKTDELIN_LOCK = 0xf3691002;
         public const UInt32 FSTV0910_P2_FIRST_LOCK = 0xf3690001;
 
-		/* P2_PDELSTATUS2 */
+        /* P2_PDELSTATUS2 */
         public const ushort RSTV0910_P2_PDELSTATUS2 = 0xf36a;
         public const UInt32 FSTV0910_P2_FRAME_MODCOD = 0xf36a207c;
         public const UInt32 FSTV0910_P2_FRAME_TYPE = 0xf36a0003;
 
-		/* P2_BBFCRCKO1 */
+        /* P2_BBFCRCKO1 */
         public const ushort RSTV0910_P2_BBFCRCKO1 = 0xf36b;
         public const UInt32 FSTV0910_P2_BBHCRC_KOCNT1 = 0xf36b00ff;
 
-		/* P2_BBFCRCKO0 */
+        /* P2_BBFCRCKO0 */
         public const ushort RSTV0910_P2_BBFCRCKO0 = 0xf36c;
         public const UInt32 FSTV0910_P2_BBHCRC_KOCNT0 = 0xf36c00ff;
 
-		/* P2_UPCRCKO1 */
+        /* P2_UPCRCKO1 */
         public const ushort RSTV0910_P2_UPCRCKO1 = 0xf36d;
         public const UInt32 FSTV0910_P2_PKTCRC_KOCNT1 = 0xf36d00ff;
 
-		/* P2_UPCRCKO0 */
+        /* P2_UPCRCKO0 */
         public const ushort RSTV0910_P2_UPCRCKO0 = 0xf36e;
         public const UInt32 FSTV0910_P2_PKTCRC_KOCNT0 = 0xf36e00ff;
 
-		/* P2_PDELCTRL3 */
+        /* P2_PDELCTRL3 */
         public const ushort RSTV0910_P2_PDELCTRL3 = 0xf36f;
         public const UInt32 FSTV0910_P2_NOFIFO_BCHERR = 0xf36f5020;
         public const UInt32 FSTV0910_P2_PKTDELIN_DELACMERR = 0xf36f4010;
 
-		/* P2_TSSTATEM */
+        /* P2_TSSTATEM */
         public const ushort RSTV0910_P2_TSSTATEM = 0xf370;
         public const UInt32 FSTV0910_P2_TSDIL_ON = 0xf3707080;
         public const UInt32 FSTV0910_P2_TSRS_ON = 0xf3705020;
@@ -1727,7 +1727,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSACM_MODE = 0xf3701002;
         public const UInt32 FSTV0910_P2_TSOUT_NOSYNC = 0xf3700001;
 
-		/* P2_TSSTATEL */
+        /* P2_TSSTATEL */
         public const ushort RSTV0910_P2_TSSTATEL = 0xf371;
         public const UInt32 FSTV0910_P2_TSNOSYNCBYTE = 0xf3717080;
         public const UInt32 FSTV0910_P2_TSPARITY_ON = 0xf3716040;
@@ -1736,7 +1736,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSCRC8_ON = 0xf3711002;
         public const UInt32 FSTV0910_P2_TSDSS_PACKET = 0xf3710001;
 
-		/* P2_TSCFGH */
+        /* P2_TSCFGH */
         public const ushort RSTV0910_P2_TSCFGH = 0xf372;
         public const UInt32 FSTV0910_P2_TSFIFO_DVBCI = 0xf3727080;
         public const UInt32 FSTV0910_P2_TSFIFO_SERIAL = 0xf3726040;
@@ -1746,14 +1746,14 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSFIFO_ERRMODE = 0xf3721006;
         public const UInt32 FSTV0910_P2_RST_HWARE = 0xf3720001;
 
-		/* P2_TSCFGM */
+        /* P2_TSCFGM */
         public const ushort RSTV0910_P2_TSCFGM = 0xf373;
         public const UInt32 FSTV0910_P2_TSFIFO_MANSPEED = 0xf37360c0;
         public const UInt32 FSTV0910_P2_TSFIFO_PERMDATA = 0xf3735020;
         public const UInt32 FSTV0910_P2_TSFIFO_NONEWSGNL = 0xf3734010;
         public const UInt32 FSTV0910_P2_TSFIFO_INVDATA = 0xf3730001;
 
-		/* P2_TSCFGL */
+        /* P2_TSCFGL */
         public const ushort RSTV0910_P2_TSCFGL = 0xf374;
         public const UInt32 FSTV0910_P2_TSFIFO_BCLKDEL1CK = 0xf37460c0;
         public const UInt32 FSTV0910_P2_BCHERROR_MODE = 0xf3744030;
@@ -1761,11 +1761,11 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSFIFO_EMBINDVB = 0xf3742004;
         public const UInt32 FSTV0910_P2_TSFIFO_BITSPEED = 0xf3740003;
 
-		/* P2_TSSYNC */
+        /* P2_TSSYNC */
         public const ushort RSTV0910_P2_TSSYNC = 0xf375;
         public const UInt32 FSTV0910_P2_TSFIFO_SYNCMODE = 0xf3753018;
 
-		/* P2_TSINSDELH */
+        /* P2_TSINSDELH */
         public const ushort RSTV0910_P2_TSINSDELH = 0xf376;
         public const UInt32 FSTV0910_P2_TSDEL_SYNCBYTE = 0xf3767080;
         public const UInt32 FSTV0910_P2_TSDEL_XXHEADER = 0xf3766040;
@@ -1773,7 +1773,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSINSDEL_RSPARITY = 0xf3761002;
         public const UInt32 FSTV0910_P2_TSINSDEL_CRC8 = 0xf3760001;
 
-		/* P2_TSINSDELM */
+        /* P2_TSINSDELM */
         public const ushort RSTV0910_P2_TSINSDELM = 0xf377;
         public const UInt32 FSTV0910_P2_TSINS_EMODCOD = 0xf3774010;
         public const UInt32 FSTV0910_P2_TSINS_TOKEN = 0xf3773008;
@@ -1781,7 +1781,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSINS_MATYPE = 0xf3771002;
         public const UInt32 FSTV0910_P2_TSINS_UPL = 0xf3770001;
 
-		/* P2_TSINSDELL */
+        /* P2_TSINSDELL */
         public const ushort RSTV0910_P2_TSINSDELL = 0xf378;
         public const UInt32 FSTV0910_P2_TSINS_DFL = 0xf3787080;
         public const UInt32 FSTV0910_P2_TSINS_SYNCD = 0xf3786040;
@@ -1792,20 +1792,20 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSINS_TSCONFIG = 0xf3781002;
         public const UInt32 FSTV0910_P2_TSINS_LATENCY = 0xf3780001;
 
-		/* P2_TSDIVN */
+        /* P2_TSDIVN */
         public const ushort RSTV0910_P2_TSDIVN = 0xf379;
         public const UInt32 FSTV0910_P2_TSFIFO_SPEEDMODE = 0xf37960c0;
         public const UInt32 FSTV0910_P2_TSFIFO_RISEOK = 0xf3790007;
 
-		/* P2_TSCFG4 */
+        /* P2_TSCFG4 */
         public const ushort RSTV0910_P2_TSCFG4 = 0xf37a;
         public const UInt32 FSTV0910_P2_TSFIFO_TSSPEEDMODE = 0xf37a60c0;
 
-		/* P2_TSSPEED */
+        /* P2_TSSPEED */
         public const ushort RSTV0910_P2_TSSPEED = 0xf380;
         public const UInt32 FSTV0910_P2_TSFIFO_OUTSPEED = 0xf38000ff;
 
-		/* P2_TSSTATUS */
+        /* P2_TSSTATUS */
         public const ushort RSTV0910_P2_TSSTATUS = 0xf381;
         public const UInt32 FSTV0910_P2_TSFIFO_LINEOK = 0xf3817080;
         public const UInt32 FSTV0910_P2_TSFIFO_ERROR = 0xf3816040;
@@ -1813,111 +1813,111 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TSREGUL_ERROR = 0xf3812004;
         public const UInt32 FSTV0910_P2_DIL_READY = 0xf3810001;
 
-		/* P2_TSSTATUS2 */
+        /* P2_TSSTATUS2 */
         public const ushort RSTV0910_P2_TSSTATUS2 = 0xf382;
         public const UInt32 FSTV0910_P2_TSFIFO_DEMODSEL = 0xf3827080;
         public const UInt32 FSTV0910_P2_TSFIFOSPEED_STORE = 0xf3826040;
         public const UInt32 FSTV0910_P2_DILXX_RESET = 0xf3825020;
         public const UInt32 FSTV0910_P2_SCRAMBDETECT = 0xf3821002;
 
-		/* P2_TSBITRATE1 */
+        /* P2_TSBITRATE1 */
         public const ushort RSTV0910_P2_TSBITRATE1 = 0xf383;
         public const UInt32 FSTV0910_P2_TSFIFO_BITRATE1 = 0xf38300ff;
 
-		/* P2_TSBITRATE0 */
+        /* P2_TSBITRATE0 */
         public const ushort RSTV0910_P2_TSBITRATE0 = 0xf384;
         public const UInt32 FSTV0910_P2_TSFIFO_BITRATE0 = 0xf38400ff;
 
-		/* P2_TSPACKLEN1 */
+        /* P2_TSPACKLEN1 */
         public const ushort RSTV0910_P2_TSPACKLEN1 = 0xf385;
         public const UInt32 FSTV0910_P2_TSFIFO_PACKCPT = 0xf38550e0;
 
-		/* P2_TSDLY2 */
+        /* P2_TSDLY2 */
         public const ushort RSTV0910_P2_TSDLY2 = 0xf389;
         public const UInt32 FSTV0910_P2_SOFFIFO_LATENCY2 = 0xf389000f;
 
-		/* P2_TSDLY1 */
+        /* P2_TSDLY1 */
         public const ushort RSTV0910_P2_TSDLY1 = 0xf38a;
         public const UInt32 FSTV0910_P2_SOFFIFO_LATENCY1 = 0xf38a00ff;
 
-		/* P2_TSDLY0 */
+        /* P2_TSDLY0 */
         public const ushort RSTV0910_P2_TSDLY0 = 0xf38b;
         public const UInt32 FSTV0910_P2_SOFFIFO_LATENCY0 = 0xf38b00ff;
 
-		/* P2_TSNPDAV */
+        /* P2_TSNPDAV */
         public const ushort RSTV0910_P2_TSNPDAV = 0xf38c;
         public const UInt32 FSTV0910_P2_TSNPD_AVERAGE = 0xf38c00ff;
 
-		/* P2_TSBUFSTAT2 */
+        /* P2_TSBUFSTAT2 */
         public const ushort RSTV0910_P2_TSBUFSTAT2 = 0xf38d;
         public const UInt32 FSTV0910_P2_TSISCR_3BYTES = 0xf38d7080;
         public const UInt32 FSTV0910_P2_TSISCR_NEWDATA = 0xf38d6040;
         public const UInt32 FSTV0910_P2_TSISCR_BUFSTAT2 = 0xf38d003f;
 
-		/* P2_TSBUFSTAT1 */
+        /* P2_TSBUFSTAT1 */
         public const ushort RSTV0910_P2_TSBUFSTAT1 = 0xf38e;
         public const UInt32 FSTV0910_P2_TSISCR_BUFSTAT1 = 0xf38e00ff;
 
-		/* P2_TSBUFSTAT0 */
+        /* P2_TSBUFSTAT0 */
         public const ushort RSTV0910_P2_TSBUFSTAT0 = 0xf38f;
         public const UInt32 FSTV0910_P2_TSISCR_BUFSTAT0 = 0xf38f00ff;
 
-		/* P2_TSDEBUGL */
+        /* P2_TSDEBUGL */
         public const ushort RSTV0910_P2_TSDEBUGL = 0xf391;
         public const UInt32 FSTV0910_P2_TSFIFO_ERROR_EVNT = 0xf3912004;
         public const UInt32 FSTV0910_P2_TSFIFO_OVERFLOWM = 0xf3910001;
 
-		/* P2_TSDLYSET2 */
+        /* P2_TSDLYSET2 */
         public const ushort RSTV0910_P2_TSDLYSET2 = 0xf392;
         public const UInt32 FSTV0910_P2_SOFFIFO_OFFSET = 0xf39260c0;
         public const UInt32 FSTV0910_P2_HYSTERESIS_THRESHOLD = 0xf3924030;
         public const UInt32 FSTV0910_P2_SOFFIFO_SYMBOFFS2 = 0xf392000f;
 
-		/* P2_TSDLYSET1 */
+        /* P2_TSDLYSET1 */
         public const ushort RSTV0910_P2_TSDLYSET1 = 0xf393;
         public const UInt32 FSTV0910_P2_SOFFIFO_SYMBOFFS1 = 0xf39300ff;
 
-		/* P2_TSDLYSET0 */
+        /* P2_TSDLYSET0 */
         public const ushort RSTV0910_P2_TSDLYSET0 = 0xf394;
         public const UInt32 FSTV0910_P2_SOFFIFO_SYMBOFFS0 = 0xf39400ff;
 
-		/* P2_ERRCTRL1 */
+        /* P2_ERRCTRL1 */
         public const ushort RSTV0910_P2_ERRCTRL1 = 0xf398;
         public const UInt32 FSTV0910_P2_ERR_SOURCE1 = 0xf39840f0;
         public const UInt32 FSTV0910_P2_NUM_EVENT1 = 0xf3980007;
 
-		/* P2_ERRCNT12 */
+        /* P2_ERRCNT12 */
         public const ushort RSTV0910_P2_ERRCNT12 = 0xf399;
         public const UInt32 FSTV0910_P2_ERRCNT1_OLDVALUE = 0xf3997080;
         public const UInt32 FSTV0910_P2_ERR_CNT12 = 0xf399007f;
 
-		/* P2_ERRCNT11 */
+        /* P2_ERRCNT11 */
         public const ushort RSTV0910_P2_ERRCNT11 = 0xf39a;
         public const UInt32 FSTV0910_P2_ERR_CNT11 = 0xf39a00ff;
 
-		/* P2_ERRCNT10 */
+        /* P2_ERRCNT10 */
         public const ushort RSTV0910_P2_ERRCNT10 = 0xf39b;
         public const UInt32 FSTV0910_P2_ERR_CNT10 = 0xf39b00ff;
 
-		/* P2_ERRCTRL2 */
+        /* P2_ERRCTRL2 */
         public const ushort RSTV0910_P2_ERRCTRL2 = 0xf39c;
         public const UInt32 FSTV0910_P2_ERR_SOURCE2 = 0xf39c40f0;
         public const UInt32 FSTV0910_P2_NUM_EVENT2 = 0xf39c0007;
 
-		/* P2_ERRCNT22 */
+        /* P2_ERRCNT22 */
         public const ushort RSTV0910_P2_ERRCNT22 = 0xf39d;
         public const UInt32 FSTV0910_P2_ERRCNT2_OLDVALUE = 0xf39d7080;
         public const UInt32 FSTV0910_P2_ERR_CNT22 = 0xf39d007f;
 
-		/* P2_ERRCNT21 */
+        /* P2_ERRCNT21 */
         public const ushort RSTV0910_P2_ERRCNT21 = 0xf39e;
         public const UInt32 FSTV0910_P2_ERR_CNT21 = 0xf39e00ff;
 
-		/* P2_ERRCNT20 */
+        /* P2_ERRCNT20 */
         public const ushort RSTV0910_P2_ERRCNT20 = 0xf39f;
         public const UInt32 FSTV0910_P2_ERR_CNT20 = 0xf39f00ff;
 
-		/* P2_FECSPY */
+        /* P2_FECSPY */
         public const ushort RSTV0910_P2_FECSPY = 0xf3a0;
         public const UInt32 FSTV0910_P2_SPY_ENABLE = 0xf3a07080;
         public const UInt32 FSTV0910_P2_NO_SYNCBYTE = 0xf3a06040;
@@ -1927,7 +1927,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_BERMETER_LMODE = 0xf3a01002;
         public const UInt32 FSTV0910_P2_BERMETER_RESET = 0xf3a00001;
 
-		/* P2_FSPYCFG */
+        /* P2_FSPYCFG */
         public const ushort RSTV0910_P2_FSPYCFG = 0xf3a1;
         public const UInt32 FSTV0910_P2_FECSPY_INPUT = 0xf3a160c0;
         public const UInt32 FSTV0910_P2_RST_ON_ERROR = 0xf3a15020;
@@ -1935,18 +1935,18 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_I2C_MODE = 0xf3a1200c;
         public const UInt32 FSTV0910_P2_SPY_HYSTERESIS = 0xf3a10003;
 
-		/* P2_FSPYDATA */
+        /* P2_FSPYDATA */
         public const ushort RSTV0910_P2_FSPYDATA = 0xf3a2;
         public const UInt32 FSTV0910_P2_SPY_STUFFING = 0xf3a27080;
         public const UInt32 FSTV0910_P2_SPY_CNULLPKT = 0xf3a25020;
         public const UInt32 FSTV0910_P2_SPY_OUTDATA_MODE = 0xf3a2001f;
 
-		/* P2_FSPYOUT */
+        /* P2_FSPYOUT */
         public const ushort RSTV0910_P2_FSPYOUT = 0xf3a3;
         public const UInt32 FSTV0910_P2_FSPY_DIRECT = 0xf3a37080;
         public const UInt32 FSTV0910_P2_STUFF_MODE = 0xf3a30007;
 
-		/* P2_FSTATUS */
+        /* P2_FSTATUS */
         public const ushort RSTV0910_P2_FSTATUS = 0xf3a4;
         public const UInt32 FSTV0910_P2_SPY_ENDSIM = 0xf3a47080;
         public const UInt32 FSTV0910_P2_VALID_SIM = 0xf3a46040;
@@ -1954,49 +1954,49 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_DSS_SYNCBYTE = 0xf3a44010;
         public const UInt32 FSTV0910_P2_RESULT_STATE = 0xf3a4000f;
 
-		/* P2_FBERCPT4 */
+        /* P2_FBERCPT4 */
         public const ushort RSTV0910_P2_FBERCPT4 = 0xf3a8;
         public const UInt32 FSTV0910_P2_FBERMETER_CPT4 = 0xf3a800ff;
 
-		/* P2_FBERCPT3 */
+        /* P2_FBERCPT3 */
         public const ushort RSTV0910_P2_FBERCPT3 = 0xf3a9;
         public const UInt32 FSTV0910_P2_FBERMETER_CPT3 = 0xf3a900ff;
 
-		/* P2_FBERCPT2 */
+        /* P2_FBERCPT2 */
         public const ushort RSTV0910_P2_FBERCPT2 = 0xf3aa;
         public const UInt32 FSTV0910_P2_FBERMETER_CPT2 = 0xf3aa00ff;
 
-		/* P2_FBERCPT1 */
+        /* P2_FBERCPT1 */
         public const ushort RSTV0910_P2_FBERCPT1 = 0xf3ab;
         public const UInt32 FSTV0910_P2_FBERMETER_CPT1 = 0xf3ab00ff;
 
-		/* P2_FBERCPT0 */
+        /* P2_FBERCPT0 */
         public const ushort RSTV0910_P2_FBERCPT0 = 0xf3ac;
         public const UInt32 FSTV0910_P2_FBERMETER_CPT0 = 0xf3ac00ff;
 
-		/* P2_FBERERR2 */
+        /* P2_FBERERR2 */
         public const ushort RSTV0910_P2_FBERERR2 = 0xf3ad;
         public const UInt32 FSTV0910_P2_FBERMETER_ERR2 = 0xf3ad00ff;
 
-		/* P2_FBERERR1 */
+        /* P2_FBERERR1 */
         public const ushort RSTV0910_P2_FBERERR1 = 0xf3ae;
         public const UInt32 FSTV0910_P2_FBERMETER_ERR1 = 0xf3ae00ff;
 
-		/* P2_FBERERR0 */
+        /* P2_FBERERR0 */
         public const ushort RSTV0910_P2_FBERERR0 = 0xf3af;
         public const UInt32 FSTV0910_P2_FBERMETER_ERR0 = 0xf3af00ff;
 
-		/* P2_FSPYBER */
+        /* P2_FSPYBER */
         public const ushort RSTV0910_P2_FSPYBER = 0xf3b2;
         public const UInt32 FSTV0910_P2_FSPYBER_SYNCBYTE = 0xf3b24010;
         public const UInt32 FSTV0910_P2_FSPYBER_UNSYNC = 0xf3b23008;
         public const UInt32 FSTV0910_P2_FSPYBER_CTIME = 0xf3b20007;
 
-		/* P2_SFERROR */
+        /* P2_SFERROR */
         public const ushort RSTV0910_P2_SFERROR = 0xf3c1;
         public const UInt32 FSTV0910_P2_SFEC_REGERR_VIT = 0xf3c100ff;
 
-		/* P2_SFECSTATUS */
+        /* P2_SFECSTATUS */
         public const ushort RSTV0910_P2_SFECSTATUS = 0xf3c3;
         public const UInt32 FSTV0910_P2_SFEC_ON = 0xf3c37080;
         public const UInt32 FSTV0910_P2_SFEC_OFF = 0xf3c36040;
@@ -2005,31 +2005,31 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_SFEC_DEMODSEL = 0xf3c31002;
         public const UInt32 FSTV0910_P2_SFEC_OVFON = 0xf3c30001;
 
-		/* P2_SFKDIV12 */
+        /* P2_SFKDIV12 */
         public const ushort RSTV0910_P2_SFKDIV12 = 0xf3c4;
         public const UInt32 FSTV0910_P2_SFECKDIV12_MAN = 0xf3c47080;
 
-		/* P2_SFKDIV23 */
+        /* P2_SFKDIV23 */
         public const ushort RSTV0910_P2_SFKDIV23 = 0xf3c5;
         public const UInt32 FSTV0910_P2_SFECKDIV23_MAN = 0xf3c57080;
 
-		/* P2_SFKDIV34 */
+        /* P2_SFKDIV34 */
         public const ushort RSTV0910_P2_SFKDIV34 = 0xf3c6;
         public const UInt32 FSTV0910_P2_SFECKDIV34_MAN = 0xf3c67080;
 
-		/* P2_SFKDIV56 */
+        /* P2_SFKDIV56 */
         public const ushort RSTV0910_P2_SFKDIV56 = 0xf3c7;
         public const UInt32 FSTV0910_P2_SFECKDIV56_MAN = 0xf3c77080;
 
-		/* P2_SFKDIV67 */
+        /* P2_SFKDIV67 */
         public const ushort RSTV0910_P2_SFKDIV67 = 0xf3c8;
         public const UInt32 FSTV0910_P2_SFECKDIV67_MAN = 0xf3c87080;
 
-		/* P2_SFKDIV78 */
+        /* P2_SFKDIV78 */
         public const ushort RSTV0910_P2_SFKDIV78 = 0xf3c9;
         public const UInt32 FSTV0910_P2_SFECKDIV78_MAN = 0xf3c97080;
 
-		/* P2_SFSTATUS */
+        /* P2_SFSTATUS */
         public const ushort RSTV0910_P2_SFSTATUS = 0xf3cc;
         public const UInt32 FSTV0910_P2_SFEC_LINEOK = 0xf3cc7080;
         public const UInt32 FSTV0910_P2_SFEC_ERROR = 0xf3cc6040;
@@ -2040,48 +2040,48 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_SFEC_UNREGULA = 0xf3cc1002;
         public const UInt32 FSTV0910_P2_SFEC_READY = 0xf3cc0001;
 
-		/* P2_SFDLYSET2 */
+        /* P2_SFDLYSET2 */
         public const ushort RSTV0910_P2_SFDLYSET2 = 0xf3d0;
         public const UInt32 FSTV0910_P2_SFEC_DISABLE = 0xf3d01002;
 
-		/* P2_SFERRCTRL */
+        /* P2_SFERRCTRL */
         public const ushort RSTV0910_P2_SFERRCTRL = 0xf3d8;
         public const UInt32 FSTV0910_P2_SFEC_ERR_SOURCE = 0xf3d840f0;
         public const UInt32 FSTV0910_P2_SFEC_NUM_EVENT = 0xf3d80007;
 
-		/* P2_SFERRCNT2 */
+        /* P2_SFERRCNT2 */
         public const ushort RSTV0910_P2_SFERRCNT2 = 0xf3d9;
         public const UInt32 FSTV0910_P2_SFERRC_OLDVALUE = 0xf3d97080;
         public const UInt32 FSTV0910_P2_SFEC_ERR_CNT2 = 0xf3d9007f;
 
-		/* P2_SFERRCNT1 */
+        /* P2_SFERRCNT1 */
         public const ushort RSTV0910_P2_SFERRCNT1 = 0xf3da;
         public const UInt32 FSTV0910_P2_SFEC_ERR_CNT1 = 0xf3da00ff;
 
-		/* P2_SFERRCNT0 */
+        /* P2_SFERRCNT0 */
         public const ushort RSTV0910_P2_SFERRCNT0 = 0xf3db;
         public const UInt32 FSTV0910_P2_SFEC_ERR_CNT0 = 0xf3db00ff;
 
-		/* P1_IQCONST */
+        /* P1_IQCONST */
         public const ushort RSTV0910_P1_IQCONST = 0xf400;
         public const UInt32 FSTV0910_P1_CONSTEL_SELECT = 0xf4005060;
         public const UInt32 FSTV0910_P1_IQSYMB_SEL = 0xf400001f;
 
-		/* P1_NOSCFG */
+        /* P1_NOSCFG */
         public const ushort RSTV0910_P1_NOSCFG = 0xf401;
         public const UInt32 FSTV0910_P1_DUMMYPL_NOSDATA = 0xf4015020;
         public const UInt32 FSTV0910_P1_NOSPLH_BETA = 0xf4013018;
         public const UInt32 FSTV0910_P1_NOSDATA_BETA = 0xf4010007;
 
-		/* P1_ISYMB */
+        /* P1_ISYMB */
         public const ushort RSTV0910_P1_ISYMB = 0xf402;
         public const UInt32 FSTV0910_P1_I_SYMBOL = 0xf40201ff;
 
-		/* P1_QSYMB */
+        /* P1_QSYMB */
         public const ushort RSTV0910_P1_QSYMB = 0xf403;
         public const UInt32 FSTV0910_P1_Q_SYMBOL = 0xf40301ff;
 
-		/* P1_AGC1CFG */
+        /* P1_AGC1CFG */
         public const ushort RSTV0910_P1_AGC1CFG = 0xf404;
         public const UInt32 FSTV0910_P1_DC_FROZEN = 0xf4047080;
         public const UInt32 FSTV0910_P1_DC_CORRECT = 0xf4046040;
@@ -2090,70 +2090,70 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_QUAD_FROZEN = 0xf4043008;
         public const UInt32 FSTV0910_P1_QUAD_CORRECT = 0xf4042004;
 
-		/* P1_AGC1CN */
+        /* P1_AGC1CN */
         public const ushort RSTV0910_P1_AGC1CN = 0xf406;
         public const UInt32 FSTV0910_P1_AGC1_LOCKED = 0xf4067080;
         public const UInt32 FSTV0910_P1_AGC1_MINPOWER = 0xf4064010;
         public const UInt32 FSTV0910_P1_AGCOUT_FAST = 0xf4063008;
         public const UInt32 FSTV0910_P1_AGCIQ_BETA = 0xf4060007;
 
-		/* P1_AGC1REF */
+        /* P1_AGC1REF */
         public const ushort RSTV0910_P1_AGC1REF = 0xf407;
         public const UInt32 FSTV0910_P1_AGCIQ_REF = 0xf40700ff;
 
-		/* P1_IDCCOMP */
+        /* P1_IDCCOMP */
         public const ushort RSTV0910_P1_IDCCOMP = 0xf408;
         public const UInt32 FSTV0910_P1_IAVERAGE_ADJ = 0xf40801ff;
 
-		/* P1_QDCCOMP */
+        /* P1_QDCCOMP */
         public const ushort RSTV0910_P1_QDCCOMP = 0xf409;
         public const UInt32 FSTV0910_P1_QAVERAGE_ADJ = 0xf40901ff;
 
-		/* P1_POWERI */
+        /* P1_POWERI */
         public const ushort RSTV0910_P1_POWERI = 0xf40a;
         public const UInt32 FSTV0910_P1_POWER_I = 0xf40a00ff;
 
-		/* P1_POWERQ */
+        /* P1_POWERQ */
         public const ushort RSTV0910_P1_POWERQ = 0xf40b;
         public const UInt32 FSTV0910_P1_POWER_Q = 0xf40b00ff;
 
-		/* P1_AGC1AMM */
+        /* P1_AGC1AMM */
         public const ushort RSTV0910_P1_AGC1AMM = 0xf40c;
         public const UInt32 FSTV0910_P1_AMM_VALUE = 0xf40c00ff;
 
-		/* P1_AGC1QUAD */
+        /* P1_AGC1QUAD */
         public const ushort RSTV0910_P1_AGC1QUAD = 0xf40d;
         public const UInt32 FSTV0910_P1_QUAD_VALUE = 0xf40d01ff;
 
-		/* P1_AGCIQIN1 */
+        /* P1_AGCIQIN1 */
         public const ushort RSTV0910_P1_AGCIQIN1 = 0xf40e;
         public const UInt32 FSTV0910_P1_AGCIQ_VALUE1 = 0xf40e00ff;
 
-		/* P1_AGCIQIN0 */
+        /* P1_AGCIQIN0 */
         public const ushort RSTV0910_P1_AGCIQIN0 = 0xf40f;
         public const UInt32 FSTV0910_P1_AGCIQ_VALUE0 = 0xf40f00ff;
 
-		/* P1_DEMOD */
+        /* P1_DEMOD */
         public const ushort RSTV0910_P1_DEMOD = 0xf410;
         public const UInt32 FSTV0910_P1_MANUALS2_ROLLOFF = 0xf4107080;
         public const UInt32 FSTV0910_P1_SPECINV_CONTROL = 0xf4104030;
         public const UInt32 FSTV0910_P1_MANUALSX_ROLLOFF = 0xf4102004;
         public const UInt32 FSTV0910_P1_ROLLOFF_CONTROL = 0xf4100003;
 
-		/* P1_DMDMODCOD */
+        /* P1_DMDMODCOD */
         public const ushort RSTV0910_P1_DMDMODCOD = 0xf411;
         public const UInt32 FSTV0910_P1_MANUAL_MODCOD = 0xf4117080;
         public const UInt32 FSTV0910_P1_DEMOD_MODCOD = 0xf411207c;
         public const UInt32 FSTV0910_P1_DEMOD_TYPE = 0xf4110003;
 
-		/* P1_DSTATUS */
+        /* P1_DSTATUS */
         public const ushort RSTV0910_P1_DSTATUS = 0xf412;
         public const UInt32 FSTV0910_P1_CAR_LOCK = 0xf4127080;
         public const UInt32 FSTV0910_P1_TMGLOCK_QUALITY = 0xf4125060;
         public const UInt32 FSTV0910_P1_LOCK_DEFINITIF = 0xf4123008;
         public const UInt32 FSTV0910_P1_OVADC_DETECT = 0xf4120001;
 
-		/* P1_DSTATUS2 */
+        /* P1_DSTATUS2 */
         public const ushort RSTV0910_P1_DSTATUS2 = 0xf413;
         public const UInt32 FSTV0910_P1_DEMOD_DELOCK = 0xf4137080;
         public const UInt32 FSTV0910_P1_MODCODRQ_SYNCTAG = 0xf4135020;
@@ -2163,7 +2163,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_CFR_OVERFLOW = 0xf4131002;
         public const UInt32 FSTV0910_P1_GAMMA_OVERUNDER = 0xf4130001;
 
-		/* P1_DMDCFGMD */
+        /* P1_DMDCFGMD */
         public const ushort RSTV0910_P1_DMDCFGMD = 0xf414;
         public const UInt32 FSTV0910_P1_DVBS2_ENABLE = 0xf4147080;
         public const UInt32 FSTV0910_P1_DVBS1_ENABLE = 0xf4146040;
@@ -2171,503 +2171,503 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_CFR_AUTOSCAN = 0xf4143008;
         public const UInt32 FSTV0910_P1_TUN_RNG = 0xf4140003;
 
-		/* P1_DMDCFG2 */
+        /* P1_DMDCFG2 */
         public const ushort RSTV0910_P1_DMDCFG2 = 0xf415;
         public const UInt32 FSTV0910_P1_S1S2_SEQUENTIAL = 0xf4156040;
         public const UInt32 FSTV0910_P1_INFINITE_RELOCK = 0xf4154010;
 
-		/* P1_DMDISTATE */
+        /* P1_DMDISTATE */
         public const ushort RSTV0910_P1_DMDISTATE = 0xf416;
         public const UInt32 FSTV0910_P1_I2C_NORESETDMODE = 0xf4167080;
         public const UInt32 FSTV0910_P1_I2C_DEMOD_MODE = 0xf416001f;
 
-		/* P1_DMDT0M */
+        /* P1_DMDT0M */
         public const ushort RSTV0910_P1_DMDT0M = 0xf417;
         public const UInt32 FSTV0910_P1_DMDT0_MIN = 0xf41700ff;
 
-		/* P1_DMDSTATE */
+        /* P1_DMDSTATE */
         public const ushort RSTV0910_P1_DMDSTATE = 0xf41b;
         public const UInt32 FSTV0910_P1_HEADER_MODE = 0xf41b5060;
 
-		/* P1_DMDFLYW */
+        /* P1_DMDFLYW */
         public const ushort RSTV0910_P1_DMDFLYW = 0xf41c;
         public const UInt32 FSTV0910_P1_I2C_IRQVAL = 0xf41c40f0;
         public const UInt32 FSTV0910_P1_FLYWHEEL_CPT = 0xf41c000f;
 
-		/* P1_DSTATUS3 */
+        /* P1_DSTATUS3 */
         public const ushort RSTV0910_P1_DSTATUS3 = 0xf41d;
         public const UInt32 FSTV0910_P1_CFR_ZIGZAG = 0xf41d7080;
         public const UInt32 FSTV0910_P1_DEMOD_CFGMODE = 0xf41d5060;
         public const UInt32 FSTV0910_P1_GAMMA_LOWBAUDRATE = 0xf41d4010;
 
-		/* P1_DMDCFG3 */
+        /* P1_DMDCFG3 */
         public const ushort RSTV0910_P1_DMDCFG3 = 0xf41e;
         public const UInt32 FSTV0910_P1_NOSTOP_FIFOFULL = 0xf41e3008;
 
-		/* P1_DMDCFG4 */
+        /* P1_DMDCFG4 */
         public const ushort RSTV0910_P1_DMDCFG4 = 0xf41f;
         public const UInt32 FSTV0910_P1_DIS_VITLOCK = 0xf41f7080;
         public const UInt32 FSTV0910_P1_DIS_CLKENABLE = 0xf41f2004;
 
-		/* P1_CORRELMANT */
+        /* P1_CORRELMANT */
         public const ushort RSTV0910_P1_CORRELMANT = 0xf420;
         public const UInt32 FSTV0910_P1_CORREL_MANT = 0xf42000ff;
 
-		/* P1_CORRELABS */
+        /* P1_CORRELABS */
         public const ushort RSTV0910_P1_CORRELABS = 0xf421;
         public const UInt32 FSTV0910_P1_CORREL_ABS = 0xf42100ff;
 
-		/* P1_CORRELEXP */
+        /* P1_CORRELEXP */
         public const ushort RSTV0910_P1_CORRELEXP = 0xf422;
         public const UInt32 FSTV0910_P1_CORREL_ABSEXP = 0xf42240f0;
         public const UInt32 FSTV0910_P1_CORREL_EXP = 0xf422000f;
 
-		/* P1_PLHMODCOD */
+        /* P1_PLHMODCOD */
         public const ushort RSTV0910_P1_PLHMODCOD = 0xf424;
         public const UInt32 FSTV0910_P1_SPECINV_DEMOD = 0xf4247080;
         public const UInt32 FSTV0910_P1_PLH_MODCOD = 0xf424207c;
         public const UInt32 FSTV0910_P1_PLH_TYPE = 0xf4240003;
 
-		/* P1_DMDREG */
+        /* P1_DMDREG */
         public const ushort RSTV0910_P1_DMDREG = 0xf425;
         public const UInt32 FSTV0910_P1_DECIM_PLFRAMES = 0xf4250001;
 
-		/* P1_AGCNADJ */
+        /* P1_AGCNADJ */
         public const ushort RSTV0910_P1_AGCNADJ = 0xf426;
         public const UInt32 FSTV0910_P1_RADJOFF_AGC2 = 0xf4267080;
         public const UInt32 FSTV0910_P1_RADJOFF_AGC1 = 0xf4266040;
         public const UInt32 FSTV0910_P1_AGC_NADJ = 0xf426013f;
 
-		/* P1_AGCKS */
+        /* P1_AGCKS */
         public const ushort RSTV0910_P1_AGCKS = 0xf427;
         public const UInt32 FSTV0910_P1_RSADJ_MANUALCFG = 0xf4277080;
         public const UInt32 FSTV0910_P1_RSADJ_CCMMODE = 0xf4276040;
         public const UInt32 FSTV0910_P1_RADJ_SPSK = 0xf427013f;
 
-		/* P1_AGCKQ */
+        /* P1_AGCKQ */
         public const ushort RSTV0910_P1_AGCKQ = 0xf428;
         public const UInt32 FSTV0910_P1_RADJON_DVBS1 = 0xf4286040;
         public const UInt32 FSTV0910_P1_RADJ_QPSK = 0xf428013f;
 
-		/* P1_AGCK8 */
+        /* P1_AGCK8 */
         public const ushort RSTV0910_P1_AGCK8 = 0xf429;
         public const UInt32 FSTV0910_P1_RADJ_8PSK = 0xf429013f;
 
-		/* P1_AGCK16 */
+        /* P1_AGCK16 */
         public const ushort RSTV0910_P1_AGCK16 = 0xf42a;
         public const UInt32 FSTV0910_P1_R2ADJOFF_16APSK = 0xf42a6040;
         public const UInt32 FSTV0910_P1_R1ADJOFF_16APSK = 0xf42a5020;
         public const UInt32 FSTV0910_P1_RADJ_16APSK = 0xf42a011f;
 
-		/* P1_AGCK32 */
+        /* P1_AGCK32 */
         public const ushort RSTV0910_P1_AGCK32 = 0xf42b;
         public const UInt32 FSTV0910_P1_R3ADJOFF_32APSK = 0xf42b7080;
         public const UInt32 FSTV0910_P1_R2ADJOFF_32APSK = 0xf42b6040;
         public const UInt32 FSTV0910_P1_R1ADJOFF_32APSK = 0xf42b5020;
         public const UInt32 FSTV0910_P1_RADJ_32APSK = 0xf42b011f;
 
-		/* P1_AGC2O */
+        /* P1_AGC2O */
         public const ushort RSTV0910_P1_AGC2O = 0xf42c;
         public const UInt32 FSTV0910_P1_CSTENV_MODE = 0xf42c60c0;
         public const UInt32 FSTV0910_P1_AGC2_COEF = 0xf42c0007;
 
-		/* P1_AGC2REF */
+        /* P1_AGC2REF */
         public const ushort RSTV0910_P1_AGC2REF = 0xf42d;
         public const UInt32 FSTV0910_P1_AGC2_REF = 0xf42d00ff;
 
-		/* P1_AGC1ADJ */
+        /* P1_AGC1ADJ */
         public const ushort RSTV0910_P1_AGC1ADJ = 0xf42e;
         public const UInt32 FSTV0910_P1_AGC1_ADJUSTED = 0xf42e007f;
 
-		/* P1_AGCRSADJ */
+        /* P1_AGCRSADJ */
         public const ushort RSTV0910_P1_AGCRSADJ = 0xf42f;
         public const UInt32 FSTV0910_P1_RS_ADJUSTED = 0xf42f007f;
 
-		/* P1_AGCRQADJ */
+        /* P1_AGCRQADJ */
         public const ushort RSTV0910_P1_AGCRQADJ = 0xf430;
         public const UInt32 FSTV0910_P1_RQ_ADJUSTED = 0xf430007f;
 
-		/* P1_AGCR8ADJ */
+        /* P1_AGCR8ADJ */
         public const ushort RSTV0910_P1_AGCR8ADJ = 0xf431;
         public const UInt32 FSTV0910_P1_R8_ADJUSTED = 0xf431007f;
 
-		/* P1_AGCR1ADJ */
+        /* P1_AGCR1ADJ */
         public const ushort RSTV0910_P1_AGCR1ADJ = 0xf432;
         public const UInt32 FSTV0910_P1_R1_ADJUSTED = 0xf432007f;
 
-		/* P1_AGCR2ADJ */
+        /* P1_AGCR2ADJ */
         public const ushort RSTV0910_P1_AGCR2ADJ = 0xf433;
         public const UInt32 FSTV0910_P1_R2_ADJUSTED = 0xf433007f;
 
-		/* P1_AGCR3ADJ */
+        /* P1_AGCR3ADJ */
         public const ushort RSTV0910_P1_AGCR3ADJ = 0xf434;
         public const UInt32 FSTV0910_P1_R3_ADJUSTED = 0xf434007f;
 
-		/* P1_AGCREFADJ */
+        /* P1_AGCREFADJ */
         public const ushort RSTV0910_P1_AGCREFADJ = 0xf435;
         public const UInt32 FSTV0910_P1_AGC2REF_ADJUSTED = 0xf435007f;
 
-		/* P1_AGC2I1 */
+        /* P1_AGC2I1 */
         public const ushort RSTV0910_P1_AGC2I1 = 0xf436;
         public const UInt32 FSTV0910_P1_AGC2_INTEGRATOR1 = 0xf43600ff;
 
-		/* P1_AGC2I0 */
+        /* P1_AGC2I0 */
         public const ushort RSTV0910_P1_AGC2I0 = 0xf437;
         public const UInt32 FSTV0910_P1_AGC2_INTEGRATOR0 = 0xf43700ff;
 
-		/* P1_CARCFG */
+        /* P1_CARCFG */
         public const ushort RSTV0910_P1_CARCFG = 0xf438;
         public const UInt32 FSTV0910_P1_ROTAON = 0xf4382004;
         public const UInt32 FSTV0910_P1_PH_DET_ALGO = 0xf4380003;
 
-		/* P1_ACLC */
+        /* P1_ACLC */
         public const ushort RSTV0910_P1_ACLC = 0xf439;
         public const UInt32 FSTV0910_P1_CAR_ALPHA_MANT = 0xf4394030;
         public const UInt32 FSTV0910_P1_CAR_ALPHA_EXP = 0xf439000f;
 
-		/* P1_BCLC */
+        /* P1_BCLC */
         public const ushort RSTV0910_P1_BCLC = 0xf43a;
         public const UInt32 FSTV0910_P1_CAR_BETA_MANT = 0xf43a4030;
         public const UInt32 FSTV0910_P1_CAR_BETA_EXP = 0xf43a000f;
 
-		/* P1_ACLCS2 */
+        /* P1_ACLCS2 */
         public const ushort RSTV0910_P1_ACLCS2 = 0xf43b;
         public const UInt32 FSTV0910_P1_CARS2_APLHA_MANTISSE = 0xf43b4030;
         public const UInt32 FSTV0910_P1_CARS2_ALPHA_EXP = 0xf43b000f;
 
-		/* P1_BCLCS2 */
+        /* P1_BCLCS2 */
         public const ushort RSTV0910_P1_BCLCS2 = 0xf43c;
         public const UInt32 FSTV0910_P1_CARS2_BETA_MANTISSE = 0xf43c4030;
         public const UInt32 FSTV0910_P1_CARS2_BETA_EXP = 0xf43c000f;
 
-		/* P1_CARFREQ */
+        /* P1_CARFREQ */
         public const ushort RSTV0910_P1_CARFREQ = 0xf43d;
         public const UInt32 FSTV0910_P1_KC_COARSE_EXP = 0xf43d40f0;
         public const UInt32 FSTV0910_P1_BETA_FREQ = 0xf43d000f;
 
-		/* P1_CARHDR */
+        /* P1_CARHDR */
         public const ushort RSTV0910_P1_CARHDR = 0xf43e;
         public const UInt32 FSTV0910_P1_K_FREQ_HDR = 0xf43e00ff;
 
-		/* P1_LDT */
+        /* P1_LDT */
         public const ushort RSTV0910_P1_LDT = 0xf43f;
         public const UInt32 FSTV0910_P1_CARLOCK_THRES = 0xf43f01ff;
 
-		/* P1_LDT2 */
+        /* P1_LDT2 */
         public const ushort RSTV0910_P1_LDT2 = 0xf440;
         public const UInt32 FSTV0910_P1_CARLOCK_THRES2 = 0xf44001ff;
 
-		/* P1_CFRICFG */
+        /* P1_CFRICFG */
         public const ushort RSTV0910_P1_CFRICFG = 0xf441;
         public const UInt32 FSTV0910_P1_NEG_CFRSTEP = 0xf4410001;
 
-		/* P1_CFRUP1 */
+        /* P1_CFRUP1 */
         public const ushort RSTV0910_P1_CFRUP1 = 0xf442;
         public const UInt32 FSTV0910_P1_CFR_UP1 = 0xf44201ff;
 
-		/* P1_CFRUP0 */
+        /* P1_CFRUP0 */
         public const ushort RSTV0910_P1_CFRUP0 = 0xf443;
         public const UInt32 FSTV0910_P1_CFR_UP0 = 0xf44300ff;
 
-		/* P1_CFRIBASE1 */
+        /* P1_CFRIBASE1 */
         public const ushort RSTV0910_P1_CFRIBASE1 = 0xf444;
         public const UInt32 FSTV0910_P1_CFRINIT_BASE1 = 0xf44400ff;
 
-		/* P1_CFRIBASE0 */
+        /* P1_CFRIBASE0 */
         public const ushort RSTV0910_P1_CFRIBASE0 = 0xf445;
         public const UInt32 FSTV0910_P1_CFRINIT_BASE0 = 0xf44500ff;
 
-		/* P1_CFRLOW1 */
+        /* P1_CFRLOW1 */
         public const ushort RSTV0910_P1_CFRLOW1 = 0xf446;
         public const UInt32 FSTV0910_P1_CFR_LOW1 = 0xf44601ff;
 
-		/* P1_CFRLOW0 */
+        /* P1_CFRLOW0 */
         public const ushort RSTV0910_P1_CFRLOW0 = 0xf447;
         public const UInt32 FSTV0910_P1_CFR_LOW0 = 0xf44700ff;
 
-		/* P1_CFRINIT1 */
+        /* P1_CFRINIT1 */
         public const ushort RSTV0910_P1_CFRINIT1 = 0xf448;
         public const UInt32 FSTV0910_P1_CFR_INIT1 = 0xf44801ff;
 
-		/* P1_CFRINIT0 */
+        /* P1_CFRINIT0 */
         public const ushort RSTV0910_P1_CFRINIT0 = 0xf449;
         public const UInt32 FSTV0910_P1_CFR_INIT0 = 0xf44900ff;
 
-		/* P1_CFRINC1 */
+        /* P1_CFRINC1 */
         public const ushort RSTV0910_P1_CFRINC1 = 0xf44a;
         public const UInt32 FSTV0910_P1_MANUAL_CFRINC = 0xf44a7080;
         public const UInt32 FSTV0910_P1_CFR_INC1 = 0xf44a003f;
 
-		/* P1_CFRINC0 */
+        /* P1_CFRINC0 */
         public const ushort RSTV0910_P1_CFRINC0 = 0xf44b;
         public const UInt32 FSTV0910_P1_CFR_INC0 = 0xf44b00ff;
 
-		/* P1_CFR2 */
+        /* P1_CFR2 */
         public const ushort RSTV0910_P1_CFR2 = 0xf44c;
         public const UInt32 FSTV0910_P1_CAR_FREQ2 = 0xf44c01ff;
 
-		/* P1_CFR1 */
+        /* P1_CFR1 */
         public const ushort RSTV0910_P1_CFR1 = 0xf44d;
         public const UInt32 FSTV0910_P1_CAR_FREQ1 = 0xf44d00ff;
 
-		/* P1_CFR0 */
+        /* P1_CFR0 */
         public const ushort RSTV0910_P1_CFR0 = 0xf44e;
         public const UInt32 FSTV0910_P1_CAR_FREQ0 = 0xf44e00ff;
 
-		/* P1_LDI */
+        /* P1_LDI */
         public const ushort RSTV0910_P1_LDI = 0xf44f;
         public const UInt32 FSTV0910_P1_LOCK_DET_INTEGR = 0xf44f01ff;
 
-		/* P1_TMGCFG */
+        /* P1_TMGCFG */
         public const ushort RSTV0910_P1_TMGCFG = 0xf450;
         public const UInt32 FSTV0910_P1_TMGLOCK_BETA = 0xf45060c0;
         public const UInt32 FSTV0910_P1_DO_TIMING_CORR = 0xf4504010;
         public const UInt32 FSTV0910_P1_TMG_MINFREQ = 0xf4500003;
 
-		/* P1_RTC */
+        /* P1_RTC */
         public const ushort RSTV0910_P1_RTC = 0xf451;
         public const UInt32 FSTV0910_P1_TMGALPHA_EXP = 0xf45140f0;
         public const UInt32 FSTV0910_P1_TMGBETA_EXP = 0xf451000f;
 
-		/* P1_RTCS2 */
+        /* P1_RTCS2 */
         public const ushort RSTV0910_P1_RTCS2 = 0xf452;
         public const UInt32 FSTV0910_P1_TMGALPHAS2_EXP = 0xf45240f0;
         public const UInt32 FSTV0910_P1_TMGBETAS2_EXP = 0xf452000f;
 
-		/* P1_TMGTHRISE */
+        /* P1_TMGTHRISE */
         public const ushort RSTV0910_P1_TMGTHRISE = 0xf453;
         public const UInt32 FSTV0910_P1_TMGLOCK_THRISE = 0xf45300ff;
 
-		/* P1_TMGTHFALL */
+        /* P1_TMGTHFALL */
         public const ushort RSTV0910_P1_TMGTHFALL = 0xf454;
         public const UInt32 FSTV0910_P1_TMGLOCK_THFALL = 0xf45400ff;
 
-		/* P1_SFRUPRATIO */
+        /* P1_SFRUPRATIO */
         public const ushort RSTV0910_P1_SFRUPRATIO = 0xf455;
         public const UInt32 FSTV0910_P1_SFR_UPRATIO = 0xf45500ff;
 
-		/* P1_SFRLOWRATIO */
+        /* P1_SFRLOWRATIO */
         public const ushort RSTV0910_P1_SFRLOWRATIO = 0xf456;
         public const UInt32 FSTV0910_P1_SFR_LOWRATIO = 0xf45600ff;
 
-		/* P1_KTTMG */
+        /* P1_KTTMG */
         public const ushort RSTV0910_P1_KTTMG = 0xf457;
         public const UInt32 FSTV0910_P1_KT_TMG_EXP = 0xf45740f0;
 
-		/* P1_KREFTMG */
+        /* P1_KREFTMG */
         public const ushort RSTV0910_P1_KREFTMG = 0xf458;
         public const UInt32 FSTV0910_P1_KREF_TMG = 0xf45800ff;
 
-		/* P1_SFRSTEP */
+        /* P1_SFRSTEP */
         public const ushort RSTV0910_P1_SFRSTEP = 0xf459;
         public const UInt32 FSTV0910_P1_SFR_SCANSTEP = 0xf45940f0;
         public const UInt32 FSTV0910_P1_SFR_CENTERSTEP = 0xf459000f;
 
-		/* P1_TMGCFG2 */
+        /* P1_TMGCFG2 */
         public const ushort RSTV0910_P1_TMGCFG2 = 0xf45a;
         public const UInt32 FSTV0910_P1_DIS_AUTOSAMP = 0xf45a3008;
         public const UInt32 FSTV0910_P1_SFRRATIO_FINE = 0xf45a0001;
 
-		/* P1_KREFTMG2 */
+        /* P1_KREFTMG2 */
         public const ushort RSTV0910_P1_KREFTMG2 = 0xf45b;
         public const UInt32 FSTV0910_P1_KREF_TMG2 = 0xf45b00ff;
 
-		/* P1_TMGCFG3 */
+        /* P1_TMGCFG3 */
         public const ushort RSTV0910_P1_TMGCFG3 = 0xf45d;
         public const UInt32 FSTV0910_P1_CONT_TMGCENTER = 0xf45d3008;
         public const UInt32 FSTV0910_P1_AUTO_GUP = 0xf45d2004;
         public const UInt32 FSTV0910_P1_AUTO_GLOW = 0xf45d1002;
 
-		/* P1_SFRINIT1 */
+        /* P1_SFRINIT1 */
         public const ushort RSTV0910_P1_SFRINIT1 = 0xf45e;
         public const UInt32 FSTV0910_P1_SFR_INIT1 = 0xf45e00ff;
 
-		/* P1_SFRINIT0 */
+        /* P1_SFRINIT0 */
         public const ushort RSTV0910_P1_SFRINIT0 = 0xf45f;
         public const UInt32 FSTV0910_P1_SFR_INIT0 = 0xf45f00ff;
 
-		/* P1_SFRUP1 */
+        /* P1_SFRUP1 */
         public const ushort RSTV0910_P1_SFRUP1 = 0xf460;
         public const UInt32 FSTV0910_P1_SYMB_FREQ_UP1 = 0xf46000ff;
 
-		/* P1_SFRUP0 */
+        /* P1_SFRUP0 */
         public const ushort RSTV0910_P1_SFRUP0 = 0xf461;
         public const UInt32 FSTV0910_P1_SYMB_FREQ_UP0 = 0xf46100ff;
 
-		/* P1_SFRLOW1 */
+        /* P1_SFRLOW1 */
         public const ushort RSTV0910_P1_SFRLOW1 = 0xf462;
         public const UInt32 FSTV0910_P1_SYMB_FREQ_LOW1 = 0xf46200ff;
 
-		/* P1_SFRLOW0 */
+        /* P1_SFRLOW0 */
         public const ushort RSTV0910_P1_SFRLOW0 = 0xf463;
         public const UInt32 FSTV0910_P1_SYMB_FREQ_LOW0 = 0xf46300ff;
 
-		/* P1_SFR3 */
+        /* P1_SFR3 */
         public const ushort RSTV0910_P1_SFR3 = 0xf464;
         public const UInt32 FSTV0910_P1_SYMB_FREQ3 = 0xf46400ff;
 
-		/* P1_SFR2 */
+        /* P1_SFR2 */
         public const ushort RSTV0910_P1_SFR2 = 0xf465;
         public const UInt32 FSTV0910_P1_SYMB_FREQ2 = 0xf46500ff;
 
-		/* P1_SFR1 */
+        /* P1_SFR1 */
         public const ushort RSTV0910_P1_SFR1 = 0xf466;
         public const UInt32 FSTV0910_P1_SYMB_FREQ1 = 0xf46600ff;
 
-		/* P1_SFR0 */
+        /* P1_SFR0 */
         public const ushort RSTV0910_P1_SFR0 = 0xf467;
         public const UInt32 FSTV0910_P1_SYMB_FREQ0 = 0xf46700ff;
 
-		/* P1_TMGREG2 */
+        /* P1_TMGREG2 */
         public const ushort RSTV0910_P1_TMGREG2 = 0xf468;
         public const UInt32 FSTV0910_P1_TMGREG2 = 0xf46800ff;
 
-		/* P1_TMGREG1 */
+        /* P1_TMGREG1 */
         public const ushort RSTV0910_P1_TMGREG1 = 0xf469;
         public const UInt32 FSTV0910_P1_TMGREG1 = 0xf46900ff;
 
-		/* P1_TMGREG0 */
+        /* P1_TMGREG0 */
         public const ushort RSTV0910_P1_TMGREG0 = 0xf46a;
         public const UInt32 FSTV0910_P1_TMGREG0 = 0xf46a00ff;
 
-		/* P1_TMGLOCK1 */
+        /* P1_TMGLOCK1 */
         public const ushort RSTV0910_P1_TMGLOCK1 = 0xf46b;
         public const UInt32 FSTV0910_P1_TMGLOCK_LEVEL1 = 0xf46b01ff;
 
-		/* P1_TMGLOCK0 */
+        /* P1_TMGLOCK0 */
         public const ushort RSTV0910_P1_TMGLOCK0 = 0xf46c;
         public const UInt32 FSTV0910_P1_TMGLOCK_LEVEL0 = 0xf46c00ff;
 
-		/* P1_TMGOBS */
+        /* P1_TMGOBS */
         public const ushort RSTV0910_P1_TMGOBS = 0xf46d;
         public const UInt32 FSTV0910_P1_ROLLOFF_STATUS = 0xf46d60c0;
 
-		/* P1_EQUALCFG */
+        /* P1_EQUALCFG */
         public const ushort RSTV0910_P1_EQUALCFG = 0xf46f;
         public const UInt32 FSTV0910_P1_EQUAL_ON = 0xf46f6040;
         public const UInt32 FSTV0910_P1_MU_EQUALDFE = 0xf46f0007;
 
-		/* P1_EQUAI1 */
+        /* P1_EQUAI1 */
         public const ushort RSTV0910_P1_EQUAI1 = 0xf470;
         public const UInt32 FSTV0910_P1_EQUA_ACCI1 = 0xf47001ff;
 
-		/* P1_EQUAQ1 */
+        /* P1_EQUAQ1 */
         public const ushort RSTV0910_P1_EQUAQ1 = 0xf471;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ1 = 0xf47101ff;
 
-		/* P1_EQUAI2 */
+        /* P1_EQUAI2 */
         public const ushort RSTV0910_P1_EQUAI2 = 0xf472;
         public const UInt32 FSTV0910_P1_EQUA_ACCI2 = 0xf47201ff;
 
-		/* P1_EQUAQ2 */
+        /* P1_EQUAQ2 */
         public const ushort RSTV0910_P1_EQUAQ2 = 0xf473;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ2 = 0xf47301ff;
 
-		/* P1_EQUAI3 */
+        /* P1_EQUAI3 */
         public const ushort RSTV0910_P1_EQUAI3 = 0xf474;
         public const UInt32 FSTV0910_P1_EQUA_ACCI3 = 0xf47401ff;
 
-		/* P1_EQUAQ3 */
+        /* P1_EQUAQ3 */
         public const ushort RSTV0910_P1_EQUAQ3 = 0xf475;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ3 = 0xf47501ff;
 
-		/* P1_EQUAI4 */
+        /* P1_EQUAI4 */
         public const ushort RSTV0910_P1_EQUAI4 = 0xf476;
         public const UInt32 FSTV0910_P1_EQUA_ACCI4 = 0xf47601ff;
 
-		/* P1_EQUAQ4 */
+        /* P1_EQUAQ4 */
         public const ushort RSTV0910_P1_EQUAQ4 = 0xf477;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ4 = 0xf47701ff;
 
-		/* P1_EQUAI5 */
+        /* P1_EQUAI5 */
         public const ushort RSTV0910_P1_EQUAI5 = 0xf478;
         public const UInt32 FSTV0910_P1_EQUA_ACCI5 = 0xf47801ff;
 
-		/* P1_EQUAQ5 */
+        /* P1_EQUAQ5 */
         public const ushort RSTV0910_P1_EQUAQ5 = 0xf479;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ5 = 0xf47901ff;
 
-		/* P1_EQUAI6 */
+        /* P1_EQUAI6 */
         public const ushort RSTV0910_P1_EQUAI6 = 0xf47a;
         public const UInt32 FSTV0910_P1_EQUA_ACCI6 = 0xf47a01ff;
 
-		/* P1_EQUAQ6 */
+        /* P1_EQUAQ6 */
         public const ushort RSTV0910_P1_EQUAQ6 = 0xf47b;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ6 = 0xf47b01ff;
 
-		/* P1_EQUAI7 */
+        /* P1_EQUAI7 */
         public const ushort RSTV0910_P1_EQUAI7 = 0xf47c;
         public const UInt32 FSTV0910_P1_EQUA_ACCI7 = 0xf47c01ff;
 
-		/* P1_EQUAQ7 */
+        /* P1_EQUAQ7 */
         public const ushort RSTV0910_P1_EQUAQ7 = 0xf47d;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ7 = 0xf47d01ff;
 
-		/* P1_EQUAI8 */
+        /* P1_EQUAI8 */
         public const ushort RSTV0910_P1_EQUAI8 = 0xf47e;
         public const UInt32 FSTV0910_P1_EQUA_ACCI8 = 0xf47e01ff;
 
-		/* P1_EQUAQ8 */
+        /* P1_EQUAQ8 */
         public const ushort RSTV0910_P1_EQUAQ8 = 0xf47f;
         public const UInt32 FSTV0910_P1_EQUA_ACCQ8 = 0xf47f01ff;
 
-		/* P1_NNOSDATAT1 */
+        /* P1_NNOSDATAT1 */
         public const ushort RSTV0910_P1_NNOSDATAT1 = 0xf480;
         public const UInt32 FSTV0910_P1_NOSDATAT_NORMED1 = 0xf48000ff;
 
-		/* P1_NNOSDATAT0 */
+        /* P1_NNOSDATAT0 */
         public const ushort RSTV0910_P1_NNOSDATAT0 = 0xf481;
         public const UInt32 FSTV0910_P1_NOSDATAT_NORMED0 = 0xf48100ff;
 
-		/* P1_NNOSDATA1 */
+        /* P1_NNOSDATA1 */
         public const ushort RSTV0910_P1_NNOSDATA1 = 0xf482;
         public const UInt32 FSTV0910_P1_NOSDATA_NORMED1 = 0xf48200ff;
 
-		/* P1_NNOSDATA0 */
+        /* P1_NNOSDATA0 */
         public const ushort RSTV0910_P1_NNOSDATA0 = 0xf483;
         public const UInt32 FSTV0910_P1_NOSDATA_NORMED0 = 0xf48300ff;
 
-		/* P1_NNOSPLHT1 */
+        /* P1_NNOSPLHT1 */
         public const ushort RSTV0910_P1_NNOSPLHT1 = 0xf484;
         public const UInt32 FSTV0910_P1_NOSPLHT_NORMED1 = 0xf48400ff;
 
-		/* P1_NNOSPLHT0 */
+        /* P1_NNOSPLHT0 */
         public const ushort RSTV0910_P1_NNOSPLHT0 = 0xf485;
         public const UInt32 FSTV0910_P1_NOSPLHT_NORMED0 = 0xf48500ff;
 
-		/* P1_NNOSPLH1 */
+        /* P1_NNOSPLH1 */
         public const ushort RSTV0910_P1_NNOSPLH1 = 0xf486;
         public const UInt32 FSTV0910_P1_NOSPLH_NORMED1 = 0xf48600ff;
 
-		/* P1_NNOSPLH0 */
+        /* P1_NNOSPLH0 */
         public const ushort RSTV0910_P1_NNOSPLH0 = 0xf487;
         public const UInt32 FSTV0910_P1_NOSPLH_NORMED0 = 0xf48700ff;
 
-		/* P1_NOSDATAT1 */
+        /* P1_NOSDATAT1 */
         public const ushort RSTV0910_P1_NOSDATAT1 = 0xf488;
         public const UInt32 FSTV0910_P1_NOSDATAT_UNNORMED1 = 0xf48800ff;
 
-		/* P1_NOSDATAT0 */
+        /* P1_NOSDATAT0 */
         public const ushort RSTV0910_P1_NOSDATAT0 = 0xf489;
         public const UInt32 FSTV0910_P1_NOSDATAT_UNNORMED0 = 0xf48900ff;
 
-		/* P1_NNOSFRAME1 */
+        /* P1_NNOSFRAME1 */
         public const ushort RSTV0910_P1_NNOSFRAME1 = 0xf48a;
         public const UInt32 FSTV0910_P1_NOSFRAME_NORMED1 = 0xf48a00ff;
 
-		/* P1_NNOSFRAME0 */
+        /* P1_NNOSFRAME0 */
         public const ushort RSTV0910_P1_NNOSFRAME0 = 0xf48b;
         public const UInt32 FSTV0910_P1_NOSFRAME_NORMED0 = 0xf48b00ff;
 
-		/* P1_NNOSRAD1 */
+        /* P1_NNOSRAD1 */
         public const ushort RSTV0910_P1_NNOSRAD1 = 0xf48c;
         public const UInt32 FSTV0910_P1_NOSRADIAL_NORMED1 = 0xf48c00ff;
 
-		/* P1_NNOSRAD0 */
+        /* P1_NNOSRAD0 */
         public const ushort RSTV0910_P1_NNOSRAD0 = 0xf48d;
         public const UInt32 FSTV0910_P1_NOSRADIAL_NORMED0 = 0xf48d00ff;
 
-		/* P1_NOSCFGF1 */
+        /* P1_NOSCFGF1 */
         public const ushort RSTV0910_P1_NOSCFGF1 = 0xf48e;
         public const UInt32 FSTV0910_P1_LOWNOISE_MESURE = 0xf48e7080;
         public const UInt32 FSTV0910_P1_NOS_DELFRAME = 0xf48e6040;
@@ -2675,177 +2675,177 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_FRAMESEL_TYPESEL = 0xf48e200c;
         public const UInt32 FSTV0910_P1_FRAMESEL_TYPE = 0xf48e0003;
 
-		/* P1_NOSCFGF2 */
+        /* P1_NOSCFGF2 */
         public const ushort RSTV0910_P1_NOSCFGF2 = 0xf48f;
         public const UInt32 FSTV0910_P1_DIS_NOSPILOTS = 0xf48f7080;
         public const UInt32 FSTV0910_P1_FRAMESEL_MODCODSEL = 0xf48f5060;
         public const UInt32 FSTV0910_P1_FRAMESEL_MODCOD = 0xf48f001f;
 
-		/* P1_CAR2CFG */
+        /* P1_CAR2CFG */
         public const ushort RSTV0910_P1_CAR2CFG = 0xf490;
         public const UInt32 FSTV0910_P1_ROTA2ON = 0xf4902004;
         public const UInt32 FSTV0910_P1_PH_DET_ALGO2 = 0xf4900003;
 
-		/* P1_CFR2CFR1 */
+        /* P1_CFR2CFR1 */
         public const ushort RSTV0910_P1_CFR2CFR1 = 0xf491;
         public const UInt32 FSTV0910_P1_EN_S2CAR2CENTER = 0xf4915020;
         public const UInt32 FSTV0910_P1_CFR2TOCFR1_BETA = 0xf4910007;
 
-		/* P1_CAR3CFG */
+        /* P1_CAR3CFG */
         public const ushort RSTV0910_P1_CAR3CFG = 0xf492;
         public const UInt32 FSTV0910_P1_CARRIER23_MODE = 0xf49260c0;
         public const UInt32 FSTV0910_P1_CAR3INTERM_DVBS1 = 0xf4925020;
         public const UInt32 FSTV0910_P1_ABAMPLIF_MODE = 0xf4923018;
         public const UInt32 FSTV0910_P1_CARRIER3_ALPHA3DL = 0xf4920007;
 
-		/* P1_CFR22 */
+        /* P1_CFR22 */
         public const ushort RSTV0910_P1_CFR22 = 0xf493;
         public const UInt32 FSTV0910_P1_CAR2_FREQ2 = 0xf49301ff;
 
-		/* P1_CFR21 */
+        /* P1_CFR21 */
         public const ushort RSTV0910_P1_CFR21 = 0xf494;
         public const UInt32 FSTV0910_P1_CAR2_FREQ1 = 0xf49400ff;
 
-		/* P1_CFR20 */
+        /* P1_CFR20 */
         public const ushort RSTV0910_P1_CFR20 = 0xf495;
         public const UInt32 FSTV0910_P1_CAR2_FREQ0 = 0xf49500ff;
 
-		/* P1_ACLC2S2Q */
+        /* P1_ACLC2S2Q */
         public const ushort RSTV0910_P1_ACLC2S2Q = 0xf497;
         public const UInt32 FSTV0910_P1_ENAB_SPSKSYMB = 0xf4977080;
         public const UInt32 FSTV0910_P1_CAR2S2_Q_ALPH_M = 0xf4974030;
         public const UInt32 FSTV0910_P1_CAR2S2_Q_ALPH_E = 0xf497000f;
 
-		/* P1_ACLC2S28 */
+        /* P1_ACLC2S28 */
         public const ushort RSTV0910_P1_ACLC2S28 = 0xf498;
         public const UInt32 FSTV0910_P1_CAR2S2_8_ALPH_M = 0xf4984030;
         public const UInt32 FSTV0910_P1_CAR2S2_8_ALPH_E = 0xf498000f;
 
-		/* P1_ACLC2S216A */
+        /* P1_ACLC2S216A */
         public const ushort RSTV0910_P1_ACLC2S216A = 0xf499;
         public const UInt32 FSTV0910_P1_CAR2S2_16A_ALPH_M = 0xf4994030;
         public const UInt32 FSTV0910_P1_CAR2S2_16A_ALPH_E = 0xf499000f;
 
-		/* P1_ACLC2S232A */
+        /* P1_ACLC2S232A */
         public const ushort RSTV0910_P1_ACLC2S232A = 0xf49a;
         public const UInt32 FSTV0910_P1_CAR2S2_32A_ALPH_M = 0xf49a4030;
         public const UInt32 FSTV0910_P1_CAR2S2_32A_ALPH_E = 0xf49a000f;
 
-		/* P1_BCLC2S2Q */
+        /* P1_BCLC2S2Q */
         public const ushort RSTV0910_P1_BCLC2S2Q = 0xf49c;
         public const UInt32 FSTV0910_P1_CAR2S2_Q_BETA_M = 0xf49c4030;
         public const UInt32 FSTV0910_P1_CAR2S2_Q_BETA_E = 0xf49c000f;
 
-		/* P1_BCLC2S28 */
+        /* P1_BCLC2S28 */
         public const ushort RSTV0910_P1_BCLC2S28 = 0xf49d;
         public const UInt32 FSTV0910_P1_CAR2S2_8_BETA_M = 0xf49d4030;
         public const UInt32 FSTV0910_P1_CAR2S2_8_BETA_E = 0xf49d000f;
 
-		/* P1_BCLC2S216A */
+        /* P1_BCLC2S216A */
         public const ushort RSTV0910_P1_BCLC2S216A = 0xf49e;
         public const UInt32 FSTV0910_P1_DVBS2S216A_NIP = 0xf49e7080;
         public const UInt32 FSTV0910_P1_CAR2S2_16A_BETA_M = 0xf49e4030;
         public const UInt32 FSTV0910_P1_CAR2S2_16A_BETA_E = 0xf49e000f;
 
-		/* P1_BCLC2S232A */
+        /* P1_BCLC2S232A */
         public const ushort RSTV0910_P1_BCLC2S232A = 0xf49f;
         public const UInt32 FSTV0910_P1_DVBS2S232A_NIP = 0xf49f7080;
         public const UInt32 FSTV0910_P1_CAR2S2_32A_BETA_M = 0xf49f4030;
         public const UInt32 FSTV0910_P1_CAR2S2_32A_BETA_E = 0xf49f000f;
 
-		/* P1_PLROOT2 */
+        /* P1_PLROOT2 */
         public const ushort RSTV0910_P1_PLROOT2 = 0xf4ac;
         public const UInt32 FSTV0910_P1_PLSCRAMB_MODE = 0xf4ac200c;
         public const UInt32 FSTV0910_P1_PLSCRAMB_ROOT2 = 0xf4ac0003;
 
-		/* P1_PLROOT1 */
+        /* P1_PLROOT1 */
         public const ushort RSTV0910_P1_PLROOT1 = 0xf4ad;
         public const UInt32 FSTV0910_P1_PLSCRAMB_ROOT1 = 0xf4ad00ff;
 
-		/* P1_PLROOT0 */
+        /* P1_PLROOT0 */
         public const ushort RSTV0910_P1_PLROOT0 = 0xf4ae;
         public const UInt32 FSTV0910_P1_PLSCRAMB_ROOT0 = 0xf4ae00ff;
 
-		/* P1_MODCODLST0 */
+        /* P1_MODCODLST0 */
         public const ushort RSTV0910_P1_MODCODLST0 = 0xf4b0;
         public const UInt32 FSTV0910_P1_NACCES_MODCODCH = 0xf4b00001;
 
-		/* P1_MODCODLST1 */
+        /* P1_MODCODLST1 */
         public const ushort RSTV0910_P1_MODCODLST1 = 0xf4b1;
         public const UInt32 FSTV0910_P1_SYMBRATE_FILTER = 0xf4b13008;
         public const UInt32 FSTV0910_P1_NRESET_MODCODLST = 0xf4b12004;
         public const UInt32 FSTV0910_P1_DIS_32PSK_9_10 = 0xf4b10003;
 
-		/* P1_MODCODLST2 */
+        /* P1_MODCODLST2 */
         public const ushort RSTV0910_P1_MODCODLST2 = 0xf4b2;
         public const UInt32 FSTV0910_P1_DIS_32PSK_8_9 = 0xf4b240f0;
         public const UInt32 FSTV0910_P1_DIS_32PSK_5_6 = 0xf4b2000f;
 
-		/* P1_MODCODLST3 */
+        /* P1_MODCODLST3 */
         public const ushort RSTV0910_P1_MODCODLST3 = 0xf4b3;
         public const UInt32 FSTV0910_P1_DIS_32PSK_4_5 = 0xf4b340f0;
         public const UInt32 FSTV0910_P1_DIS_32PSK_3_4 = 0xf4b3000f;
 
-		/* P1_MODCODLST4 */
+        /* P1_MODCODLST4 */
         public const ushort RSTV0910_P1_MODCODLST4 = 0xf4b4;
         public const UInt32 FSTV0910_P1_DUMMYPL_PILOT = 0xf4b47080;
         public const UInt32 FSTV0910_P1_DUMMYPL_NOPILOT = 0xf4b46040;
         public const UInt32 FSTV0910_P1_DIS_16PSK_9_10 = 0xf4b44030;
         public const UInt32 FSTV0910_P1_DIS_16PSK_8_9 = 0xf4b4000f;
 
-		/* P1_MODCODLST5 */
+        /* P1_MODCODLST5 */
         public const ushort RSTV0910_P1_MODCODLST5 = 0xf4b5;
         public const UInt32 FSTV0910_P1_DIS_16PSK_5_6 = 0xf4b540f0;
         public const UInt32 FSTV0910_P1_DIS_16PSK_4_5 = 0xf4b5000f;
 
-		/* P1_MODCODLST6 */
+        /* P1_MODCODLST6 */
         public const ushort RSTV0910_P1_MODCODLST6 = 0xf4b6;
         public const UInt32 FSTV0910_P1_DIS_16PSK_3_4 = 0xf4b640f0;
         public const UInt32 FSTV0910_P1_DIS_16PSK_2_3 = 0xf4b6000f;
 
-		/* P1_MODCODLST7 */
+        /* P1_MODCODLST7 */
         public const ushort RSTV0910_P1_MODCODLST7 = 0xf4b7;
         public const UInt32 FSTV0910_P1_MODCOD_NNOSFILTER = 0xf4b77080;
         public const UInt32 FSTV0910_P1_DIS_8PSK_9_10 = 0xf4b74030;
         public const UInt32 FSTV0910_P1_DIS_8PSK_8_9 = 0xf4b7000f;
 
-		/* P1_MODCODLST8 */
+        /* P1_MODCODLST8 */
         public const ushort RSTV0910_P1_MODCODLST8 = 0xf4b8;
         public const UInt32 FSTV0910_P1_DIS_8PSK_5_6 = 0xf4b840f0;
         public const UInt32 FSTV0910_P1_DIS_8PSK_3_4 = 0xf4b8000f;
 
-		/* P1_MODCODLST9 */
+        /* P1_MODCODLST9 */
         public const ushort RSTV0910_P1_MODCODLST9 = 0xf4b9;
         public const UInt32 FSTV0910_P1_DIS_8PSK_2_3 = 0xf4b940f0;
         public const UInt32 FSTV0910_P1_DIS_8PSK_3_5 = 0xf4b9000f;
 
-		/* P1_MODCODLSTA */
+        /* P1_MODCODLSTA */
         public const ushort RSTV0910_P1_MODCODLSTA = 0xf4ba;
         public const UInt32 FSTV0910_P1_NOSFILTER_LIMITE = 0xf4ba7080;
         public const UInt32 FSTV0910_P1_DIS_QPSK_9_10 = 0xf4ba4030;
         public const UInt32 FSTV0910_P1_DIS_QPSK_8_9 = 0xf4ba000f;
 
-		/* P1_MODCODLSTB */
+        /* P1_MODCODLSTB */
         public const ushort RSTV0910_P1_MODCODLSTB = 0xf4bb;
         public const UInt32 FSTV0910_P1_DIS_QPSK_5_6 = 0xf4bb40f0;
         public const UInt32 FSTV0910_P1_DIS_QPSK_4_5 = 0xf4bb000f;
 
-		/* P1_MODCODLSTC */
+        /* P1_MODCODLSTC */
         public const ushort RSTV0910_P1_MODCODLSTC = 0xf4bc;
         public const UInt32 FSTV0910_P1_DIS_QPSK_3_4 = 0xf4bc40f0;
         public const UInt32 FSTV0910_P1_DIS_QPSK_2_3 = 0xf4bc000f;
 
-		/* P1_MODCODLSTD */
+        /* P1_MODCODLSTD */
         public const ushort RSTV0910_P1_MODCODLSTD = 0xf4bd;
         public const UInt32 FSTV0910_P1_DIS_QPSK_3_5 = 0xf4bd40f0;
         public const UInt32 FSTV0910_P1_DIS_QPSK_1_2 = 0xf4bd000f;
 
-		/* P1_MODCODLSTE */
+        /* P1_MODCODLSTE */
         public const ushort RSTV0910_P1_MODCODLSTE = 0xf4be;
         public const UInt32 FSTV0910_P1_DIS_QPSK_2_5 = 0xf4be40f0;
         public const UInt32 FSTV0910_P1_DIS_QPSK_1_3 = 0xf4be000f;
 
-		/* P1_MODCODLSTF */
+        /* P1_MODCODLSTF */
         public const ushort RSTV0910_P1_MODCODLSTF = 0xf4bf;
         public const UInt32 FSTV0910_P1_DIS_QPSK_1_4 = 0xf4bf40f0;
         public const UInt32 FSTV0910_P1_DEMOD_INVMODLST = 0xf4bf3008;
@@ -2853,30 +2853,30 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_DDEMOD_NSET = 0xf4bf1002;
         public const UInt32 FSTV0910_P1_MODCOD_NSTOCK = 0xf4bf0001;
 
-		/* P1_GAUSSR0 */
+        /* P1_GAUSSR0 */
         public const ushort RSTV0910_P1_GAUSSR0 = 0xf4c0;
         public const UInt32 FSTV0910_P1_EN_CCIMODE = 0xf4c07080;
         public const UInt32 FSTV0910_P1_R0_GAUSSIEN = 0xf4c0007f;
 
-		/* P1_CCIR0 */
+        /* P1_CCIR0 */
         public const ushort RSTV0910_P1_CCIR0 = 0xf4c1;
         public const UInt32 FSTV0910_P1_CCIDETECT_PLHONLY = 0xf4c17080;
         public const UInt32 FSTV0910_P1_R0_CCI = 0xf4c1007f;
 
-		/* P1_CCIQUANT */
+        /* P1_CCIQUANT */
         public const ushort RSTV0910_P1_CCIQUANT = 0xf4c2;
         public const UInt32 FSTV0910_P1_CCI_BETA = 0xf4c250e0;
         public const UInt32 FSTV0910_P1_CCI_QUANT = 0xf4c2001f;
 
-		/* P1_CCITHRES */
+        /* P1_CCITHRES */
         public const ushort RSTV0910_P1_CCITHRES = 0xf4c3;
         public const UInt32 FSTV0910_P1_CCI_THRESHOLD = 0xf4c300ff;
 
-		/* P1_CCIACC */
+        /* P1_CCIACC */
         public const ushort RSTV0910_P1_CCIACC = 0xf4c4;
         public const UInt32 FSTV0910_P1_CCI_VALUE = 0xf4c400ff;
 
-		/* P1_DSTATUS4 */
+        /* P1_DSTATUS4 */
         public const ushort RSTV0910_P1_DSTATUS4 = 0xf4c5;
         public const UInt32 FSTV0910_P1_RAINFADE_DETECT = 0xf4c57080;
         public const UInt32 FSTV0910_P1_NOTHRES2_FAIL = 0xf4c56040;
@@ -2885,234 +2885,234 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_CSTENV_DETECT = 0xf4c51002;
         public const UInt32 FSTV0910_P1_DETECTION_TRIAX = 0xf4c50001;
 
-		/* P1_DMDRESCFG */
+        /* P1_DMDRESCFG */
         public const ushort RSTV0910_P1_DMDRESCFG = 0xf4c6;
         public const UInt32 FSTV0910_P1_DMDRES_RESET = 0xf4c67080;
         public const UInt32 FSTV0910_P1_DMDRES_STRALL = 0xf4c63008;
         public const UInt32 FSTV0910_P1_DMDRES_NEWONLY = 0xf4c62004;
         public const UInt32 FSTV0910_P1_DMDRES_NOSTORE = 0xf4c61002;
 
-		/* P1_DMDRESADR */
+        /* P1_DMDRESADR */
         public const ushort RSTV0910_P1_DMDRESADR = 0xf4c7;
         public const UInt32 FSTV0910_P1_DMDRES_VALIDCFR = 0xf4c76040;
         public const UInt32 FSTV0910_P1_DMDRES_MEMFULL = 0xf4c74030;
         public const UInt32 FSTV0910_P1_DMDRES_RESNBR = 0xf4c7000f;
 
-		/* P1_DMDRESDATA7 */
+        /* P1_DMDRESDATA7 */
         public const ushort RSTV0910_P1_DMDRESDATA7 = 0xf4c8;
         public const UInt32 FSTV0910_P1_DMDRES_DATA7 = 0xf4c800ff;
 
-		/* P1_DMDRESDATA6 */
+        /* P1_DMDRESDATA6 */
         public const ushort RSTV0910_P1_DMDRESDATA6 = 0xf4c9;
         public const UInt32 FSTV0910_P1_DMDRES_DATA6 = 0xf4c900ff;
 
-		/* P1_DMDRESDATA5 */
+        /* P1_DMDRESDATA5 */
         public const ushort RSTV0910_P1_DMDRESDATA5 = 0xf4ca;
         public const UInt32 FSTV0910_P1_DMDRES_DATA5 = 0xf4ca00ff;
 
-		/* P1_DMDRESDATA4 */
+        /* P1_DMDRESDATA4 */
         public const ushort RSTV0910_P1_DMDRESDATA4 = 0xf4cb;
         public const UInt32 FSTV0910_P1_DMDRES_DATA4 = 0xf4cb00ff;
 
-		/* P1_DMDRESDATA3 */
+        /* P1_DMDRESDATA3 */
         public const ushort RSTV0910_P1_DMDRESDATA3 = 0xf4cc;
         public const UInt32 FSTV0910_P1_DMDRES_DATA3 = 0xf4cc00ff;
 
-		/* P1_DMDRESDATA2 */
+        /* P1_DMDRESDATA2 */
         public const ushort RSTV0910_P1_DMDRESDATA2 = 0xf4cd;
         public const UInt32 FSTV0910_P1_DMDRES_DATA2 = 0xf4cd00ff;
 
-		/* P1_DMDRESDATA1 */
+        /* P1_DMDRESDATA1 */
         public const ushort RSTV0910_P1_DMDRESDATA1 = 0xf4ce;
         public const UInt32 FSTV0910_P1_DMDRES_DATA1 = 0xf4ce00ff;
 
-		/* P1_DMDRESDATA0 */
+        /* P1_DMDRESDATA0 */
         public const ushort RSTV0910_P1_DMDRESDATA0 = 0xf4cf;
         public const UInt32 FSTV0910_P1_DMDRES_DATA0 = 0xf4cf00ff;
 
-		/* P1_FFEI1 */
+        /* P1_FFEI1 */
         public const ushort RSTV0910_P1_FFEI1 = 0xf4d0;
         public const UInt32 FSTV0910_P1_FFE_ACCI1 = 0xf4d001ff;
 
-		/* P1_FFEQ1 */
+        /* P1_FFEQ1 */
         public const ushort RSTV0910_P1_FFEQ1 = 0xf4d1;
         public const UInt32 FSTV0910_P1_FFE_ACCQ1 = 0xf4d101ff;
 
-		/* P1_FFEI2 */
+        /* P1_FFEI2 */
         public const ushort RSTV0910_P1_FFEI2 = 0xf4d2;
         public const UInt32 FSTV0910_P1_FFE_ACCI2 = 0xf4d201ff;
 
-		/* P1_FFEQ2 */
+        /* P1_FFEQ2 */
         public const ushort RSTV0910_P1_FFEQ2 = 0xf4d3;
         public const UInt32 FSTV0910_P1_FFE_ACCQ2 = 0xf4d301ff;
 
-		/* P1_FFEI3 */
+        /* P1_FFEI3 */
         public const ushort RSTV0910_P1_FFEI3 = 0xf4d4;
         public const UInt32 FSTV0910_P1_FFE_ACCI3 = 0xf4d401ff;
 
-		/* P1_FFEQ3 */
+        /* P1_FFEQ3 */
         public const ushort RSTV0910_P1_FFEQ3 = 0xf4d5;
         public const UInt32 FSTV0910_P1_FFE_ACCQ3 = 0xf4d501ff;
 
-		/* P1_FFEI4 */
+        /* P1_FFEI4 */
         public const ushort RSTV0910_P1_FFEI4 = 0xf4d6;
         public const UInt32 FSTV0910_P1_FFE_ACCI4 = 0xf4d601ff;
 
-		/* P1_FFEQ4 */
+        /* P1_FFEQ4 */
         public const ushort RSTV0910_P1_FFEQ4 = 0xf4d7;
         public const UInt32 FSTV0910_P1_FFE_ACCQ4 = 0xf4d701ff;
 
-		/* P1_FFECFG */
+        /* P1_FFECFG */
         public const ushort RSTV0910_P1_FFECFG = 0xf4d8;
         public const UInt32 FSTV0910_P1_EQUALFFE_ON = 0xf4d86040;
         public const UInt32 FSTV0910_P1_EQUAL_USEDSYMB = 0xf4d84030;
         public const UInt32 FSTV0910_P1_MU_EQUALFFE = 0xf4d80007;
 
-		/* P1_TNRCFG2 */
+        /* P1_TNRCFG2 */
         public const ushort RSTV0910_P1_TNRCFG2 = 0xf4e1;
         public const UInt32 FSTV0910_P1_TUN_IQSWAP = 0xf4e17080;
 
-		/* P1_SMAPCOEF7 */
+        /* P1_SMAPCOEF7 */
         public const ushort RSTV0910_P1_SMAPCOEF7 = 0xf500;
         public const UInt32 FSTV0910_P1_DIS_QSCALE = 0xf5007080;
         public const UInt32 FSTV0910_P1_SMAPCOEF_Q_LLR12 = 0xf500017f;
 
-		/* P1_SMAPCOEF6 */
+        /* P1_SMAPCOEF6 */
         public const ushort RSTV0910_P1_SMAPCOEF6 = 0xf501;
         public const UInt32 FSTV0910_P1_DIS_AGC2SCALE = 0xf5017080;
         public const UInt32 FSTV0910_P1_ADJ_8PSKLLR1 = 0xf5012004;
         public const UInt32 FSTV0910_P1_OLD_8PSKLLR1 = 0xf5011002;
         public const UInt32 FSTV0910_P1_DIS_AB8PSK = 0xf5010001;
 
-		/* P1_SMAPCOEF5 */
+        /* P1_SMAPCOEF5 */
         public const ushort RSTV0910_P1_SMAPCOEF5 = 0xf502;
         public const UInt32 FSTV0910_P1_DIS_8SCALE = 0xf5027080;
         public const UInt32 FSTV0910_P1_SMAPCOEF_8P_LLR23 = 0xf502017f;
 
-		/* P1_SMAPCOEF4 */
+        /* P1_SMAPCOEF4 */
         public const ushort RSTV0910_P1_SMAPCOEF4 = 0xf503;
         public const UInt32 FSTV0910_P1_SMAPCOEF_16APSK_LLR12 = 0xf503017f;
 
-		/* P1_SMAPCOEF3 */
+        /* P1_SMAPCOEF3 */
         public const ushort RSTV0910_P1_SMAPCOEF3 = 0xf504;
         public const UInt32 FSTV0910_P1_SMAPCOEF_16APSK_LLR34 = 0xf504017f;
 
-		/* P1_SMAPCOEF2 */
+        /* P1_SMAPCOEF2 */
         public const ushort RSTV0910_P1_SMAPCOEF2 = 0xf505;
         public const UInt32 FSTV0910_P1_SMAPCOEF_32APSK_R2R3 = 0xf50541f0;
         public const UInt32 FSTV0910_P1_SMAPCOEF_32APSK_LLR2 = 0xf505010f;
 
-		/* P1_SMAPCOEF1 */
+        /* P1_SMAPCOEF1 */
         public const ushort RSTV0910_P1_SMAPCOEF1 = 0xf506;
         public const UInt32 FSTV0910_P1_DIS_16SCALE = 0xf5067080;
         public const UInt32 FSTV0910_P1_SMAPCOEF_32_LLR34 = 0xf506017f;
 
-		/* P1_SMAPCOEF0 */
+        /* P1_SMAPCOEF0 */
         public const ushort RSTV0910_P1_SMAPCOEF0 = 0xf507;
         public const UInt32 FSTV0910_P1_DIS_32SCALE = 0xf5077080;
         public const UInt32 FSTV0910_P1_SMAPCOEF_32_LLR15 = 0xf507017f;
 
-		/* P1_NOSTHRES1 */
+        /* P1_NOSTHRES1 */
         public const ushort RSTV0910_P1_NOSTHRES1 = 0xf509;
         public const UInt32 FSTV0910_P1_NOS_THRESHOLD1 = 0xf50900ff;
 
-		/* P1_NOSTHRES2 */
+        /* P1_NOSTHRES2 */
         public const ushort RSTV0910_P1_NOSTHRES2 = 0xf50a;
         public const UInt32 FSTV0910_P1_NOS_THRESHOLD2 = 0xf50a00ff;
 
-		/* P1_NOSDIFF1 */
+        /* P1_NOSDIFF1 */
         public const ushort RSTV0910_P1_NOSDIFF1 = 0xf50b;
         public const UInt32 FSTV0910_P1_NOSTHRES1_DIFF = 0xf50b00ff;
 
-		/* P1_RAINFADE */
+        /* P1_RAINFADE */
         public const ushort RSTV0910_P1_RAINFADE = 0xf50c;
         public const UInt32 FSTV0910_P1_NOSTHRES_DATAT = 0xf50c7080;
         public const UInt32 FSTV0910_P1_RAINFADE_CNLIMIT = 0xf50c4070;
         public const UInt32 FSTV0910_P1_RAINFADE_TIMEOUT = 0xf50c0007;
 
-		/* P1_NOSRAMCFG */
+        /* P1_NOSRAMCFG */
         public const ushort RSTV0910_P1_NOSRAMCFG = 0xf50d;
         public const UInt32 FSTV0910_P1_NOSRAM_ACTIVATION = 0xf50d4030;
         public const UInt32 FSTV0910_P1_NOSRAM_CNRONLY = 0xf50d3008;
         public const UInt32 FSTV0910_P1_NOSRAM_LGNCNR1 = 0xf50d0007;
 
-		/* P1_NOSRAMPOS */
+        /* P1_NOSRAMPOS */
         public const ushort RSTV0910_P1_NOSRAMPOS = 0xf50e;
         public const UInt32 FSTV0910_P1_NOSRAM_LGNCNR0 = 0xf50e40f0;
         public const UInt32 FSTV0910_P1_NOSRAM_VALIDE = 0xf50e2004;
         public const UInt32 FSTV0910_P1_NOSRAM_CNRVAL1 = 0xf50e0003;
 
-		/* P1_NOSRAMVAL */
+        /* P1_NOSRAMVAL */
         public const ushort RSTV0910_P1_NOSRAMVAL = 0xf50f;
         public const UInt32 FSTV0910_P1_NOSRAM_CNRVAL0 = 0xf50f00ff;
 
-		/* P1_DMDPLHSTAT */
+        /* P1_DMDPLHSTAT */
         public const ushort RSTV0910_P1_DMDPLHSTAT = 0xf520;
         public const UInt32 FSTV0910_P1_PLH_STATISTIC = 0xf52000ff;
 
-		/* P1_LOCKTIME3 */
+        /* P1_LOCKTIME3 */
         public const ushort RSTV0910_P1_LOCKTIME3 = 0xf522;
         public const UInt32 FSTV0910_P1_DEMOD_LOCKTIME3 = 0xf52200ff;
 
-		/* P1_LOCKTIME2 */
+        /* P1_LOCKTIME2 */
         public const ushort RSTV0910_P1_LOCKTIME2 = 0xf523;
         public const UInt32 FSTV0910_P1_DEMOD_LOCKTIME2 = 0xf52300ff;
 
-		/* P1_LOCKTIME1 */
+        /* P1_LOCKTIME1 */
         public const ushort RSTV0910_P1_LOCKTIME1 = 0xf524;
         public const UInt32 FSTV0910_P1_DEMOD_LOCKTIME1 = 0xf52400ff;
 
-		/* P1_LOCKTIME0 */
+        /* P1_LOCKTIME0 */
         public const ushort RSTV0910_P1_LOCKTIME0 = 0xf525;
         public const UInt32 FSTV0910_P1_DEMOD_LOCKTIME0 = 0xf52500ff;
 
-		/* P1_VITSCALE */
+        /* P1_VITSCALE */
         public const ushort RSTV0910_P1_VITSCALE = 0xf532;
         public const UInt32 FSTV0910_P1_NVTH_NOSRANGE = 0xf5327080;
         public const UInt32 FSTV0910_P1_VERROR_MAXMODE = 0xf5326040;
         public const UInt32 FSTV0910_P1_NSLOWSN_LOCKED = 0xf5323008;
         public const UInt32 FSTV0910_P1_DIS_RSFLOCK = 0xf5321002;
 
-		/* P1_FECM */
+        /* P1_FECM */
         public const ushort RSTV0910_P1_FECM = 0xf533;
         public const UInt32 FSTV0910_P1_DSS_DVB = 0xf5337080;
         public const UInt32 FSTV0910_P1_DSS_SRCH = 0xf5334010;
         public const UInt32 FSTV0910_P1_SYNCVIT = 0xf5331002;
         public const UInt32 FSTV0910_P1_IQINV = 0xf5330001;
 
-		/* P1_VTH12 */
+        /* P1_VTH12 */
         public const ushort RSTV0910_P1_VTH12 = 0xf534;
         public const UInt32 FSTV0910_P1_VTH12 = 0xf53400ff;
 
-		/* P1_VTH23 */
+        /* P1_VTH23 */
         public const ushort RSTV0910_P1_VTH23 = 0xf535;
         public const UInt32 FSTV0910_P1_VTH23 = 0xf53500ff;
 
-		/* P1_VTH34 */
+        /* P1_VTH34 */
         public const ushort RSTV0910_P1_VTH34 = 0xf536;
         public const UInt32 FSTV0910_P1_VTH34 = 0xf53600ff;
 
-		/* P1_VTH56 */
+        /* P1_VTH56 */
         public const ushort RSTV0910_P1_VTH56 = 0xf537;
         public const UInt32 FSTV0910_P1_VTH56 = 0xf53700ff;
 
-		/* P1_VTH67 */
+        /* P1_VTH67 */
         public const ushort RSTV0910_P1_VTH67 = 0xf538;
         public const UInt32 FSTV0910_P1_VTH67 = 0xf53800ff;
 
-		/* P1_VTH78 */
+        /* P1_VTH78 */
         public const ushort RSTV0910_P1_VTH78 = 0xf539;
         public const UInt32 FSTV0910_P1_VTH78 = 0xf53900ff;
 
-		/* P1_VITCURPUN */
+        /* P1_VITCURPUN */
         public const ushort RSTV0910_P1_VITCURPUN = 0xf53a;
         public const UInt32 FSTV0910_P1_VIT_CURPUN = 0xf53a001f;
 
-		/* P1_VERROR */
+        /* P1_VERROR */
         public const ushort RSTV0910_P1_VERROR = 0xf53b;
         public const UInt32 FSTV0910_P1_REGERR_VIT = 0xf53b00ff;
 
-		/* P1_PRVIT */
+        /* P1_PRVIT */
         public const ushort RSTV0910_P1_PRVIT = 0xf53c;
         public const UInt32 FSTV0910_P1_DIS_VTHLOCK = 0xf53c6040;
         public const UInt32 FSTV0910_P1_E7_8VIT = 0xf53c5020;
@@ -3122,7 +3122,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_E2_3VIT = 0xf53c1002;
         public const UInt32 FSTV0910_P1_E1_2VIT = 0xf53c0001;
 
-		/* P1_VAVSRVIT */
+        /* P1_VAVSRVIT */
         public const ushort RSTV0910_P1_VAVSRVIT = 0xf53d;
         public const UInt32 FSTV0910_P1_AMVIT = 0xf53d7080;
         public const UInt32 FSTV0910_P1_FROZENVIT = 0xf53d6040;
@@ -3130,52 +3130,52 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TOVVIT = 0xf53d200c;
         public const UInt32 FSTV0910_P1_HYPVIT = 0xf53d0003;
 
-		/* P1_VSTATUSVIT */
+        /* P1_VSTATUSVIT */
         public const ushort RSTV0910_P1_VSTATUSVIT = 0xf53e;
         public const UInt32 FSTV0910_P1_PRFVIT = 0xf53e4010;
         public const UInt32 FSTV0910_P1_LOCKEDVIT = 0xf53e3008;
 
-		/* P1_VTHINUSE */
+        /* P1_VTHINUSE */
         public const ushort RSTV0910_P1_VTHINUSE = 0xf53f;
         public const UInt32 FSTV0910_P1_VIT_INUSE = 0xf53f00ff;
 
-		/* P1_KDIV12 */
+        /* P1_KDIV12 */
         public const ushort RSTV0910_P1_KDIV12 = 0xf540;
         public const UInt32 FSTV0910_P1_K_DIVIDER_12 = 0xf540007f;
 
-		/* P1_KDIV23 */
+        /* P1_KDIV23 */
         public const ushort RSTV0910_P1_KDIV23 = 0xf541;
         public const UInt32 FSTV0910_P1_K_DIVIDER_23 = 0xf541007f;
 
-		/* P1_KDIV34 */
+        /* P1_KDIV34 */
         public const ushort RSTV0910_P1_KDIV34 = 0xf542;
         public const UInt32 FSTV0910_P1_K_DIVIDER_34 = 0xf542007f;
 
-		/* P1_KDIV56 */
+        /* P1_KDIV56 */
         public const ushort RSTV0910_P1_KDIV56 = 0xf543;
         public const UInt32 FSTV0910_P1_K_DIVIDER_56 = 0xf543007f;
 
-		/* P1_KDIV67 */
+        /* P1_KDIV67 */
         public const ushort RSTV0910_P1_KDIV67 = 0xf544;
         public const UInt32 FSTV0910_P1_K_DIVIDER_67 = 0xf544007f;
 
-		/* P1_KDIV78 */
+        /* P1_KDIV78 */
         public const ushort RSTV0910_P1_KDIV78 = 0xf545;
         public const UInt32 FSTV0910_P1_K_DIVIDER_78 = 0xf545007f;
 
-		/* P1_TSPIDFLT1 */
+        /* P1_TSPIDFLT1 */
         public const ushort RSTV0910_P1_TSPIDFLT1 = 0xf546;
         public const UInt32 FSTV0910_P1_PIDFLT_ADDR = 0xf54600ff;
 
-		/* P1_TSPIDFLT0 */
+        /* P1_TSPIDFLT0 */
         public const ushort RSTV0910_P1_TSPIDFLT0 = 0xf547;
         public const UInt32 FSTV0910_P1_PIDFLT_DATA = 0xf54700ff;
 
-		/* P1_PDELCTRL0 */
+        /* P1_PDELCTRL0 */
         public const ushort RSTV0910_P1_PDELCTRL0 = 0xf54f;
         public const UInt32 FSTV0910_P1_ISIOBS_MODE = 0xf54f4030;
 
-		/* P1_PDELCTRL1 */
+        /* P1_PDELCTRL1 */
         public const ushort RSTV0910_P1_PDELCTRL1 = 0xf550;
         public const UInt32 FSTV0910_P1_INV_MISMASK = 0xf5507080;
         public const UInt32 FSTV0910_P1_FILTER_EN = 0xf5505020;
@@ -3184,68 +3184,68 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_EN_MIS00 = 0xf5501002;
         public const UInt32 FSTV0910_P1_ALGOSWRST = 0xf5500001;
 
-		/* P1_PDELCTRL2 */
+        /* P1_PDELCTRL2 */
         public const ushort RSTV0910_P1_PDELCTRL2 = 0xf551;
         public const UInt32 FSTV0910_P1_FORCE_CONTINUOUS = 0xf5517080;
         public const UInt32 FSTV0910_P1_RESET_UPKO_COUNT = 0xf5516040;
         public const UInt32 FSTV0910_P1_USER_PKTDELIN_NB = 0xf5515020;
         public const UInt32 FSTV0910_P1_FRAME_MODE = 0xf5511002;
 
-		/* P1_HYSTTHRESH */
+        /* P1_HYSTTHRESH */
         public const ushort RSTV0910_P1_HYSTTHRESH = 0xf554;
         public const UInt32 FSTV0910_P1_DELIN_LOCKTHRES = 0xf55440f0;
         public const UInt32 FSTV0910_P1_DELIN_UNLOCKTHRES = 0xf554000f;
 
-		/* P1_UPLCCST0 */
+        /* P1_UPLCCST0 */
         public const ushort RSTV0910_P1_UPLCCST0 = 0xf558;
         public const UInt32 FSTV0910_P1_UPL_CST0 = 0xf55830f8;
         public const UInt32 FSTV0910_P1_UPL_MODE = 0xf5580007;
 
-		/* P1_ISIENTRY */
+        /* P1_ISIENTRY */
         public const ushort RSTV0910_P1_ISIENTRY = 0xf55e;
         public const UInt32 FSTV0910_P1_ISI_ENTRY = 0xf55e00ff;
 
-		/* P1_ISIBITENA */
+        /* P1_ISIBITENA */
         public const ushort RSTV0910_P1_ISIBITENA = 0xf55f;
         public const UInt32 FSTV0910_P1_ISI_BIT_EN = 0xf55f00ff;
 
-		/* P1_MATSTR1 */
+        /* P1_MATSTR1 */
         public const ushort RSTV0910_P1_MATSTR1 = 0xf560;
         public const UInt32 FSTV0910_P1_MATYPE_CURRENT1 = 0xf56000ff;
 
-		/* P1_MATSTR0 */
+        /* P1_MATSTR0 */
         public const ushort RSTV0910_P1_MATSTR0 = 0xf561;
         public const UInt32 FSTV0910_P1_MATYPE_CURRENT0 = 0xf56100ff;
 
-		/* P1_UPLSTR1 */
+        /* P1_UPLSTR1 */
         public const ushort RSTV0910_P1_UPLSTR1 = 0xf562;
         public const UInt32 FSTV0910_P1_UPL_CURRENT1 = 0xf56200ff;
 
-		/* P1_UPLSTR0 */
+        /* P1_UPLSTR0 */
         public const ushort RSTV0910_P1_UPLSTR0 = 0xf563;
         public const UInt32 FSTV0910_P1_UPL_CURRENT0 = 0xf56300ff;
 
-		/* P1_DFLSTR1 */
+        /* P1_DFLSTR1 */
         public const ushort RSTV0910_P1_DFLSTR1 = 0xf564;
         public const UInt32 FSTV0910_P1_DFL_CURRENT1 = 0xf56400ff;
 
-		/* P1_DFLSTR0 */
+        /* P1_DFLSTR0 */
         public const ushort RSTV0910_P1_DFLSTR0 = 0xf565;
         public const UInt32 FSTV0910_P1_DFL_CURRENT0 = 0xf56500ff;
 
-		/* P1_SYNCSTR */
+        /* P1_SYNCSTR */
         public const ushort RSTV0910_P1_SYNCSTR = 0xf566;
         public const UInt32 FSTV0910_P1_SYNC_CURRENT = 0xf56600ff;
 
-		/* P1_SYNCDSTR1 */
+        /* P1_SYNCDSTR1 */
         public const ushort RSTV0910_P1_SYNCDSTR1 = 0xf567;
         public const UInt32 FSTV0910_P1_SYNCD_CURRENT1 = 0xf56700ff;
 
-		/* P1_SYNCDSTR0 */
+        /* P1_SYNCDSTR0 */
         public const ushort RSTV0910_P1_SYNCDSTR0 = 0xf568;
         public const UInt32 FSTV0910_P1_SYNCD_CURRENT0 = 0xf56800ff;
 
-		/* P1_PDELSTATUS1 */
+        /* P1_PDELSTATUS1 */
         public const ushort RSTV0910_P1_PDELSTATUS1 = 0xf569;
         public const UInt32 FSTV0910_P1_PKTDELIN_DELOCK = 0xf5697080;
         public const UInt32 FSTV0910_P1_SYNCDUPDFL_BADDFL = 0xf5696040;
@@ -3254,33 +3254,33 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_PKTDELIN_LOCK = 0xf5691002;
         public const UInt32 FSTV0910_P1_FIRST_LOCK = 0xf5690001;
 
-		/* P1_PDELSTATUS2 */
+        /* P1_PDELSTATUS2 */
         public const ushort RSTV0910_P1_PDELSTATUS2 = 0xf56a;
         public const UInt32 FSTV0910_P1_FRAME_MODCOD = 0xf56a207c;
         public const UInt32 FSTV0910_P1_FRAME_TYPE = 0xf56a0003;
 
-		/* P1_BBFCRCKO1 */
+        /* P1_BBFCRCKO1 */
         public const ushort RSTV0910_P1_BBFCRCKO1 = 0xf56b;
         public const UInt32 FSTV0910_P1_BBHCRC_KOCNT1 = 0xf56b00ff;
 
-		/* P1_BBFCRCKO0 */
+        /* P1_BBFCRCKO0 */
         public const ushort RSTV0910_P1_BBFCRCKO0 = 0xf56c;
         public const UInt32 FSTV0910_P1_BBHCRC_KOCNT0 = 0xf56c00ff;
 
-		/* P1_UPCRCKO1 */
+        /* P1_UPCRCKO1 */
         public const ushort RSTV0910_P1_UPCRCKO1 = 0xf56d;
         public const UInt32 FSTV0910_P1_PKTCRC_KOCNT1 = 0xf56d00ff;
 
-		/* P1_UPCRCKO0 */
+        /* P1_UPCRCKO0 */
         public const ushort RSTV0910_P1_UPCRCKO0 = 0xf56e;
         public const UInt32 FSTV0910_P1_PKTCRC_KOCNT0 = 0xf56e00ff;
 
-		/* P1_PDELCTRL3 */
+        /* P1_PDELCTRL3 */
         public const ushort RSTV0910_P1_PDELCTRL3 = 0xf56f;
         public const UInt32 FSTV0910_P1_NOFIFO_BCHERR = 0xf56f5020;
         public const UInt32 FSTV0910_P1_PKTDELIN_DELACMERR = 0xf56f4010;
 
-		/* P1_TSSTATEM */
+        /* P1_TSSTATEM */
         public const ushort RSTV0910_P1_TSSTATEM = 0xf570;
         public const UInt32 FSTV0910_P1_TSDIL_ON = 0xf5707080;
         public const UInt32 FSTV0910_P1_TSRS_ON = 0xf5705020;
@@ -3290,7 +3290,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSACM_MODE = 0xf5701002;
         public const UInt32 FSTV0910_P1_TSOUT_NOSYNC = 0xf5700001;
 
-		/* P1_TSSTATEL */
+        /* P1_TSSTATEL */
         public const ushort RSTV0910_P1_TSSTATEL = 0xf571;
         public const UInt32 FSTV0910_P1_TSNOSYNCBYTE = 0xf5717080;
         public const UInt32 FSTV0910_P1_TSPARITY_ON = 0xf5716040;
@@ -3299,7 +3299,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSCRC8_ON = 0xf5711002;
         public const UInt32 FSTV0910_P1_TSDSS_PACKET = 0xf5710001;
 
-		/* P1_TSCFGH */
+        /* P1_TSCFGH */
         public const ushort RSTV0910_P1_TSCFGH = 0xf572;
         public const UInt32 FSTV0910_P1_TSFIFO_DVBCI = 0xf5727080;
         public const UInt32 FSTV0910_P1_TSFIFO_SERIAL = 0xf5726040;
@@ -3309,14 +3309,14 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSFIFO_ERRMODE = 0xf5721006;
         public const UInt32 FSTV0910_P1_RST_HWARE = 0xf5720001;
 
-		/* P1_TSCFGM */
+        /* P1_TSCFGM */
         public const ushort RSTV0910_P1_TSCFGM = 0xf573;
         public const UInt32 FSTV0910_P1_TSFIFO_MANSPEED = 0xf57360c0;
         public const UInt32 FSTV0910_P1_TSFIFO_PERMDATA = 0xf5735020;
         public const UInt32 FSTV0910_P1_TSFIFO_NONEWSGNL = 0xf5734010;
         public const UInt32 FSTV0910_P1_TSFIFO_INVDATA = 0xf5730001;
 
-		/* P1_TSCFGL */
+        /* P1_TSCFGL */
         public const ushort RSTV0910_P1_TSCFGL = 0xf574;
         public const UInt32 FSTV0910_P1_TSFIFO_BCLKDEL1CK = 0xf57460c0;
         public const UInt32 FSTV0910_P1_BCHERROR_MODE = 0xf5744030;
@@ -3324,11 +3324,11 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSFIFO_EMBINDVB = 0xf5742004;
         public const UInt32 FSTV0910_P1_TSFIFO_BITSPEED = 0xf5740003;
 
-		/* P1_TSSYNC */
+        /* P1_TSSYNC */
         public const ushort RSTV0910_P1_TSSYNC = 0xf575;
         public const UInt32 FSTV0910_P1_TSFIFO_SYNCMODE = 0xf5753018;
 
-		/* P1_TSINSDELH */
+        /* P1_TSINSDELH */
         public const ushort RSTV0910_P1_TSINSDELH = 0xf576;
         public const UInt32 FSTV0910_P1_TSDEL_SYNCBYTE = 0xf5767080;
         public const UInt32 FSTV0910_P1_TSDEL_XXHEADER = 0xf5766040;
@@ -3336,7 +3336,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSINSDEL_RSPARITY = 0xf5761002;
         public const UInt32 FSTV0910_P1_TSINSDEL_CRC8 = 0xf5760001;
 
-		/* P1_TSINSDELM */
+        /* P1_TSINSDELM */
         public const ushort RSTV0910_P1_TSINSDELM = 0xf577;
         public const UInt32 FSTV0910_P1_TSINS_EMODCOD = 0xf5774010;
         public const UInt32 FSTV0910_P1_TSINS_TOKEN = 0xf5773008;
@@ -3344,7 +3344,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSINS_MATYPE = 0xf5771002;
         public const UInt32 FSTV0910_P1_TSINS_UPL = 0xf5770001;
 
-		/* P1_TSINSDELL */
+        /* P1_TSINSDELL */
         public const ushort RSTV0910_P1_TSINSDELL = 0xf578;
         public const UInt32 FSTV0910_P1_TSINS_DFL = 0xf5787080;
         public const UInt32 FSTV0910_P1_TSINS_SYNCD = 0xf5786040;
@@ -3355,20 +3355,20 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSINS_TSCONFIG = 0xf5781002;
         public const UInt32 FSTV0910_P1_TSINS_LATENCY = 0xf5780001;
 
-		/* P1_TSDIVN */
+        /* P1_TSDIVN */
         public const ushort RSTV0910_P1_TSDIVN = 0xf579;
         public const UInt32 FSTV0910_P1_TSFIFO_SPEEDMODE = 0xf57960c0;
         public const UInt32 FSTV0910_P1_TSFIFO_RISEOK = 0xf5790007;
 
-		/* P1_TSCFG4 */
+        /* P1_TSCFG4 */
         public const ushort RSTV0910_P1_TSCFG4 = 0xf57a;
         public const UInt32 FSTV0910_P1_TSFIFO_TSSPEEDMODE = 0xf57a60c0;
 
-		/* P1_TSSPEED */
+        /* P1_TSSPEED */
         public const ushort RSTV0910_P1_TSSPEED = 0xf580;
         public const UInt32 FSTV0910_P1_TSFIFO_OUTSPEED = 0xf58000ff;
 
-		/* P1_TSSTATUS */
+        /* P1_TSSTATUS */
         public const ushort RSTV0910_P1_TSSTATUS = 0xf581;
         public const UInt32 FSTV0910_P1_TSFIFO_LINEOK = 0xf5817080;
         public const UInt32 FSTV0910_P1_TSFIFO_ERROR = 0xf5816040;
@@ -3376,111 +3376,111 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TSREGUL_ERROR = 0xf5812004;
         public const UInt32 FSTV0910_P1_DIL_READY = 0xf5810001;
 
-		/* P1_TSSTATUS2 */
+        /* P1_TSSTATUS2 */
         public const ushort RSTV0910_P1_TSSTATUS2 = 0xf582;
         public const UInt32 FSTV0910_P1_TSFIFO_DEMODSEL = 0xf5827080;
         public const UInt32 FSTV0910_P1_TSFIFOSPEED_STORE = 0xf5826040;
         public const UInt32 FSTV0910_P1_DILXX_RESET = 0xf5825020;
         public const UInt32 FSTV0910_P1_SCRAMBDETECT = 0xf5821002;
 
-		/* P1_TSBITRATE1 */
+        /* P1_TSBITRATE1 */
         public const ushort RSTV0910_P1_TSBITRATE1 = 0xf583;
         public const UInt32 FSTV0910_P1_TSFIFO_BITRATE1 = 0xf58300ff;
 
-		/* P1_TSBITRATE0 */
+        /* P1_TSBITRATE0 */
         public const ushort RSTV0910_P1_TSBITRATE0 = 0xf584;
         public const UInt32 FSTV0910_P1_TSFIFO_BITRATE0 = 0xf58400ff;
 
-		/* P1_TSPACKLEN1 */
+        /* P1_TSPACKLEN1 */
         public const ushort RSTV0910_P1_TSPACKLEN1 = 0xf585;
         public const UInt32 FSTV0910_P1_TSFIFO_PACKCPT = 0xf58550e0;
 
-		/* P1_TSDLY2 */
+        /* P1_TSDLY2 */
         public const ushort RSTV0910_P1_TSDLY2 = 0xf589;
         public const UInt32 FSTV0910_P1_SOFFIFO_LATENCY2 = 0xf589000f;
 
-		/* P1_TSDLY1 */
+        /* P1_TSDLY1 */
         public const ushort RSTV0910_P1_TSDLY1 = 0xf58a;
         public const UInt32 FSTV0910_P1_SOFFIFO_LATENCY1 = 0xf58a00ff;
 
-		/* P1_TSDLY0 */
+        /* P1_TSDLY0 */
         public const ushort RSTV0910_P1_TSDLY0 = 0xf58b;
         public const UInt32 FSTV0910_P1_SOFFIFO_LATENCY0 = 0xf58b00ff;
 
-		/* P1_TSNPDAV */
+        /* P1_TSNPDAV */
         public const ushort RSTV0910_P1_TSNPDAV = 0xf58c;
         public const UInt32 FSTV0910_P1_TSNPD_AVERAGE = 0xf58c00ff;
 
-		/* P1_TSBUFSTAT2 */
+        /* P1_TSBUFSTAT2 */
         public const ushort RSTV0910_P1_TSBUFSTAT2 = 0xf58d;
         public const UInt32 FSTV0910_P1_TSISCR_3BYTES = 0xf58d7080;
         public const UInt32 FSTV0910_P1_TSISCR_NEWDATA = 0xf58d6040;
         public const UInt32 FSTV0910_P1_TSISCR_BUFSTAT2 = 0xf58d003f;
 
-		/* P1_TSBUFSTAT1 */
+        /* P1_TSBUFSTAT1 */
         public const ushort RSTV0910_P1_TSBUFSTAT1 = 0xf58e;
         public const UInt32 FSTV0910_P1_TSISCR_BUFSTAT1 = 0xf58e00ff;
 
-		/* P1_TSBUFSTAT0 */
+        /* P1_TSBUFSTAT0 */
         public const ushort RSTV0910_P1_TSBUFSTAT0 = 0xf58f;
         public const UInt32 FSTV0910_P1_TSISCR_BUFSTAT0 = 0xf58f00ff;
 
-		/* P1_TSDEBUGL */
+        /* P1_TSDEBUGL */
         public const ushort RSTV0910_P1_TSDEBUGL = 0xf591;
         public const UInt32 FSTV0910_P1_TSFIFO_ERROR_EVNT = 0xf5912004;
         public const UInt32 FSTV0910_P1_TSFIFO_OVERFLOWM = 0xf5910001;
 
-		/* P1_TSDLYSET2 */
+        /* P1_TSDLYSET2 */
         public const ushort RSTV0910_P1_TSDLYSET2 = 0xf592;
         public const UInt32 FSTV0910_P1_SOFFIFO_OFFSET = 0xf59260c0;
         public const UInt32 FSTV0910_P1_HYSTERESIS_THRESHOLD = 0xf5924030;
         public const UInt32 FSTV0910_P1_SOFFIFO_SYMBOFFS2 = 0xf592000f;
 
-		/* P1_TSDLYSET1 */
+        /* P1_TSDLYSET1 */
         public const ushort RSTV0910_P1_TSDLYSET1 = 0xf593;
         public const UInt32 FSTV0910_P1_SOFFIFO_SYMBOFFS1 = 0xf59300ff;
 
-		/* P1_TSDLYSET0 */
+        /* P1_TSDLYSET0 */
         public const ushort RSTV0910_P1_TSDLYSET0 = 0xf594;
         public const UInt32 FSTV0910_P1_SOFFIFO_SYMBOFFS0 = 0xf59400ff;
 
-		/* P1_ERRCTRL1 */
+        /* P1_ERRCTRL1 */
         public const ushort RSTV0910_P1_ERRCTRL1 = 0xf598;
         public const UInt32 FSTV0910_P1_ERR_SOURCE1 = 0xf59840f0;
         public const UInt32 FSTV0910_P1_NUM_EVENT1 = 0xf5980007;
 
-		/* P1_ERRCNT12 */
+        /* P1_ERRCNT12 */
         public const ushort RSTV0910_P1_ERRCNT12 = 0xf599;
         public const UInt32 FSTV0910_P1_ERRCNT1_OLDVALUE = 0xf5997080;
         public const UInt32 FSTV0910_P1_ERR_CNT12 = 0xf599007f;
 
-		/* P1_ERRCNT11 */
+        /* P1_ERRCNT11 */
         public const ushort RSTV0910_P1_ERRCNT11 = 0xf59a;
         public const UInt32 FSTV0910_P1_ERR_CNT11 = 0xf59a00ff;
 
-		/* P1_ERRCNT10 */
+        /* P1_ERRCNT10 */
         public const ushort RSTV0910_P1_ERRCNT10 = 0xf59b;
         public const UInt32 FSTV0910_P1_ERR_CNT10 = 0xf59b00ff;
 
-		/* P1_ERRCTRL2 */
+        /* P1_ERRCTRL2 */
         public const ushort RSTV0910_P1_ERRCTRL2 = 0xf59c;
         public const UInt32 FSTV0910_P1_ERR_SOURCE2 = 0xf59c40f0;
         public const UInt32 FSTV0910_P1_NUM_EVENT2 = 0xf59c0007;
 
-		/* P1_ERRCNT22 */
+        /* P1_ERRCNT22 */
         public const ushort RSTV0910_P1_ERRCNT22 = 0xf59d;
         public const UInt32 FSTV0910_P1_ERRCNT2_OLDVALUE = 0xf59d7080;
         public const UInt32 FSTV0910_P1_ERR_CNT22 = 0xf59d007f;
 
-		/* P1_ERRCNT21 */
+        /* P1_ERRCNT21 */
         public const ushort RSTV0910_P1_ERRCNT21 = 0xf59e;
         public const UInt32 FSTV0910_P1_ERR_CNT21 = 0xf59e00ff;
 
-		/* P1_ERRCNT20 */
+        /* P1_ERRCNT20 */
         public const ushort RSTV0910_P1_ERRCNT20 = 0xf59f;
         public const UInt32 FSTV0910_P1_ERR_CNT20 = 0xf59f00ff;
 
-		/* P1_FECSPY */
+        /* P1_FECSPY */
         public const ushort RSTV0910_P1_FECSPY = 0xf5a0;
         public const UInt32 FSTV0910_P1_SPY_ENABLE = 0xf5a07080;
         public const UInt32 FSTV0910_P1_NO_SYNCBYTE = 0xf5a06040;
@@ -3490,7 +3490,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_BERMETER_LMODE = 0xf5a01002;
         public const UInt32 FSTV0910_P1_BERMETER_RESET = 0xf5a00001;
 
-		/* P1_FSPYCFG */
+        /* P1_FSPYCFG */
         public const ushort RSTV0910_P1_FSPYCFG = 0xf5a1;
         public const UInt32 FSTV0910_P1_FECSPY_INPUT = 0xf5a160c0;
         public const UInt32 FSTV0910_P1_RST_ON_ERROR = 0xf5a15020;
@@ -3498,18 +3498,18 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_I2C_MODE = 0xf5a1200c;
         public const UInt32 FSTV0910_P1_SPY_HYSTERESIS = 0xf5a10003;
 
-		/* P1_FSPYDATA */
+        /* P1_FSPYDATA */
         public const ushort RSTV0910_P1_FSPYDATA = 0xf5a2;
         public const UInt32 FSTV0910_P1_SPY_STUFFING = 0xf5a27080;
         public const UInt32 FSTV0910_P1_SPY_CNULLPKT = 0xf5a25020;
         public const UInt32 FSTV0910_P1_SPY_OUTDATA_MODE = 0xf5a2001f;
 
-		/* P1_FSPYOUT */
+        /* P1_FSPYOUT */
         public const ushort RSTV0910_P1_FSPYOUT = 0xf5a3;
         public const UInt32 FSTV0910_P1_FSPY_DIRECT = 0xf5a37080;
         public const UInt32 FSTV0910_P1_STUFF_MODE = 0xf5a30007;
 
-		/* P1_FSTATUS */
+        /* P1_FSTATUS */
         public const ushort RSTV0910_P1_FSTATUS = 0xf5a4;
         public const UInt32 FSTV0910_P1_SPY_ENDSIM = 0xf5a47080;
         public const UInt32 FSTV0910_P1_VALID_SIM = 0xf5a46040;
@@ -3517,49 +3517,49 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_DSS_SYNCBYTE = 0xf5a44010;
         public const UInt32 FSTV0910_P1_RESULT_STATE = 0xf5a4000f;
 
-		/* P1_FBERCPT4 */
+        /* P1_FBERCPT4 */
         public const ushort RSTV0910_P1_FBERCPT4 = 0xf5a8;
         public const UInt32 FSTV0910_P1_FBERMETER_CPT4 = 0xf5a800ff;
 
-		/* P1_FBERCPT3 */
+        /* P1_FBERCPT3 */
         public const ushort RSTV0910_P1_FBERCPT3 = 0xf5a9;
         public const UInt32 FSTV0910_P1_FBERMETER_CPT3 = 0xf5a900ff;
 
-		/* P1_FBERCPT2 */
+        /* P1_FBERCPT2 */
         public const ushort RSTV0910_P1_FBERCPT2 = 0xf5aa;
         public const UInt32 FSTV0910_P1_FBERMETER_CPT2 = 0xf5aa00ff;
 
-		/* P1_FBERCPT1 */
+        /* P1_FBERCPT1 */
         public const ushort RSTV0910_P1_FBERCPT1 = 0xf5ab;
         public const UInt32 FSTV0910_P1_FBERMETER_CPT1 = 0xf5ab00ff;
 
-		/* P1_FBERCPT0 */
+        /* P1_FBERCPT0 */
         public const ushort RSTV0910_P1_FBERCPT0 = 0xf5ac;
         public const UInt32 FSTV0910_P1_FBERMETER_CPT0 = 0xf5ac00ff;
 
-		/* P1_FBERERR2 */
+        /* P1_FBERERR2 */
         public const ushort RSTV0910_P1_FBERERR2 = 0xf5ad;
         public const UInt32 FSTV0910_P1_FBERMETER_ERR2 = 0xf5ad00ff;
 
-		/* P1_FBERERR1 */
+        /* P1_FBERERR1 */
         public const ushort RSTV0910_P1_FBERERR1 = 0xf5ae;
         public const UInt32 FSTV0910_P1_FBERMETER_ERR1 = 0xf5ae00ff;
 
-		/* P1_FBERERR0 */
+        /* P1_FBERERR0 */
         public const ushort RSTV0910_P1_FBERERR0 = 0xf5af;
         public const UInt32 FSTV0910_P1_FBERMETER_ERR0 = 0xf5af00ff;
 
-		/* P1_FSPYBER */
+        /* P1_FSPYBER */
         public const ushort RSTV0910_P1_FSPYBER = 0xf5b2;
         public const UInt32 FSTV0910_P1_FSPYBER_SYNCBYTE = 0xf5b24010;
         public const UInt32 FSTV0910_P1_FSPYBER_UNSYNC = 0xf5b23008;
         public const UInt32 FSTV0910_P1_FSPYBER_CTIME = 0xf5b20007;
 
-		/* P1_SFERROR */
+        /* P1_SFERROR */
         public const ushort RSTV0910_P1_SFERROR = 0xf5c1;
         public const UInt32 FSTV0910_P1_SFEC_REGERR_VIT = 0xf5c100ff;
 
-		/* P1_SFECSTATUS */
+        /* P1_SFECSTATUS */
         public const ushort RSTV0910_P1_SFECSTATUS = 0xf5c3;
         public const UInt32 FSTV0910_P1_SFEC_ON = 0xf5c37080;
         public const UInt32 FSTV0910_P1_SFEC_OFF = 0xf5c36040;
@@ -3568,31 +3568,31 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_SFEC_DEMODSEL = 0xf5c31002;
         public const UInt32 FSTV0910_P1_SFEC_OVFON = 0xf5c30001;
 
-		/* P1_SFKDIV12 */
+        /* P1_SFKDIV12 */
         public const ushort RSTV0910_P1_SFKDIV12 = 0xf5c4;
         public const UInt32 FSTV0910_P1_SFECKDIV12_MAN = 0xf5c47080;
 
-		/* P1_SFKDIV23 */
+        /* P1_SFKDIV23 */
         public const ushort RSTV0910_P1_SFKDIV23 = 0xf5c5;
         public const UInt32 FSTV0910_P1_SFECKDIV23_MAN = 0xf5c57080;
 
-		/* P1_SFKDIV34 */
+        /* P1_SFKDIV34 */
         public const ushort RSTV0910_P1_SFKDIV34 = 0xf5c6;
         public const UInt32 FSTV0910_P1_SFECKDIV34_MAN = 0xf5c67080;
 
-		/* P1_SFKDIV56 */
+        /* P1_SFKDIV56 */
         public const ushort RSTV0910_P1_SFKDIV56 = 0xf5c7;
         public const UInt32 FSTV0910_P1_SFECKDIV56_MAN = 0xf5c77080;
 
-		/* P1_SFKDIV67 */
+        /* P1_SFKDIV67 */
         public const ushort RSTV0910_P1_SFKDIV67 = 0xf5c8;
         public const UInt32 FSTV0910_P1_SFECKDIV67_MAN = 0xf5c87080;
 
-		/* P1_SFKDIV78 */
+        /* P1_SFKDIV78 */
         public const ushort RSTV0910_P1_SFKDIV78 = 0xf5c9;
         public const UInt32 FSTV0910_P1_SFECKDIV78_MAN = 0xf5c97080;
 
-		/* P1_SFSTATUS */
+        /* P1_SFSTATUS */
         public const ushort RSTV0910_P1_SFSTATUS = 0xf5cc;
         public const UInt32 FSTV0910_P1_SFEC_LINEOK = 0xf5cc7080;
         public const UInt32 FSTV0910_P1_SFEC_ERROR = 0xf5cc6040;
@@ -3603,29 +3603,29 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_SFEC_UNREGULA = 0xf5cc1002;
         public const UInt32 FSTV0910_P1_SFEC_READY = 0xf5cc0001;
 
-		/* P1_SFDLYSET2 */
+        /* P1_SFDLYSET2 */
         public const ushort RSTV0910_P1_SFDLYSET2 = 0xf5d0;
         public const UInt32 FSTV0910_P1_SFEC_DISABLE = 0xf5d01002;
 
-		/* P1_SFERRCTRL */
+        /* P1_SFERRCTRL */
         public const ushort RSTV0910_P1_SFERRCTRL = 0xf5d8;
         public const UInt32 FSTV0910_P1_SFEC_ERR_SOURCE = 0xf5d840f0;
         public const UInt32 FSTV0910_P1_SFEC_NUM_EVENT = 0xf5d80007;
 
-		/* P1_SFERRCNT2 */
+        /* P1_SFERRCNT2 */
         public const ushort RSTV0910_P1_SFERRCNT2 = 0xf5d9;
         public const UInt32 FSTV0910_P1_SFERRC_OLDVALUE = 0xf5d97080;
         public const UInt32 FSTV0910_P1_SFEC_ERR_CNT2 = 0xf5d9007f;
 
-		/* P1_SFERRCNT1 */
+        /* P1_SFERRCNT1 */
         public const ushort RSTV0910_P1_SFERRCNT1 = 0xf5da;
         public const UInt32 FSTV0910_P1_SFEC_ERR_CNT1 = 0xf5da00ff;
 
-		/* P1_SFERRCNT0 */
+        /* P1_SFERRCNT0 */
         public const ushort RSTV0910_P1_SFERRCNT0 = 0xf5db;
         public const UInt32 FSTV0910_P1_SFEC_ERR_CNT0 = 0xf5db00ff;
 
-		/* RCCFG2 */
+        /* RCCFG2 */
         public const ushort RSTV0910_RCCFG2 = 0xf600;
         public const UInt32 FSTV0910_TSRCFIFO_DVBCI = 0xf6007080;
         public const UInt32 FSTV0910_TSRCFIFO_SERIAL = 0xf6006040;
@@ -3634,21 +3634,21 @@ namespace opentuner
         public const UInt32 FSTV0910_TSRCFIFO_HSGNLOUT = 0xf6003008;
         public const UInt32 FSTV0910_TSRCFIFO_ERRMODE = 0xf6001006;
 
-		/* RCCFG1 */
+        /* RCCFG1 */
         public const ushort RSTV0910_RCCFG1 = 0xf601;
         public const UInt32 FSTV0910_TSRCFIFO_MANSPEED = 0xf60160c0;
         public const UInt32 FSTV0910_TSRCFIFO_PERMDATA = 0xf6015020;
         public const UInt32 FSTV0910_TSRCFIFO_NONEWSGNL = 0xf6014010;
         public const UInt32 FSTV0910_TSRCFIFO_INVDATA = 0xf6010001;
 
-		/* RCCFG0 */
+        /* RCCFG0 */
         public const ushort RSTV0910_RCCFG0 = 0xf602;
         public const UInt32 FSTV0910_TSRCFIFO_BCLKDEL1CK = 0xf60260c0;
         public const UInt32 FSTV0910_TSRCFIFO_DUTY50 = 0xf6024010;
         public const UInt32 FSTV0910_TSRCFIFO_NSGNL2DATA = 0xf6023008;
         public const UInt32 FSTV0910_TSRCFIFO_NPDSGNL = 0xf6022004;
 
-		/* RCINSDEL2 */
+        /* RCINSDEL2 */
         public const ushort RSTV0910_RCINSDEL2 = 0xf603;
         public const UInt32 FSTV0910_TSRCDEL_SYNCBYTE = 0xf6037080;
         public const UInt32 FSTV0910_TSRCDEL_XXHEADER = 0xf6036040;
@@ -3659,7 +3659,7 @@ namespace opentuner
         public const UInt32 FSTV0910_TSRCINSDEL_RSPARITY = 0xf6031002;
         public const UInt32 FSTV0910_TSRCINSDEL_CRC8 = 0xf6030001;
 
-		/* RCINSDEL1 */
+        /* RCINSDEL1 */
         public const ushort RSTV0910_RCINSDEL1 = 0xf604;
         public const UInt32 FSTV0910_TSRCINS_BBPADDING = 0xf6047080;
         public const UInt32 FSTV0910_TSRCINS_BCHFEC = 0xf6046040;
@@ -3669,7 +3669,7 @@ namespace opentuner
         public const UInt32 FSTV0910_TSRCINS_MATYPE = 0xf6041002;
         public const UInt32 FSTV0910_TSRCINS_UPL = 0xf6040001;
 
-		/* RCINSDEL0 */
+        /* RCINSDEL0 */
         public const ushort RSTV0910_RCINSDEL0 = 0xf605;
         public const UInt32 FSTV0910_TSRCINS_DFL = 0xf6057080;
         public const UInt32 FSTV0910_TSRCINS_SYNCD = 0xf6056040;
@@ -3680,7 +3680,7 @@ namespace opentuner
         public const UInt32 FSTV0910_TSRCINS_TSCONFIG = 0xf6051002;
         public const UInt32 FSTV0910_TSRCINS_LATENCY = 0xf6050001;
 
-		/* RCSTATUS */
+        /* RCSTATUS */
         public const ushort RSTV0910_RCSTATUS = 0xf606;
         public const UInt32 FSTV0910_TSRCFIFO_LINEOK = 0xf6067080;
         public const UInt32 FSTV0910_TSRCFIFO_ERROR = 0xf6066040;
@@ -3689,17 +3689,17 @@ namespace opentuner
         public const UInt32 FSTV0910_TSRCFIFOSPEED_STORE = 0xf6062004;
         public const UInt32 FSTV0910_TSRCSPEED_IMPOSSIBLE = 0xf6060001;
 
-		/* RCSPEED */
+        /* RCSPEED */
         public const ushort RSTV0910_RCSPEED = 0xf607;
         public const UInt32 FSTV0910_TSRCFIFO_OUTSPEED = 0xf60700ff;
 
-		/* TSGENERAL */
+        /* TSGENERAL */
         public const ushort RSTV0910_TSGENERAL = 0xf630;
         public const UInt32 FSTV0910_TSFIFO_DISTS2PAR = 0xf6306040;
         public const UInt32 FSTV0910_MUXSTREAM_OUTMODE = 0xf6303008;
         public const UInt32 FSTV0910_TSFIFO_PERMPARAL = 0xf6301006;
 
-		/* P1_DISIRQCFG */
+        /* P1_DISIRQCFG */
         public const ushort RSTV0910_P1_DISIRQCFG = 0xf700;
         public const UInt32 FSTV0910_P1_ENRXEND = 0xf7006040;
         public const UInt32 FSTV0910_P1_ENRXFIFO8B = 0xf7005020;
@@ -3709,7 +3709,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_ENTXFIFO64B = 0xf7001002;
         public const UInt32 FSTV0910_P1_ENGAPBURST = 0xf7000001;
 
-		/* P1_DISIRQSTAT */
+        /* P1_DISIRQSTAT */
         public const ushort RSTV0910_P1_DISIRQSTAT = 0xf701;
         public const UInt32 FSTV0910_P1_IRQRXEND = 0xf7016040;
         public const UInt32 FSTV0910_P1_IRQRXFIFO8B = 0xf7015020;
@@ -3719,7 +3719,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_IRQTXFIFO64B = 0xf7011002;
         public const UInt32 FSTV0910_P1_IRQGAPBURST = 0xf7010001;
 
-		/* P1_DISTXCFG */
+        /* P1_DISTXCFG */
         public const ushort RSTV0910_P1_DISTXCFG = 0xf702;
         public const UInt32 FSTV0910_P1_DISTX_RESET = 0xf7027080;
         public const UInt32 FSTV0910_P1_TIM_OFF = 0xf7026040;
@@ -3728,7 +3728,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_DIS_PRECHARGE = 0xf7022004;
         public const UInt32 FSTV0910_P1_DISEQC_MODE = 0xf7020003;
 
-		/* P1_DISTXSTATUS */
+        /* P1_DISTXSTATUS */
         public const ushort RSTV0910_P1_DISTXSTATUS = 0xf703;
         public const UInt32 FSTV0910_P1_TX_FIFO_FULL = 0xf7036040;
         public const UInt32 FSTV0910_P1_TX_IDLE = 0xf7035020;
@@ -3738,28 +3738,28 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_TR_TIMEOUT = 0xf7031002;
         public const UInt32 FSTV0910_P1_TR_FINISH = 0xf7030001;
 
-		/* P1_DISTXBYTES */
+        /* P1_DISTXBYTES */
         public const ushort RSTV0910_P1_DISTXBYTES = 0xf704;
         public const UInt32 FSTV0910_P1_TXFIFO_BYTES = 0xf70400ff;
 
-		/* P1_DISTXFIFO */
+        /* P1_DISTXFIFO */
         public const ushort RSTV0910_P1_DISTXFIFO = 0xf705;
         public const UInt32 FSTV0910_P1_DISEQC_TX_FIFO = 0xf70500ff;
 
-		/* P1_DISTXF22 */
+        /* P1_DISTXF22 */
         public const ushort RSTV0910_P1_DISTXF22 = 0xf706;
         public const UInt32 FSTV0910_P1_F22TX = 0xf70600ff;
 
-		/* P1_DISTIMEOCFG */
+        /* P1_DISTIMEOCFG */
         public const ushort RSTV0910_P1_DISTIMEOCFG = 0xf708;
         public const UInt32 FSTV0910_P1_RXCHOICE = 0xf7081006;
         public const UInt32 FSTV0910_P1_TIMEOUT_OFF = 0xf7080001;
 
-		/* P1_DISTIMEOUT */
+        /* P1_DISTIMEOUT */
         public const ushort RSTV0910_P1_DISTIMEOUT = 0xf709;
         public const UInt32 FSTV0910_P1_TIMEOUT_COUNT = 0xf70900ff;
 
-		/* P1_DISRXCFG */
+        /* P1_DISRXCFG */
         public const ushort RSTV0910_P1_DISRXCFG = 0xf70a;
         public const UInt32 FSTV0910_P1_DISRX_RESET = 0xf70a7080;
         public const UInt32 FSTV0910_P1_EXTENVELOP = 0xf70a6040;
@@ -3768,7 +3768,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_SIGNED_RXIN = 0xf70a1002;
         public const UInt32 FSTV0910_P1_DISRX_ON = 0xf70a0001;
 
-		/* P1_DISRXSTAT1 */
+        /* P1_DISRXSTAT1 */
         public const ushort RSTV0910_P1_DISRXSTAT1 = 0xf70b;
         public const UInt32 FSTV0910_P1_RXEND = 0xf70b7080;
         public const UInt32 FSTV0910_P1_RXACTIVE = 0xf70b6040;
@@ -3777,7 +3777,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_8BFIFOREADY = 0xf70b3008;
         public const UInt32 FSTV0910_P1_FIFOEMPTY = 0xf70b2004;
 
-		/* P1_DISRXSTAT0 */
+        /* P1_DISRXSTAT0 */
         public const ushort RSTV0910_P1_DISRXSTAT0 = 0xf70c;
         public const UInt32 FSTV0910_P1_RXFAIL = 0xf70c7080;
         public const UInt32 FSTV0910_P1_FIFOPFAIL = 0xf70c6040;
@@ -3786,55 +3786,55 @@ namespace opentuner
         public const UInt32 FSTV0910_P1_SHORT22K = 0xf70c3008;
         public const UInt32 FSTV0910_P1_RXMSGLOST = 0xf70c2004;
 
-		/* P1_DISRXBYTES */
+        /* P1_DISRXBYTES */
         public const ushort RSTV0910_P1_DISRXBYTES = 0xf70d;
         public const UInt32 FSTV0910_P1_RXFIFO_BYTES = 0xf70d001f;
 
-		/* P1_DISRXPARITY1 */
+        /* P1_DISRXPARITY1 */
         public const ushort RSTV0910_P1_DISRXPARITY1 = 0xf70e;
         public const UInt32 FSTV0910_P1_DISRX_PARITY1 = 0xf70e00ff;
 
-		/* P1_DISRXPARITY0 */
+        /* P1_DISRXPARITY0 */
         public const ushort RSTV0910_P1_DISRXPARITY0 = 0xf70f;
         public const UInt32 FSTV0910_P1_DISRX_PARITY0 = 0xf70f00ff;
 
-		/* P1_DISRXFIFO */
+        /* P1_DISRXFIFO */
         public const ushort RSTV0910_P1_DISRXFIFO = 0xf710;
         public const UInt32 FSTV0910_P1_DISEQC_RX_FIFO = 0xf71000ff;
 
-		/* P1_DISRXDC1 */
+        /* P1_DISRXDC1 */
         public const ushort RSTV0910_P1_DISRXDC1 = 0xf711;
         public const UInt32 FSTV0910_P1_DC_VALUE1 = 0xf7110103;
 
-		/* P1_DISRXDC0 */
+        /* P1_DISRXDC0 */
         public const ushort RSTV0910_P1_DISRXDC0 = 0xf712;
         public const UInt32 FSTV0910_P1_DC_VALUE0 = 0xf71200ff;
 
-		/* P1_DISRXF221 */
+        /* P1_DISRXF221 */
         public const ushort RSTV0910_P1_DISRXF221 = 0xf714;
         public const UInt32 FSTV0910_P1_F22RX1 = 0xf714000f;
 
-		/* P1_DISRXF220 */
+        /* P1_DISRXF220 */
         public const ushort RSTV0910_P1_DISRXF220 = 0xf715;
         public const UInt32 FSTV0910_P1_F22RX0 = 0xf71500ff;
 
-		/* P1_DISRXF100 */
+        /* P1_DISRXF100 */
         public const ushort RSTV0910_P1_DISRXF100 = 0xf716;
         public const UInt32 FSTV0910_P1_F100RX = 0xf71600ff;
 
-		/* P1_DISRXSHORT22K */
+        /* P1_DISRXSHORT22K */
         public const ushort RSTV0910_P1_DISRXSHORT22K = 0xf71c;
         public const UInt32 FSTV0910_P1_SHORT22K_LENGTH = 0xf71c001f;
 
-		/* P1_ACRPRESC */
+        /* P1_ACRPRESC */
         public const ushort RSTV0910_P1_ACRPRESC = 0xf71e;
         public const UInt32 FSTV0910_P1_ACR_PRESC = 0xf71e0007;
 
-		/* P1_ACRDIV */
+        /* P1_ACRDIV */
         public const ushort RSTV0910_P1_ACRDIV = 0xf71f;
         public const UInt32 FSTV0910_P1_ACR_DIV = 0xf71f00ff;
 
-		/* P2_DISIRQCFG */
+        /* P2_DISIRQCFG */
         public const ushort RSTV0910_P2_DISIRQCFG = 0xf740;
         public const UInt32 FSTV0910_P2_ENRXEND = 0xf7406040;
         public const UInt32 FSTV0910_P2_ENRXFIFO8B = 0xf7405020;
@@ -3844,7 +3844,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_ENTXFIFO64B = 0xf7401002;
         public const UInt32 FSTV0910_P2_ENGAPBURST = 0xf7400001;
 
-		/* P2_DISIRQSTAT */
+        /* P2_DISIRQSTAT */
         public const ushort RSTV0910_P2_DISIRQSTAT = 0xf741;
         public const UInt32 FSTV0910_P2_IRQRXEND = 0xf7416040;
         public const UInt32 FSTV0910_P2_IRQRXFIFO8B = 0xf7415020;
@@ -3854,7 +3854,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_IRQTXFIFO64B = 0xf7411002;
         public const UInt32 FSTV0910_P2_IRQGAPBURST = 0xf7410001;
 
-		/* P2_DISTXCFG */
+        /* P2_DISTXCFG */
         public const ushort RSTV0910_P2_DISTXCFG = 0xf742;
         public const UInt32 FSTV0910_P2_DISTX_RESET = 0xf7427080;
         public const UInt32 FSTV0910_P2_TIM_OFF = 0xf7426040;
@@ -3863,7 +3863,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_DIS_PRECHARGE = 0xf7422004;
         public const UInt32 FSTV0910_P2_DISEQC_MODE = 0xf7420003;
 
-		/* P2_DISTXSTATUS */
+        /* P2_DISTXSTATUS */
         public const ushort RSTV0910_P2_DISTXSTATUS = 0xf743;
         public const UInt32 FSTV0910_P2_TX_FIFO_FULL = 0xf7436040;
         public const UInt32 FSTV0910_P2_TX_IDLE = 0xf7435020;
@@ -3873,28 +3873,28 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_TR_TIMEOUT = 0xf7431002;
         public const UInt32 FSTV0910_P2_TR_FINISH = 0xf7430001;
 
-		/* P2_DISTXBYTES */
+        /* P2_DISTXBYTES */
         public const ushort RSTV0910_P2_DISTXBYTES = 0xf744;
         public const UInt32 FSTV0910_P2_TXFIFO_BYTES = 0xf74400ff;
 
-		/* P2_DISTXFIFO */
+        /* P2_DISTXFIFO */
         public const ushort RSTV0910_P2_DISTXFIFO = 0xf745;
         public const UInt32 FSTV0910_P2_DISEQC_TX_FIFO = 0xf74500ff;
 
-		/* P2_DISTXF22 */
+        /* P2_DISTXF22 */
         public const ushort RSTV0910_P2_DISTXF22 = 0xf746;
         public const UInt32 FSTV0910_P2_F22TX = 0xf74600ff;
 
-		/* P2_DISTIMEOCFG */
+        /* P2_DISTIMEOCFG */
         public const ushort RSTV0910_P2_DISTIMEOCFG = 0xf748;
         public const UInt32 FSTV0910_P2_RXCHOICE = 0xf7481006;
         public const UInt32 FSTV0910_P2_TIMEOUT_OFF = 0xf7480001;
 
-		/* P2_DISTIMEOUT */
+        /* P2_DISTIMEOUT */
         public const ushort RSTV0910_P2_DISTIMEOUT = 0xf749;
         public const UInt32 FSTV0910_P2_TIMEOUT_COUNT = 0xf74900ff;
 
-		/* P2_DISRXCFG */
+        /* P2_DISRXCFG */
         public const ushort RSTV0910_P2_DISRXCFG = 0xf74a;
         public const UInt32 FSTV0910_P2_DISRX_RESET = 0xf74a7080;
         public const UInt32 FSTV0910_P2_EXTENVELOP = 0xf74a6040;
@@ -3903,7 +3903,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_SIGNED_RXIN = 0xf74a1002;
         public const UInt32 FSTV0910_P2_DISRX_ON = 0xf74a0001;
 
-		/* P2_DISRXSTAT1 */
+        /* P2_DISRXSTAT1 */
         public const ushort RSTV0910_P2_DISRXSTAT1 = 0xf74b;
         public const UInt32 FSTV0910_P2_RXEND = 0xf74b7080;
         public const UInt32 FSTV0910_P2_RXACTIVE = 0xf74b6040;
@@ -3912,7 +3912,7 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_8BFIFOREADY = 0xf74b3008;
         public const UInt32 FSTV0910_P2_FIFOEMPTY = 0xf74b2004;
 
-		/* P2_DISRXSTAT0 */
+        /* P2_DISRXSTAT0 */
         public const ushort RSTV0910_P2_DISRXSTAT0 = 0xf74c;
         public const UInt32 FSTV0910_P2_RXFAIL = 0xf74c7080;
         public const UInt32 FSTV0910_P2_FIFOPFAIL = 0xf74c6040;
@@ -3921,270 +3921,270 @@ namespace opentuner
         public const UInt32 FSTV0910_P2_SHORT22K = 0xf74c3008;
         public const UInt32 FSTV0910_P2_RXMSGLOST = 0xf74c2004;
 
-		/* P2_DISRXBYTES */
+        /* P2_DISRXBYTES */
         public const ushort RSTV0910_P2_DISRXBYTES = 0xf74d;
         public const UInt32 FSTV0910_P2_RXFIFO_BYTES = 0xf74d001f;
 
-		/* P2_DISRXPARITY1 */
+        /* P2_DISRXPARITY1 */
         public const ushort RSTV0910_P2_DISRXPARITY1 = 0xf74e;
         public const UInt32 FSTV0910_P2_DISRX_PARITY1 = 0xf74e00ff;
 
-		/* P2_DISRXPARITY0 */
+        /* P2_DISRXPARITY0 */
         public const ushort RSTV0910_P2_DISRXPARITY0 = 0xf74f;
         public const UInt32 FSTV0910_P2_DISRX_PARITY0 = 0xf74f00ff;
 
-		/* P2_DISRXFIFO */
+        /* P2_DISRXFIFO */
         public const ushort RSTV0910_P2_DISRXFIFO = 0xf750;
         public const UInt32 FSTV0910_P2_DISEQC_RX_FIFO = 0xf75000ff;
 
-		/* P2_DISRXDC1 */
+        /* P2_DISRXDC1 */
         public const ushort RSTV0910_P2_DISRXDC1 = 0xf751;
         public const UInt32 FSTV0910_P2_DC_VALUE1 = 0xf7510103;
 
-		/* P2_DISRXDC0 */
+        /* P2_DISRXDC0 */
         public const ushort RSTV0910_P2_DISRXDC0 = 0xf752;
         public const UInt32 FSTV0910_P2_DC_VALUE0 = 0xf75200ff;
 
-		/* P2_DISRXF221 */
+        /* P2_DISRXF221 */
         public const ushort RSTV0910_P2_DISRXF221 = 0xf754;
         public const UInt32 FSTV0910_P2_F22RX1 = 0xf754000f;
 
-		/* P2_DISRXF220 */
+        /* P2_DISRXF220 */
         public const ushort RSTV0910_P2_DISRXF220 = 0xf755;
         public const UInt32 FSTV0910_P2_F22RX0 = 0xf75500ff;
 
-		/* P2_DISRXF100 */
+        /* P2_DISRXF100 */
         public const ushort RSTV0910_P2_DISRXF100 = 0xf756;
         public const UInt32 FSTV0910_P2_F100RX = 0xf75600ff;
 
-		/* P2_DISRXSHORT22K */
+        /* P2_DISRXSHORT22K */
         public const ushort RSTV0910_P2_DISRXSHORT22K = 0xf75c;
         public const UInt32 FSTV0910_P2_SHORT22K_LENGTH = 0xf75c001f;
 
-		/* P2_ACRPRESC */
+        /* P2_ACRPRESC */
         public const ushort RSTV0910_P2_ACRPRESC = 0xf75e;
         public const UInt32 FSTV0910_P2_ACR_PRESC = 0xf75e0007;
 
-		/* P2_ACRDIV */
+        /* P2_ACRDIV */
         public const ushort RSTV0910_P2_ACRDIV = 0xf75f;
         public const UInt32 FSTV0910_P2_ACR_DIV = 0xf75f00ff;
 
-		/* P1_NBITER_NF1 */
+        /* P1_NBITER_NF1 */
         public const ushort RSTV0910_P1_NBITER_NF1 = 0xfa00;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_1_4 = 0xfa0000ff;
 
-		/* P1_NBITER_NF2 */
+        /* P1_NBITER_NF2 */
         public const ushort RSTV0910_P1_NBITER_NF2 = 0xfa01;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_1_3 = 0xfa0100ff;
 
-		/* P1_NBITER_NF3 */
+        /* P1_NBITER_NF3 */
         public const ushort RSTV0910_P1_NBITER_NF3 = 0xfa02;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_2_5 = 0xfa0200ff;
 
-		/* P1_NBITER_NF4 */
+        /* P1_NBITER_NF4 */
         public const ushort RSTV0910_P1_NBITER_NF4 = 0xfa03;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_1_2 = 0xfa0300ff;
 
-		/* P1_NBITER_NF5 */
+        /* P1_NBITER_NF5 */
         public const ushort RSTV0910_P1_NBITER_NF5 = 0xfa04;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_3_5 = 0xfa0400ff;
 
-		/* P1_NBITER_NF6 */
+        /* P1_NBITER_NF6 */
         public const ushort RSTV0910_P1_NBITER_NF6 = 0xfa05;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_2_3 = 0xfa0500ff;
 
-		/* P1_NBITER_NF7 */
+        /* P1_NBITER_NF7 */
         public const ushort RSTV0910_P1_NBITER_NF7 = 0xfa06;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_3_4 = 0xfa0600ff;
 
-		/* P1_NBITER_NF8 */
+        /* P1_NBITER_NF8 */
         public const ushort RSTV0910_P1_NBITER_NF8 = 0xfa07;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_4_5 = 0xfa0700ff;
 
-		/* P1_NBITER_NF9 */
+        /* P1_NBITER_NF9 */
         public const ushort RSTV0910_P1_NBITER_NF9 = 0xfa08;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_5_6 = 0xfa0800ff;
 
-		/* P1_NBITER_NF10 */
+        /* P1_NBITER_NF10 */
         public const ushort RSTV0910_P1_NBITER_NF10 = 0xfa09;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_8_9 = 0xfa0900ff;
 
-		/* P1_NBITER_NF11 */
+        /* P1_NBITER_NF11 */
         public const ushort RSTV0910_P1_NBITER_NF11 = 0xfa0a;
         public const UInt32 FSTV0910_P1_NBITER_NF_QPSK_9_10 = 0xfa0a00ff;
 
-		/* P1_NBITER_NF12 */
+        /* P1_NBITER_NF12 */
         public const ushort RSTV0910_P1_NBITER_NF12 = 0xfa0b;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_3_5 = 0xfa0b00ff;
 
-		/* P1_NBITER_NF13 */
+        /* P1_NBITER_NF13 */
         public const ushort RSTV0910_P1_NBITER_NF13 = 0xfa0c;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_2_3 = 0xfa0c00ff;
 
-		/* P1_NBITER_NF14 */
+        /* P1_NBITER_NF14 */
         public const ushort RSTV0910_P1_NBITER_NF14 = 0xfa0d;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_3_4 = 0xfa0d00ff;
 
-		/* P1_NBITER_NF15 */
+        /* P1_NBITER_NF15 */
         public const ushort RSTV0910_P1_NBITER_NF15 = 0xfa0e;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_5_6 = 0xfa0e00ff;
 
-		/* P1_NBITER_NF16 */
+        /* P1_NBITER_NF16 */
         public const ushort RSTV0910_P1_NBITER_NF16 = 0xfa0f;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_8_9 = 0xfa0f00ff;
 
-		/* P1_NBITER_NF17 */
+        /* P1_NBITER_NF17 */
         public const ushort RSTV0910_P1_NBITER_NF17 = 0xfa10;
         public const UInt32 FSTV0910_P1_NBITER_NF_8PSK_9_10 = 0xfa1000ff;
 
-		/* P1_NBITER_NF18 */
+        /* P1_NBITER_NF18 */
         public const ushort RSTV0910_P1_NBITER_NF18 = 0xfa11;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_2_3 = 0xfa1100ff;
 
-		/* P1_NBITER_NF19 */
+        /* P1_NBITER_NF19 */
         public const ushort RSTV0910_P1_NBITER_NF19 = 0xfa12;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_3_4 = 0xfa1200ff;
 
-		/* P1_NBITER_NF20 */
+        /* P1_NBITER_NF20 */
         public const ushort RSTV0910_P1_NBITER_NF20 = 0xfa13;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_4_5 = 0xfa1300ff;
 
-		/* P1_NBITER_NF21 */
+        /* P1_NBITER_NF21 */
         public const ushort RSTV0910_P1_NBITER_NF21 = 0xfa14;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_5_6 = 0xfa1400ff;
 
-		/* P1_NBITER_NF22 */
+        /* P1_NBITER_NF22 */
         public const ushort RSTV0910_P1_NBITER_NF22 = 0xfa15;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_8_9 = 0xfa1500ff;
 
-		/* P1_NBITER_NF23 */
+        /* P1_NBITER_NF23 */
         public const ushort RSTV0910_P1_NBITER_NF23 = 0xfa16;
         public const UInt32 FSTV0910_P1_NBITER_NF_16APSK_9_10 = 0xfa1600ff;
 
-		/* P1_NBITER_NF24 */
+        /* P1_NBITER_NF24 */
         public const ushort RSTV0910_P1_NBITER_NF24 = 0xfa17;
         public const UInt32 FSTV0910_P1_NBITER_NF_32APSK_3_4 = 0xfa1700ff;
 
-		/* P1_NBITER_NF25 */
+        /* P1_NBITER_NF25 */
         public const ushort RSTV0910_P1_NBITER_NF25 = 0xfa18;
         public const UInt32 FSTV0910_P1_NBITER_NF_32APSK_4_5 = 0xfa1800ff;
 
-		/* P1_NBITER_NF26 */
+        /* P1_NBITER_NF26 */
         public const ushort RSTV0910_P1_NBITER_NF26 = 0xfa19;
         public const UInt32 FSTV0910_P1_NBITER_NF_32APSK_5_6 = 0xfa1900ff;
 
-		/* P1_NBITER_NF27 */
+        /* P1_NBITER_NF27 */
         public const ushort RSTV0910_P1_NBITER_NF27 = 0xfa1a;
         public const UInt32 FSTV0910_P1_NBITER_NF_32APSK_8_9 = 0xfa1a00ff;
 
-		/* P1_NBITER_NF28 */
+        /* P1_NBITER_NF28 */
         public const ushort RSTV0910_P1_NBITER_NF28 = 0xfa1b;
         public const UInt32 FSTV0910_P1_NBITER_NF_32APSK_9_10 = 0xfa1b00ff;
 
-		/* P1_NBITER_SF1 */
+        /* P1_NBITER_SF1 */
         public const ushort RSTV0910_P1_NBITER_SF1 = 0xfa1c;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_1_4 = 0xfa1c00ff;
 
-		/* P1_NBITER_SF2 */
+        /* P1_NBITER_SF2 */
         public const ushort RSTV0910_P1_NBITER_SF2 = 0xfa1d;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_1_3 = 0xfa1d00ff;
 
-		/* P1_NBITER_SF3 */
+        /* P1_NBITER_SF3 */
         public const ushort RSTV0910_P1_NBITER_SF3 = 0xfa1e;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_2_5 = 0xfa1e00ff;
 
-		/* P1_NBITER_SF4 */
+        /* P1_NBITER_SF4 */
         public const ushort RSTV0910_P1_NBITER_SF4 = 0xfa1f;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_1_2 = 0xfa1f00ff;
 
-		/* P1_NBITER_SF5 */
+        /* P1_NBITER_SF5 */
         public const ushort RSTV0910_P1_NBITER_SF5 = 0xfa20;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_3_5 = 0xfa2000ff;
 
-		/* P1_NBITER_SF6 */
+        /* P1_NBITER_SF6 */
         public const ushort RSTV0910_P1_NBITER_SF6 = 0xfa21;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_2_3 = 0xfa2100ff;
 
-		/* P1_NBITER_SF7 */
+        /* P1_NBITER_SF7 */
         public const ushort RSTV0910_P1_NBITER_SF7 = 0xfa22;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_3_4 = 0xfa2200ff;
 
-		/* P1_NBITER_SF8 */
+        /* P1_NBITER_SF8 */
         public const ushort RSTV0910_P1_NBITER_SF8 = 0xfa23;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_4_5 = 0xfa2300ff;
 
-		/* P1_NBITER_SF9 */
+        /* P1_NBITER_SF9 */
         public const ushort RSTV0910_P1_NBITER_SF9 = 0xfa24;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_5_6 = 0xfa2400ff;
 
-		/* P1_NBITER_SF10 */
+        /* P1_NBITER_SF10 */
         public const ushort RSTV0910_P1_NBITER_SF10 = 0xfa25;
         public const UInt32 FSTV0910_P1_NBITER_SF_QPSK_8_9 = 0xfa2500ff;
 
-		/* P1_NBITER_SF12 */
+        /* P1_NBITER_SF12 */
         public const ushort RSTV0910_P1_NBITER_SF12 = 0xfa26;
         public const UInt32 FSTV0910_P1_NBITER_SF_8PSK_3_5 = 0xfa2600ff;
 
-		/* P1_NBITER_SF13 */
+        /* P1_NBITER_SF13 */
         public const ushort RSTV0910_P1_NBITER_SF13 = 0xfa27;
         public const UInt32 FSTV0910_P1_NBITER_SF_8PSK_2_3 = 0xfa2700ff;
 
-		/* P1_NBITER_SF14 */
+        /* P1_NBITER_SF14 */
         public const ushort RSTV0910_P1_NBITER_SF14 = 0xfa28;
         public const UInt32 FSTV0910_P1_NBITER_SF_8PSK_3_4 = 0xfa2800ff;
 
-		/* P1_NBITER_SF15 */
+        /* P1_NBITER_SF15 */
         public const ushort RSTV0910_P1_NBITER_SF15 = 0xfa29;
         public const UInt32 FSTV0910_P1_NBITER_SF_8PSK_5_6 = 0xfa2900ff;
 
-		/* P1_NBITER_SF16 */
+        /* P1_NBITER_SF16 */
         public const ushort RSTV0910_P1_NBITER_SF16 = 0xfa2a;
         public const UInt32 FSTV0910_P1_NBITER_SF_8PSK_8_9 = 0xfa2a00ff;
 
-		/* P1_NBITER_SF18 */
+        /* P1_NBITER_SF18 */
         public const ushort RSTV0910_P1_NBITER_SF18 = 0xfa2b;
         public const UInt32 FSTV0910_P1_NBITER_SF_16APSK_2_3 = 0xfa2b00ff;
 
-		/* P1_NBITER_SF19 */
+        /* P1_NBITER_SF19 */
         public const ushort RSTV0910_P1_NBITER_SF19 = 0xfa2c;
         public const UInt32 FSTV0910_P1_NBITER_SF_16APSK_3_4 = 0xfa2c00ff;
 
-		/* P1_NBITER_SF20 */
+        /* P1_NBITER_SF20 */
         public const ushort RSTV0910_P1_NBITER_SF20 = 0xfa2d;
         public const UInt32 FSTV0910_P1_NBITER_SF_16APSK_4_5 = 0xfa2d00ff;
 
-		/* P1_NBITER_SF21 */
+        /* P1_NBITER_SF21 */
         public const ushort RSTV0910_P1_NBITER_SF21 = 0xfa2e;
         public const UInt32 FSTV0910_P1_NBITER_SF_16APSK_5_6 = 0xfa2e00ff;
 
-		/* P1_NBITER_SF22 */
+        /* P1_NBITER_SF22 */
         public const ushort RSTV0910_P1_NBITER_SF22 = 0xfa2f;
         public const UInt32 FSTV0910_P1_NBITER_SF_16APSK_8_9 = 0xfa2f00ff;
 
-		/* P1_NBITER_SF24 */
+        /* P1_NBITER_SF24 */
         public const ushort RSTV0910_P1_NBITER_SF24 = 0xfa30;
         public const UInt32 FSTV0910_P1_NBITER_SF_32APSK_3_4 = 0xfa3000ff;
 
-		/* P1_NBITER_SF25 */
+        /* P1_NBITER_SF25 */
         public const ushort RSTV0910_P1_NBITER_SF25 = 0xfa31;
         public const UInt32 FSTV0910_P1_NBITER_SF_32APSK_4_5 = 0xfa3100ff;
 
-		/* P1_NBITER_SF26 */
+        /* P1_NBITER_SF26 */
         public const ushort RSTV0910_P1_NBITER_SF26 = 0xfa32;
         public const UInt32 FSTV0910_P1_NBITER_SF_32APSK_5_6 = 0xfa3200ff;
 
-		/* P1_NBITER_SF27 */
+        /* P1_NBITER_SF27 */
         public const ushort RSTV0910_P1_NBITER_SF27 = 0xfa33;
         public const UInt32 FSTV0910_P1_NBITER_SF_32APSK_8_9 = 0xfa3300ff;
 
-		/* SELSATUR6 */
+        /* SELSATUR6 */
         public const ushort RSTV0910_SELSATUR6 = 0xfa34;
         public const UInt32 FSTV0910_SSAT_SF27 = 0xfa343008;
         public const UInt32 FSTV0910_SSAT_SF26 = 0xfa342004;
         public const UInt32 FSTV0910_SSAT_SF25 = 0xfa341002;
         public const UInt32 FSTV0910_SSAT_SF24 = 0xfa340001;
 
-		/* SELSATUR5 */
+        /* SELSATUR5 */
         public const ushort RSTV0910_SELSATUR5 = 0xfa35;
         public const UInt32 FSTV0910_SSAT_SF22 = 0xfa357080;
         public const UInt32 FSTV0910_SSAT_SF21 = 0xfa356040;
@@ -4195,7 +4195,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_SF15 = 0xfa351002;
         public const UInt32 FSTV0910_SSAT_SF14 = 0xfa350001;
 
-		/* SELSATUR4 */
+        /* SELSATUR4 */
         public const ushort RSTV0910_SELSATUR4 = 0xfa36;
         public const UInt32 FSTV0910_SSAT_SF13 = 0xfa367080;
         public const UInt32 FSTV0910_SSAT_SF12 = 0xfa366040;
@@ -4206,7 +4206,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_SF6 = 0xfa361002;
         public const UInt32 FSTV0910_SSAT_SF5 = 0xfa360001;
 
-		/* SELSATUR3 */
+        /* SELSATUR3 */
         public const ushort RSTV0910_SELSATUR3 = 0xfa37;
         public const UInt32 FSTV0910_SSAT_SF4 = 0xfa377080;
         public const UInt32 FSTV0910_SSAT_SF3 = 0xfa376040;
@@ -4217,7 +4217,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_NF26 = 0xfa371002;
         public const UInt32 FSTV0910_SSAT_NF25 = 0xfa370001;
 
-		/* SELSATUR2 */
+        /* SELSATUR2 */
         public const ushort RSTV0910_SELSATUR2 = 0xfa38;
         public const UInt32 FSTV0910_SSAT_NF24 = 0xfa387080;
         public const UInt32 FSTV0910_SSAT_NF23 = 0xfa386040;
@@ -4228,7 +4228,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_NF18 = 0xfa381002;
         public const UInt32 FSTV0910_SSAT_NF17 = 0xfa380001;
 
-		/* SELSATUR1 */
+        /* SELSATUR1 */
         public const ushort RSTV0910_SELSATUR1 = 0xfa39;
         public const UInt32 FSTV0910_SSAT_NF16 = 0xfa397080;
         public const UInt32 FSTV0910_SSAT_NF15 = 0xfa396040;
@@ -4239,7 +4239,7 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_NF10 = 0xfa391002;
         public const UInt32 FSTV0910_SSAT_NF9 = 0xfa390001;
 
-		/* SELSATUR0 */
+        /* SELSATUR0 */
         public const ushort RSTV0910_SELSATUR0 = 0xfa3a;
         public const UInt32 FSTV0910_SSAT_NF8 = 0xfa3a7080;
         public const UInt32 FSTV0910_SSAT_NF7 = 0xfa3a6040;
@@ -4250,524 +4250,524 @@ namespace opentuner
         public const UInt32 FSTV0910_SSAT_NF2 = 0xfa3a1002;
         public const UInt32 FSTV0910_SSAT_NF1 = 0xfa3a0001;
 
-		/* GAINLLR_NF1 */
+        /* GAINLLR_NF1 */
         public const ushort RSTV0910_GAINLLR_NF1 = 0xfa40;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_1_4 = 0xfa40007f;
 
-		/* GAINLLR_NF2 */
+        /* GAINLLR_NF2 */
         public const ushort RSTV0910_GAINLLR_NF2 = 0xfa41;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_1_3 = 0xfa41007f;
 
-		/* GAINLLR_NF3 */
+        /* GAINLLR_NF3 */
         public const ushort RSTV0910_GAINLLR_NF3 = 0xfa42;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_2_5 = 0xfa42007f;
 
-		/* GAINLLR_NF4 */
+        /* GAINLLR_NF4 */
         public const ushort RSTV0910_GAINLLR_NF4 = 0xfa43;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_1_2 = 0xfa43007f;
 
-		/* GAINLLR_NF5 */
+        /* GAINLLR_NF5 */
         public const ushort RSTV0910_GAINLLR_NF5 = 0xfa44;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_3_5 = 0xfa44007f;
 
-		/* GAINLLR_NF6 */
+        /* GAINLLR_NF6 */
         public const ushort RSTV0910_GAINLLR_NF6 = 0xfa45;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_2_3 = 0xfa45007f;
 
-		/* GAINLLR_NF7 */
+        /* GAINLLR_NF7 */
         public const ushort RSTV0910_GAINLLR_NF7 = 0xfa46;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_3_4 = 0xfa46007f;
 
-		/* GAINLLR_NF8 */
+        /* GAINLLR_NF8 */
         public const ushort RSTV0910_GAINLLR_NF8 = 0xfa47;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_4_5 = 0xfa47007f;
 
-		/* GAINLLR_NF9 */
+        /* GAINLLR_NF9 */
         public const ushort RSTV0910_GAINLLR_NF9 = 0xfa48;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_5_6 = 0xfa48007f;
 
-		/* GAINLLR_NF10 */
+        /* GAINLLR_NF10 */
         public const ushort RSTV0910_GAINLLR_NF10 = 0xfa49;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_8_9 = 0xfa49007f;
 
-		/* GAINLLR_NF11 */
+        /* GAINLLR_NF11 */
         public const ushort RSTV0910_GAINLLR_NF11 = 0xfa4a;
         public const UInt32 FSTV0910_GAINLLR_NF_QPSK_9_10 = 0xfa4a007f;
 
-		/* GAINLLR_NF12 */
+        /* GAINLLR_NF12 */
         public const ushort RSTV0910_GAINLLR_NF12 = 0xfa4b;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_3_5 = 0xfa4b007f;
 
-		/* GAINLLR_NF13 */
+        /* GAINLLR_NF13 */
         public const ushort RSTV0910_GAINLLR_NF13 = 0xfa4c;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_2_3 = 0xfa4c007f;
 
-		/* GAINLLR_NF14 */
+        /* GAINLLR_NF14 */
         public const ushort RSTV0910_GAINLLR_NF14 = 0xfa4d;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_3_4 = 0xfa4d007f;
 
-		/* GAINLLR_NF15 */
+        /* GAINLLR_NF15 */
         public const ushort RSTV0910_GAINLLR_NF15 = 0xfa4e;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_5_6 = 0xfa4e007f;
 
-		/* GAINLLR_NF16 */
+        /* GAINLLR_NF16 */
         public const ushort RSTV0910_GAINLLR_NF16 = 0xfa4f;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_8_9 = 0xfa4f007f;
 
-		/* GAINLLR_NF17 */
+        /* GAINLLR_NF17 */
         public const ushort RSTV0910_GAINLLR_NF17 = 0xfa50;
         public const UInt32 FSTV0910_GAINLLR_NF_8PSK_9_10 = 0xfa50007f;
 
-		/* GAINLLR_NF18 */
+        /* GAINLLR_NF18 */
         public const ushort RSTV0910_GAINLLR_NF18 = 0xfa51;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_2_3 = 0xfa51007f;
 
-		/* GAINLLR_NF19 */
+        /* GAINLLR_NF19 */
         public const ushort RSTV0910_GAINLLR_NF19 = 0xfa52;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_3_4 = 0xfa52007f;
 
-		/* GAINLLR_NF20 */
+        /* GAINLLR_NF20 */
         public const ushort RSTV0910_GAINLLR_NF20 = 0xfa53;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_4_5 = 0xfa53007f;
 
-		/* GAINLLR_NF21 */
+        /* GAINLLR_NF21 */
         public const ushort RSTV0910_GAINLLR_NF21 = 0xfa54;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_5_6 = 0xfa54007f;
 
-		/* GAINLLR_NF22 */
+        /* GAINLLR_NF22 */
         public const ushort RSTV0910_GAINLLR_NF22 = 0xfa55;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_8_9 = 0xfa55007f;
 
-		/* GAINLLR_NF23 */
+        /* GAINLLR_NF23 */
         public const ushort RSTV0910_GAINLLR_NF23 = 0xfa56;
         public const UInt32 FSTV0910_GAINLLR_NF_16APSK_9_10 = 0xfa56007f;
 
-		/* GAINLLR_NF24 */
+        /* GAINLLR_NF24 */
         public const ushort RSTV0910_GAINLLR_NF24 = 0xfa57;
         public const UInt32 FSTV0910_GAINLLR_NF_32APSK_3_4 = 0xfa57007f;
 
-		/* GAINLLR_NF25 */
+        /* GAINLLR_NF25 */
         public const ushort RSTV0910_GAINLLR_NF25 = 0xfa58;
         public const UInt32 FSTV0910_GAINLLR_NF_32APSK_4_5 = 0xfa58007f;
 
-		/* GAINLLR_NF26 */
+        /* GAINLLR_NF26 */
         public const ushort RSTV0910_GAINLLR_NF26 = 0xfa59;
         public const UInt32 FSTV0910_GAINLLR_NF_32APSK_5_6 = 0xfa59007f;
 
-		/* GAINLLR_NF27 */
+        /* GAINLLR_NF27 */
         public const ushort RSTV0910_GAINLLR_NF27 = 0xfa5a;
         public const UInt32 FSTV0910_GAINLLR_NF_32APSK_8_9 = 0xfa5a007f;
 
-		/* GAINLLR_NF28 */
+        /* GAINLLR_NF28 */
         public const ushort RSTV0910_GAINLLR_NF28 = 0xfa5b;
         public const UInt32 FSTV0910_GAINLLR_NF_32APSK_9_10 = 0xfa5b007f;
 
-		/* GAINLLR_SF1 */
+        /* GAINLLR_SF1 */
         public const ushort RSTV0910_GAINLLR_SF1 = 0xfa5c;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_1_4 = 0xfa5c007f;
 
-		/* GAINLLR_SF2 */
+        /* GAINLLR_SF2 */
         public const ushort RSTV0910_GAINLLR_SF2 = 0xfa5d;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_1_3 = 0xfa5d007f;
 
-		/* GAINLLR_SF3 */
+        /* GAINLLR_SF3 */
         public const ushort RSTV0910_GAINLLR_SF3 = 0xfa5e;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_2_5 = 0xfa5e007f;
 
-		/* GAINLLR_SF4 */
+        /* GAINLLR_SF4 */
         public const ushort RSTV0910_GAINLLR_SF4 = 0xfa5f;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_1_2 = 0xfa5f007f;
 
-		/* GAINLLR_SF5 */
+        /* GAINLLR_SF5 */
         public const ushort RSTV0910_GAINLLR_SF5 = 0xfa60;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_3_5 = 0xfa60007f;
 
-		/* GAINLLR_SF6 */
+        /* GAINLLR_SF6 */
         public const ushort RSTV0910_GAINLLR_SF6 = 0xfa61;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_2_3 = 0xfa61007f;
 
-		/* GAINLLR_SF7 */
+        /* GAINLLR_SF7 */
         public const ushort RSTV0910_GAINLLR_SF7 = 0xfa62;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_3_4 = 0xfa62007f;
 
-		/* GAINLLR_SF8 */
+        /* GAINLLR_SF8 */
         public const ushort RSTV0910_GAINLLR_SF8 = 0xfa63;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_4_5 = 0xfa63007f;
 
-		/* GAINLLR_SF9 */
+        /* GAINLLR_SF9 */
         public const ushort RSTV0910_GAINLLR_SF9 = 0xfa64;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_5_6 = 0xfa64007f;
 
-		/* GAINLLR_SF10 */
+        /* GAINLLR_SF10 */
         public const ushort RSTV0910_GAINLLR_SF10 = 0xfa65;
         public const UInt32 FSTV0910_GAINLLR_SF_QPSK_8_9 = 0xfa65007f;
 
-		/* GAINLLR_SF12 */
+        /* GAINLLR_SF12 */
         public const ushort RSTV0910_GAINLLR_SF12 = 0xfa66;
         public const UInt32 FSTV0910_GAINLLR_SF_8PSK_3_5 = 0xfa66007f;
 
-		/* GAINLLR_SF13 */
+        /* GAINLLR_SF13 */
         public const ushort RSTV0910_GAINLLR_SF13 = 0xfa67;
         public const UInt32 FSTV0910_GAINLLR_SF_8PSK_2_3 = 0xfa67007f;
 
-		/* GAINLLR_SF14 */
+        /* GAINLLR_SF14 */
         public const ushort RSTV0910_GAINLLR_SF14 = 0xfa68;
         public const UInt32 FSTV0910_GAINLLR_SF_8PSK_3_4 = 0xfa68007f;
 
-		/* GAINLLR_SF15 */
+        /* GAINLLR_SF15 */
         public const ushort RSTV0910_GAINLLR_SF15 = 0xfa69;
         public const UInt32 FSTV0910_GAINLLR_SF_8PSK_5_6 = 0xfa69007f;
 
-		/* GAINLLR_SF16 */
+        /* GAINLLR_SF16 */
         public const ushort RSTV0910_GAINLLR_SF16 = 0xfa6a;
         public const UInt32 FSTV0910_GAINLLR_SF_8PSK_8_9 = 0xfa6a007f;
 
-		/* GAINLLR_SF18 */
+        /* GAINLLR_SF18 */
         public const ushort RSTV0910_GAINLLR_SF18 = 0xfa6b;
         public const UInt32 FSTV0910_GAINLLR_SF_16APSK_2_3 = 0xfa6b007f;
 
-		/* GAINLLR_SF19 */
+        /* GAINLLR_SF19 */
         public const ushort RSTV0910_GAINLLR_SF19 = 0xfa6c;
         public const UInt32 FSTV0910_GAINLLR_SF_16APSK_3_4 = 0xfa6c007f;
 
-		/* GAINLLR_SF20 */
+        /* GAINLLR_SF20 */
         public const ushort RSTV0910_GAINLLR_SF20 = 0xfa6d;
         public const UInt32 FSTV0910_GAINLLR_SF_16APSK_4_5 = 0xfa6d007f;
 
-		/* GAINLLR_SF21 */
+        /* GAINLLR_SF21 */
         public const ushort RSTV0910_GAINLLR_SF21 = 0xfa6e;
         public const UInt32 FSTV0910_GAINLLR_SF_16APSK_5_6 = 0xfa6e007f;
 
-		/* GAINLLR_SF22 */
+        /* GAINLLR_SF22 */
         public const ushort RSTV0910_GAINLLR_SF22 = 0xfa6f;
         public const UInt32 FSTV0910_GAINLLR_SF_16APSK_8_9 = 0xfa6f007f;
 
-		/* GAINLLR_SF24 */
+        /* GAINLLR_SF24 */
         public const ushort RSTV0910_GAINLLR_SF24 = 0xfa70;
         public const UInt32 FSTV0910_GAINLLR_SF_32APSK_3_4 = 0xfa70007f;
 
-		/* GAINLLR_SF25 */
+        /* GAINLLR_SF25 */
         public const ushort RSTV0910_GAINLLR_SF25 = 0xfa71;
         public const UInt32 FSTV0910_GAINLLR_SF_32APSK_4_5 = 0xfa71007f;
 
-		/* GAINLLR_SF26 */
+        /* GAINLLR_SF26 */
         public const ushort RSTV0910_GAINLLR_SF26 = 0xfa72;
         public const UInt32 FSTV0910_GAINLLR_SF_32APSK_5_6 = 0xfa72007f;
 
-		/* GAINLLR_SF27 */
+        /* GAINLLR_SF27 */
         public const ushort RSTV0910_GAINLLR_SF27 = 0xfa73;
         public const UInt32 FSTV0910_GAINLLR_SF_32APSK_8_9 = 0xfa73007f;
 
-		/* CFGEXT */
+        /* CFGEXT */
         public const ushort RSTV0910_CFGEXT = 0xfa80;
         public const UInt32 FSTV0910_BYPBCH = 0xfa806040;
         public const UInt32 FSTV0910_BYPLDPC = 0xfa805020;
         public const UInt32 FSTV0910_SHORTMULT = 0xfa802004;
 
-		/* GENCFG */
+        /* GENCFG */
         public const ushort RSTV0910_GENCFG = 0xfa86;
         public const UInt32 FSTV0910_BROADCAST = 0xfa864010;
         public const UInt32 FSTV0910_CROSSINPUT = 0xfa861002;
         public const UInt32 FSTV0910_DDEMOD = 0xfa860001;
 
-		/* LDPCERR1 */
+        /* LDPCERR1 */
         public const ushort RSTV0910_LDPCERR1 = 0xfa96;
         public const UInt32 FSTV0910_LDPC_ERRORS1 = 0xfa9600ff;
 
-		/* LDPCERR0 */
+        /* LDPCERR0 */
         public const ushort RSTV0910_LDPCERR0 = 0xfa97;
         public const UInt32 FSTV0910_LDPC_ERRORS0 = 0xfa9700ff;
 
-		/* BCHERR */
+        /* BCHERR */
         public const ushort RSTV0910_BCHERR = 0xfa98;
         public const UInt32 FSTV0910_ERRORFLAG = 0xfa984010;
         public const UInt32 FSTV0910_BCH_ERRORS_COUNTER = 0xfa98000f;
 
-		/* P1_MAXEXTRAITER */
+        /* P1_MAXEXTRAITER */
         public const ushort RSTV0910_P1_MAXEXTRAITER = 0xfab1;
         public const UInt32 FSTV0910_P1_MAX_EXTRA_ITER = 0xfab100ff;
 
-		/* P2_MAXEXTRAITER */
+        /* P2_MAXEXTRAITER */
         public const ushort RSTV0910_P2_MAXEXTRAITER = 0xfab6;
         public const UInt32 FSTV0910_P2_MAX_EXTRA_ITER = 0xfab600ff;
 
-		/* P1_STATUSITER */
+        /* P1_STATUSITER */
         public const ushort RSTV0910_P1_STATUSITER = 0xfabc;
         public const UInt32 FSTV0910_P1_STATUS_ITER = 0xfabc00ff;
 
-		/* P1_STATUSMAXITER */
+        /* P1_STATUSMAXITER */
         public const ushort RSTV0910_P1_STATUSMAXITER = 0xfabd;
         public const UInt32 FSTV0910_P1_STATUS_MAX_ITER = 0xfabd00ff;
 
-		/* P2_STATUSITER */
+        /* P2_STATUSITER */
         public const ushort RSTV0910_P2_STATUSITER = 0xfabe;
         public const UInt32 FSTV0910_P2_STATUS_ITER = 0xfabe00ff;
 
-		/* P2_STATUSMAXITER */
+        /* P2_STATUSMAXITER */
         public const ushort RSTV0910_P2_STATUSMAXITER = 0xfabf;
         public const UInt32 FSTV0910_P2_STATUS_MAX_ITER = 0xfabf00ff;
 
-		/* P2_NBITER_NF1 */
+        /* P2_NBITER_NF1 */
         public const ushort RSTV0910_P2_NBITER_NF1 = 0xfac0;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_1_4 = 0xfac000ff;
 
-		/* P2_NBITER_NF2 */
+        /* P2_NBITER_NF2 */
         public const ushort RSTV0910_P2_NBITER_NF2 = 0xfac1;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_1_3 = 0xfac100ff;
 
-		/* P2_NBITER_NF3 */
+        /* P2_NBITER_NF3 */
         public const ushort RSTV0910_P2_NBITER_NF3 = 0xfac2;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_2_5 = 0xfac200ff;
 
-		/* P2_NBITER_NF4 */
+        /* P2_NBITER_NF4 */
         public const ushort RSTV0910_P2_NBITER_NF4 = 0xfac3;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_1_2 = 0xfac300ff;
 
-		/* P2_NBITER_NF5 */
+        /* P2_NBITER_NF5 */
         public const ushort RSTV0910_P2_NBITER_NF5 = 0xfac4;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_3_5 = 0xfac400ff;
 
-		/* P2_NBITER_NF6 */
+        /* P2_NBITER_NF6 */
         public const ushort RSTV0910_P2_NBITER_NF6 = 0xfac5;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_2_3 = 0xfac500ff;
 
-		/* P2_NBITER_NF7 */
+        /* P2_NBITER_NF7 */
         public const ushort RSTV0910_P2_NBITER_NF7 = 0xfac6;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_3_4 = 0xfac600ff;
 
-		/* P2_NBITER_NF8 */
+        /* P2_NBITER_NF8 */
         public const ushort RSTV0910_P2_NBITER_NF8 = 0xfac7;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_4_5 = 0xfac700ff;
 
-		/* P2_NBITER_NF9 */
+        /* P2_NBITER_NF9 */
         public const ushort RSTV0910_P2_NBITER_NF9 = 0xfac8;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_5_6 = 0xfac800ff;
 
-		/* P2_NBITER_NF10 */
+        /* P2_NBITER_NF10 */
         public const ushort RSTV0910_P2_NBITER_NF10 = 0xfac9;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_8_9 = 0xfac900ff;
 
-		/* P2_NBITER_NF11 */
+        /* P2_NBITER_NF11 */
         public const ushort RSTV0910_P2_NBITER_NF11 = 0xfaca;
         public const UInt32 FSTV0910_P2_NBITER_NF_QPSK_9_10 = 0xfaca00ff;
 
-		/* P2_NBITER_NF12 */
+        /* P2_NBITER_NF12 */
         public const ushort RSTV0910_P2_NBITER_NF12 = 0xfacb;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_3_5 = 0xfacb00ff;
 
-		/* P2_NBITER_NF13 */
+        /* P2_NBITER_NF13 */
         public const ushort RSTV0910_P2_NBITER_NF13 = 0xfacc;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_2_3 = 0xfacc00ff;
 
-		/* P2_NBITER_NF14 */
+        /* P2_NBITER_NF14 */
         public const ushort RSTV0910_P2_NBITER_NF14 = 0xfacd;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_3_4 = 0xfacd00ff;
 
-		/* P2_NBITER_NF15 */
+        /* P2_NBITER_NF15 */
         public const ushort RSTV0910_P2_NBITER_NF15 = 0xface;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_5_6 = 0xface00ff;
 
-		/* P2_NBITER_NF16 */
+        /* P2_NBITER_NF16 */
         public const ushort RSTV0910_P2_NBITER_NF16 = 0xfacf;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_8_9 = 0xfacf00ff;
 
-		/* P2_NBITER_NF17 */
+        /* P2_NBITER_NF17 */
         public const ushort RSTV0910_P2_NBITER_NF17 = 0xfad0;
         public const UInt32 FSTV0910_P2_NBITER_NF_8PSK_9_10 = 0xfad000ff;
 
-		/* P2_NBITER_NF18 */
+        /* P2_NBITER_NF18 */
         public const ushort RSTV0910_P2_NBITER_NF18 = 0xfad1;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_2_3 = 0xfad100ff;
 
-		/* P2_NBITER_NF19 */
+        /* P2_NBITER_NF19 */
         public const ushort RSTV0910_P2_NBITER_NF19 = 0xfad2;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_3_4 = 0xfad200ff;
 
-		/* P2_NBITER_NF20 */
+        /* P2_NBITER_NF20 */
         public const ushort RSTV0910_P2_NBITER_NF20 = 0xfad3;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_4_5 = 0xfad300ff;
 
-		/* P2_NBITER_NF21 */
+        /* P2_NBITER_NF21 */
         public const ushort RSTV0910_P2_NBITER_NF21 = 0xfad4;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_5_6 = 0xfad400ff;
 
-		/* P2_NBITER_NF22 */
+        /* P2_NBITER_NF22 */
         public const ushort RSTV0910_P2_NBITER_NF22 = 0xfad5;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_8_9 = 0xfad500ff;
 
-		/* P2_NBITER_NF23 */
+        /* P2_NBITER_NF23 */
         public const ushort RSTV0910_P2_NBITER_NF23 = 0xfad6;
         public const UInt32 FSTV0910_P2_NBITER_NF_16APSK_9_10 = 0xfad600ff;
 
-		/* P2_NBITER_NF24 */
+        /* P2_NBITER_NF24 */
         public const ushort RSTV0910_P2_NBITER_NF24 = 0xfad7;
         public const UInt32 FSTV0910_P2_NBITER_NF_32APSK_3_4 = 0xfad700ff;
 
-		/* P2_NBITER_NF25 */
+        /* P2_NBITER_NF25 */
         public const ushort RSTV0910_P2_NBITER_NF25 = 0xfad8;
         public const UInt32 FSTV0910_P2_NBITER_NF_32APSK_4_5 = 0xfad800ff;
 
-		/* P2_NBITER_NF26 */
+        /* P2_NBITER_NF26 */
         public const ushort RSTV0910_P2_NBITER_NF26 = 0xfad9;
         public const UInt32 FSTV0910_P2_NBITER_NF_32APSK_5_6 = 0xfad900ff;
 
-		/* P2_NBITER_NF27 */
+        /* P2_NBITER_NF27 */
         public const ushort RSTV0910_P2_NBITER_NF27 = 0xfada;
         public const UInt32 FSTV0910_P2_NBITER_NF_32APSK_8_9 = 0xfada00ff;
 
-		/* P2_NBITER_NF28 */
+        /* P2_NBITER_NF28 */
         public const ushort RSTV0910_P2_NBITER_NF28 = 0xfadb;
         public const UInt32 FSTV0910_P2_NBITER_NF_32APSK_9_10 = 0xfadb00ff;
 
-		/* P2_NBITER_SF1 */
+        /* P2_NBITER_SF1 */
         public const ushort RSTV0910_P2_NBITER_SF1 = 0xfadc;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_1_4 = 0xfadc00ff;
 
-		/* P2_NBITER_SF2 */
+        /* P2_NBITER_SF2 */
         public const ushort RSTV0910_P2_NBITER_SF2 = 0xfadd;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_1_3 = 0xfadd00ff;
 
-		/* P2_NBITER_SF3 */
+        /* P2_NBITER_SF3 */
         public const ushort RSTV0910_P2_NBITER_SF3 = 0xfade;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_2_5 = 0xfade00ff;
 
-		/* P2_NBITER_SF4 */
+        /* P2_NBITER_SF4 */
         public const ushort RSTV0910_P2_NBITER_SF4 = 0xfadf;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_1_2 = 0xfadf00ff;
 
-		/* P2_NBITER_SF5 */
+        /* P2_NBITER_SF5 */
         public const ushort RSTV0910_P2_NBITER_SF5 = 0xfae0;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_3_5 = 0xfae000ff;
 
-		/* P2_NBITER_SF6 */
+        /* P2_NBITER_SF6 */
         public const ushort RSTV0910_P2_NBITER_SF6 = 0xfae1;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_2_3 = 0xfae100ff;
 
-		/* P2_NBITER_SF7 */
+        /* P2_NBITER_SF7 */
         public const ushort RSTV0910_P2_NBITER_SF7 = 0xfae2;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_3_4 = 0xfae200ff;
 
-		/* P2_NBITER_SF8 */
+        /* P2_NBITER_SF8 */
         public const ushort RSTV0910_P2_NBITER_SF8 = 0xfae3;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_4_5 = 0xfae300ff;
 
-		/* P2_NBITER_SF9 */
+        /* P2_NBITER_SF9 */
         public const ushort RSTV0910_P2_NBITER_SF9 = 0xfae4;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_5_6 = 0xfae400ff;
 
-		/* P2_NBITER_SF10 */
+        /* P2_NBITER_SF10 */
         public const ushort RSTV0910_P2_NBITER_SF10 = 0xfae5;
         public const UInt32 FSTV0910_P2_NBITER_SF_QPSK_8_9 = 0xfae500ff;
 
-		/* P2_NBITER_SF12 */
+        /* P2_NBITER_SF12 */
         public const ushort RSTV0910_P2_NBITER_SF12 = 0xfae6;
         public const UInt32 FSTV0910_P2_NBITER_SF_8PSK_3_5 = 0xfae600ff;
 
-		/* P2_NBITER_SF13 */
+        /* P2_NBITER_SF13 */
         public const ushort RSTV0910_P2_NBITER_SF13 = 0xfae7;
         public const UInt32 FSTV0910_P2_NBITER_SF_8PSK_2_3 = 0xfae700ff;
 
-		/* P2_NBITER_SF14 */
+        /* P2_NBITER_SF14 */
         public const ushort RSTV0910_P2_NBITER_SF14 = 0xfae8;
         public const UInt32 FSTV0910_P2_NBITER_SF_8PSK_3_4 = 0xfae800ff;
 
-		/* P2_NBITER_SF15 */
+        /* P2_NBITER_SF15 */
         public const ushort RSTV0910_P2_NBITER_SF15 = 0xfae9;
         public const UInt32 FSTV0910_P2_NBITER_SF_8PSK_5_6 = 0xfae900ff;
 
-		/* P2_NBITER_SF16 */
+        /* P2_NBITER_SF16 */
         public const ushort RSTV0910_P2_NBITER_SF16 = 0xfaea;
         public const UInt32 FSTV0910_P2_NBITER_SF_8PSK_8_9 = 0xfaea00ff;
 
-		/* P2_NBITER_SF18 */
+        /* P2_NBITER_SF18 */
         public const ushort RSTV0910_P2_NBITER_SF18 = 0xfaeb;
         public const UInt32 FSTV0910_P2_NBITER_SF_16APSK_2_3 = 0xfaeb00ff;
 
-		/* P2_NBITER_SF19 */
+        /* P2_NBITER_SF19 */
         public const ushort RSTV0910_P2_NBITER_SF19 = 0xfaec;
         public const UInt32 FSTV0910_P2_NBITER_SF_16APSK_3_4 = 0xfaec00ff;
 
-		/* P2_NBITER_SF20 */
+        /* P2_NBITER_SF20 */
         public const ushort RSTV0910_P2_NBITER_SF20 = 0xfaed;
         public const UInt32 FSTV0910_P2_NBITER_SF_16APSK_4_5 = 0xfaed00ff;
 
-		/* P2_NBITER_SF21 */
+        /* P2_NBITER_SF21 */
         public const ushort RSTV0910_P2_NBITER_SF21 = 0xfaee;
         public const UInt32 FSTV0910_P2_NBITER_SF_16APSK_5_6 = 0xfaee00ff;
 
-		/* P2_NBITER_SF22 */
+        /* P2_NBITER_SF22 */
         public const ushort RSTV0910_P2_NBITER_SF22 = 0xfaef;
         public const UInt32 FSTV0910_P2_NBITER_SF_16APSK_8_9 = 0xfaef00ff;
 
-		/* P2_NBITER_SF24 */
+        /* P2_NBITER_SF24 */
         public const ushort RSTV0910_P2_NBITER_SF24 = 0xfaf0;
         public const UInt32 FSTV0910_P2_NBITER_SF_32APSK_3_4 = 0xfaf000ff;
 
-		/* P2_NBITER_SF25 */
+        /* P2_NBITER_SF25 */
         public const ushort RSTV0910_P2_NBITER_SF25 = 0xfaf1;
         public const UInt32 FSTV0910_P2_NBITER_SF_32APSK_4_5 = 0xfaf100ff;
 
-		/* P2_NBITER_SF26 */
+        /* P2_NBITER_SF26 */
         public const ushort RSTV0910_P2_NBITER_SF26 = 0xfaf2;
         public const UInt32 FSTV0910_P2_NBITER_SF_32APSK_5_6 = 0xfaf200ff;
 
-		/* P2_NBITER_SF27 */
+        /* P2_NBITER_SF27 */
         public const ushort RSTV0910_P2_NBITER_SF27 = 0xfaf3;
         public const UInt32 FSTV0910_P2_NBITER_SF_32APSK_8_9 = 0xfaf300ff;
 
-		/* TSTRES0 */
+        /* TSTRES0 */
         public const ushort RSTV0910_TSTRES0 = 0xff11;
         public const UInt32 FSTV0910_FRESFEC = 0xff117080;
         public const UInt32 FSTV0910_FRESSYM1 = 0xff113008;
         public const UInt32 FSTV0910_FRESSYM2 = 0xff112004;
 
-		/* TSTOUT */
+        /* TSTOUT */
         public const ushort RSTV0910_TSTOUT = 0xff12;
         public const UInt32 FSTV0910_TS = 0xff12103e;
         public const UInt32 FSTV0910_TEST_OUT = 0xff120001;
 
-		/* TSTIN */
+        /* TSTIN */
         public const ushort RSTV0910_TSTIN = 0xff13;
         public const UInt32 FSTV0910_TEST_IN = 0xff137080;
 
-		/* P2_TSTDMD */
+        /* P2_TSTDMD */
         public const ushort RSTV0910_P2_TSTDMD = 0xff20;
         public const UInt32 FSTV0910_P2_CFRINIT_INVZIGZAG = 0xff203008;
 
-		/* P2_TCTL1 */
+        /* P2_TCTL1 */
         public const ushort RSTV0910_P2_TCTL1 = 0xff24;
         public const UInt32 FSTV0910_P2_TST_IQSYMBSEL = 0xff24001f;
 
-		/* P2_TCTL4 */
+        /* P2_TCTL4 */
         public const ushort RSTV0910_P2_TCTL4 = 0xff28;
         public const UInt32 FSTV0910_P2_CFR2TOCFR1_DVBS1 = 0xff2860c0;
 
-		/* P2_TPKTDELIN */
+        /* P2_TPKTDELIN */
         public const ushort RSTV0910_P2_TPKTDELIN = 0xff37;
         public const UInt32 FSTV0910_P2_CFG_RSPARITYON = 0xff377080;
 
-		/* P1_TSTDMD */
+        /* P1_TSTDMD */
         public const ushort RSTV0910_P1_TSTDMD = 0xff40;
         public const UInt32 FSTV0910_P1_CFRINIT_INVZIGZAG = 0xff403008;
 
-		/* P1_TCTL1 */
+        /* P1_TCTL1 */
         public const ushort RSTV0910_P1_TCTL1 = 0xff44;
         public const UInt32 FSTV0910_P1_TST_IQSYMBSEL = 0xff44001f;
 
-		/* P1_TCTL4 */
+        /* P1_TCTL4 */
         public const ushort RSTV0910_P1_TCTL4 = 0xff48;
         public const UInt32 FSTV0910_P1_CFR2TOCFR1_DVBS1 = 0xff4860c0;
 
-		/* P1_TPKTDELIN */
+        /* P1_TPKTDELIN */
         public const ushort RSTV0910_P1_TPKTDELIN = 0xff57;
         public const UInt32 FSTV0910_P1_CFG_RSPARITYON = 0xff577080;
 
-		/* TSTTSRS */
+        /* TSTTSRS */
         public const ushort RSTV0910_TSTTSRS = 0xff6d;
         public const UInt32 FSTV0910_TSTRS_DISRS2 = 0xff6d1002;
         public const UInt32 FSTV0910_TSTRS_DISRS1 = 0xff6d0001;
 
-		/* a count of the number of registers for use in init etc */
+        /* a count of the number of registers for use in init etc */
         public const UInt32 STV0910_NBREGS = 945;
         public const UInt32 STV0910_NBFIELDS = 1818;
     }

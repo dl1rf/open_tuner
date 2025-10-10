@@ -69,7 +69,6 @@ namespace opentuner.MediaSources.Winterhill
                 
                 _tuner_properties[c].AddItem("frequency", "Frequency" ,_genericContextStrip);
                 _tuner_properties[c].AddItem("offset", "Freq Offset", _genericContextStrip);
-                _tuner_properties[c].AddItem("nim_frequency", "Nim Frequency");
                 _tuner_properties[c].AddItem("symbol_rate", "Symbol Rate", _genericContextStrip);
                 _tuner_properties[c].AddItem("modcod", "Modcod");
                 _tuner_properties[c].AddItem("service_name", "Service Name");
@@ -541,7 +540,7 @@ namespace opentuner.MediaSources.Winterhill
 
                     }
 
-                    
+
                     if (hw_device == 2)
                     {
                         for (int counter = 0; counter < 2; counter++)
@@ -560,12 +559,11 @@ namespace opentuner.MediaSources.Winterhill
                             }
                         }
                     }
-                    
+
                     _tuner_properties[c].UpdateValue("demodstate", scanstate_lookup[rx.scanstate]);
                     _tuner_properties[c].UpdateValue("mer", rx.mer);
                     _tuner_properties[c].UpdateValue("frequency", GetFrequency(c, true).ToString("#,##0") + "  (" + GetFrequency(c, false).ToString("#,##0") + ")");
-                    _tuner_properties[c].UpdateValue("offset", _current_offset[c].ToString());
-                    _tuner_properties[c].UpdateValue("nim_frequency", GetFrequency(c, false).ToString());
+                    _tuner_properties[c].UpdateValue("offset", _current_offset[c].ToString("#,##0"));
                     _tuner_properties[c].UpdateValue("symbol_rate", rx.symbol_rate);
                     _tuner_properties[c].UpdateValue("modcod", rx.modcod.ToString());
                     _tuner_properties[c].UpdateValue("service_name", rx.service_name);
@@ -616,6 +614,14 @@ namespace opentuner.MediaSources.Winterhill
                     int.TryParse(rx.symbol_rate, NumberStyles.Number, CultureInfo.InvariantCulture, out symbol_rate_i);
                     source_data.symbol_rate = symbol_rate_i;
                     source_data.demod_locked = (rx.scanstate == 2 || rx.scanstate == 3);
+                    if (source_data.demod_locked)
+                    {
+                        source_data.demode_state = scanstate_lookup[rx.scanstate].Replace("Lock DVB-", "");
+                    }
+                    else
+                    {
+                        source_data.demode_state = "";
+                    }
                     source_data.service_name = rx.service_name;
                     source_data.modcode = rx.modcod;
 
@@ -632,46 +638,6 @@ namespace opentuner.MediaSources.Winterhill
                 }
             }
             catch ( Exception Ex)
-            {
-                Log.Warning(Ex, "Error");
-            }
-        }
-
-        private void WebSocketTimeout()
-        {
-            try
-            {
-                // still setting up
-                if (!_Ready)
-                    return;
-
-                if (_tuner_properties == null)
-                    return;
-
-                for (int c = 0; c < ts_devices; c++)
-                {
-                    demodstate[c] = 0x81;   // timeout
-                    Log.Information("Stopping " + c.ToString() + " - " + demodstate[c].ToString());
-
-                    VideoChangeCB?.Invoke(c, false);
-                    playing[c] = false;
-                    _tuner_properties[c].UpdateColor("demodstate", Color.PaleVioletRed);
-                    _tuner_properties[c].UpdateValue("demodstate", scanstate_lookup[demodstate[c]]);
-
-                    //var data = _tuner_properties[c].GetAll();
-                    //OnSourceData?.Invoke(c, data, "Tuner " + c.ToString());
-
-                    var source_data = new OTSourceData();
-                    source_data.frequency = GetFrequency(c, true);
-                    source_data.video_number = 0;
-                    source_data.mer = 0;
-                    source_data.db_margin = 0;
-                    source_data.demod_locked = false;
-
-                    OnSourceData?.Invoke(c, source_data, "Tuner " + (c+1).ToString());
-                }
-            }
-            catch (Exception Ex)
             {
                 Log.Warning(Ex, "Error");
             }

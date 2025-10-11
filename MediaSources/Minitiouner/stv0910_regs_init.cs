@@ -396,18 +396,24 @@ namespace opentuner
             /* TS P2 Registers */
             new STReg( RSTV0910_P2_TSSTATEM,       0xf0 ), /* P2_TSSTATEM */
             new STReg( RSTV0910_P2_TSSTATEL,       0x12 ), /* P2_TSSTATEL */
-            new STReg( RSTV0910_P2_TSCFGH,         0x80 ), /* P2_TSCFGH */
+//          new STReg( RSTV0910_P2_TSCFGH,         0x40 ), /* P2_TSCFGH        serial output, clock off when no data */
+            new STReg( RSTV0910_P2_TSCFGH,         0x80 ), /* P2_TSCFGH        was 0x40
+                                                                                  DVBCI mode, max granularity, parallel output, no headers,
+                                                                                  label error packets */
             new STReg( RSTV0910_P2_TSCFGM,         0x04 ), /* P2_TSCFGM */
             new STReg( RSTV0910_P2_TSCFGL,         0x20 ), /* P2_TSCFGL */
             new STReg( RSTV0910_P2_TSSYNC,         0x00 ), /* P2_TSSYNC */
             new STReg( RSTV0910_P2_TSINSDELH,      0x00 ), /* P2_TSINSDELH */
+//          new STReg( RSTV0910_P2_TSINSDELH,      0x01 ), /* P2_TSINSDELH	   send CRC at end of packet for DVB-S2 */
             new STReg( RSTV0910_P2_TSINSDELM,      0x00 ), /* P2_TSINSDELM */
             new STReg( RSTV0910_P2_TSINSDELL,      0x00 ), /* P2_TSINSDELL */
             new STReg( RSTV0910_P2_TSDIVN,         0x03 ), /* P2_TSDIVN */
+//          new STReg( RSTV0910_P2_TSDIVN,         0x83 ), /* P2_TSDIVN        output clock adapts to data rate */
             new STReg( RSTV0910_P2_TSCFG4,         0x00 ), /* P2_TSCFG4 */
             new STReg( RSTV0910_P2_TSSPEED,        0x33 ), /* P2_TSSPEED */
-        /*  new STReg( RSTV0910_P2_TSSTATUS,       0x52 ),    P2_TSSTATUS */
+        /*  new STReg( RSTV0910_P2_TSSTATUS,       0x52 ),    P2_TSSTATUS      R Only */
             new STReg( RSTV0910_P2_TSSTATUS2,      0x02 ), /* P2_TSSTATUS2 */
+//          new STReg( RSTV0910_P2_TSSTATUS2,      0x00 ), /* P2_TSSTATUS2 */
             new STReg( RSTV0910_P2_TSBITRATE1,     0x00 ), /* P2_TSBITRATE1 */
             new STReg( RSTV0910_P2_TSBITRATE0,     0x03 ), /* P2_TSBITRATE0 */
             new STReg( RSTV0910_P2_TSPACKLEN1,     0x00 ), /* P2_TSPACKLEN1 */
@@ -713,7 +719,6 @@ namespace opentuner
             new STReg( RSTV0910_P1_KDIV78,         0x50 ), /* P1_KDIV78 */
             new STReg( RSTV0910_P1_TSPIDFLT1,      0x00 ), /* P1_TSPIDFLT1 */
             new STReg( RSTV0910_P1_TSPIDFLT0,      0x00 ), /* P1_TSPIDFLT0 */
-
             /* DVB2 P1 Registers */
             new STReg( RSTV0910_P1_PDELCTRL0,      0x01 ), /* P1_PDELCTRL0 */
             new STReg( RSTV0910_P1_PDELCTRL1,      0x00 ), /* P1_PDELCTRL1 */
@@ -742,6 +747,7 @@ namespace opentuner
             new STReg( RSTV0910_P1_TSSTATEM,       0xf0 ), /* P1_TSSTATEM      deinterleaver on, reed-solomon on, descrambler on,
                                                                                   TS enabled, immediate output of data*/
             new STReg( RSTV0910_P1_TSSTATEL,       0x12 ), /* P1_TSSTATEL */
+//          new STReg( RSTV0910_P1_TSCFGH,         0x40 ), /* P1_TSCFGH        serial output, clock off when no data */
             new STReg( RSTV0910_P1_TSCFGH,         0x80 ), /* P1_TSCFGH        was 0x40
                                                                                   DVBCI mode, max granularity, parallel output, no headers,
                                                                                   label error packets */
@@ -750,13 +756,16 @@ namespace opentuner
                                                                                   don't load legacy, auto bitspeed */
             new STReg( RSTV0910_P1_TSSYNC,         0x00 ), /* P1_TSSYNC */
             new STReg( RSTV0910_P1_TSINSDELH,      0x00 ), /* P1_TSINSDELH */
+//          new STReg( RSTV0910_P1_TSINSDELH,      0x01 ), /* P1_TSINSDELH 	   send CRC at end of packet for DVB-S2 */
             new STReg( RSTV0910_P1_TSINSDELM,      0x00 ), /* P1_TSINSDELM */
             new STReg( RSTV0910_P1_TSINSDELL,      0x00 ), /* P1_TSINSDELL */
             new STReg( RSTV0910_P1_TSDIVN,         0x03 ), /* P1_TSDIVN */
+//          new STReg( RSTV0910_P1_TSDIVN,         0x83 ), /* P1_TSDIVN        output clock adapts to data rate */
             new STReg( RSTV0910_P1_TSCFG4,         0x00 ), /* P1_TSCFG4 */
             new STReg( RSTV0910_P1_TSSPEED,        0x33 ), /* P1_TSSPEED       was 0xff */
-            new STReg( RSTV0910_P1_TSSTATUS,       0x52 ), /* P1_TSSTATUS      R Only */
+        /*  new STReg( RSTV0910_P1_TSSTATUS,       0x52 ), /* P1_TSSTATUS      R Only */
             new STReg( RSTV0910_P1_TSSTATUS2,      0x02 ), /* P1_TSSTATUS2     was 0xa8 */
+//          new STReg( RSTV0910_P1_TSSTATUS2,      0x00 ), /* P1_TSSTATUS2 */
             new STReg( RSTV0910_P1_TSBITRATE1,     0x00 ), /* P1_TSBITRATE1 */
             new STReg( RSTV0910_P1_TSBITRATE0,     0x03 ), /* P1_TSBITRATE0 */
             new STReg( RSTV0910_P1_TSPACKLEN1,     0x00 ), /* P1_TSPACKLEN1 */
@@ -992,7 +1001,7 @@ namespace opentuner
             new STReg( RSTV0910_GAINLLR_SF26,      0x20 ), /* GAINLLR_SF26     */
             new STReg( RSTV0910_GAINLLR_SF27,      0x20 ), /* GAINLLR_SF27     */
             new STReg( RSTV0910_CFGEXT,            0x02 ), /* CFGEXT           */
-
+            new STReg( RSTV0910_GENCFG,            0x15 ), /* GENCFG           IP is in dual demod mode so both input streams are processed -  CROSSOVER bit 1 appears to do nothing */
         /*  new STReg( RSTV0910_LDPCERR1,          0x00 ),    LDPCERR1         R only : error counter MSByte */
         /*  new STReg( RSTV0910_LDPCERR0,          0x00 ),    LDPCERR0         R only : error counter LSByte */
         /*  new STReg( RSTV0910_BCHERR,            0x00 ),    BCHERR           R only : error flag and error counter */
@@ -1058,49 +1067,10 @@ namespace opentuner
             new STReg( RSTV0910_P2_NBITER_SF26,    0x1b ), /* P2_NBITER_SF26 */
             new STReg( RSTV0910_P2_NBITER_SF27,    0x1c ), /* P2_NBITER_SF27 */
 
-///         new STReg( RSTV0910_TSTRES0,           0x00 ), /* TSTRES0          */
-///         new STReg( RSTV0910_TSTOUT,            0x00 ), /* TSTOUT           */
-///         new STReg( RSTV0910_TSTIN,             0x00 ), /* TSTIN            */
+            new STReg( RSTV0910_TSTRES0,           0x00 ), /* TSTRES0          */
+            new STReg( RSTV0910_TSTOUT,            0x00 ), /* TSTOUT           */
+            new STReg( RSTV0910_TSTIN,             0x00 ), /* TSTIN            */
 
-///         new STReg( RSTV0910_P1_TSINSDELH,      0x01 ), /* send CRC at end of packet for DVB-S2 */
-            new STReg( RSTV0910_P1_TSCFGH,         0x80 ), /* serial output, clock off when no data */
-///         new STReg( RSTV0910_P2_TSINSDELH,      0x01 ), /* send CRC at end of packet for DVB-S2 */
-            new STReg( RSTV0910_P2_TSCFGH,         0x80 ),
-            new STReg( RSTV0910_GENCFG,            0x15 ), /* dual TS mode -  CROSSOVER bit 1 appears to do nothing */
-            new STReg( RSTV0910_OUTCFG2,           0x00 ), /* invert VALID and CLOCK */
-///         new STReg( RSTV0910_P1_TSDIVN,         0x83 ), /* output clock adapts to data rate */
-            new STReg( RSTV0910_P1_TSDIVN,         0x03 ), /* default */
-///         new STReg( RSTV0910_P2_TSDIVN,         0x83 ), 
-            new STReg( RSTV0910_P2_TSDIVN,         0x03 ), 
-
-            new STReg( RSTV0910_P1_TSSTATUS2,      0x02 ), // *
-            new STReg( RSTV0910_P2_TSSTATUS2,      0x02 ), // *
-
-
-
-
-///
-
-            // SR scan range
-
-///         new STReg( RSTV0910_P2_SFRUP1,         0x3f ), /* P2_SFRUP1 */
-///         new STReg( RSTV0910_P2_SFRUP0,         0xff ), /* P2_SFRUP0 */
-///         new STReg( RSTV0910_P1_SFRLOW1,        0x2e ), /* P2_SFRLOW1 */
-///         new STReg( RSTV0910_P2_SFRLOW1,        0x2e ), /* P2_SFRLOW1 */
-
-/*
-            new STReg( RSTV0910_P1_SFRUP1,         0x80 ), 
-            new STReg( RSTV0910_P1_SFRUP0,         0x00 ), 
-            new STReg( RSTV0910_P1_SFRLOW1,        0x80 ), 
-            new STReg( RSTV0910_P1_SFRLOW0,        0x00 ),
-            new STReg( RSTV0910_P2_SFRUP1,         0x80 ),
-            new STReg( RSTV0910_P2_SFRUP0,         0x00 ),
-            new STReg( RSTV0910_P2_SFRLOW1,        0x80 ),
-            new STReg( RSTV0910_P2_SFRLOW0,        0x00 ),
-*/
-
-            // wh52
-            //
             new STReg( RSTV0910_P2_TSTDMD,         0x00 ), /* P2_TSTDMD */
             new STReg( RSTV0910_P2_TCTL1,          0x00 ), /* P2_TCTL1 */
             /* TST P2 Registers */

@@ -43,7 +43,7 @@ namespace opentuner
 
             if (!repeater_on)
             {
-                err = nim_write_demod(0xf12a, 0xb8);
+                err = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0xb8);
                 repeater_on = true;
             }
             if (err == 0) err = ftdi_device.nim_read_reg8(lna_addr, reg, ref val);
@@ -60,7 +60,7 @@ namespace opentuner
 
             if (!repeater_on)
             {
-                err = nim_write_demod(0xf12a, 0xb8);
+                err = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0xb8);
                 repeater_on = true;
             }
             if (err == 0) err = ftdi_device.nim_write_reg8(lna_addr, reg, val);
@@ -76,7 +76,7 @@ namespace opentuner
             byte err = 0;
             if (!repeater_on)
             {
-                err = nim_write_demod(0xf12a, 0xb8);
+                err = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0xb8);
                 repeater_on = true;
             }
 
@@ -93,7 +93,7 @@ namespace opentuner
 
             if (!repeater_on)
             {
-                err = nim_write_demod(0xf12a, 0xb8);
+                err = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0xb8);
                 repeater_on = true;
             }
 
@@ -113,8 +113,8 @@ namespace opentuner
 
             if (repeater_on)
             {
+                error = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0x38);
                 repeater_on = false;
-                error = nim_write_demod(0xf12a, 0x38);
             }
 
             if (error == 0) error = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, reg, val);
@@ -137,8 +137,8 @@ namespace opentuner
 
             if (repeater_on)
             {
+                err = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0x38);
                 repeater_on = false;
-                err = nim_write_demod(0xf12a, 0x38);
             }
 
             if (err == 0) err = ftdi_device.nim_read_reg16(NIM_DEMOD_ADDR, reg, ref val);
@@ -160,23 +160,15 @@ namespace opentuner
 
             Log.Information("Flow: NIM init");
 
+            // turn off repeater
             repeater_on = false;
+            error = ftdi_device.nim_write_reg16(NIM_DEMOD_ADDR, 0xf12a, 0x38);
 
             error = nim_write_demod(0xF536, 0xAA);
             error = nim_read_demod(0xF536, ref val);
 
             if (0xAA != val)
-            {
                 error = 12;
-            }
-
-            //turn off repeater
-            repeater_on = false;
-
-            if (error == 0)
-            {
-                error = nim_write_demod(0xf12a, 0x38);
-            }
 
             return error;
         }

@@ -143,6 +143,7 @@ namespace opentuner.MediaSources.Winterhill
                     }
                     monitorDisconnect = false;
                     controlDisconnect = false;
+                    startPingTimer();
 
                     break;
                 case 2: // udp pico wh
@@ -263,7 +264,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             int device = ((UDPClient)sender).getID();
 
-            if (!playing[device])
+            if (!playing[device] || !_Ready)
                 return;
 
             for (int c = 0; c < e.Length; c++)
@@ -292,6 +293,19 @@ namespace opentuner.MediaSources.Winterhill
             _Ready = true;
         }
 
+        public override void ReStart()
+        {
+            for (int c = 0; c < ts_devices; c++)
+            {
+                if (hw_device == 1)
+                {
+                    WSSetTS(c);
+                }
+                SetFrequency(c, (uint)(_current_frequency[c] + _current_offset[c]), (uint)_current_sr[c], true);
+            }
+            _Ready = true;
+        }
+
         public override void Close()
         {
             _Ready = false;
@@ -304,6 +318,7 @@ namespace opentuner.MediaSources.Winterhill
             switch (defaultInterface)
             {
                 case 1: // websockets
+                    stopPingTimer();
                     DisconnectWebsockets();
                     break;
                 case 2: // udp pico wh

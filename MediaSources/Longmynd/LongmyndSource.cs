@@ -203,6 +203,10 @@ namespace opentuner.MediaSources.Longmynd
             _Ready = true;
         }
 
+        public override void ReStart()
+        {
+        }
+
         public override void Close()
         {
             _Ready = false;

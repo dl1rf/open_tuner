@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Interop;
 using Vortice.MediaFoundation;
 using WebSocketSharp;
-using System.Timers;
 
 namespace opentuner.MediaSources.Winterhill
 {
@@ -16,12 +17,17 @@ namespace opentuner.MediaSources.Winterhill
         // ws interface
         private WebSocket controlWS;        // longmynd control ws websocket
         private WebSocket monitorWS;        // longmynd monitor ws websocket
+        private static Timer PingTimer;
         private bool controlDisconnect;
         private bool monitorDisconnect;
         private bool controlConnected;
         private bool monitorConnected;
         private bool controlClosed;
         private bool monitorClosed;
+        private bool controlReconnect;
+        private bool monitorReconnect;
+        private bool controlPingResult;
+        private bool monitorPingResult;
 
         private void WSSetFrequency(int device, int freq, int sr)
         {           
@@ -37,7 +43,6 @@ namespace opentuner.MediaSources.Winterhill
 
         private void connectWebsockets()
         {
-
             string url = "ws://" + _settings.WinterhillWSHost + ":" + _settings.WinterhillWSPort.ToString() + "/ ";
 
             monitorWS = new WebSocket(url, "monitor");
@@ -45,20 +50,71 @@ namespace opentuner.MediaSources.Winterhill
             monitorWS.OnMessage += Monitorws_OnMessage;
             monitorWS.OnClose += Monitorws_OnClose;
             monitorWS.OnError += MonitorWS_OnError;
-            monitorWS.ConnectAsync();
             monitorDisconnect = true;
             monitorConnected = false;
             monitorClosed = false;
+            monitorReconnect = false;
+            monitorWS.ConnectAsync();
 
             controlWS = new WebSocket(url, "control");
             controlWS.OnClose += Controlws_OnClose;
             controlWS.OnMessage += Controlws_OnMessage;
             controlWS.OnOpen += Controlws_OnOpen;
             controlWS.OnError += ControlWS_OnError;
-            controlWS.ConnectAsync();
             controlDisconnect = true;
             controlConnected = false;
             controlClosed = false;
+            controlReconnect = false;
+            controlWS.ConnectAsync();
+        }
+
+        private void startPingTimer()
+        {
+            // Create a timer with a two second interval.
+            PingTimer = new Timer(10000);
+            // Hook up the Elapsed event for the timer. 
+            PingTimer.Elapsed += OnStartPingEvent;
+            PingTimer.AutoReset = true;
+            PingTimer.Enabled = true;
+        }
+
+        private void stopPingTimer()
+        {
+            PingTimer.Stop();
+        }
+
+        private void OnStartPingEvent(object sender, ElapsedEventArgs e)
+        {
+            if (controlConnected == true && controlReconnect == true &&
+                monitorConnected == true && monitorReconnect == true)
+            {
+                controlReconnect = false;
+                monitorReconnect = false;
+                PingTimer.Stop();
+                Task.Delay(10000);   // delay to allow WinterHill to get to stable state
+                ReStart();
+                PingTimer.Start();
+            }
+            if (controlConnected == true)
+                controlPingResult = controlWS.Ping();
+            if (monitorConnected == true)
+                monitorPingResult = monitorWS.Ping();
+            if (controlPingResult == false || monitorPingResult == false)
+            {
+                if (controlPingResult == false && controlReconnect == false ||
+                    monitorPingResult == false && monitorReconnect == false)
+                {
+                    debug("Ping Error");
+                    controlReconnect = true;
+                    controlConnected = false;
+                    controlWS?.Close();
+
+                    monitorReconnect = true;
+                    monitorConnected = false;
+                    monitorWS?.Close();
+                    _Ready = false;
+                }
+            }
         }
 
         private void ControlWS_OnError(object sender, ErrorEventArgs e)
@@ -75,10 +131,11 @@ namespace opentuner.MediaSources.Winterhill
         {
             debug("Success: Monitor WS Open");
             monitorConnected = true;
-            _connected = true;
+            if (monitorReconnect)
+            {
+                debug("Monitor WS Reconnected");
+            }
         }
-
-
 
         public void debug(string msg)
         {
@@ -89,6 +146,10 @@ namespace opentuner.MediaSources.Winterhill
         {
             debug("Success: Control WS Open");
             controlConnected = true;
+            if (controlReconnect)
+            {
+                debug("Control WS Reconnected");
+            }
         }
 
 
@@ -102,6 +163,7 @@ namespace opentuner.MediaSources.Winterhill
             {
                 debug("Error: Control WS Closed - Check WS IP");
                 debug("Attempting to reconnect...");
+                controlReconnect = true;
                 controlWS.ConnectAsync();
             }
             else
@@ -117,6 +179,7 @@ namespace opentuner.MediaSources.Winterhill
             {
                 debug("Error: Monitor WS Closed - Check WS IP");
                 debug("Attempting to reconnect...");
+                monitorReconnect = true;
                 monitorWS.ConnectAsync();
             }
             else

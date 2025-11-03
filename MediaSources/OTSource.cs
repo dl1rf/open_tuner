@@ -50,6 +50,8 @@ namespace opentuner.MediaSources
 
         public abstract void Start();
 
+        public abstract void ReStart();
+
         public abstract void Close();
 
         // initialize returns how many video players it need

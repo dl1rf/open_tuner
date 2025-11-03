@@ -300,6 +300,7 @@ namespace opentuner
             checkBatcChat.Checked = _settings.enable_chatform_checkbox;
             checkMqttClient.Checked = _settings.enable_mqtt_checkbox;
             checkQuicktune.Checked = _settings.enable_quicktune_checkbox;
+            checkPlutoCtrl.Checked = _settings.enable_plutoctrl_checkbox;
 
             // load available sources
             _availableSources.Add(new MinitiounerSource());
@@ -373,8 +374,11 @@ namespace opentuner
             // update gui
             SourcePage.Hide();
             tabControl1.TabPages.Remove(SourcePage);
-            debugPage.Hide();                           // remove debugPage for now.
-            tabControl1.TabPages.Remove(debugPage);
+            tabControl1.TabPages.Add(PropertiesPage);
+            if (checkPlutoCtrl.Checked)
+            {
+                tabControl1.TabPages.Add(PlutoCtrlPage);
+            }
             tabControl1.Width = 100;
             tabControl1.Update();
             videoSource.OnSourceData += VideoSource_OnSourceData;
@@ -1052,7 +1056,7 @@ namespace opentuner
                 splitContainer2.Panel2.Show();
 
                 this.DoubleBuffered = true;
-                batc_spectrum = new BATCSpectrum(spectrum, videoSource.GetVideoSourceCount());
+                batc_spectrum = new BATCSpectrum(spectrum, videoSource.GetVideoSourceCount(), checkPlutoCtrl.Checked, checkQuicktune.Checked);
                 batc_spectrum.OnSignalSelected += Batc_spectrum_OnSignalSelected;
             }
 
@@ -1118,6 +1122,11 @@ namespace opentuner
         private void checkBatcSpectrum_CheckedChanged(object sender, EventArgs e)
         {
             _settings.enable_spectrum_checkbox = checkBatcSpectrum.Checked;
+        }
+
+        private void checkPlutoCtrl_CheckedChanged(object sender, EventArgs e)
+        {
+            _settings.enable_plutoctrl_checkbox = checkPlutoCtrl.Checked;
         }
 
         private void linkBatcSpectrumSettings_Click(object sender, EventArgs e)
@@ -1189,6 +1198,11 @@ namespace opentuner
             {
                 quicktune_settingsManager.SaveSettings(quicktune_settings);
             }
+        }
+
+        private void linkPlutoCtrlSettings_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void linkSpectrumDocumentation_Click(object sender, EventArgs e)
@@ -1373,6 +1387,4 @@ namespace opentuner
             ToggleExtraToolPanel(!ExtraTool_hidden);
         }
     }
-
-
 }

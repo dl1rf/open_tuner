@@ -103,6 +103,7 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
         private UInt16[] fft_data;
 
         public bool pluto_control_enabled = false;
+        public bool QuickTune_enabled = false;
 
         public void updateStreaming(int tuner, bool streaming)
         {
@@ -123,33 +124,37 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             }
         }
 
-        public BATCSpectrum(PictureBox Spectrum, int Tuners) 
+        public BATCSpectrum(PictureBox Spectrum, int Tuners, bool plutoCtrlenabled, bool QuicktuneEnabled) 
         {
             spectrumSettings = new BATCSpectrumSettings();
             batc_settingsManager = new SettingsManager<BATCSpectrumSettings>("spectrumSettings");
 
             spectrumSettings = batc_settingsManager.LoadSettings(spectrumSettings);
-
             _spectrum = Spectrum;
 
             _tuners = Tuners;
             rx_blocks = new RX[Tuners];
+            pluto_control_enabled = plutoCtrlenabled;
+            QuickTune_enabled = QuicktuneEnabled;
 
             for (int i = 0; i < Tuners; i++)
             {
                 rx_blocks[i].dateTime = DateTime.Now;
                 rx_blocks[i].signalLost = false;
+                if (QuickTune_enabled)
+                {
+                    spectrumSettings.tuneMode[i] = 0;
+                }
             }
 
-
             thread_wait_event_handles = new EventWaitHandle[]
-                {
-                    new AutoResetEvent(false),  // index 0: disconnected
-                    new AutoResetEvent(false),  // index 1: draw bandplan
-                    new AutoResetEvent(false),  // index 2: new fft_data
-                    new AutoResetEvent(false),  // index 3: resize graphics
-                    new AutoResetEvent(false)   // index 4: exit
-                };
+            {
+                new AutoResetEvent(false),  // index 0: disconnected
+                new AutoResetEvent(false),  // index 1: draw bandplan
+                new AutoResetEvent(false),  // index 2: new fft_data
+                new AutoResetEvent(false),  // index 3: resize graphics
+                new AutoResetEvent(false)   // index 4: exit
+            };
             drawingThreadHandle = new Thread(drawingThread);
             drawingThreadHandle.Priority = ThreadPriority.AboveNormal;
             drawingThreadHandle.Start();
@@ -466,8 +471,8 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 }
             }
 
-            tmp.DrawString(InfoText, new Font("Tahoma", 15), Brushes.White, new PointF(80, _spectrum.Height - 100));
-            tmp.DrawString(TX_Text, new Font("Tahoma", 15), Brushes.Red, new PointF(80, _spectrum.Height - 50));  //dh3cs
+            tmp.DrawString(InfoText, new Font("Tahoma", 15), Brushes.White, new PointF(80, _spectrum.Height - 104));
+            tmp.DrawString(TX_Text, new Font("Tahoma", 15), Brushes.Red, new PointF(80, _spectrum.Height - 54));  //dh3cs
 
             // draw over power
             lock (list_lock)
@@ -511,7 +516,14 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 switch (spectrumSettings.tuneMode[i])
                 {
                     case 0:
-                        tmp.DrawString("Manual", new Font("Tahoma", 10), Brushes.White, new PointF(5, y + 14));
+                        if (QuickTune_enabled)
+                        {
+                            tmp.DrawString("QuickTune", new Font("Tahoma", 10), Brushes.White, new PointF(5, y + 14));
+                        }
+                        else
+                        {
+                            tmp.DrawString("Manual", new Font("Tahoma", 10), Brushes.White, new PointF(5, y + 14));
+                        }
                         break;
                     case 1:
                         tmp.DrawString("Auto (Hold)", new Font("Tahoma", 10), Brushes.White, new PointF(5, y + 14));
@@ -549,18 +561,20 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                 {
                     if (pluto_control_enabled)
                     {
+                        string tx_freq = get_bandplan_TX_freq(X, Y);
+                        debug("TX-Freq: " + tx_freq + " MHz");
+                        // dh3cs
+                        if (!string.IsNullOrEmpty(tx_freq))
+                        {
+                            //Clipboard.SetText((Convert.ToDecimal(tx_freq) * 1000).ToString());    //DATV Express in Hz
+                            Clipboard.SetText(tx_freq);                                             //DATV-Easy in MHz
+                            TX_Text = " TX: " + tx_freq + Environment.NewLine + " SR: ";
+                        }
                         switch (me.Button)
                         {
                             case MouseButtons.Left:
-                                string tx_freq = get_bandplan_TX_freq(X, Y);
-                                debug("TX-Freq: " + tx_freq + " MHz");
-                                // dh3cs
-                                if (!string.IsNullOrEmpty(tx_freq))
-                                {
-                                    //Clipboard.SetText((Convert.ToDecimal(tx_freq) * 1000).ToString());    //DATV Express in Hz
-                                    Clipboard.SetText(tx_freq);                                             //DATV-Easy in MHz
-                                    TX_Text = " TX: " + tx_freq;
-                                }
+                                break;
+                            case MouseButtons.Middle:
                                 break;
                             case MouseButtons.Right:
                                 break;
@@ -609,29 +623,32 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                             break;
                         case MouseButtons.Middle:
                             {
-                                int tuner = determine_rx(Y);
-                                using (oneTunerTuneModeForm oTTMForm = new oneTunerTuneModeForm(
-                                    tuner + 1,
-                                    spectrumSettings.tuneMode[tuner],
-                                    spectrumSettings.avoidBeacon[tuner]))      //open up the single tune mode select form
+                                if (!QuickTune_enabled)
                                 {
-                                    Point spectrum_screen_location = _spectrum.PointToScreen(_spectrum.Location);
-                                    Point new_oTTMForm_location = spectrum_screen_location;
-                                    int spectrum_width = _spectrum.Size.Width;
-                                    int oTTMForm_width = oTTMForm.Size.Width;
-
-                                    if (X > (oTTMForm_width / 2))
-                                        new_oTTMForm_location.X = spectrum_screen_location.X + X - oTTMForm.Size.Width / 2;
-                                    if (X > (spectrum_width - oTTMForm.Size.Width / 2))
-                                        new_oTTMForm_location.X = spectrum_screen_location.X + (spectrum_width - oTTMForm.Size.Width);
-
-                                    oTTMForm.StartPosition = FormStartPosition.Manual;
-                                    oTTMForm.Location = new_oTTMForm_location;
-                                    DialogResult result = oTTMForm.ShowDialog();
-                                    if (result == DialogResult.OK)
+                                    int tuner = determine_rx(Y);
+                                    using (oneTunerTuneModeForm oTTMForm = new oneTunerTuneModeForm(
+                                        tuner + 1,
+                                        spectrumSettings.tuneMode[tuner],
+                                        spectrumSettings.avoidBeacon[tuner]))      //open up the single tune mode select form
                                     {
-                                        spectrumSettings.tuneMode[tuner] = oTTMForm.getTuneMode();
-                                        spectrumSettings.avoidBeacon[tuner] = oTTMForm.getAvoidBeacon();
+                                        Point spectrum_screen_location = _spectrum.PointToScreen(_spectrum.Location);
+                                        Point new_oTTMForm_location = spectrum_screen_location;
+                                        int spectrum_width = _spectrum.Size.Width;
+                                        int oTTMForm_width = oTTMForm.Size.Width;
+
+                                        if (X > (oTTMForm_width / 2))
+                                            new_oTTMForm_location.X = spectrum_screen_location.X + X - oTTMForm.Size.Width / 2;
+                                        if (X > (spectrum_width - oTTMForm.Size.Width / 2))
+                                            new_oTTMForm_location.X = spectrum_screen_location.X + (spectrum_width - oTTMForm.Size.Width);
+
+                                        oTTMForm.StartPosition = FormStartPosition.Manual;
+                                        oTTMForm.Location = new_oTTMForm_location;
+                                        DialogResult result = oTTMForm.ShowDialog();
+                                        if (result == DialogResult.OK)
+                                        {
+                                            spectrumSettings.tuneMode[tuner] = oTTMForm.getTuneMode();
+                                            spectrumSettings.avoidBeacon[tuner] = oTTMForm.getAvoidBeacon();
+                                        }
                                     }
                                 }
                             }

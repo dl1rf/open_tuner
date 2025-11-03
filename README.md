@@ -19,21 +19,22 @@ Improvements and changes:
 
 [Please read the rough description](https://github.com/dl1rf/open_tuner/blob/main/Doc/OpenTuner_DL1RF's_0.C.pdf)
 
-Installation Instructions:
+Installation instructions:
 
-Unzip the binary package into a new directory to prevent your original OpenTuner version.
+Unzip the binary package into a new directory to preserve your original OpenTuner version.
 
 To get your settings from a previous version to this version copy the setting files from your original version into the settings directory of this version.
 
-If you plan to use more than one OpenTuner instance at a time please install OpenTuner into searate directories for each instance.
-
-OpenTuner will try to save serval data at program close and so each instance need its own settings directory for storage.
+If you plan to use more than one OpenTuner instance at a time please install OpenTuner into searate directories. One for each instance.
+OpenTuner will try to save serval data at program close and each instance need its own settings directory for storage.
+Otherwise one instance will override settings from another instance.
 
 Please do not close OpenTuner by closing the Terminal Window.
-In this case window layout etc. will not be stored. Please close Opentuner by closing the Main window.
-Only in cases Opentuner will not stop and close (this can take up to 1 Minute in seldom cases) kill Opentuner by closing the Terminal window.
+In this case window layout etc. will not be stored. Please close OpenTuner by closing the Main window.
 
-If you find issues please post it to me.
+Only in cases OpenTuner will not stop and close (this can take up to 1 Minute in seldom cases) kill OpenTuner by closing the Terminal window.
+
+If you find issues please post them here to me.
 
 Have fun.
 

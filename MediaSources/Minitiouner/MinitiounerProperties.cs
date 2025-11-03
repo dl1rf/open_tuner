@@ -397,7 +397,7 @@ namespace opentuner.MediaSources.Minitiouner
             _tuner1_properties.UpdateValue("symbol_rate", (new_status.T1P2_symbol_rate / 1000).ToString());
             _tuner1_properties.UpdateValue("ber", new_status.T1P2_ber.ToString());
             _tuner1_properties.UpdateValue("freq_carrier_offset", new_status.T1P2_frequency_carrier_offset.ToString());
-            _tuner1_properties.UpdateValue("requested_freq_1", "(" + GetFrequency(0, true).ToString("N0") + ") (" + GetFrequency(0, false).ToString("N0") + ")");
+            _tuner1_properties.UpdateValue("requested_freq_1", GetFrequency(0, true).ToString("N0") + "  (" + GetFrequency(0, false).ToString("N0") + ")");
             _tuner1_properties.UpdateValue("rf_input", (new_status.T1P2_rf_input == 1 ? "A" : "B"));
             _tuner1_properties.UpdateValue("stream_format", lookups.stream_format_lookups[Convert.ToInt32(new_status.T1P2_stream_format)].ToString());
             _tuner1_properties.UpdateValue("offset", current_offset_0.ToString());
@@ -466,6 +466,15 @@ namespace opentuner.MediaSources.Minitiouner
             source_data.db_margin = dbmargin;
             source_data.service_name = _tuner1_properties.GetValue("service_name");
             source_data.demod_locked = (new_status.T1P2_demod_status > 1);
+            if (source_data.demod_locked)
+            {
+                source_data.demode_state = lookups.demod_state_lookup[new_status.T1P2_demod_status].Replace("Lock DVB-", "");
+            }
+            else
+            {
+                source_data.demode_state = "";
+            }
+
             source_data.symbol_rate = (int)(new_status.T1P2_symbol_rate / 1000);
             source_data.modcode = modcod_text;
 
@@ -500,7 +509,7 @@ namespace opentuner.MediaSources.Minitiouner
                 _tuner2_properties.UpdateValue("symbol_rate", (new_status.T2P1_symbol_rate / 1000).ToString());
                 _tuner2_properties.UpdateValue("ber", new_status.T2P1_ber.ToString());
                 _tuner2_properties.UpdateValue("freq_carrier_offset", new_status.T2P1_frequency_carrier_offset.ToString());
-                _tuner2_properties.UpdateValue("requested_freq_2", "(" + GetFrequency(1, true).ToString("N0") + ") (" + GetFrequency(1, false).ToString("N0") + ")");
+                _tuner2_properties.UpdateValue("requested_freq_2", GetFrequency(1, true).ToString("N0") + "  (" + GetFrequency(1, false).ToString("N0") + ")");
 
                 _tuner2_properties.UpdateValue("rf_input", (new_status.T2P1_rf_input == 1 ? "A" : "B"));
                 _tuner2_properties.UpdateValue("stream_format", lookups.stream_format_lookups[Convert.ToInt32(new_status.T2P1_stream_format)].ToString());
@@ -575,6 +584,14 @@ namespace opentuner.MediaSources.Minitiouner
                 source_data_2.db_margin = dbmargin;
                 source_data_2.service_name = _tuner2_properties.GetValue("service_name");
                 source_data_2.demod_locked = (new_status.T2P1_demod_status > 1);
+                if (source_data.demod_locked)
+                {
+                    source_data.demode_state = lookups.demod_state_lookup[new_status.T2P1_demod_status].Replace("Lock DVB-", "");
+                }
+                else
+                {
+                    source_data.demode_state = "";
+                }
                 source_data_2.symbol_rate = (int)(new_status.T2P1_symbol_rate / 1000);
                 source_data_2.modcode = modcod_text;
 

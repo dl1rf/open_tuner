@@ -30,7 +30,6 @@ namespace opentuner.Utilities
             Invalidate();
         }
 
-        
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -47,18 +46,24 @@ namespace opentuner.Utilities
             if (last_info_data == null)
                 return;
 
-
             string info = "";
 
-            string locked_info = last_info_data.service_name + " - " +
-                " D" + last_info_data.db_margin.ToString("F1");
+            string locked_info = (last_info_data.service_name.Length == 0 ? "Lock" : last_info_data.service_name) + " - " + " D" + last_info_data.db_margin.ToString("F1");
 
-            info =
-                "MER: " + last_info_data.mer.ToString("F1") + " dB - " +
-                last_info_data.frequency.ToString("N0", CultureInfo.InvariantCulture) +
-                " - " + last_info_data.symbol_rate.ToString();
-            if (last_info_data.modcode != "")
+            if (last_info_data.demod_locked)
+            {
+                info = "MER: " + last_info_data.mer.ToString("F1") + " dB";
+            }
+            info = info + " - " + last_info_data.frequency.ToString("N0", CultureInfo.CurrentCulture);
+            if (last_info_data.demod_locked)
+            {
+                info = info + " - " + last_info_data.demode_state;
+            }
+            info = info + " - " + last_info_data.symbol_rate.ToString();
+            if (last_info_data.demod_locked)
+            {
                 info = info + " - " + last_info_data.modcode;
+            }
 
             int x_pos = 2;
             int y_pos = 5;
@@ -103,8 +108,6 @@ namespace opentuner.Utilities
             {
                 pe.Graphics.DrawString("R", font, Brushes.PaleVioletRed, new PointF(x_pos, y_pos));
             }
-
         }
-
     }
 }

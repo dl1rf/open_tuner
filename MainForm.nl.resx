@@ -117,7 +117,109 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Tuner Besturing</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 17</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Frequentie: </value>
+  </data>
+  <data name="openTunerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 20</value>
+  </data>
+  <data name="openTunerToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Aktie</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Instellingen ...</value>
+  </data>
+  <data name="quitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="quitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Afsluiten</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 6</value>
+  </data>
+  <data name="menuConnect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 22</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 16</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Status van Verbinding:</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 16</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>LDPC  Fouten :</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Video Resolutie:</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 16</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Gewenste Frequentie :</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 16</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Demodulatie Status: </value>
+  </data>
+  <data name="menuConnect.Text" xml:space="preserve">
+    <value>Verbinden</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>LNB Voeding</value>
+  </data>
+  <data name="radioLnbSupplyOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 21</value>
+  </data>
+  <data name="radioLnbSupplyOff.Text" xml:space="preserve">
+    <value>Uit</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Media Besturing</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 17</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Nul Packets:</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 17</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Service Provider:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Service Naam:</value>
+  </data>
+  <data name="btnFrequencyChange.Text" xml:space="preserve">
+    <value>Wijziging</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>LNA Versterking:</value>
+  </data>
   <data name="rfRadioInputB.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 21</value>
   </data>
@@ -142,106 +244,11 @@
   <data name="radioLnbSupplyVert.Text" xml:space="preserve">
     <value>Vertikaal (13V)</value>
   </data>
-  <data name="radioLnbSupplyOff.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 21</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="hidePanelToolStripMenuItem.Text1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
-  <data name="radioLnbSupplyOff.Text" xml:space="preserve">
-    <value>Uit</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>LNB Voeding</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Media Besturing</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 17</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Video Resolutie:</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 17</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Nul Packets:</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 17</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Service Provider:</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Service Naam:</value>
-  </data>
-  <data name="btnFrequencyChange.Text" xml:space="preserve">
-    <value>Wijziging</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 17</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Frequentie: </value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Tuner Besturing</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 16</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Gewenste Frequentie :</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 16</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Status van Verbinding:</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 16</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>LDPC  Fouten :</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>LNA Versterking:</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 16</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Demodulatie Status: </value>
-  </data>
-  <data name="menuConnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="menuConnect.Text" xml:space="preserve">
-    <value>Verbinden</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Instellingen ...</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 6</value>
-  </data>
-  <data name="quitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 22</value>
-  </data>
-  <data name="quitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Afsluiten</value>
-  </data>
-  <data name="openTunerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
-  </data>
-  <data name="openTunerToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Aktie</value>
+  <data name="hideExtraToolStripMenuItem.Text1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>

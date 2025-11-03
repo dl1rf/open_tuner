@@ -12,17 +12,11 @@ using System.Windows.Forms;
 
 namespace opentuner.Transmit
 {
-
-
-
     public partial class PlutoControl : Form
     {
-
         public PlutoControl()
         {
             InitializeComponent();
-
-
         }
 
         private void PlutoControl_FormClosing(object sender, FormClosingEventArgs e)
@@ -33,7 +27,6 @@ namespace opentuner.Transmit
                 Hide();
             }
         }
-
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {

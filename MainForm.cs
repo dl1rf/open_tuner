@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows.Forms;
-using System.Globalization;
-using System.Diagnostics;
-
-using opentuner.MediaSources;
-using opentuner.MediaSources.Minitiouner;
-using opentuner.MediaSources.Longmynd;
-using opentuner.MediaSources.Winterhill;
-
-using opentuner.MediaPlayers;
-using opentuner.MediaPlayers.MPV;
-using opentuner.MediaPlayers.FFMPEG;
-using opentuner.MediaPlayers.VLC;
-
-using opentuner.Utilities;
-using opentuner.Transmit;
-using opentuner.ExtraFeatures.BATCSpectrum;
+﻿using opentuner.ExtraFeatures.BATCSpectrum;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.ExtraFeatures.MqttClient;
 using opentuner.ExtraFeatures.QuickTuneControl;
-
-using Serilog;
-using System.Runtime.CompilerServices;
-using System.Drawing;
+using opentuner.MediaPlayers;
+using opentuner.MediaPlayers.FFMPEG;
+using opentuner.MediaPlayers.MPV;
+using opentuner.MediaPlayers.VLC;
+using opentuner.MediaSources;
+using opentuner.MediaSources.Longmynd;
+using opentuner.MediaSources.Minitiouner;
+using opentuner.MediaSources.Winterhill;
+using opentuner.Properties;
 using opentuner.SettingsManagement;
+using opentuner.Transmit;
+using opentuner.Utilities;
+using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.Resources;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace opentuner
 {
@@ -296,11 +294,13 @@ namespace opentuner
             //setup
             splitContainer2.Panel2Collapsed = true;
             splitContainer2.Panel2.Enabled = false;
+            splitContainer2.Panel2.Hide();
 
             checkBatcSpectrum.Checked = _settings.enable_spectrum_checkbox;
             checkBatcChat.Checked = _settings.enable_chatform_checkbox;
             checkMqttClient.Checked = _settings.enable_mqtt_checkbox;
             checkQuicktune.Checked = _settings.enable_quicktune_checkbox;
+            checkPlutoCtrl.Checked = _settings.enable_plutoctrl_checkbox;
 
             // load available sources
             _availableSources.Add(new MinitiounerSource());
@@ -374,7 +374,13 @@ namespace opentuner
             // update gui
             SourcePage.Hide();
             tabControl1.TabPages.Remove(SourcePage);
-
+            tabControl1.TabPages.Add(PropertiesPage);
+            if (checkPlutoCtrl.Checked)
+            {
+                tabControl1.TabPages.Add(PlutoCtrlPage);
+            }
+            tabControl1.Width = 100;
+            tabControl1.Update();
             videoSource.OnSourceData += VideoSource_OnSourceData;
 
             return true;
@@ -581,11 +587,7 @@ namespace opentuner
                 // we are closing, we don't really care about exceptions at this point
                 Log.Error( Ex, "Closing Exception");
             }
-
-
-
             Log.Information("Bye!");
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -1043,14 +1045,18 @@ namespace opentuner
             if (!SourceConnect(_availableSources[comboAvailableSources.SelectedIndex], _settings.mute_at_startup))
                 return false;
 
+            hidePanelToolStripMenuItem.Visible = true;
+
             if (checkBatcSpectrum.Checked)
             {
+                hideExtraToolStripMenuItem.Visible = true;
                 // show spectrum
                 splitContainer2.Panel2Collapsed = false;
                 splitContainer2.Panel2.Enabled = true;
+                splitContainer2.Panel2.Show();
 
                 this.DoubleBuffered = true;
-                batc_spectrum = new BATCSpectrum(spectrum, videoSource.GetVideoSourceCount());
+                batc_spectrum = new BATCSpectrum(spectrum, videoSource.GetVideoSourceCount(), checkPlutoCtrl.Checked, checkQuicktune.Checked);
                 batc_spectrum.OnSignalSelected += Batc_spectrum_OnSignalSelected;
             }
 
@@ -1080,8 +1086,10 @@ namespace opentuner
 
             // hide/show panels
             TogglePropertiesPanel(_settings.hide_properties);
-            ToggleExtraToolPanel(_settings.hide_ExtraTool);
-
+            if (checkBatcSpectrum.Checked)
+            {
+                ToggleExtraToolPanel(_settings.hide_ExtraTool);
+            }
             return true;
         }
 
@@ -1114,6 +1122,11 @@ namespace opentuner
         private void checkBatcSpectrum_CheckedChanged(object sender, EventArgs e)
         {
             _settings.enable_spectrum_checkbox = checkBatcSpectrum.Checked;
+        }
+
+        private void checkPlutoCtrl_CheckedChanged(object sender, EventArgs e)
+        {
+            _settings.enable_plutoctrl_checkbox = checkPlutoCtrl.Checked;
         }
 
         private void linkBatcSpectrumSettings_Click(object sender, EventArgs e)
@@ -1185,6 +1198,11 @@ namespace opentuner
             {
                 quicktune_settingsManager.SaveSettings(quicktune_settings);
             }
+        }
+
+        private void linkPlutoCtrlSettings_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void linkSpectrumDocumentation_Click(object sender, EventArgs e)
@@ -1271,12 +1289,14 @@ namespace opentuner
                 splitContainer1.Panel1.Hide();
                 splitContainer1.Panel1Collapsed = true;
                 properties_hidden = true;
+                hidePanelToolStripMenuItem.Text = "Show Properties";
             }
             else
             {
                 splitContainer1.Panel1.Show();
                 splitContainer1.Panel1Collapsed = false;
                 properties_hidden = false;
+                hidePanelToolStripMenuItem.Text = "Hide Properties";
             }
         }
 
@@ -1287,12 +1307,14 @@ namespace opentuner
                 splitContainer2.Panel2.Hide();
                 splitContainer2.Panel2Collapsed = true;
                 ExtraTool_hidden = true;
+                hideExtraToolStripMenuItem.Text = "Show Spectrum";
             }
             else
             {
                 splitContainer2.Panel2.Show();
                 splitContainer2.Panel2Collapsed = false;
                 ExtraTool_hidden = false;
+                hideExtraToolStripMenuItem.Text = "Hide Spectrum";
             }
         }
 
@@ -1306,8 +1328,11 @@ namespace opentuner
             }
             if (m.Msg == 0X0100 && (Keys)m.WParam.ToInt32() == Keys.E && ModifierKeys == Keys.Control)
             {
-                ToggleExtraToolPanel(!ExtraTool_hidden);
-                _settings.hide_ExtraTool = ExtraTool_hidden;
+                if (checkBatcSpectrum.Checked)
+                {
+                    ToggleExtraToolPanel(!ExtraTool_hidden);
+                    _settings.hide_ExtraTool = ExtraTool_hidden;
+                }
                 return true;
             }
 
@@ -1351,7 +1376,15 @@ namespace opentuner
                 splitContainer4.SplitterDistance = (int)(splitContainer4.Width * 0.5);
             splitContainer5.SplitterDistance = (int)(splitContainer5.Width * 0.5);
         }
+
+        private void hidePanelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TogglePropertiesPanel(!properties_hidden);
+        }
+
+        private void hideExtraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToggleExtraToolPanel(!ExtraTool_hidden);
+        }
     }
-
-
 }

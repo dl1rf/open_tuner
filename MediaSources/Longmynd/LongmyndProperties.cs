@@ -253,7 +253,7 @@ namespace opentuner.MediaSources.Longmynd
                 double db_margin = 0;
                 string modcod_text = "";
 
-                _tuner1_properties.UpdateValue("requested_freq", "(" + GetFrequency(0, true).ToString("N0") + ") (" + GetFrequency(0, false).ToString("N0") + ")");
+                _tuner1_properties.UpdateValue("requested_freq", GetFrequency(0, true).ToString("N0") + "  (" + GetFrequency(0, false).ToString("N0") + ")");
                 _tuner1_properties.UpdateValue("symbol_rate", (mm.packet.rx.symbolrate / 1000).ToString());
                 _tuner1_properties.UpdateValue("demodstate", demod_state_lookup[mm.packet.rx.demod_state]);
                 _tuner1_properties.UpdateValue("ber", mm.packet.rx.ber.ToString());
@@ -342,8 +342,17 @@ namespace opentuner.MediaSources.Longmynd
                 source_data.mer = mer;
 
                 source_data.db_margin = db_margin;
-                source_data.symbol_rate = (int)mm.packet.rx.symbolrate / 1000;
+                source_data.symbol_rate = mm.packet.rx.symbolrate / 1000;
                 source_data.demod_locked = (mm.packet.rx.demod_state == 3 || mm.packet.rx.demod_state == 4);
+                if (source_data.demod_locked)
+                {
+                    source_data.demode_state = demod_state_lookup[mm.packet.rx.demod_state].Replace("Lock DVB-", "");
+                }
+                else
+                {
+                    source_data.demode_state = "";
+                }
+
                 source_data.service_name = mm.packet.ts.service_name;
                 source_data.modcode = modcod_text;
 

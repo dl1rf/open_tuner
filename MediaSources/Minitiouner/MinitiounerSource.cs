@@ -750,6 +750,10 @@ namespace opentuner.MediaSources.Minitiouner
         {
         }
 
+        public override void ReStart()
+        {
+        }
+
         public override void Close()
         {
             Log.Information("Closing Minitiouner Source");

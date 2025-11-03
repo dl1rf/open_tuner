@@ -44,8 +44,9 @@
             this.linkOpenTunerUpdates = new System.Windows.Forms.Label();
             this.linkDocumentation = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkPlutoCtrlSettings = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkPlutoCtrl = new System.Windows.Forms.CheckBox();
             this.linkQuickTuneSettings = new System.Windows.Forms.Label();
             this.linkBatcWebchatSettings = new System.Windows.Forms.Label();
             this.linkBatcSpectrumSettings = new System.Windows.Forms.Label();
@@ -65,9 +66,6 @@
             this.btnSourceConnect = new System.Windows.Forms.Button();
             this.comboAvailableSources = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.PropertiesPage = new System.Windows.Forms.TabPage();
-            this.debugPage = new System.Windows.Forms.TabPage();
-            this.dbgListBox = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -75,6 +73,9 @@
             this.ExtraToolsTab = new System.Windows.Forms.TabControl();
             this.ExtraSpectrumTab = new System.Windows.Forms.TabPage();
             this.spectrum = new System.Windows.Forms.PictureBox();
+            this.PropertiesPage = new System.Windows.Forms.TabPage();
+            this.debugPage = new System.Windows.Forms.TabPage();
+            this.dbgListBox = new System.Windows.Forms.ListBox();
             this.contextSpectrumMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openTunerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +85,8 @@
             this.menuManageFrequencyPresets = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidePanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qO100WidebandChatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,6 +94,7 @@
             this.commandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureCallsignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlutoCtrlPage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,7 +104,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.debugPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -116,6 +119,7 @@
             this.ExtraToolsTab.SuspendLayout();
             this.ExtraSpectrumTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
+            this.debugPage.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,8 +141,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.SourcePage);
-            this.tabControl1.Controls.Add(this.PropertiesPage);
-            this.tabControl1.Controls.Add(this.debugPage);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -238,8 +240,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkPlutoCtrlSettings);
             this.groupBox2.Controls.Add(this.checkBox2);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.checkPlutoCtrl);
             this.groupBox2.Controls.Add(this.linkQuickTuneSettings);
             this.groupBox2.Controls.Add(this.linkBatcWebchatSettings);
             this.groupBox2.Controls.Add(this.linkBatcSpectrumSettings);
@@ -256,17 +259,26 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // linkPlutoCtrlSettings
+            // 
+            resources.ApplyResources(this.linkPlutoCtrlSettings, "linkPlutoCtrlSettings");
+            this.linkPlutoCtrlSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkPlutoCtrlSettings.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.linkPlutoCtrlSettings.Name = "linkPlutoCtrlSettings";
+            this.linkPlutoCtrlSettings.Click += new System.EventHandler(this.linkPlutoCtrlSettings_Click);
+            // 
             // checkBox2
             // 
             resources.ApplyResources(this.checkBox2, "checkBox2");
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkPlutoCtrl
             // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.checkPlutoCtrl, "checkPlutoCtrl");
+            this.checkPlutoCtrl.Name = "checkPlutoCtrl";
+            this.checkPlutoCtrl.UseVisualStyleBackColor = true;
+            this.checkPlutoCtrl.CheckedChanged += new System.EventHandler(this.checkPlutoCtrl_CheckedChanged);
             // 
             // linkQuickTuneSettings
             // 
@@ -413,25 +425,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // PropertiesPage
-            // 
-            resources.ApplyResources(this.PropertiesPage, "PropertiesPage");
-            this.PropertiesPage.BackColor = System.Drawing.Color.Transparent;
-            this.PropertiesPage.Name = "PropertiesPage";
-            // 
-            // debugPage
-            // 
-            this.debugPage.Controls.Add(this.dbgListBox);
-            resources.ApplyResources(this.debugPage, "debugPage");
-            this.debugPage.Name = "debugPage";
-            this.debugPage.UseVisualStyleBackColor = true;
-            // 
-            // dbgListBox
-            // 
-            resources.ApplyResources(this.dbgListBox, "dbgListBox");
-            this.dbgListBox.FormattingEnabled = true;
-            this.dbgListBox.Name = "dbgListBox";
-            // 
             // splitContainer2
             // 
             this.splitContainer2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -515,6 +508,25 @@
             this.spectrum.Name = "spectrum";
             this.spectrum.TabStop = false;
             // 
+            // PropertiesPage
+            // 
+            resources.ApplyResources(this.PropertiesPage, "PropertiesPage");
+            this.PropertiesPage.BackColor = System.Drawing.Color.Transparent;
+            this.PropertiesPage.Name = "PropertiesPage";
+            // 
+            // debugPage
+            // 
+            this.debugPage.Controls.Add(this.dbgListBox);
+            resources.ApplyResources(this.debugPage, "debugPage");
+            this.debugPage.Name = "debugPage";
+            this.debugPage.UseVisualStyleBackColor = true;
+            // 
+            // dbgListBox
+            // 
+            resources.ApplyResources(this.dbgListBox, "dbgListBox");
+            this.dbgListBox.FormattingEnabled = true;
+            this.dbgListBox.Name = "dbgListBox";
+            // 
             // contextSpectrumMenu
             // 
             this.contextSpectrumMenu.Name = "contextSpectrumMenu";
@@ -524,6 +536,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openTunerToolStripMenuItem,
+            this.hidePanelToolStripMenuItem,
+            this.hideExtraToolStripMenuItem,
             this.qO100WidebandChatToolStripMenuItem,
             this.plutoToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
@@ -575,6 +589,18 @@
             resources.ApplyResources(this.quitToolStripMenuItem, "quitToolStripMenuItem");
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
+            // hidePanelToolStripMenuItem
+            // 
+            this.hidePanelToolStripMenuItem.Name = "hidePanelToolStripMenuItem";
+            resources.ApplyResources(this.hidePanelToolStripMenuItem, "hidePanelToolStripMenuItem");
+            this.hidePanelToolStripMenuItem.Click += new System.EventHandler(this.hidePanelToolStripMenuItem_Click);
+            // 
+            // hideExtraToolStripMenuItem
+            // 
+            this.hideExtraToolStripMenuItem.Name = "hideExtraToolStripMenuItem";
+            resources.ApplyResources(this.hideExtraToolStripMenuItem, "hideExtraToolStripMenuItem");
+            this.hideExtraToolStripMenuItem.Click += new System.EventHandler(this.hideExtraToolStripMenuItem_Click);
+            // 
             // qO100WidebandChatToolStripMenuItem
             // 
             this.qO100WidebandChatToolStripMenuItem.Name = "qO100WidebandChatToolStripMenuItem";
@@ -620,6 +646,12 @@
             resources.ApplyResources(this.configureCallsignToolStripMenuItem, "configureCallsignToolStripMenuItem");
             this.configureCallsignToolStripMenuItem.Click += new System.EventHandler(this.configureCallsignToolStripMenuItem_Click);
             // 
+            // PlutoCtrlPage
+            // 
+            resources.ApplyResources(this.PlutoCtrlPage, "PlutoCtrlPage");
+            this.PlutoCtrlPage.Name = "PlutoCtrlPage";
+            this.PlutoCtrlPage.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -643,7 +675,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.debugPage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -659,6 +690,7 @@
             this.ExtraToolsTab.ResumeLayout(false);
             this.ExtraSpectrumTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
+            this.debugPage.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -722,13 +754,17 @@
         private System.Windows.Forms.Label link2ndTS;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkPlutoCtrl;
         private System.Windows.Forms.ToolStripMenuItem menuManageFrequencyPresets;
         private System.Windows.Forms.ToolStripMenuItem toolstripConnectToggle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.TabControl ExtraToolsTab;
         private System.Windows.Forms.TabPage ExtraSpectrumTab;
         private System.Windows.Forms.PictureBox spectrum;
+        private System.Windows.Forms.ToolStripMenuItem hidePanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideExtraToolStripMenuItem;
+        private System.Windows.Forms.TabPage PlutoCtrlPage;
+        private System.Windows.Forms.Label linkPlutoCtrlSettings;
     }
 }
 

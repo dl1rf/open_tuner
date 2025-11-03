@@ -35,6 +35,8 @@ namespace opentuner.ExtraFeatures.MqttClient
             _settings = new MqttManagerSettings();
             _settingsManager = new SettingsManager<MqttManagerSettings>("mqttclient_settings");
 
+            _settings = _settingsManager.LoadSettings(_settings);
+
             _broker = _settings.MqttBroker;
             _broker_port = _settings.MqttPort;
 
@@ -74,12 +76,15 @@ namespace opentuner.ExtraFeatures.MqttClient
 
         public void SendProperties(OTSourceData properties, string ChildTopic)
         {
-            SendMqttStatus(ChildTopic + "/demod_locked", properties.demod_locked.ToString());
-            SendMqttStatus(ChildTopic + "/frequency", properties.frequency.ToString());
-            SendMqttStatus(ChildTopic + "/symbol_rate", properties.symbol_rate.ToString());
-            SendMqttStatus(ChildTopic + "/service_name", properties.service_name.ToString());
-            SendMqttStatus(ChildTopic + "/mer", properties.mer.ToString());
-            SendMqttStatus(ChildTopic + "/db_margin", properties.db_margin.ToString());
+            if (_mqtt_client.IsConnected)
+            {
+                SendMqttStatus(ChildTopic + "/demod_locked", properties.demod_locked.ToString());
+                SendMqttStatus(ChildTopic + "/frequency", properties.frequency.ToString());
+                SendMqttStatus(ChildTopic + "/symbol_rate", properties.symbol_rate.ToString());
+                SendMqttStatus(ChildTopic + "/service_name", properties.service_name.ToString());
+                SendMqttStatus(ChildTopic + "/mer", properties.mer.ToString());
+                SendMqttStatus(ChildTopic + "/db_margin", properties.db_margin.ToString());
+            }
         }
 
         public void SendMqttStatus(string topic, string value)

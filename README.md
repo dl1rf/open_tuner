@@ -25,7 +25,7 @@ Unzip the binary package into a new directory to preserve your original OpenTune
 
 To get your settings from a previous version to this version copy the setting files from your original version into the settings directory of this version.
 
-If you plan to use more than one OpenTuner instance at a time please install OpenTuner into searate directories. One for each instance.
+If you plan to use more than one OpenTuner instance at a time please install OpenTuner into separate directories. One for each instance.
 OpenTuner will try to save serval data at program close and each instance need its own settings directory for storage.
 Otherwise one instance will override settings from another instance.
 
@@ -33,6 +33,8 @@ Please do not close OpenTuner by closing the Terminal Window.
 In this case window layout etc. will not be stored. Please close OpenTuner by closing the Main window.
 
 Only in cases OpenTuner will not stop and close (this can take up to 1 Minute in seldom cases) kill OpenTuner by closing the Terminal window.
+
+If you whish to use the new AutoTune function please deactivate QuickTune checkbox in main settings.
 
 If you find issues please post them here to me.
 

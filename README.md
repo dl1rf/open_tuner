@@ -21,6 +21,7 @@ Known Issues:
 
 * From time to time a wrong call sign is shown in BATC Spectrum
 * Crashes at startup of OpenTuner
+* sometimes AutoTune function show strange behaviour
 
 The issues are under investigation
 

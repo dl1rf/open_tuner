@@ -17,6 +17,13 @@ Improvements and changes:
 * New Auto Tune functions for all Tuners
 * serveral bug fixes
 
+Known Issues:
+
+* From time to time a wrong call sign is shown in BATC Spectrum
+* Crashes at startup of OpenTuner
+
+The issues are under investigation
+
 [Please read the rough description](https://github.com/dl1rf/open_tuner/blob/main/Doc/OpenTuner_DL1RF's_0.C.pdf)
 
 Installation instructions:

@@ -85,6 +85,15 @@ namespace opentuner.MediaSources.Minitiouner
                     _settings.DefaultVolume[1] = (uint)preMute[1];  // restore as changed by update volume_slider function
                     _tuner2_properties.UpdateMuteButtonColor("media_controls_1", Color.PaleVioletRed);
                 }
+
+                if (_settings.DefaultUDPStreaming[1])
+                {
+                    _tuner2_properties.UpdateStreamButtonColor("media_controls_1", Color.PaleTurquoise);
+                }
+                else
+                {
+                    _tuner2_properties.UpdateStreamButtonColor("media_controls_1", Color.Transparent);
+                }
             }
 
             _tuner1_properties = ConfigureTunerProperties(1);
@@ -106,6 +115,15 @@ namespace opentuner.MediaSources.Minitiouner
                 _tuner1_properties.UpdateValue("volume_slider_0", "0");
                 _settings.DefaultVolume[0] = (uint)preMute[0];  // restore as changed by update volume_slider function
                 _tuner1_properties.UpdateMuteButtonColor("media_controls_0", Color.PaleVioletRed);
+            }
+
+            if (_settings.DefaultUDPStreaming[0])
+            {
+                _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.PaleTurquoise);
+            }
+            else
+            {
+                _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.Transparent);
             }
 
             // source properties

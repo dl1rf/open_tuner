@@ -109,6 +109,15 @@ namespace opentuner.MediaSources.Longmynd
                 _tuner1_properties.UpdateMuteButtonColor("media_controls_0", Color.PaleVioletRed);
             }
 
+            if (_settings.DefaultUDPStreaming)
+            {
+                _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.PaleTurquoise);
+            }
+            else
+            {
+                _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.Transparent);
+            }
+
             // source properties
             _source_properties = new DynamicPropertyGroup("Longmynd Properties", _parent);
             _source_properties.AddItem("source_ip", "IP Address");
@@ -225,7 +234,6 @@ namespace opentuner.MediaSources.Longmynd
 
                 if (_tuner1_properties == null)
                     return;
-
 
                 //Log.Information("REady for info");
                 if (demodState != mm.packet.rx.demod_state)

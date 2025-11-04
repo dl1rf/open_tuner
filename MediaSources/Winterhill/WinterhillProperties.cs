@@ -103,6 +103,15 @@ namespace opentuner.MediaSources.Winterhill
                     _settings.DefaultVolume[c] = (uint)preMute[c];  // restore as changed by update volume_slider function
                     _tuner_properties[c].UpdateMuteButtonColor("media_controls_" + c.ToString(), Color.PaleVioletRed);
                 }
+
+                if (_settings.DefaultUDPStreaming[c])
+                {
+                    _tuner_properties[c].UpdateStreamButtonColor("media_controls_" + c.ToString(), Color.PaleTurquoise);
+                }
+                else
+                {
+                    _tuner_properties[c].UpdateStreamButtonColor("media_controls_" + c.ToString(), Color.Transparent);
+                }
             }
 
             // source properties

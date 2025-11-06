@@ -21,14 +21,14 @@ namespace opentuner.Utilities
 
             // check if settings directory exists ?
 
-            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\settings"))
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "settings"))
             {
                 Debug("Settings Directory doesn't exist, creating...");
-                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\settings");
-                Debug("Settings Directory: " + AppDomain.CurrentDomain.BaseDirectory + "\\settings");
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "settings");
+                Debug("Settings Directory: " + AppDomain.CurrentDomain.BaseDirectory + "settings");
             }
 
-            _filename_base = AppDomain.CurrentDomain.BaseDirectory + "\\settings\\" + _settings_name + ".json";
+            _filename_base = AppDomain.CurrentDomain.BaseDirectory + "settings\\" + _settings_name + ".json";
             Debug("Setting File: " +  _filename_base);
         }
 

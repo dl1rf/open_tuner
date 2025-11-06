@@ -15,11 +15,8 @@ namespace opentuner.MediaSources.Winterhill
 
         public byte DefaultInterface = 1;
 
-        public string Pico1UdpHost = "0.0.0.0";
-        public int Pico1UdpBasePort = 9900;
-
-        public string Pico2UdpHost = "0.0.0.0";
-        public int Pico2UdpBasePort = 9900;
+        public string WinterhillUdpHost = "0.0.0.0";
+        public int WinterhillUdpBasePort = 9900;
 
         public uint[] RFPort = new uint[] { 0, 0, 0, 0 };
 

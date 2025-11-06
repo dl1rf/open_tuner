@@ -318,6 +318,8 @@ namespace opentuner.MediaSources.Winterhill
             switch (defaultInterface)
             {
                 case 1: // websockets
+                    for (int c = 0;c < ts_devices; c++)
+                        WSResetTS(c);
                     stopPingTimer();
                     DisconnectWebsockets();
                     break;

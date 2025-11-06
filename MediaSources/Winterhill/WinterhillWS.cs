@@ -41,6 +41,14 @@ namespace opentuner.MediaSources.Winterhill
             controlWS.Send(wh_command);
         }
 
+        private void WSResetTS(int device)
+        {
+            string wh_command = ("U" + (device + 1).ToString() + "," + "127.0.0.1");
+            Log.Debug(wh_command);
+            controlWS.Send(wh_command);
+            Task.Delay(100);   // delay to allow WinterHill to get to stable state
+        }
+
         private void connectWebsockets()
         {
             string url = "ws://" + _settings.WinterhillWSHost + ":" + _settings.WinterhillWSPort.ToString() + "/ ";

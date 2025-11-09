@@ -367,8 +367,14 @@ namespace opentuner.MediaSources.Longmynd
                 if (_media_player != null)
                     source_data.volume = _media_player.GetVolume();
 
-                source_data.streaming = _ts_streamer.stream;
-                source_data.recording = _ts_recorder.record;
+                if (_ts_recorder != null)
+                {
+                    source_data.recording = _ts_recorder.record;
+                }
+                if (_ts_streamer != null)
+                {
+                    source_data.streaming = _ts_streamer.stream;
+                }
 
                 OnSourceData?.Invoke(0, source_data, "Tuner 0");
             }

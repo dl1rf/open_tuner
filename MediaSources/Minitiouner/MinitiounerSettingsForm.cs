@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace opentuner.MediaSources.Minitiouner
@@ -19,8 +12,8 @@ namespace opentuner.MediaSources.Minitiouner
             _settings = Settings;
 
             comboHardwareInterface.SelectedIndex = _settings.DefaultInterface;
-            txtTuner1FreqOffset.Text = _settings.Offset1.ToString();
-            txtTuner2FreqOffset.Text = _settings.Offset2.ToString();
+            txtTuner1FreqOffset.Text = _settings.DefaultOffset[0].ToString();
+            txtTuner2FreqOffset.Text = _settings.DefaultOffset[1].ToString();
             comboSupplyADefault.SelectedIndex = _settings.DefaultLnbASupply;
             comboSupplyBDefault.SelectedIndex = _settings.DefaultLnbBSupply;
             ComboDefaultRFInput.SelectedIndex = _settings.DefaultRFInput;
@@ -53,8 +46,8 @@ namespace opentuner.MediaSources.Minitiouner
             _settings.DefaultLnbBSupply = (byte)comboSupplyBDefault.SelectedIndex;
             _settings.DefaultRFInput = (byte)ComboDefaultRFInput.SelectedIndex;
 
-            _settings.Offset1 = offset1;
-            _settings.Offset2 = offset2;
+            _settings.DefaultOffset[0] = offset1;
+            _settings.DefaultOffset[1] = offset2;
 
             DialogResult = DialogResult.OK;
             Close();

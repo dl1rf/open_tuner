@@ -127,7 +127,7 @@ namespace opentuner.MediaSources.Longmynd
             _tuner_forms = new List<TunerControlForm>();
 
             // tuner for each device
-            var tunerControl = new TunerControlForm(0, 0, 0, (int)current_offset_0, this);
+            var tunerControl = new TunerControlForm(0, 0, 0, current_offset_0, this);
             tunerControl.OnTunerChange += TunerControl_OnTunerChange;
             _tuner_forms.Add(tunerControl);
 
@@ -147,17 +147,19 @@ namespace opentuner.MediaSources.Longmynd
                 case 0: // mute
                     ToggleMute(0);
                     break;
+
                 case 1: // snapshot
                     Log.Information("Snapshot");
                     if (playing)
                         _media_player.SnapShot(_mediaPath + CommonFunctions.GenerateTimestampFilename() + ".png");
                     break;
+
                 case 2: // record
                     Log.Information("Record");
 
-                    if (_recorder.record)
+                    if (_ts_recorder.record)
                     {
-                        _recorder.record = false;    // stop recording
+                        _ts_recorder.record = false;    // stop recording
                         _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.Transparent);
                     }
                     else
@@ -165,7 +167,7 @@ namespace opentuner.MediaSources.Longmynd
                         // are we locked onto a signal ?
                         if (demodState >= 3)
                         {
-                            _recorder.record = true;     // start recording
+                            _ts_recorder.record = true;     // start recording
                             _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.PaleVioletRed);
                         }
                         else
@@ -178,19 +180,17 @@ namespace opentuner.MediaSources.Longmynd
                 case 3: // stream
                     Log.Information("UDP Stream");
 
-                    
-                    if ( _streamer.stream)
+                    if ( _ts_streamer.stream)
                     {
-                        _settings.DefaultUDPStreaming = _streamer.stream = false;   
+                        _settings.DefaultUDPStreaming = _ts_streamer.stream = false;   
                         _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.Transparent);
                     }
                     else
                     {
-                        _settings.DefaultUDPStreaming = _streamer.stream = true;
+                        _settings.DefaultUDPStreaming = _ts_streamer.stream = true;
                         _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.PaleTurquoise);
                     }
                     break;
-
             }
         }
 
@@ -294,7 +294,7 @@ namespace opentuner.MediaSources.Longmynd
                 }
 
                 last_mer_0 = mer.ToString();
-                last_dbm_0 = "D" + db_margin.ToString("N1").ToString();
+                last_dbm_0 = db_margin.ToString("N1").ToString();
                 _tuner1_properties.UpdateBigLabel("D" + db_margin.ToString("N1"));
                 //_tuner1_properties.UpdateValue("db_margin", "D" + db_margin.ToString("N1"));
                 _tuner1_properties.UpdateValue("modcod", modcod_text);
@@ -335,9 +335,9 @@ namespace opentuner.MediaSources.Longmynd
                     _tuner1_properties.UpdateValue("audio_rate", "");
 
                     // stop recording if we lost lock
-                    if (_recorder.record)
+                    if (_ts_recorder.record)
                     {
-                        _recorder.record = false;    // stop recording
+                        _ts_recorder.record = false;    // stop recording
                         _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.Transparent);
                     }
 
@@ -367,8 +367,14 @@ namespace opentuner.MediaSources.Longmynd
                 if (_media_player != null)
                     source_data.volume = _media_player.GetVolume();
 
-                source_data.streaming = _streamer.stream;
-                source_data.recording = _recorder.record;
+                if (_ts_recorder != null)
+                {
+                    source_data.recording = _ts_recorder.record;
+                }
+                if (_ts_streamer != null)
+                {
+                    source_data.streaming = _ts_streamer.stream;
+                }
 
                 OnSourceData?.Invoke(0, source_data, "Tuner 0");
             }

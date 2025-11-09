@@ -1,18 +1,14 @@
-﻿using opentuner.MediaSources.Minitiouner.HardwareInterfaces;
+﻿using opentuner.ExtraFeatures.BATCSpectrum;
+using opentuner.MediaPlayers;
+using opentuner.MediaSources.Minitiouner.HardwareInterfaces;
 using opentuner.Utilities;
+using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using opentuner.MediaPlayers;
-using Serilog;
 
 namespace opentuner.MediaSources.Minitiouner
 {
@@ -109,6 +105,57 @@ namespace opentuner.MediaSources.Minitiouner
             _settings = (_settingsManager.LoadSettings(_settings));
         }
 
+        public override int Initialize(VideoChangeCallback VideoChangeCB, Control Parent, bool mute_at_startup)
+        {
+            current_frequency_0 = _settings.DefaultFrequency[0] - _settings.DefaultOffset[0];
+            current_offset_0 = _settings.DefaultOffset[0];
+            current_sr_0 = _settings.DefaultSR[0];
+
+            current_frequency_1 = _settings.DefaultFrequency[1] - _settings.DefaultOffset[0];
+            current_offset_1 = _settings.DefaultOffset[1];
+            current_sr_1 = _settings.DefaultSR[1];
+
+            switch (_settings.DefaultInterface)
+            {
+                case 0:
+                    var hw_ask = new ChooseMinitiounerHardwareInterfaceForm();
+
+                    if (hw_ask.ShowDialog() == DialogResult.OK)
+                    {
+                        switch (hw_ask.comboHardwareSelect.SelectedIndex)
+                        {
+                            case 0:
+                                hardware_interface = new FTDIInterface();
+                                break;
+
+                            case 1:
+                                hardware_interface = new PicoTunerInterface();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        return 0;   // canceled
+                    }
+                    break;
+
+                case 1:
+                    hardware_interface = new FTDIInterface();
+                    break;
+
+                case 2:
+                    hardware_interface = new PicoTunerInterface();
+                    break;
+            }
+
+            int retCode = Initialize(VideoChangeCB, SourceStatusCB, false, "", "", "", Parent, mute_at_startup);
+            if (retCode == -1)
+            {
+                hardware_interface = null;
+            }
+            return retCode;
+        }
+
         public override int GetVideoSourceCount()
         {
             return ts_devices;
@@ -123,8 +170,13 @@ namespace opentuner.MediaSources.Minitiouner
         {
             switch (device)
             {
-                case 0: ts_thread.RegisterTSConsumer(ts_buffer_queue); break;
-                case 1: ts_thread2.RegisterTSConsumer(ts_buffer_queue); break;
+                case 0:
+                    ts_thread.RegisterTSConsumer(ts_buffer_queue);
+                    break;
+
+                case 1:
+                    ts_thread2.RegisterTSConsumer(ts_buffer_queue);
+                    break;
             }
         }
 
@@ -137,6 +189,7 @@ namespace opentuner.MediaSources.Minitiouner
                     if (ts_thread != null)
                         ts_thread.start_ts();
                     break;
+
                 case 1:
                     if (ts_thread2 != null)
                         ts_thread2.start_ts();
@@ -264,38 +317,6 @@ namespace opentuner.MediaSources.Minitiouner
         //{
         //    return hardware_interface.hw_set_polarization_supply(lnb_num, supply_enable, supply_horizontal);
         //}
-
-        public override int Initialize(VideoChangeCallback VideoChangeCB, Control Parent, bool mute_at_startup)
-        {            
-            switch (_settings.DefaultInterface)
-            {
-                case 0:
-                    var hw_ask = new ChooseMinitiounerHardwareInterfaceForm();
-
-                    if (hw_ask.ShowDialog() == DialogResult.OK)
-                    {
-                        switch (hw_ask.comboHardwareSelect.SelectedIndex)
-                        {
-                            case 0: hardware_interface = new FTDIInterface(); break;
-                            case 1: hardware_interface = new PicoTunerInterface(); break;
-                        }
-                    }
-                    else
-                    {
-                        return 0;   // canceled
-                    }
-                    break;
-                case 1: hardware_interface = new FTDIInterface(); break;
-                case 2: hardware_interface = new PicoTunerInterface(); break;
-            }
-
-            int retCode = Initialize(VideoChangeCB, SourceStatusCB, false, "", "", "", Parent, mute_at_startup);
-            if(retCode == -1)
-            {
-                hardware_interface = null;
-            }
-            return retCode;
-        }
 
         public void nim_status_feedback(TunerStatus nim_status)
         {
@@ -497,15 +518,6 @@ namespace opentuner.MediaSources.Minitiouner
                     current_rf_input_1 = nim.NIM_INPUT_BOTTOM;
                     break;
             }
-
-            current_offset_0 = _settings.Offset1;
-            current_offset_1 = _settings.Offset2;
-
-            current_frequency_0 = 10491500 - current_offset_0;
-            current_frequency_1 = 10491500 - current_offset_1;
-
-            current_sr_0 = 1500;
-            current_sr_1 = 1500;
 
             // setup tuner 0
             change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
@@ -746,8 +758,16 @@ namespace opentuner.MediaSources.Minitiouner
             "Select FTDI or PicoTuner interface in Settings";
         }
 
-        public override void Start()
+        public override void Start(BATCSpectrum batc_spectrum)
         {
+            if (batc_spectrum != null)
+            {
+                batc_spectrum.switchTuner(0, Convert.ToDouble(current_frequency_0 + current_offset_0) / 1000.0f, current_sr_0 / 1000.0f);
+                if (ts_devices == 2)
+                {
+                    batc_spectrum.switchTuner(1, Convert.ToDouble(current_frequency_1 + current_offset_1) / 1000.0f, current_sr_1 / 1000.0f);
+                }
+            }
         }
 
         public override void ReStart()

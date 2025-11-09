@@ -41,7 +41,6 @@ namespace opentuner.MediaSources.Winterhill
         private bool[] muted = new bool[] { true, true, true, true };
         private int[] preMute = new int[] { 50, 50, 50, 50 };
 
-
         private bool BuildSourceProperties(bool mute_at_startup)
         {
             if (_parent == null)
@@ -135,9 +134,8 @@ namespace opentuner.MediaSources.Winterhill
             // tuner for each device
             for (int c = 0; c < ts_devices; c++)
             {
-                var tunerControl = new TunerControlForm(c, 0, 0, (int)_current_offset[c], this);
+                var tunerControl = new TunerControlForm(c, 0, 0, _current_offset[c], this);
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
-
                 _tuner_forms.Add(tunerControl);
             }
 
@@ -170,6 +168,7 @@ namespace opentuner.MediaSources.Winterhill
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", LongmyndPropertyCommands.LNBA_VERTICAL, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Horizontal", LongmyndPropertyCommands.LNBA_HORIZONTAL, new int[] { 0, 0 }));
                     break;
+
                 case "hw_lnbb":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("OFF", LongmyndPropertyCommands.LNBB_OFF, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", LongmyndPropertyCommands.LNBB_VERTICAL, new int[] { 0, 0 }));
@@ -181,12 +180,12 @@ namespace opentuner.MediaSources.Winterhill
                     contextMenuStrip.Items.Add(ConfigureMenuItem("B", LongmyndPropertyCommands.SETRFINPUTB, new int[] { (int)contextMenuStrip.SourceControl.Tag  }));
                     break;
 
-
                 case "offset":
                     int tuner = (int)contextMenuStrip.SourceControl.Tag;
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + _settings.DefaultOffset[tuner], LongmyndPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Zero", LongmyndPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag, 1 }));
                     break;
+
                 // change frequency
                 case "frequency":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Tuner Control", LongmyndPropertyCommands.SETFREQUENCY, new int[] { (int)contextMenuStrip.SourceControl.Tag }));
@@ -201,6 +200,7 @@ namespace opentuner.MediaSources.Winterhill
                         }
                     }
                     break;
+
                 case "ts_addr":
                     // get local ip's
                     if (_LocalIp.Length == 0)
@@ -265,7 +265,7 @@ namespace opentuner.MediaSources.Winterhill
                     SetRFPort(tuner, 0);
                     //_settings.RFPort[tuner] = 0;
 
-                    //SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    //SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETRFINPUTB:
@@ -274,7 +274,7 @@ namespace opentuner.MediaSources.Winterhill
                     SetRFPort(tuner, 1);
                     //_settings.RFPort[tuner] = 1;
 
-                    //SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    //SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETOFFSET:
@@ -282,22 +282,22 @@ namespace opentuner.MediaSources.Winterhill
                     
                     switch (option[1])
                     {
-                        case 0: _current_offset[tuner] = (int)_settings.DefaultOffset[tuner]; break;
+                        case 0: _current_offset[tuner] = _settings.DefaultOffset[tuner]; break;
                         case 1: _current_offset[tuner] = 0; break;
                     }
 
-                    SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETSYMBOLRATE:
                     tuner = option[0];
                     var new_rate = option[1];
-                    SetFrequency(tuner, (uint)_current_frequency[option[0]], (uint)new_rate, false);
+                    SetFrequency(tuner, _current_frequency[option[0]], (uint)new_rate, false);
                     break;
 
                 case LongmyndPropertyCommands.SETFREQUENCY:
                     tuner = option[0];
-                    _tuner_forms[tuner].ShowTuner(_current_frequency[tuner], _current_sr[tuner], (int)_current_offset[tuner]);
+                    _tuner_forms[tuner].ShowTuner(_current_frequency[tuner], _current_sr[tuner], _current_offset[tuner]);
                     break;
 
                 case LongmyndPropertyCommands.SETPRESET:
@@ -315,8 +315,8 @@ namespace opentuner.MediaSources.Winterhill
                             Log.Information("Preset SymbolRate: " + _frequency_presets[presetNumber].SymbolRate.ToString());
                             Log.Information("Preset RF Input: " + _frequency_presets[presetNumber].RFInput.ToString());
 
-                            _current_offset[tuner] = (int)_frequency_presets[presetNumber].Offset;
-                            _settings.RFPort[tuner] = (uint)(_frequency_presets[presetNumber].RFInput- 1);
+                            _current_offset[tuner] = _frequency_presets[presetNumber].Offset;
+                            _settings.RFPort[tuner] = (uint)(_frequency_presets[presetNumber].RFInput - 1);
                             SetFrequency(tuner, _frequency_presets[presetNumber].Frequency, _frequency_presets[presetNumber].SymbolRate, true) ;
                         }
                     }
@@ -335,7 +335,7 @@ namespace opentuner.MediaSources.Winterhill
                         else
                         {
                             // to change ts for pico tuner ethernet we need to send a tuning command
-                            SetFrequency(tuner, (uint)_current_frequency[option[0]], (uint)_current_sr[option[0]], false);
+                            SetFrequency(tuner, _current_frequency[option[0]], (uint)_current_sr[option[0]], false);
                         }
 
                         // reset status
@@ -372,16 +372,16 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case 2: // record
-                    if (_recorders[tuner].record)
+                    if (_ts_recorders[tuner].record)
                     {
-                        _recorders[tuner].record = false;
+                        _ts_recorders[tuner].record = false;
                         _tuner_properties[tuner].UpdateRecordButtonColor("media_controls_" + tuner.ToString(), Color.Transparent);
                     }
                     else
                     {
                         if (demodstate[tuner] == 3 || demodstate[tuner] == 2)
                         {
-                            _recorders[tuner].record = true;
+                            _ts_recorders[tuner].record = true;
                             _tuner_properties[tuner].UpdateRecordButtonColor("media_controls_" + tuner.ToString(), Color.PaleVioletRed);
                         }
                         else
@@ -392,14 +392,14 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case 3: // udp stream
-                    if (_streamer[tuner].stream)
+                    if (_ts_streamers[tuner].stream)
                     {
-                        _settings.DefaultUDPStreaming[tuner] = _streamer[tuner].stream = false;
+                        _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = false;
                         _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.Transparent);
                     }
                     else
                     {
-                        _settings.DefaultUDPStreaming[tuner] = _streamer[tuner].stream = true;
+                        _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = true;
                         _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.PaleTurquoise);
                     }
                     break;
@@ -487,7 +487,6 @@ namespace opentuner.MediaSources.Winterhill
                 if (_tuner_properties == null)
                     return;
 
-
                 //Log.Information("REady for info");
 
                 for (int c = 0; c < mm.rx.Length - 1; c++)
@@ -497,6 +496,27 @@ namespace opentuner.MediaSources.Winterhill
                     // provision for single messages from picotuner ethernet
                     if (rx.rx == 99)
                         continue;
+
+                    float sent_freq = 0;
+
+                    try
+                    {
+                        if (float.TryParse(rx.frequency, NumberStyles.Any, CultureInfo.InvariantCulture, out sent_freq))
+                        {
+                            _current_frequency[c] = Convert.ToUInt32((sent_freq * 1000) - _current_offset[c]);
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Log.Error(Ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
+                    }
+
+                    uint symbol_rate = 0;
+
+                    if (uint.TryParse(rx.symbol_rate, out symbol_rate))
+                    {
+                        _current_sr[c] = symbol_rate;
+                    }
 
                     if (demodstate[c] != rx.scanstate)
                     {
@@ -516,39 +536,14 @@ namespace opentuner.MediaSources.Winterhill
                             VideoChangeCB?.Invoke(c, false);
                             playing[c] = false;
                             _tuner_properties[c].UpdateColor("demodstate", Color.PaleVioletRed);
-                            if (_recorders[c].record)
+                            if (_ts_recorders[c].record)
                             {
-                                _recorders[c].record = false;
+                                _ts_recorders[c].record = false;
                                 _tuner_properties[c].UpdateRecordButtonColor("media_controls_" + c.ToString(), Color.Transparent);
                             }
                         }
-
                         demodstate[c] = rx.scanstate;
-
-                        float sent_freq = 0;
-
-                        try
-                        {
-                            if (float.TryParse(rx.frequency, NumberStyles.Any, CultureInfo.InvariantCulture, out sent_freq))
-                            {
-                                _current_frequency[c] = Convert.ToInt32((sent_freq * 1000) - _current_offset[c]);
-                            }
-                        }
-                        catch (Exception Ex)
-                        {
-                            Log.Error(Ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
-                        }
-
-                        uint symbol_rate = 0;
-
-                        if (uint.TryParse(rx.symbol_rate, out symbol_rate))
-                        {
-                            _current_sr[c] = (int)symbol_rate;
-                        }
-
-
                     }
-
 
                     if (hw_device == 2)
                     {
@@ -640,8 +635,14 @@ namespace opentuner.MediaSources.Winterhill
                             source_data.volume = _media_player[c].GetVolume();
                     }
 
-                    source_data.streaming = _streamer[c].stream;
-                    source_data.recording = _recorders[c].record;
+                    if (_ts_recorders != null)
+                    {
+                        source_data.recording = _ts_recorders[c].record;
+                    }
+                    if (_ts_streamers != null)
+                    {
+                        source_data.streaming = _ts_streamers[c].stream;
+                    }
 
                     OnSourceData?.Invoke(c, source_data, "Tuner " + c.ToString());
                 }
@@ -664,7 +665,7 @@ namespace opentuner.MediaSources.Winterhill
             data.Add("dbMargin", last_dbm[device]);
             data.Add("Mer", last_mer[device]);
             data.Add("SR", _current_sr[device].ToString());
-            data.Add("Frequency", ((float)(_current_frequency[device] + _current_offset[device])/1000.0f).ToString("F", nfi));
+            data.Add("Frequency", ((_current_frequency[device] + _current_offset[device])/1000.0f).ToString("F", nfi));
 
             return data;
         }

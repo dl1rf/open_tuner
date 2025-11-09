@@ -42,7 +42,7 @@ namespace opentuner
         // extras
         MqttManager mqtt_client;
         F5OEOPlutoControl pluto_client;
-        BATCSpectrum batc_spectrum;
+        BATCSpectrum batc_spectrum = null;
         BATCChat batc_chat;
         QuickTuneControl quickTune_control;
 
@@ -108,10 +108,6 @@ namespace opentuner
                         break;
                     case "--autoconnect":
                         _settings.auto_connect = true;
-                        break;
-
-                    case "--noconnect":
-                        _settings.auto_connect = false;
                         break;
 
                     case "--enablebatcspectrum":
@@ -288,6 +284,9 @@ namespace opentuner
 
             _settingsManager = new SettingsManager<MainSettings>("open_tuner_settings");
             _settings = (_settingsManager.LoadSettings(_settings));
+
+            // reset autoconnect. Will be updated in the next step
+            _settings.auto_connect = false;
 
             // parse command line options
             ParseCommandLineOptions(args);
@@ -1113,7 +1112,7 @@ namespace opentuner
             }
 
             videoSource.UpdateFrequencyPresets(stored_frequencies);
-            videoSource.Start();
+            videoSource.Start(batc_spectrum);
 
             splitContainer1.SplitterDistance = _settings.gui_main_splitter_position;
 
@@ -1127,6 +1126,10 @@ namespace opentuner
                 ToggleExtraToolPanel(_settings.hide_ExtraTool);
             }
             return true;
+        }
+
+        public void InitBatcSpectrumTuner(int tunerId, double frequeny, double symbolRate)
+        {
         }
 
         private void btnSourceConnect_Click(object sender, EventArgs e)

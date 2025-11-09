@@ -39,7 +39,6 @@ namespace opentuner.Utilities
             SizeF temp_text_size = pe.Graphics.MeasureString("Temp", font);
             this.Height = (int)temp_text_size.Height + 10;
 
-
             pe.Graphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             pe.Graphics.DrawRectangle(Pens.White, 0, 0, Width - 1, Height - 1);
 

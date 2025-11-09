@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using opentuner.ExtraFeatures.BATCSpectrum;
 using opentuner.MediaPlayers;
 using opentuner.Utilities;
 
@@ -48,7 +49,7 @@ namespace opentuner.MediaSources
         public abstract CircularBuffer GetVideoDataQueue(int device);
         public abstract void RegisterTSConsumer(int device, CircularBuffer ts_buffer_queue);
 
-        public abstract void Start();
+        public abstract void Start(BATCSpectrum batcSpectrum);
 
         public abstract void ReStart();
 

@@ -126,7 +126,7 @@ namespace opentuner.MediaSources.Minitiouner
             // tuner for each device
             for (int c = 0; c < ts_devices; c++)
             {
-                var tunerControl = new TunerControlForm(c, 0, 0, (int)(c == 0 ? current_offset_0 : current_offset_1), this);
+                var tunerControl = new TunerControlForm(c, 0, 0, (c == 0 ? current_offset_0 : current_offset_1), this);
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
                 _tuner_forms.Add(tunerControl);
             }
@@ -419,13 +419,13 @@ namespace opentuner.MediaSources.Minitiouner
                     case 2:
                         modcod_text = lookups.modcod_lookup_dvbs2[new_status.T1P2_modcode];
                         dbmargin = (mer - lookups.modcod_lookup_dvbs2_threshold[new_status.T1P2_modcode]);
-                        db_margin_text = "D" + dbmargin.ToString("N1");
+                        db_margin_text = dbmargin.ToString("N1");
                         break;
 
                     case 3:
                         modcod_text = lookups.modcod_lookup_dvbs[new_status.T1P2_modcode];
                         dbmargin = (mer - lookups.modcod_lookup_dvbs_threshold[new_status.T1P2_modcode]);
-                        db_margin_text = "D" + dbmargin.ToString("N1");
+                        db_margin_text = dbmargin.ToString("N1");
                         break;
 
                 }
@@ -438,7 +438,7 @@ namespace opentuner.MediaSources.Minitiouner
             last_dbm_0 = db_margin_text;
             last_mer_0 = mer.ToString();
 
-            _tuner1_properties.UpdateBigLabel(db_margin_text);
+            _tuner1_properties.UpdateBigLabel("D" + db_margin_text);
             _tuner1_properties.UpdateValue("modcod", modcod_text);
 
             var source_data = new OTSourceData();
@@ -467,9 +467,15 @@ namespace opentuner.MediaSources.Minitiouner
                 if (_media_player[0] != null)
                     source_data.volume = _media_player[0].GetVolume();
             }
-            
-            source_data.streaming = _ts_streamers[0].stream;
-            source_data.recording = _ts_recorders[0].record;
+
+            if (_ts_streamers != null)
+            {
+                source_data.streaming = _ts_streamers[0].stream;
+            }
+            if (_ts_recorders != null)
+            {
+                source_data.recording = _ts_recorders[0].record;
+            }
 
             OnSourceData?.Invoke(0, source_data, "Tuner 1");
 
@@ -513,10 +519,13 @@ namespace opentuner.MediaSources.Minitiouner
                     _tuner2_properties.UpdateValue("audio_rate", "");
 
                     // stop recording if recording
-                    if (_ts_recorders[1].record)
+                    if (_ts_recorders != null)
                     {
-                        _ts_recorders[1].record = false;    // stop recording
-                        _tuner2_properties.UpdateRecordButtonColor("media_controls_2", Color.Transparent);
+                        if (_ts_recorders[1].record)
+                        {
+                            _ts_recorders[1].record = false;    // stop recording
+                            _tuner2_properties.UpdateRecordButtonColor("media_controls_2", Color.Transparent);
+                        }
                     }
                 }
 
@@ -530,13 +539,13 @@ namespace opentuner.MediaSources.Minitiouner
                         case 2:
                             modcod_text = lookups.modcod_lookup_dvbs2[new_status.T2P1_modcode];
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs2_threshold[new_status.T2P1_modcode]);
-                            db_margin_text = "D" + dbmargin.ToString("N1");
+                            db_margin_text = dbmargin.ToString("N1");
                             break;
 
                         case 3:
                             modcod_text = lookups.modcod_lookup_dvbs[new_status.T2P1_modcode];
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs_threshold[new_status.T2P1_modcode]);
-                            db_margin_text = "D" + dbmargin.ToString("N1");
+                            db_margin_text = dbmargin.ToString("N1");
                             break;
                     }
                 }
@@ -548,7 +557,7 @@ namespace opentuner.MediaSources.Minitiouner
                 last_dbm_1 = db_margin_text;
                 last_mer_1 = mer2.ToString();
 
-                _tuner2_properties.UpdateBigLabel(db_margin_text);
+                _tuner2_properties.UpdateBigLabel("D" + db_margin_text);
                 _tuner2_properties.UpdateValue("modcod", modcod_text);
 
                 var source_data_2 = new OTSourceData();
@@ -577,8 +586,14 @@ namespace opentuner.MediaSources.Minitiouner
                         source_data_2.volume = _media_player[1].GetVolume();
                 }
 
-                source_data_2.streaming = _ts_streamers[1].stream;
-                source_data_2.recording = _ts_recorders[1].record;
+                if (_ts_streamers != null)
+                {
+                    source_data_2.streaming = _ts_streamers[1].stream;
+                }
+                if (_ts_recorders != null)
+                {
+                    source_data_2.recording = _ts_recorders[1].record;
+                }
 
                 OnSourceData?.Invoke(1, source_data_2, "Tuner 2");
             }
@@ -635,7 +650,7 @@ namespace opentuner.MediaSources.Minitiouner
 
                 case "offset":
                     int tuner = (int)contextMenuStrip.SourceControl.Tag - 1;
-                    contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + (tuner == 0 ? _settings.Offset1 : _settings.Offset2), MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 0 }));
+                    contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + (tuner == 0 ? _settings.DefaultOffset[0] : _settings.DefaultOffset[1]), MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Zero" , MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 1 }));
                     break;
 
@@ -673,7 +688,7 @@ namespace opentuner.MediaSources.Minitiouner
             {
                 case MinitiounerPropertyCommands.SETFREQUENCY:
                     tuner = options[0];
-                    _tuner_forms[tuner].ShowTuner((int)(tuner == 0 ? current_frequency_0 : current_frequency_1), (int)(tuner == 0 ? current_sr_0 : current_sr_1), (int)(tuner == 0 ? current_offset_0 : current_offset_1));
+                    _tuner_forms[tuner].ShowTuner((tuner == 0 ? current_frequency_0 : current_frequency_1), (tuner == 0 ? current_sr_0 : current_sr_1), (tuner == 0 ? current_offset_0 : current_offset_1));
                     break;
 
                 case MinitiounerPropertyCommands.SETRFINPUTA:
@@ -695,7 +710,7 @@ namespace opentuner.MediaSources.Minitiouner
                     tuner = options[0];
 
                     if (options[1] == 0)    // set to default
-                        ChangeOffset((byte)tuner, ((tuner == 0) ? (int)_settings.Offset1 : (int)_settings.Offset2));
+                        ChangeOffset((byte)tuner, ((tuner == 0) ? (int)_settings.DefaultOffset[0] : (int)_settings.DefaultOffset[1]));
                     if (options[1] == 1)    // zero out
                         ChangeOffset((byte)tuner, 0);
                     break;
@@ -783,7 +798,7 @@ namespace opentuner.MediaSources.Minitiouner
                 data.Add("dbMargin", last_dbm_0);
                 data.Add("Mer", last_mer_0);
                 data.Add("SR", current_sr_0.ToString());
-                data.Add("Frequency", ((float)(current_frequency_0 + _settings.Offset1) / 1000.0f).ToString("F", nfi));
+                data.Add("Frequency", (current_frequency_0 + _settings.DefaultOffset[0] / 1000.0f).ToString("F", nfi));
             }
 
             if (device == 1)
@@ -793,7 +808,7 @@ namespace opentuner.MediaSources.Minitiouner
                 data.Add("dbMargin", last_dbm_1);
                 data.Add("Mer", last_mer_1);
                 data.Add("SR", current_sr_1.ToString());
-                data.Add("Frequency", ((float)(current_frequency_1 + _settings.Offset2) / 1000.0f).ToString("F", nfi));
+                data.Add("Frequency", (current_frequency_1 + _settings.DefaultOffset[1] / 1000.0f).ToString("F", nfi));
             }
 
             return data;

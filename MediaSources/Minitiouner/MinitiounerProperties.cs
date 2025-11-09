@@ -467,9 +467,15 @@ namespace opentuner.MediaSources.Minitiouner
                 if (_media_player[0] != null)
                     source_data.volume = _media_player[0].GetVolume();
             }
-            
-            source_data.streaming = _ts_streamers[0].stream;
-            source_data.recording = _ts_recorders[0].record;
+
+            if (_ts_streamers != null)
+            {
+                source_data.streaming = _ts_streamers[0].stream;
+            }
+            if (_ts_recorders != null)
+            {
+                source_data.recording = _ts_recorders[0].record;
+            }
 
             OnSourceData?.Invoke(0, source_data, "Tuner 1");
 
@@ -513,10 +519,13 @@ namespace opentuner.MediaSources.Minitiouner
                     _tuner2_properties.UpdateValue("audio_rate", "");
 
                     // stop recording if recording
-                    if (_ts_recorders[1].record)
+                    if (_ts_recorders != null)
                     {
-                        _ts_recorders[1].record = false;    // stop recording
-                        _tuner2_properties.UpdateRecordButtonColor("media_controls_2", Color.Transparent);
+                        if (_ts_recorders[1].record)
+                        {
+                            _ts_recorders[1].record = false;    // stop recording
+                            _tuner2_properties.UpdateRecordButtonColor("media_controls_2", Color.Transparent);
+                        }
                     }
                 }
 
@@ -577,8 +586,14 @@ namespace opentuner.MediaSources.Minitiouner
                         source_data_2.volume = _media_player[1].GetVolume();
                 }
 
-                source_data_2.streaming = _ts_streamers[1].stream;
-                source_data_2.recording = _ts_recorders[1].record;
+                if (_ts_streamers != null)
+                {
+                    source_data_2.streaming = _ts_streamers[1].stream;
+                }
+                if (_ts_recorders != null)
+                {
+                    source_data_2.recording = _ts_recorders[1].record;
+                }
 
                 OnSourceData?.Invoke(1, source_data_2, "Tuner 2");
             }

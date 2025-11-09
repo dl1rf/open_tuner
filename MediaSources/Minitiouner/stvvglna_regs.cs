@@ -1,6 +1,10 @@
 ﻿// ported from longmynd - https://github.com/myorangedragon/longmynd - Heather Lomond
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace opentuner
 {
@@ -10,7 +14,6 @@ namespace opentuner
         public const byte STVVGLNA_I2C_ADDR1 = 0xca;
         public const byte STVVGLNA_I2C_ADDR2 = 0xcc;
         public const byte STVVGLNA_I2C_ADDR3 = 0xce;
-
         public const byte STVVGLNA_REG0 = 0x00;
         public const byte STVVGLNA_REG0_IDENT_SHIFT = 4;
         public const byte STVVGLNA_REG0_IDENT_MASK = 0xf0;
@@ -27,7 +30,6 @@ namespace opentuner
         public const byte STVVGLNA_REG0_RFAGC_LOW_SHIFT = 0;
         public const byte STVVGLNA_REG0_RFAGC_LOW_NOT_LOW = 0;
         public const byte STVVGLNA_REG0_RFAGC_LOW_IS_LOW = 1;
-
         public const byte STVVGLNA_REG1 = 0x01;
         public const byte STVVGLNA_REG1_LNAGC_PWD_SHIFT =  7;
         public const byte STVVGLNA_REG1_LNAGC_PWD_POWER_ON = 0;
@@ -40,7 +42,6 @@ namespace opentuner
         public const byte STVVGLNA_REG1_GETAGC_START = 1;
         public const byte STVVGLNA_REG1_VGO_SHIFT = 0;
         public const byte STVVGLNA_REG1_VGO_MASK = 0x1f;
-
         public const byte STVVGLNA_REG2 = 0x02;
         public const byte STVVGLNA_REG2_PATH2OFF_SHIFT = 7;
         public const byte STVVGLNA_REG2_PATH_ACTIVE = 0;
@@ -66,7 +67,6 @@ namespace opentuner
         public const byte STVVGLNA_REG2_RFAGC_MODE_AGC_LOOP_EXTERNAL = 0x5;
         public const byte STVVGLNA_REG2_RFAGC_MODE_MINIMAL_AGC_EXTERNAL = 0x6;
         public const byte STVVGLNA_REG2_RFAGC_MODE_MAXIMAL_AGC_EXTERNAL = 0x7;
-
         public const byte STVVGLNA_REG3 = 0x03;
         public const byte STVVGLNA_REG3_LCAL_SHIFT = 4;
         public const byte STVVGLNA_REG3_LCAL_MASK           = 0x70 ;

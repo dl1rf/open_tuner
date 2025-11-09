@@ -37,8 +37,8 @@ namespace opentuner.MediaSources.Winterhill
         public CircularBuffer[] ts_data_queue; // = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
 
         private OTMediaPlayer[] _media_player = new OTMediaPlayer[4];
-        private TSRecorder[] _recorders = new TSRecorder[4];
-        private TSUdpStreamer[] _streamer = new TSUdpStreamer[4];
+        private TSRecorder[] _ts_recorders = new TSRecorder[4];
+        private TSUdpStreamer[] _ts_streamers = new TSUdpStreamer[4];
         private List<TunerControlForm> _tuner_forms;
 
         private int ts_devices = 4;
@@ -321,6 +321,7 @@ namespace opentuner.MediaSources.Winterhill
                     stopPingTimer();
                     DisconnectWebsockets();
                     break;
+
                 case 2: // udp pico wh
                     DisconnectWinterhillUDP();
                     break;
@@ -353,7 +354,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             for (int c = 0; c  < TSRecorders.Count; c++)
             {
-                _recorders[c] = TSRecorders[c];
+                _ts_recorders[c] = TSRecorders[c];
             }
         }
 
@@ -361,9 +362,9 @@ namespace opentuner.MediaSources.Winterhill
         {
             for (int c = 0; c < TSStreamers.Count; c++)
             {
-                _streamer[c] = TSStreamers[c];
-                _streamer[c].onStreamStatusChange += WinterhillSource_onStreamStatusChange;
-                _streamer[c].stream = _settings.DefaultUDPStreaming[c];
+                _ts_streamers[c] = TSStreamers[c];
+                _ts_streamers[c].onStreamStatusChange += WinterhillSource_onStreamStatusChange;
+                _ts_streamers[c].stream = _settings.DefaultUDPStreaming[c];
             }
         }
 
@@ -412,7 +413,7 @@ namespace opentuner.MediaSources.Winterhill
             return "Winterhill Client, Compatible with:" +
                     Environment.NewLine + Environment.NewLine +
                     "ZR6TG - WH Variant (websocket)" +
-					Environment.NewLine +
+                    Environment.NewLine +
                     "G4EWJ - PicoTuner WH (Ethernet)" + Environment.NewLine;
 
         }
@@ -421,8 +422,11 @@ namespace opentuner.MediaSources.Winterhill
         {
             switch (hw_device)
             {
-                case 1: return "Winterhill (ZR6TG Variant)";
-                case 2: return "PicoTuner (G4EWJ Ethernet WH)";
+                case 1: 
+                    return "Winterhill (ZR6TG Variant)";
+
+                case 2: 
+                    return "PicoTuner (G4EWJ Ethernet WH)";
             }
 
             return "Unknown";
@@ -442,7 +446,6 @@ namespace opentuner.MediaSources.Winterhill
         {
             if (Override)
             {
-//                for (int i = 0; i < _settings.DefaultMuted.Count(); i++)
                 for (int i = 0; i < hw_device; i++)
                 {
                     preMute[i] = (int)_settings.DefaultVolume[i];                           // save DefaultVolume in preMute
@@ -489,6 +492,7 @@ namespace opentuner.MediaSources.Winterhill
                 {
                     case 1: WSSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
+
                     case 2: UDPSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
                 }
@@ -499,6 +503,7 @@ namespace opentuner.MediaSources.Winterhill
                 {
                     case 1: WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
+
                     case 2: UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
                 }

@@ -294,7 +294,7 @@ namespace opentuner.MediaSources.Longmynd
                 }
 
                 last_mer_0 = mer.ToString();
-                last_dbm_0 = "D" + db_margin.ToString("N1").ToString();
+                last_dbm_0 = db_margin.ToString("N1").ToString();
                 _tuner1_properties.UpdateBigLabel("D" + db_margin.ToString("N1"));
                 //_tuner1_properties.UpdateValue("db_margin", "D" + db_margin.ToString("N1"));
                 _tuner1_properties.UpdateValue("modcod", modcod_text);

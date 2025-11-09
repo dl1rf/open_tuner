@@ -419,13 +419,13 @@ namespace opentuner.MediaSources.Minitiouner
                     case 2:
                         modcod_text = lookups.modcod_lookup_dvbs2[new_status.T1P2_modcode];
                         dbmargin = (mer - lookups.modcod_lookup_dvbs2_threshold[new_status.T1P2_modcode]);
-                        db_margin_text = "D" + dbmargin.ToString("N1");
+                        db_margin_text = dbmargin.ToString("N1");
                         break;
 
                     case 3:
                         modcod_text = lookups.modcod_lookup_dvbs[new_status.T1P2_modcode];
                         dbmargin = (mer - lookups.modcod_lookup_dvbs_threshold[new_status.T1P2_modcode]);
-                        db_margin_text = "D" + dbmargin.ToString("N1");
+                        db_margin_text = dbmargin.ToString("N1");
                         break;
 
                 }
@@ -438,7 +438,7 @@ namespace opentuner.MediaSources.Minitiouner
             last_dbm_0 = db_margin_text;
             last_mer_0 = mer.ToString();
 
-            _tuner1_properties.UpdateBigLabel(db_margin_text);
+            _tuner1_properties.UpdateBigLabel("D" + db_margin_text);
             _tuner1_properties.UpdateValue("modcod", modcod_text);
 
             var source_data = new OTSourceData();
@@ -530,13 +530,13 @@ namespace opentuner.MediaSources.Minitiouner
                         case 2:
                             modcod_text = lookups.modcod_lookup_dvbs2[new_status.T2P1_modcode];
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs2_threshold[new_status.T2P1_modcode]);
-                            db_margin_text = "D" + dbmargin.ToString("N1");
+                            db_margin_text = dbmargin.ToString("N1");
                             break;
 
                         case 3:
                             modcod_text = lookups.modcod_lookup_dvbs[new_status.T2P1_modcode];
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs_threshold[new_status.T2P1_modcode]);
-                            db_margin_text = "D" + dbmargin.ToString("N1");
+                            db_margin_text = dbmargin.ToString("N1");
                             break;
                     }
                 }
@@ -548,7 +548,7 @@ namespace opentuner.MediaSources.Minitiouner
                 last_dbm_1 = db_margin_text;
                 last_mer_1 = mer2.ToString();
 
-                _tuner2_properties.UpdateBigLabel(db_margin_text);
+                _tuner2_properties.UpdateBigLabel("D" + db_margin_text);
                 _tuner2_properties.UpdateValue("modcod", modcod_text);
 
                 var source_data_2 = new OTSourceData();

@@ -24,6 +24,7 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.IO;
 
 namespace opentuner
 {
@@ -592,8 +593,43 @@ namespace opentuner
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (_settings.media_path.Length == 0)
-                _settings.media_path = AppDomain.CurrentDomain.BaseDirectory;
+            if (_settings.media_path.Length == 0 || _settings.media_path == AppDomain.CurrentDomain.BaseDirectory)
+            {
+                _settings.media_path = AppDomain.CurrentDomain.BaseDirectory + "Screenshots\\";
+            }
+
+            if (!Directory.Exists(_settings.media_path))
+            {
+                try
+                {
+                    DirectoryInfo di;
+                    di = Directory.CreateDirectory(_settings.media_path);
+                    Log.Information("directory " + _settings.media_path + " created");
+                }
+                catch
+                {
+                    Log.Error("Can not create directory: " + _settings.media_path);
+                }
+            }
+
+            if (_settings.media_video_path.Length == 0 || _settings.media_video_path == AppDomain.CurrentDomain.BaseDirectory)
+            {
+                _settings.media_video_path = AppDomain.CurrentDomain.BaseDirectory + "Videos\\";
+            }
+
+            if (!Directory.Exists(_settings.media_video_path))
+            {
+                try
+                {
+                    DirectoryInfo di;
+                    di = Directory.CreateDirectory(_settings.media_video_path);
+                    Log.Information("directory " + _settings.media_video_path + " created");
+                }
+                catch
+                {
+                    Log.Error("Can not create directory: " + _settings.media_video_path);
+                }
+            }
 
             if (_settings.gui_window_width != -1)
             {

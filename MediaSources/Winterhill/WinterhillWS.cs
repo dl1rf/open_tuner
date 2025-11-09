@@ -45,7 +45,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             string wh_command = ("U" + (device + 1).ToString() + "," + "127.0.0.1");
             Log.Debug(wh_command);
-            controlWS.Send(wh_command);
+            controlWS?.Send(wh_command);
             Task.Delay(100);   // delay to allow WinterHill to get to stable state
         }
 
@@ -88,7 +88,7 @@ namespace opentuner.MediaSources.Winterhill
 
         private void stopPingTimer()
         {
-            PingTimer.Stop();
+            PingTimer?.Stop();
         }
 
         private void OnStartPingEvent(object sender, ElapsedEventArgs e)

@@ -1,21 +1,9 @@
-﻿using LibVLCSharp.Shared;
-using NAudio.Gui;
-using Newtonsoft.Json.Linq;
-using opentuner.Utilities;
+﻿using opentuner.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static opentuner.Transmit.F5OEOPlutoControl;
 using System.Drawing;
-using System.Runtime.CompilerServices;
-using FlyleafLib.MediaFramework.MediaFrame;
-using Vortice.MediaFoundation;
 using Serilog;
-using opentuner.MediaSources.Longmynd;
-using NAudio.SoundFont;
 using System.Globalization;
 
 namespace opentuner.MediaSources.Minitiouner
@@ -61,7 +49,6 @@ namespace opentuner.MediaSources.Minitiouner
 
             _genericContextStrip = new ContextMenuStrip();
             _genericContextStrip.Opening += _genericContextStrip_Opening;
-
 
             if (ts_devices == 2)
             {
@@ -155,7 +142,6 @@ namespace opentuner.MediaSources.Minitiouner
             dynamicPropertyGroup.OnMediaButtonPressed += MinitiounerSource_OnMediaButtonPressed;
             dynamicPropertyGroup.AddItem("demodstate", "Demod State", Color.PaleVioletRed);
             dynamicPropertyGroup.AddItem("mer", "Mer");
-            //dynamicPropertyGroup.AddItem("db_margin", "db Margin");
             dynamicPropertyGroup.AddItem("rf_input_level", "RF Input Level");
             dynamicPropertyGroup.AddItem("rf_input", "RF Input", _genericContextStrip);
             dynamicPropertyGroup.AddItem("requested_freq_" + tuner.ToString(), "Requested Freq", _genericContextStrip);
@@ -180,20 +166,6 @@ namespace opentuner.MediaSources.Minitiouner
 
         private int[] preMute = new int[] { 50, 50 };
         private bool[] muted = new bool[] { true, true };
-//        private int indicatorStatus1 = 0;
-//        private int indicatorStatus2 = 0;
-
-        
-
-//        public void SetIndicator(ref int indicatorInput, PropertyIndicators indicator)
-//        {
-//            indicatorInput |= (byte)(1 << (int)indicator);
-//        }
-
-//        public void ClearIndicator(ref int indicatorInput, PropertyIndicators indicator)
-//        {
-//            indicatorInput &= (byte)~(1 << (int)indicator);
-//        }
 
         private void MinitiounerSource_OnMediaButtonPressed(string key, int function)
         {
@@ -207,22 +179,21 @@ namespace opentuner.MediaSources.Minitiouner
                 case 0: // mute
                     ToggleMute(tuner);
                     break;
+
                 case 1: // snaphost
                     Log.Information("Snapshot: " + tuner.ToString());
                     _media_player[tuner].SnapShot(_mediapath + CommonFunctions.GenerateTimestampFilename() + ".png");
-
                     break;
+
                 case 2: // record
                     Log.Information("Record: " + tuner.ToString());
 
                     if (_ts_recorders[tuner].record)
                     {
-//                        ClearIndicator(ref ((tuner == 0) ? ref indicatorStatus1 : ref indicatorStatus2), PropertyIndicators.RecordingIndicator);
                         _ts_recorders[tuner].record = false;    // stop recording
                     }
                     else
                     {
-//                        SetIndicator(ref ((tuner == 0) ? ref indicatorStatus1 : ref indicatorStatus2), PropertyIndicators.RecordingIndicator);
                         _ts_recorders[tuner].record = true;     // start recording
                     }
 
@@ -236,7 +207,6 @@ namespace opentuner.MediaSources.Minitiouner
                         {
                             _tuner1_properties.UpdateRecordButtonColor("media_controls_0", Color.Transparent);
                         }
-//                        _tuner1_properties.UpdateValue("media_controls_0", indicatorStatus1.ToString());
                     }
                     else
                     {
@@ -248,20 +218,18 @@ namespace opentuner.MediaSources.Minitiouner
                         {
                             _tuner2_properties.UpdateRecordButtonColor("media_controls_1", Color.Transparent);
                         }
-//                        _tuner2_properties.UpdateValue("media_controls_1", indicatorStatus2.ToString());
                     }
                     break;
+
                 case 3: // udp stream
                     Log.Information("UDP Stream: " + tuner.ToString());
 
                     if (_ts_streamers[tuner].stream)
                     {
-//                        ClearIndicator(ref ((tuner == 0) ? ref indicatorStatus1 : ref indicatorStatus2), PropertyIndicators.StreamingIndicator);
                         _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = false;
                     }
                     else
                     {
-//                        SetIndicator(ref ((tuner == 0) ? ref indicatorStatus1 : ref indicatorStatus2), PropertyIndicators.StreamingIndicator);
                         _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = true;
                     }
 
@@ -275,7 +243,6 @@ namespace opentuner.MediaSources.Minitiouner
                         {
                             _tuner1_properties.UpdateStreamButtonColor("media_controls_0", Color.Transparent);
                         }
-//                        _tuner1_properties.UpdateValue("media_controls_0", indicatorStatus1.ToString());
                     }
                     else
                     {
@@ -287,9 +254,7 @@ namespace opentuner.MediaSources.Minitiouner
                         {
                             _tuner2_properties.UpdateStreamButtonColor("media_controls_1", Color.Transparent);
                         }
-//                        _tuner2_properties.UpdateValue("media_controls_1", indicatorStatus2.ToString());
                     }
-
                     break;
             }
         }
@@ -305,10 +270,10 @@ namespace opentuner.MediaSources.Minitiouner
                     {
                         _media_player[0]?.SetVolume(value);
                     }
-                    
                     _settings.DefaultVolume[0] = (byte)value;
                     _tuner1_properties.UpdateMuteButtonColor("media_controls_0", Color.Transparent);
                     break;
+
                 case "volume_slider_1":
                     // cancel mute
                     _settings.DefaultMuted[1] = muted[1] = false;
@@ -340,7 +305,6 @@ namespace opentuner.MediaSources.Minitiouner
                 last_service_name_1 = ts_status.ServiceName;
                 last_service_provider_1 = ts_status.ServiceProvider;
             }
-
         }
 
         private void UpdateMediaProperties(int player, MediaStatus media_status)
@@ -375,9 +339,11 @@ namespace opentuner.MediaSources.Minitiouner
                 case 0:
                     _source_properties.UpdateValue("hw_lnba", "OFF");
                     break;
+
                 case 1:
                     _source_properties.UpdateValue("hw_lnba", "Vertical (12V)");
                     break;
+
                 case 2:
                     _source_properties.UpdateValue("hw_lnba", "Horizontal (18V)");
                     break;
@@ -388,9 +354,11 @@ namespace opentuner.MediaSources.Minitiouner
                 case 0:
                     _source_properties.UpdateValue("hw_lnbb", "OFF");
                     break;
+
                 case 1:
                     _source_properties.UpdateValue("hw_lnbb", "Vertical (12V)");
                     break;
+
                 case 2:
                     _source_properties.UpdateValue("hw_lnbb", "Horizontal (18V)");
                     break;
@@ -435,10 +403,8 @@ namespace opentuner.MediaSources.Minitiouner
                 // stop recording if recording
                 if (_ts_recorders[0].record)
                 {
-//                    ClearIndicator(ref indicatorStatus1, PropertyIndicators.RecordingIndicator);
                     _ts_recorders[0].record = false;    // stop recording
                     _tuner1_properties.UpdateRecordButtonColor("media_controls_1", Color.Transparent);
-//                    _tuner1_properties.UpdateValue("media_controls_1", indicatorStatus1.ToString());
                 }
 
             }
@@ -455,11 +421,13 @@ namespace opentuner.MediaSources.Minitiouner
                         dbmargin = (mer - lookups.modcod_lookup_dvbs2_threshold[new_status.T1P2_modcode]);
                         db_margin_text = "D" + dbmargin.ToString("N1");
                         break;
+
                     case 3:
                         modcod_text = lookups.modcod_lookup_dvbs[new_status.T1P2_modcode];
                         dbmargin = (mer - lookups.modcod_lookup_dvbs_threshold[new_status.T1P2_modcode]);
                         db_margin_text = "D" + dbmargin.ToString("N1");
                         break;
+
                 }
             }
             catch (Exception ex)
@@ -471,11 +439,7 @@ namespace opentuner.MediaSources.Minitiouner
             last_mer_0 = mer.ToString();
 
             _tuner1_properties.UpdateBigLabel(db_margin_text);
-            //_tuner1_properties.UpdateValue("db_margin", db_margin_text);
             _tuner1_properties.UpdateValue("modcod", modcod_text);
-
-            // var data1 = _tuner1_properties.GetAll();
-            //data1.Add("frequency", GetFrequency(0, true).ToString());
 
             var source_data = new OTSourceData();
             source_data.frequency = GetFrequency(0, true);
@@ -483,6 +447,8 @@ namespace opentuner.MediaSources.Minitiouner
             source_data.mer = mer;
             source_data.db_margin = dbmargin;
             source_data.service_name = _tuner1_properties.GetValue("service_name");
+            if (source_data.service_name == null)
+                source_data.service_name = "";
             source_data.demod_locked = (new_status.T1P2_demod_status > 1);
             if (source_data.demod_locked)
             {
@@ -533,9 +499,6 @@ namespace opentuner.MediaSources.Minitiouner
                 _tuner2_properties.UpdateValue("stream_format", lookups.stream_format_lookups[Convert.ToInt32(new_status.T2P1_stream_format)].ToString());
                 _tuner2_properties.UpdateValue("offset", current_offset_1.ToString());
 
-
-
-
                 // clear ts data if not locked onto signal
                 if (new_status.T2P1_demod_status < 2)
                 {
@@ -549,16 +512,12 @@ namespace opentuner.MediaSources.Minitiouner
                     _tuner2_properties.UpdateValue("audio_codec", "");
                     _tuner2_properties.UpdateValue("audio_rate", "");
 
-
                     // stop recording if recording
                     if (_ts_recorders[1].record)
                     {
-//                        ClearIndicator(ref indicatorStatus2, PropertyIndicators.RecordingIndicator);
                         _ts_recorders[1].record = false;    // stop recording
                         _tuner2_properties.UpdateRecordButtonColor("media_controls_2", Color.Transparent);
-//                        _tuner2_properties.UpdateValue("media_controls_2", indicatorStatus2.ToString());
                     }
-
                 }
 
                 // db margin / modcod
@@ -573,6 +532,7 @@ namespace opentuner.MediaSources.Minitiouner
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs2_threshold[new_status.T2P1_modcode]);
                             db_margin_text = "D" + dbmargin.ToString("N1");
                             break;
+
                         case 3:
                             modcod_text = lookups.modcod_lookup_dvbs[new_status.T2P1_modcode];
                             dbmargin = (mer2 - lookups.modcod_lookup_dvbs_threshold[new_status.T2P1_modcode]);
@@ -589,11 +549,7 @@ namespace opentuner.MediaSources.Minitiouner
                 last_mer_1 = mer2.ToString();
 
                 _tuner2_properties.UpdateBigLabel(db_margin_text);
-                //_tuner2_properties.UpdateValue("db_margin", db_margin_text);
                 _tuner2_properties.UpdateValue("modcod", modcod_text);
-
-                //var data2 = _tuner2_properties.GetAll();
-                //data2.Add("frequency", GetFrequency(1, true).ToString());
 
                 var source_data_2 = new OTSourceData();
                 source_data_2.frequency = GetFrequency(1, true);
@@ -601,14 +557,16 @@ namespace opentuner.MediaSources.Minitiouner
                 source_data_2.mer = mer2;
                 source_data_2.db_margin = dbmargin;
                 source_data_2.service_name = _tuner2_properties.GetValue("service_name");
+                if (source_data_2.service_name == null)
+                    source_data_2.service_name = "";
                 source_data_2.demod_locked = (new_status.T2P1_demod_status > 1);
-                if (source_data.demod_locked)
+                if (source_data_2.demod_locked)
                 {
-                    source_data.demode_state = lookups.demod_state_lookup[new_status.T2P1_demod_status].Replace("Lock DVB-", "");
+                    source_data_2.demode_state = lookups.demod_state_lookup[new_status.T2P1_demod_status].Replace("Lock DVB-", "");
                 }
                 else
                 {
-                    source_data.demode_state = "";
+                    source_data_2.demode_state = "";
                 }
                 source_data_2.symbol_rate = (int)(new_status.T2P1_symbol_rate / 1000);
                 source_data_2.modcode = modcod_text;
@@ -623,7 +581,6 @@ namespace opentuner.MediaSources.Minitiouner
                 source_data_2.recording = _ts_recorders[1].record;
 
                 OnSourceData?.Invoke(1, source_data_2, "Tuner 2");
-
             }
         }
 
@@ -649,8 +606,8 @@ namespace opentuner.MediaSources.Minitiouner
                             contextMenuStrip.Items.Add(ConfigureMenuItem(_frequency_presets[c].Name + " (" + _frequency_presets[c].Frequency + ")", MinitiounerPropertyCommands.SETPRESET, new int[] { 0, c }));
                         }
                     }
-
                     break;
+
                 case "requested_freq_2":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Tuner Control", MinitiounerPropertyCommands.SETFREQUENCY, new int[] { 1 }));
 
@@ -663,34 +620,37 @@ namespace opentuner.MediaSources.Minitiouner
                             contextMenuStrip.Items.Add(ConfigureMenuItem(_frequency_presets[c].Name + " (" + _frequency_presets[c].Frequency + ")", MinitiounerPropertyCommands.SETPRESET, new int[] { 1, c }));
                         }
                     }
+                    break;
 
-                    break;                  
                 case "rf_input":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("A", MinitiounerPropertyCommands.SETRFINPUTA, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("B", MinitiounerPropertyCommands.SETRFINPUTB, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1 }));
                     break;
+
                 case "symbol_rate":
                     uint[] symbol_rates = new uint[] { 2000, 1500, 1000, 500, 333, 250, 125, 66 };
                     foreach (uint rate in symbol_rates)
                         contextMenuStrip.Items.Add(ConfigureMenuItem(rate.ToString(), MinitiounerPropertyCommands.SETSYMBOLRATE, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, (int)rate}));
                     break;
+
                 case "offset":
                     int tuner = (int)contextMenuStrip.SourceControl.Tag - 1;
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + (tuner == 0 ? _settings.Offset1 : _settings.Offset2), MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Zero" , MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 1 }));
                     break;
+
                 case "hw_lnba":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("OFF", MinitiounerPropertyCommands.LNBA_OFF, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", MinitiounerPropertyCommands.LNBA_VERTICAL, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Horizontal", MinitiounerPropertyCommands.LNBA_HORIZONTAL, new int[] { 0, 0 }));
                     break;
+
                 case "hw_lnbb":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("OFF", MinitiounerPropertyCommands.LNBB_OFF, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", MinitiounerPropertyCommands.LNBB_VERTICAL, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Horizontal", MinitiounerPropertyCommands.LNBB_HORIZONTAL, new int[] { 0, 0 }));
                     break;
             }
-
         }
 
         private ToolStripMenuItem ConfigureMenuItem(string Text, MinitiounerPropertyCommands command, int[] option)
@@ -700,7 +660,6 @@ namespace opentuner.MediaSources.Minitiouner
             {
                 properties_OnPropertyMenuSelect(command, option);
             };
-
             return item;
         }
 
@@ -716,18 +675,22 @@ namespace opentuner.MediaSources.Minitiouner
                     tuner = options[0];
                     _tuner_forms[tuner].ShowTuner((int)(tuner == 0 ? current_frequency_0 : current_frequency_1), (int)(tuner == 0 ? current_sr_0 : current_sr_1), (int)(tuner == 0 ? current_offset_0 : current_offset_1));
                     break;
+
                 case MinitiounerPropertyCommands.SETRFINPUTA:
                     ChangeRFInput((byte)options[0], nim.NIM_INPUT_TOP);
                     ResetVideo(options[0]);
                     break;
+
                 case MinitiounerPropertyCommands.SETRFINPUTB:
                     ChangeRFInput((byte)options[0], nim.NIM_INPUT_BOTTOM);
                     ResetVideo(options[0]);
                     break;
+
                 case MinitiounerPropertyCommands.SETSYMBOLRATE:
                     ChangeSymbolRate((byte)options[0],(uint)options[1]);
                     ResetVideo(options[0]);
                     break;
+
                 case MinitiounerPropertyCommands.SETOFFSET:
                     tuner = options[0];
 
@@ -767,22 +730,27 @@ namespace opentuner.MediaSources.Minitiouner
                     current_lnba_psu = 0;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
                     break;
+
                 case MinitiounerPropertyCommands.LNBA_VERTICAL:
                     current_lnba_psu = 1;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
                     break;
+
                 case MinitiounerPropertyCommands.LNBA_HORIZONTAL:
                     current_lnba_psu = 2;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
                     break;
+
                 case MinitiounerPropertyCommands.LNBB_OFF:
                     current_lnbb_psu = 0;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
                     break;
+
                 case MinitiounerPropertyCommands.LNBB_VERTICAL:
                     current_lnbb_psu = 1;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
                     break;
+
                 case MinitiounerPropertyCommands.LNBB_HORIZONTAL:
                     current_lnbb_psu = 2;
                     change_frequency(0, current_frequency_0, current_sr_0, current_rf_input_0, current_tone_22kHz_P1, current_lnba_psu, current_lnbb_psu);
@@ -853,8 +821,13 @@ namespace opentuner.MediaSources.Minitiouner
 
             switch (device)
             {
-                case 0: _tuner1_properties?.UpdateValue("volume_slider_" + device.ToString(), new_volume.ToString()); break;
-                case 1: _tuner2_properties?.UpdateValue("volume_slider_" + device.ToString(), new_volume.ToString()); break;
+                case 0:
+                    _tuner1_properties?.UpdateValue("volume_slider_" + device.ToString(), new_volume.ToString());
+                    break;
+
+                case 1:
+                    _tuner2_properties?.UpdateValue("volume_slider_" + device.ToString(), new_volume.ToString());
+                    break;
             }
         }
 
@@ -912,8 +885,8 @@ namespace opentuner.MediaSources.Minitiouner
 
             if (_media_player[device] == null)
                 return -1;
-        
-            return _media_player[device].GetVolume();   
+
+            return _media_player[device].GetVolume();
         }
     }
 }

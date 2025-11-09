@@ -38,8 +38,8 @@ namespace opentuner.MediaSources.Longmynd
         public CircularBuffer ts_data_queue; // = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
 
         private OTMediaPlayer _media_player;
-        private TSRecorder _recorder;
-        private TSUdpStreamer _streamer;
+        private TSRecorder _ts_recorder;
+        private TSUdpStreamer _ts_streamer;
         private List<TunerControlForm> _tuner_forms;
 
         // properties
@@ -235,14 +235,14 @@ namespace opentuner.MediaSources.Longmynd
 
         public override void ConfigureTSRecorders(List<TSRecorder> TSRecorders)
         {
-            _recorder = TSRecorders[0];
+            _ts_recorder = TSRecorders[0];
         }
 
         public override void ConfigureTSStreamers(List<TSUdpStreamer> TSStreamers)
         {
-            _streamer = TSStreamers[0];
-            _streamer.onStreamStatusChange += LongmyndSource_onStreamStatusChange;
-            _streamer.stream = _settings.DefaultUDPStreaming;
+            _ts_streamer = TSStreamers[0];
+            _ts_streamer.onStreamStatusChange += LongmyndSource_onStreamStatusChange;
+            _ts_streamer.stream = _settings.DefaultUDPStreaming;
         }
 
         private void LongmyndSource_onStreamStatusChange(object sender, bool e)

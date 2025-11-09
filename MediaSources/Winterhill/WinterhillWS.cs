@@ -80,7 +80,7 @@ namespace opentuner.MediaSources.Winterhill
 
         private void stopPingTimer()
         {
-            PingTimer.Stop();
+            PingTimer?.Stop();
         }
 
         private void OnStartPingEvent(object sender, ElapsedEventArgs e)

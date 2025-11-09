@@ -41,7 +41,6 @@ namespace opentuner.MediaSources.Winterhill
         private bool[] muted = new bool[] { true, true, true, true };
         private int[] preMute = new int[] { 50, 50, 50, 50 };
 
-
         private bool BuildSourceProperties(bool mute_at_startup)
         {
             if (_parent == null)
@@ -137,7 +136,6 @@ namespace opentuner.MediaSources.Winterhill
             {
                 var tunerControl = new TunerControlForm(c, 0, 0, (int)_current_offset[c], this);
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
-
                 _tuner_forms.Add(tunerControl);
             }
 
@@ -170,6 +168,7 @@ namespace opentuner.MediaSources.Winterhill
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", LongmyndPropertyCommands.LNBA_VERTICAL, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Horizontal", LongmyndPropertyCommands.LNBA_HORIZONTAL, new int[] { 0, 0 }));
                     break;
+
                 case "hw_lnbb":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("OFF", LongmyndPropertyCommands.LNBB_OFF, new int[] { 0, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Switch Vertical", LongmyndPropertyCommands.LNBB_VERTICAL, new int[] { 0, 0 }));
@@ -181,12 +180,12 @@ namespace opentuner.MediaSources.Winterhill
                     contextMenuStrip.Items.Add(ConfigureMenuItem("B", LongmyndPropertyCommands.SETRFINPUTB, new int[] { (int)contextMenuStrip.SourceControl.Tag  }));
                     break;
 
-
                 case "offset":
                     int tuner = (int)contextMenuStrip.SourceControl.Tag;
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + _settings.DefaultOffset[tuner], LongmyndPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Zero", LongmyndPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag, 1 }));
                     break;
+
                 // change frequency
                 case "frequency":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Tuner Control", LongmyndPropertyCommands.SETFREQUENCY, new int[] { (int)contextMenuStrip.SourceControl.Tag }));
@@ -201,6 +200,7 @@ namespace opentuner.MediaSources.Winterhill
                         }
                     }
                     break;
+
                 case "ts_addr":
                     // get local ip's
                     if (_LocalIp.Length == 0)
@@ -372,16 +372,16 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case 2: // record
-                    if (_recorders[tuner].record)
+                    if (_ts_recorders[tuner].record)
                     {
-                        _recorders[tuner].record = false;
+                        _ts_recorders[tuner].record = false;
                         _tuner_properties[tuner].UpdateRecordButtonColor("media_controls_" + tuner.ToString(), Color.Transparent);
                     }
                     else
                     {
                         if (demodstate[tuner] == 3 || demodstate[tuner] == 2)
                         {
-                            _recorders[tuner].record = true;
+                            _ts_recorders[tuner].record = true;
                             _tuner_properties[tuner].UpdateRecordButtonColor("media_controls_" + tuner.ToString(), Color.PaleVioletRed);
                         }
                         else
@@ -392,14 +392,14 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case 3: // udp stream
-                    if (_streamer[tuner].stream)
+                    if (_ts_streamers[tuner].stream)
                     {
-                        _settings.DefaultUDPStreaming[tuner] = _streamer[tuner].stream = false;
+                        _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = false;
                         _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.Transparent);
                     }
                     else
                     {
-                        _settings.DefaultUDPStreaming[tuner] = _streamer[tuner].stream = true;
+                        _settings.DefaultUDPStreaming[tuner] = _ts_streamers[tuner].stream = true;
                         _tuner_properties[tuner].UpdateStreamButtonColor("media_controls_" + tuner.ToString(), Color.PaleTurquoise);
                     }
                     break;
@@ -487,7 +487,6 @@ namespace opentuner.MediaSources.Winterhill
                 if (_tuner_properties == null)
                     return;
 
-
                 //Log.Information("REady for info");
 
                 for (int c = 0; c < mm.rx.Length - 1; c++)
@@ -516,9 +515,9 @@ namespace opentuner.MediaSources.Winterhill
                             VideoChangeCB?.Invoke(c, false);
                             playing[c] = false;
                             _tuner_properties[c].UpdateColor("demodstate", Color.PaleVioletRed);
-                            if (_recorders[c].record)
+                            if (_ts_recorders[c].record)
                             {
-                                _recorders[c].record = false;
+                                _ts_recorders[c].record = false;
                                 _tuner_properties[c].UpdateRecordButtonColor("media_controls_" + c.ToString(), Color.Transparent);
                             }
                         }
@@ -545,10 +544,7 @@ namespace opentuner.MediaSources.Winterhill
                         {
                             _current_sr[c] = (int)symbol_rate;
                         }
-
-
                     }
-
 
                     if (hw_device == 2)
                     {
@@ -640,8 +636,14 @@ namespace opentuner.MediaSources.Winterhill
                             source_data.volume = _media_player[c].GetVolume();
                     }
 
-                    source_data.streaming = _streamer[c].stream;
-                    source_data.recording = _recorders[c].record;
+                    if (_ts_recorders != null)
+                    {
+                        source_data.recording = _ts_recorders[c].record;
+                    }
+                    if (_ts_streamers != null)
+                    {
+                        source_data.streaming = _ts_streamers[c].stream;
+                    }
 
                     OnSourceData?.Invoke(c, source_data, "Tuner " + c.ToString());
                 }

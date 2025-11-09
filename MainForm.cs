@@ -1128,10 +1128,6 @@ namespace opentuner
             return true;
         }
 
-        public void InitBatcSpectrumTuner(int tunerId, double frequeny, double symbolRate)
-        {
-        }
-
         private void btnSourceConnect_Click(object sender, EventArgs e)
         {
             source_connected = ConnectSelectedSource();

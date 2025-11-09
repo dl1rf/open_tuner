@@ -9,19 +9,17 @@ namespace opentuner.MediaSources.Winterhill
     public class WinterhillSettings
     {
         // websocket
-        public string WinterhillWSHost = "192.168.0.122";
+        public string WinterhillWSHost = "0.0.0.0";
         public int WinterhillWSPort = 8080;
         public int WinterhillWSUdpBasePort = 9900;
 
         public byte DefaultInterface = 1;
 
-        public string WinterhillUdpHost = "192.168.0.124";
+        public string WinterhillUdpHost = "0.0.0.0";
         public int WinterhillUdpBasePort = 9900;
-
 
         public uint[] RFPort = new uint[] { 0, 0, 0, 0 };
 
-        
         // lnba1, lnbb1, lnba2, lnbb2
         public uint[] LNBVoltage = new uint[] { 0, 0 };
 

@@ -533,12 +533,10 @@ namespace opentuner
 
             try
             {
-                /*
                 if (mqtt_client !=  null)
                 {
                     mqtt_client.Disconnect();
                 }
-                */
 
                 if (batc_spectrum != null)
                     batc_spectrum.Close();

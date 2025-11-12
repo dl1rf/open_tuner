@@ -127,7 +127,7 @@ namespace opentuner.MediaSources.Longmynd
             _tuner_forms = new List<TunerControlForm>();
 
             // tuner for each device
-            var tunerControl = new TunerControlForm(0, 0, 0, (int)current_offset_0, this);
+            var tunerControl = new TunerControlForm(0, 0, 0, current_offset_0, this);
             tunerControl.OnTunerChange += TunerControl_OnTunerChange;
             _tuner_forms.Add(tunerControl);
 

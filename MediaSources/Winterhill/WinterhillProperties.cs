@@ -134,7 +134,7 @@ namespace opentuner.MediaSources.Winterhill
             // tuner for each device
             for (int c = 0; c < ts_devices; c++)
             {
-                var tunerControl = new TunerControlForm(c, 0, 0, (int)_current_offset[c], this);
+                var tunerControl = new TunerControlForm(c, 0, 0, _current_offset[c], this);
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
                 _tuner_forms.Add(tunerControl);
             }
@@ -265,7 +265,7 @@ namespace opentuner.MediaSources.Winterhill
                     SetRFPort(tuner, 0);
                     //_settings.RFPort[tuner] = 0;
 
-                    //SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    //SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETRFINPUTB:
@@ -274,7 +274,7 @@ namespace opentuner.MediaSources.Winterhill
                     SetRFPort(tuner, 1);
                     //_settings.RFPort[tuner] = 1;
 
-                    //SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    //SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETOFFSET:
@@ -282,22 +282,22 @@ namespace opentuner.MediaSources.Winterhill
                     
                     switch (option[1])
                     {
-                        case 0: _current_offset[tuner] = (int)_settings.DefaultOffset[tuner]; break;
+                        case 0: _current_offset[tuner] = _settings.DefaultOffset[tuner]; break;
                         case 1: _current_offset[tuner] = 0; break;
                     }
 
-                    SetFrequency(tuner, (uint)_current_frequency[tuner], (uint)_current_sr[tuner], false);
+                    SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
                 case LongmyndPropertyCommands.SETSYMBOLRATE:
                     tuner = option[0];
                     var new_rate = option[1];
-                    SetFrequency(tuner, (uint)_current_frequency[option[0]], (uint)new_rate, false);
+                    SetFrequency(tuner, _current_frequency[option[0]], (uint)new_rate, false);
                     break;
 
                 case LongmyndPropertyCommands.SETFREQUENCY:
                     tuner = option[0];
-                    _tuner_forms[tuner].ShowTuner(_current_frequency[tuner], _current_sr[tuner], (int)_current_offset[tuner]);
+                    _tuner_forms[tuner].ShowTuner(_current_frequency[tuner], _current_sr[tuner], _current_offset[tuner]);
                     break;
 
                 case LongmyndPropertyCommands.SETPRESET:
@@ -315,8 +315,8 @@ namespace opentuner.MediaSources.Winterhill
                             Log.Information("Preset SymbolRate: " + _frequency_presets[presetNumber].SymbolRate.ToString());
                             Log.Information("Preset RF Input: " + _frequency_presets[presetNumber].RFInput.ToString());
 
-                            _current_offset[tuner] = (int)_frequency_presets[presetNumber].Offset;
-                            _settings.RFPort[tuner] = (uint)(_frequency_presets[presetNumber].RFInput- 1);
+                            _current_offset[tuner] = _frequency_presets[presetNumber].Offset;
+                            _settings.RFPort[tuner] = (uint)(_frequency_presets[presetNumber].RFInput - 1);
                             SetFrequency(tuner, _frequency_presets[presetNumber].Frequency, _frequency_presets[presetNumber].SymbolRate, true) ;
                         }
                     }
@@ -335,7 +335,7 @@ namespace opentuner.MediaSources.Winterhill
                         else
                         {
                             // to change ts for pico tuner ethernet we need to send a tuning command
-                            SetFrequency(tuner, (uint)_current_frequency[option[0]], (uint)_current_sr[option[0]], false);
+                            SetFrequency(tuner, _current_frequency[option[0]], (uint)_current_sr[option[0]], false);
                         }
 
                         // reset status
@@ -497,6 +497,27 @@ namespace opentuner.MediaSources.Winterhill
                     if (rx.rx == 99)
                         continue;
 
+                    float sent_freq = 0;
+
+                    try
+                    {
+                        if (float.TryParse(rx.frequency, NumberStyles.Any, CultureInfo.InvariantCulture, out sent_freq))
+                        {
+                            _current_frequency[c] = Convert.ToUInt32((sent_freq * 1000) - _current_offset[c]);
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Log.Error(Ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
+                    }
+
+                    uint symbol_rate = 0;
+
+                    if (uint.TryParse(rx.symbol_rate, out symbol_rate))
+                    {
+                        _current_sr[c] = symbol_rate;
+                    }
+
                     if (demodstate[c] != rx.scanstate)
                     {
                         if (rx.scanstate == 2 || rx.scanstate == 3)
@@ -521,29 +542,7 @@ namespace opentuner.MediaSources.Winterhill
                                 _tuner_properties[c].UpdateRecordButtonColor("media_controls_" + c.ToString(), Color.Transparent);
                             }
                         }
-
                         demodstate[c] = rx.scanstate;
-
-                        float sent_freq = 0;
-
-                        try
-                        {
-                            if (float.TryParse(rx.frequency, NumberStyles.Any, CultureInfo.InvariantCulture, out sent_freq))
-                            {
-                                _current_frequency[c] = Convert.ToInt32((sent_freq * 1000) - _current_offset[c]);
-                            }
-                        }
-                        catch (Exception Ex)
-                        {
-                            Log.Error(Ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
-                        }
-
-                        uint symbol_rate = 0;
-
-                        if (uint.TryParse(rx.symbol_rate, out symbol_rate))
-                        {
-                            _current_sr[c] = (int)symbol_rate;
-                        }
                     }
 
                     if (hw_device == 2)
@@ -666,7 +665,7 @@ namespace opentuner.MediaSources.Winterhill
             data.Add("dbMargin", last_dbm[device]);
             data.Add("Mer", last_mer[device]);
             data.Add("SR", _current_sr[device].ToString());
-            data.Add("Frequency", ((float)(_current_frequency[device] + _current_offset[device])/1000.0f).ToString("F", nfi));
+            data.Add("Frequency", ((_current_frequency[device] + _current_offset[device])/1000.0f).ToString("F", nfi));
 
             return data;
         }

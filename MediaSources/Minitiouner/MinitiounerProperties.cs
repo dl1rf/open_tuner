@@ -126,7 +126,7 @@ namespace opentuner.MediaSources.Minitiouner
             // tuner for each device
             for (int c = 0; c < ts_devices; c++)
             {
-                var tunerControl = new TunerControlForm(c, 0, 0, (int)(c == 0 ? current_offset_0 : current_offset_1), this);
+                var tunerControl = new TunerControlForm(c, 0, 0, (c == 0 ? current_offset_0 : current_offset_1), this);
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
                 _tuner_forms.Add(tunerControl);
             }
@@ -650,7 +650,7 @@ namespace opentuner.MediaSources.Minitiouner
 
                 case "offset":
                     int tuner = (int)contextMenuStrip.SourceControl.Tag - 1;
-                    contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + (tuner == 0 ? _settings.Offset1 : _settings.Offset2), MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 0 }));
+                    contextMenuStrip.Items.Add(ConfigureMenuItem("Default: " + (tuner == 0 ? _settings.DefaultOffset[0] : _settings.DefaultOffset[1]), MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 0 }));
                     contextMenuStrip.Items.Add(ConfigureMenuItem("Zero" , MinitiounerPropertyCommands.SETOFFSET, new int[] { (int)contextMenuStrip.SourceControl.Tag - 1, 1 }));
                     break;
 
@@ -688,7 +688,7 @@ namespace opentuner.MediaSources.Minitiouner
             {
                 case MinitiounerPropertyCommands.SETFREQUENCY:
                     tuner = options[0];
-                    _tuner_forms[tuner].ShowTuner((int)(tuner == 0 ? current_frequency_0 : current_frequency_1), (int)(tuner == 0 ? current_sr_0 : current_sr_1), (int)(tuner == 0 ? current_offset_0 : current_offset_1));
+                    _tuner_forms[tuner].ShowTuner((tuner == 0 ? current_frequency_0 : current_frequency_1), (tuner == 0 ? current_sr_0 : current_sr_1), (tuner == 0 ? current_offset_0 : current_offset_1));
                     break;
 
                 case MinitiounerPropertyCommands.SETRFINPUTA:
@@ -710,7 +710,7 @@ namespace opentuner.MediaSources.Minitiouner
                     tuner = options[0];
 
                     if (options[1] == 0)    // set to default
-                        ChangeOffset((byte)tuner, ((tuner == 0) ? (int)_settings.Offset1 : (int)_settings.Offset2));
+                        ChangeOffset((byte)tuner, ((tuner == 0) ? (int)_settings.DefaultOffset[0] : (int)_settings.DefaultOffset[1]));
                     if (options[1] == 1)    // zero out
                         ChangeOffset((byte)tuner, 0);
                     break;
@@ -798,7 +798,7 @@ namespace opentuner.MediaSources.Minitiouner
                 data.Add("dbMargin", last_dbm_0);
                 data.Add("Mer", last_mer_0);
                 data.Add("SR", current_sr_0.ToString());
-                data.Add("Frequency", ((float)(current_frequency_0 + _settings.Offset1) / 1000.0f).ToString("F", nfi));
+                data.Add("Frequency", (current_frequency_0 + _settings.DefaultOffset[0] / 1000.0f).ToString("F", nfi));
             }
 
             if (device == 1)
@@ -808,7 +808,7 @@ namespace opentuner.MediaSources.Minitiouner
                 data.Add("dbMargin", last_dbm_1);
                 data.Add("Mer", last_mer_1);
                 data.Add("SR", current_sr_1.ToString());
-                data.Add("Frequency", ((float)(current_frequency_1 + _settings.Offset2) / 1000.0f).ToString("F", nfi));
+                data.Add("Frequency", (current_frequency_1 + _settings.DefaultOffset[1] / 1000.0f).ToString("F", nfi));
             }
 
             return data;

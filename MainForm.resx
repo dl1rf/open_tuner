@@ -516,9 +516,6 @@
   <data name="checkPlutoCtrl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkPlutoCtrl.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="checkPlutoCtrl.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>

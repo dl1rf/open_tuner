@@ -301,6 +301,7 @@ namespace opentuner
             checkMqttClient.Checked = _settings.enable_mqtt_checkbox;
             checkQuicktune.Checked = _settings.enable_quicktune_checkbox;
             checkPlutoCtrl.Checked = _settings.enable_plutoctrl_checkbox;
+            checkPlutoCtrl.Enabled = checkMqttClient.Checked;
 
             // load available sources
             _availableSources.Add(new MinitiounerSource());
@@ -1145,6 +1146,9 @@ namespace opentuner
         private void checkMqttClient_CheckedChanged(object sender, EventArgs e)
         {
             _settings.enable_mqtt_checkbox = checkMqttClient.Checked;
+            checkPlutoCtrl.Enabled = checkMqttClient.Checked;
+            if (!checkPlutoCtrl.Enabled)
+                checkPlutoCtrl.Checked = false;
         }
 
         private void checkQuicktune_CheckedChanged(object sender, EventArgs e)

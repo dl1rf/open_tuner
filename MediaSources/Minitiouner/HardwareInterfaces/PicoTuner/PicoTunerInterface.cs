@@ -218,9 +218,11 @@ namespace opentuner
             NumBytesToSend = 0;
             MPSSEbuffer[NumBytesToSend++] = 0xAA;
             I2C_Status = Send_Data_i2c(NumBytesToSend);
-            if (I2C_Status != 0) return 1; // error();
+            if (I2C_Status != 0)
+                return 1; // error();
             I2C_Status = Receive_Data_i2c(2);
-            if (I2C_Status != 0) return 1; //error();
+            if (I2C_Status != 0)
+                return 1; //error();
 
             if ((InputBuffer2[0] == 0xFA) && (InputBuffer2[1] == 0xAA))
             {

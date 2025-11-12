@@ -27,6 +27,19 @@ namespace opentuner.MediaSources.Winterhill
 
             txtUDPBasePort.Text = _settings.WinterhillUdpBasePort.ToString();
             txtUDPIP.Text = _settings.WinterhillUdpHost.ToString();
+
+            txtTuner1Frequency.Text = _settings.DefaultFrequency[0].ToString();
+            txtTuner1FreqOffset.Text = _settings.DefaultOffset[0].ToString();
+            txtTuner1SymbolRate.Text = _settings.DefaultSR[0].ToString();
+            txtTuner2Frequency.Text = _settings.DefaultFrequency[1].ToString();
+            txtTuner2FreqOffset.Text = _settings.DefaultOffset[1].ToString();
+            txtTuner2SymbolRate.Text = _settings.DefaultSR[1].ToString();
+            txtTuner3Frequency.Text = _settings.DefaultFrequency[2].ToString();
+            txtTuner3FreqOffset.Text = _settings.DefaultOffset[2].ToString();
+            txtTuner3SymbolRate.Text = _settings.DefaultSR[2].ToString();
+            txtTuner4Frequency.Text = _settings.DefaultFrequency[3].ToString();
+            txtTuner4FreqOffset.Text = _settings.DefaultOffset[3].ToString();
+            txtTuner4SymbolRate.Text = _settings.DefaultSR[3].ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -67,7 +80,96 @@ namespace opentuner.MediaSources.Winterhill
             _settings.WinterhillUdpBasePort = udpbaseport;
             _settings.WinterhillUdpHost = txtUDPIP.Text;
             _settings.DefaultInterface = (byte)comboDefaultInterface.SelectedIndex;
-            
+
+            uint frequency1 = 0;
+            if (!uint.TryParse(txtTuner1Frequency.Text, out frequency1))
+            {
+                MessageBox.Show("Invalid Frequency 1");
+                return;
+            }
+            uint offset1 = 0;
+            if (!uint.TryParse(txtTuner1FreqOffset.Text, out offset1))
+            {
+                MessageBox.Show("Invalid Offset 1");
+                return;
+            }
+            uint sr1 = 0;
+            if (!uint.TryParse(txtTuner1SymbolRate.Text, out sr1))
+            {
+                MessageBox.Show("Invalid Symbol Rate 1");
+                return;
+            }
+
+            uint frequency2 = 0;
+            if (!uint.TryParse(txtTuner2Frequency.Text, out frequency2))
+            {
+                MessageBox.Show("Invalid Frequency 2");
+                return;
+            }
+            uint offset2 = 0;
+            if (!uint.TryParse(txtTuner2FreqOffset.Text, out offset2))
+            {
+                MessageBox.Show("Invalid Offset 2");
+                return;
+            }
+            uint sr2 = 0;
+            if (!uint.TryParse(txtTuner2SymbolRate.Text, out sr2))
+            {
+                MessageBox.Show("Invalid Symbol Rate 2");
+                return;
+            }
+
+            uint frequency3 = 0;
+            if (!uint.TryParse(txtTuner3Frequency.Text, out frequency3))
+            {
+                MessageBox.Show("Invalid Frequency 3");
+                return;
+            }
+            uint offset3 = 0;
+            if (!uint.TryParse(txtTuner3FreqOffset.Text, out offset3))
+            {
+                MessageBox.Show("Invalid Offset 3");
+                return;
+            }
+            uint sr3 = 0;
+            if (!uint.TryParse(txtTuner3SymbolRate.Text, out sr3))
+            {
+                MessageBox.Show("Invalid Symbol Rate 3");
+                return;
+            }
+
+            uint frequency4 = 0;
+            if (!uint.TryParse(txtTuner4Frequency.Text, out frequency4))
+            {
+                MessageBox.Show("Invalid Frequency 4");
+                return;
+            }
+            uint offset4 = 0;
+            if (!uint.TryParse(txtTuner4FreqOffset.Text, out offset4))
+            {
+                MessageBox.Show("Invalid Offset 4");
+                return;
+            }
+            uint sr4 = 0;
+            if (!uint.TryParse(txtTuner4SymbolRate.Text, out sr4))
+            {
+                MessageBox.Show("Invalid Symbol Rate 4");
+                return;
+            }
+
+            _settings.DefaultFrequency[0] = frequency1;
+            _settings.DefaultOffset[0] = offset1;
+            _settings.DefaultSR[0] = sr1;
+            _settings.DefaultFrequency[1] = frequency2;
+            _settings.DefaultOffset[1] = offset2;
+            _settings.DefaultSR[1] = sr2;
+            _settings.DefaultFrequency[2] = frequency3;
+            _settings.DefaultOffset[2] = offset3;
+            _settings.DefaultSR[2] = sr3;
+            _settings.DefaultFrequency[3] = frequency4;
+            _settings.DefaultOffset[3] = offset4;
+            _settings.DefaultSR[3] = sr4;
+
             DialogResult = DialogResult.OK;
             Close();
         }

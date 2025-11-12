@@ -20,13 +20,15 @@ namespace opentuner.MediaSources.Longmynd
             _settings = Settings;
 
             comboHardwareInterface.SelectedIndex = _settings.DefaultInterface;
+            txtTSPort.Text = _settings.TS_Port.ToString();
             txtWSIpAddress.Text = _settings.LongmyndWSHost;
             txtWSPort.Text = _settings.LongmyndWSPort.ToString();
             txtMqttIpAddress.Text = _settings.LongmyndMqttHost;
             txtMqttPort.Text = _settings.LongmyndMqttPort.ToString();
             txtBaseCmdTopic.Text = _settings.CmdTopic;
+            txtTuner1Frequency.Text = _settings.DefaultFrequency.ToString();
             txtTuner1FreqOffset.Text = _settings.DefaultOffset.ToString();
-            txtTSPort.Text = _settings.TS_Port.ToString();
+            txtTuner1SymbolRate.Text = _settings.DefaultSR.ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,32 +39,45 @@ namespace opentuner.MediaSources.Longmynd
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            uint offset = 0;
-            int wsport = 0;
-            int mqttport = 0;
             int tsport = 0;
-
-            if (!uint.TryParse(txtTuner1FreqOffset.Text, out offset))
+            if (!int.TryParse(txtTSPort.Text, out tsport))
             {
-                MessageBox.Show("Invalid Offset");
+                MessageBox.Show("Invalid TS Port");
                 return;
             }
 
+            int wsport = 0;
             if (!int.TryParse(txtWSPort.Text, out wsport))
             {
                 MessageBox.Show("Invalid WS Port");
                 return;
             }
 
+            int mqttport = 0;
             if (!int.TryParse(txtMqttPort.Text, out mqttport))
             {
                 MessageBox.Show("Invalid Mqtt Port");
                 return;
             }
 
-            if (!int.TryParse(txtTSPort.Text, out tsport))
+            uint frequency = 0;
+            if (!uint.TryParse(txtTuner1Frequency.Text, out frequency))
             {
-                MessageBox.Show("Invalid TS Port");
+                MessageBox.Show("Invalid Frequency");
+                return;
+            }
+
+            uint offset = 0;
+            if (!uint.TryParse(txtTuner1FreqOffset.Text, out offset))
+            {
+                MessageBox.Show("Invalid Offset");
+                return;
+            }
+
+            uint symbolrate = 0;
+            if (!uint.TryParse(txtTuner1SymbolRate.Text, out symbolrate))
+            {
+                MessageBox.Show("Invalid Symbol Rate");
                 return;
             }
 
@@ -72,8 +87,10 @@ namespace opentuner.MediaSources.Longmynd
             _settings.LongmyndWSPort = wsport;
             _settings.LongmyndMqttHost = txtMqttIpAddress.Text;
             _settings.LongmyndMqttPort  = mqttport;
-            _settings.DefaultOffset = offset;
             _settings.CmdTopic = txtBaseCmdTopic.Text;
+            _settings.DefaultFrequency = frequency;
+            _settings.DefaultOffset = offset;
+            _settings.DefaultSR = symbolrate;
 
             DialogResult = DialogResult.OK;
             Close();

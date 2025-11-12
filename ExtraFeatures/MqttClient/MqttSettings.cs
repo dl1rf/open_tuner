@@ -8,7 +8,8 @@ namespace opentuner.ExtraFeatures.MqttClient
 {
     public class MqttManagerSettings
     {
-        public string MqttBroker = "192.168.0.178";
+        public string MqttBroker = "0.0.0.0";
         public int MqttPort = 1883;
+        public bool MqttSendProperties = false;
     }
 }

@@ -76,7 +76,7 @@ namespace opentuner.ExtraFeatures.MqttClient
 
         public void SendProperties(OTSourceData properties, string ChildTopic)
         {
-            if (_mqtt_client.IsConnected)
+            if (_mqtt_client.IsConnected && _settings.MqttSendProperties)
             {
                 SendMqttStatus(ChildTopic + "/demod_locked", properties.demod_locked.ToString());
                 SendMqttStatus(ChildTopic + "/frequency", properties.frequency.ToString());
@@ -114,7 +114,6 @@ namespace opentuner.ExtraFeatures.MqttClient
 
             return;
         }
-
 
         private Task _mqtt_client_ApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)
         {

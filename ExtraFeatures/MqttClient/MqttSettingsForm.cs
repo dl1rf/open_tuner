@@ -21,6 +21,7 @@ namespace opentuner.ExtraFeatures.MqttClient
 
             txtBrokerIp.Text = _settings.MqttBroker;
             txtBrokerPort.Text = _settings.MqttPort.ToString();
+            checkSendMqttTunerProperties.Checked = _settings.MqttSendProperties;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace opentuner.ExtraFeatures.MqttClient
 
             _settings.MqttBroker = txtBrokerIp.Text;
             _settings.MqttPort = mqttPort;
+            _settings.MqttSendProperties = checkSendMqttTunerProperties.Checked;
 
             DialogResult = DialogResult.OK;
             Close();

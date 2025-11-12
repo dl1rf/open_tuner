@@ -618,9 +618,6 @@
     <Folder Include="MediaSources\Minitiouner\HardwareInterfaces\PicoTunerEthernet\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BuildDate.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="extra\bandplan.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

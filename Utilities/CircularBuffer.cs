@@ -1,13 +1,8 @@
 ﻿using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace opentuner
 {
-
     public class CircularBuffer
     {
         private byte[] buffer;
@@ -167,7 +162,7 @@ namespace opentuner
         {
             lock (syncRoot)
             {
-                Array.Clear(buffer, 0, buffer.Length);
+//                Array.Clear(buffer, 0, buffer.Length);
                 head = tail = Count = 0;
             }
         }

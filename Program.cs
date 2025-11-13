@@ -1,10 +1,9 @@
 ﻿using FlyleafLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Serilog;
+using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace opentuner
 {
@@ -24,6 +23,34 @@ namespace opentuner
                 .CreateLogger();
 
             Log.Information("Starting OT");
+
+            string logDirectory = AppDomain.CurrentDomain.BaseDirectory + "logs\\";
+
+            if (Directory.Exists(logDirectory))
+            {
+                var logFiles = Directory.GetFiles(logDirectory, "*.txt").Select(f => new FileInfo(f)).OrderByDescending(f => f.CreationTime);
+                int fileCount = logFiles.Count();
+                if (fileCount > 10)
+                {
+                    int i = 0;
+                    foreach (var file in logFiles)
+                    {
+                        if (i > 9)
+                        {
+                            try
+                            {
+                                File.Delete(file.FullName);
+                                Log.Information("Log file: " + file.Name + " deleted");
+                            }
+                            catch
+                            {
+                                Log.Error("Log file for deletion not found!");
+                            }
+                        }
+                        i++;
+                    }
+                }
+            }
 
             try
             {

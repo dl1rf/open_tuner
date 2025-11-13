@@ -786,8 +786,14 @@ namespace opentuner.MediaSources.Minitiouner
 
             ts_parser_t?.Abort();
             ts_parser_2_t?.Abort();
-            ts_thread_t?.Abort();
-            ts_thread_2_t?.Abort();
+            bool stopped = false;
+            ts_thread?.Stop(ref stopped);
+            if (!stopped)
+                ts_thread_t?.Abort();
+            stopped = false;
+            ts_thread2?.Stop(ref stopped);
+            if (!stopped)
+                ts_thread_2_t?.Abort();
             nim_thread_t?.Abort();
             hardware_interface?.hw_close();
         }

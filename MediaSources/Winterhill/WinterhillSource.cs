@@ -333,7 +333,10 @@ namespace opentuner.MediaSources.Winterhill
             {
                 for (int c = 0; c < ts_thread_t.Length; c++)
                 {
-                    ts_thread_t[c]?.Abort();
+                    bool stopped = false;
+                    ts_threads[c]?.Stop(ref stopped);
+                    if (!stopped)
+                        ts_thread_t[c]?.Abort();
                 }
             }
 

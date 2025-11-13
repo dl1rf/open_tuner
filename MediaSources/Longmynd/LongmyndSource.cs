@@ -230,7 +230,10 @@ namespace opentuner.MediaSources.Longmynd
             {
                 DisconnectMqtt();
             }
-            ts_thread_t?.Abort();
+            bool stopped = false;
+            ts_thread?.Stop(ref stopped);
+            if (!stopped)
+                ts_thread_t?.Abort();
             udp_client?.Disconnect();
         }
 

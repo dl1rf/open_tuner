@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Vortice.Direct2D1;
 
 namespace opentuner
 {
@@ -15,12 +16,91 @@ namespace opentuner
         [STAThread]
         static void Main(string[] args)
         {
+            int i = 0;
+            int debugLevel = 4;
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                .CreateLogger();
+            while (i < args.Length)
+            {
+                switch (args[i])
+                {
+                    case "--debuglevel":
+                        int new_debug_level = 0;
+
+                        if (int.TryParse(args[i + 1], out new_debug_level))
+                        {
+                            if (new_debug_level < 6 && new_debug_level >= 0)
+                            {
+                                debugLevel = new_debug_level;
+                            }
+                        }
+                        i += 1;
+                        break;
+
+                    default:
+                        break;
+                }
+                // grab next param
+                i += 1;
+            }
+
+            switch (debugLevel)
+            {
+                case 0: // Verbose
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Verbose()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                case 1: // Debug
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Debug()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                case 2: // Information
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Information()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                case 3: // Warning
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Warning()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                case 4: // Error
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Error()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                case 5: // Fatal
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Fatal()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+
+                default:
+                    Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Error()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                        .CreateLogger();
+                    break;
+            }
 
             Log.Information("Starting OT");
 
@@ -32,7 +112,7 @@ namespace opentuner
                 int fileCount = logFiles.Count();
                 if (fileCount > 10)
                 {
-                    int i = 0;
+                    i = 0;
                     foreach (var file in logFiles)
                     {
                         if (i > 9)
@@ -44,7 +124,7 @@ namespace opentuner
                             }
                             catch
                             {
-                                Log.Error("Log file for deletion not found!");
+                                Log.Warning("Log file for deletion not found!");
                             }
                         }
                         i++;

@@ -630,7 +630,6 @@ namespace opentuner
             {
                 source_connected = ConnectSelectedSource();
             }
-
             // hide/show video overlay
         }
 
@@ -1105,6 +1104,7 @@ namespace opentuner
             {
                 ToggleExtraToolPanel(_settings.hide_ExtraTool);
             }
+            this.Focus();
             return true;
         }
 

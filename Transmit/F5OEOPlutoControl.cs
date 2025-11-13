@@ -74,8 +74,6 @@ namespace opentuner.Transmit
             _hardware_properties.AddItem("hw_mode", "Mode", _genericContextStrip);
             _hardware_properties.AddItem("hw_temperature", "Temperature");
             _hardware_properties.AddItem("callsign", "Callsign");
-
-
         }
 
         private ToolStripMenuItem ConfigureMenuItem(string Text, PlutoConfigCommand command, int option)

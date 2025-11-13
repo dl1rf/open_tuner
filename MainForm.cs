@@ -10,18 +10,12 @@ using opentuner.MediaSources;
 using opentuner.MediaSources.Longmynd;
 using opentuner.MediaSources.Minitiouner;
 using opentuner.MediaSources.Winterhill;
-using opentuner.Properties;
-using opentuner.SettingsManagement;
 using opentuner.Transmit;
 using opentuner.Utilities;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
@@ -72,6 +66,8 @@ namespace opentuner
 
         bool properties_hidden = false;
         bool ExtraTool_hidden = false;
+
+        int _debug_level = 0;
 
         public void UpdateInfo(StreamInfoContainer info_object, OTSourceData info)
         {
@@ -180,9 +176,7 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window width. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowheight":
@@ -197,9 +191,7 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window height. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowx":
@@ -213,9 +205,7 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window x. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowy":
@@ -229,14 +219,10 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window y. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
-
                     case "--defaultsource":
-
                         int new_default_source = 0;
 
                         if (int.TryParse(args[i + 1], out new_default_source))
@@ -254,16 +240,34 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid default source parameter. 0-2 Expected");
                         }
-                        
                         i += 1;
+                        break;
 
+                    case "--debuglevel":
+                        int new_debug_level = 0;
+
+                        if (int.TryParse(args[i + 1], out new_debug_level))
+                        {
+                            if (new_debug_level < 256 && new_debug_level >= 0)
+                            {
+                                _debug_level = new_debug_level;
+                            }
+                            else
+                            {
+                                Log.Error(args[i + 1] + " is not a valid debug level parameter. 0-255 Expected");
+                            }
+                        }
+                        else
+                        {
+                            Log.Error(args[i + 1] + " is not a valid debug level parameter. 0-255 Expected");
+                        }
+                        i += 1;
                         break;
 
                     default:
                         Log.Warning("Unknown command line param: " + args[i]);
                         break;
                 }
-
                 // grab next param
                 i += 1;
             }

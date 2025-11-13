@@ -1,20 +1,10 @@
 ﻿using SocketIOClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json.Serialization;
-using System.Windows.Interop;
-using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
-using System.Diagnostics.Contracts;
-using System.Security.Cryptography;
-using System.Threading;
 using Serilog;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.MediaSources;
@@ -45,7 +35,6 @@ namespace opentuner
 
         private void wbchat_Load(object sender, EventArgs e)
         {
-
             if (_settings.nickname.Length > 0)
             {
                 txtNick.Text = _settings.nickname;
@@ -153,7 +142,6 @@ namespace opentuner
             }
             else
             {
-
                 // 204, 204, 204
                 rtb.SelectionStart = rtb.TextLength;
                 rtb.ScrollToCaret();
@@ -161,7 +149,6 @@ namespace opentuner
                 rtb.SelectionColor = Color.FromArgb(204, 204, 204);
                 rtb.SelectionStart = rtb.TextLength;
                 rtb.AppendText(tstr);
-
 
                 rtb.SelectionFont = consoleFontBold;
                 rtb.SelectionStart = rtb.TextLength;
@@ -179,6 +166,7 @@ namespace opentuner
         }
 
         private delegate void ClearRTBDelegate(RichTextBox rtb);
+
         public static void ClearChat(RichTextBox rtb)
         {
             if (rtb.InvokeRequired)
@@ -262,6 +250,7 @@ namespace opentuner
             initUsers(response);
             initHistory(response);
         }
+
         class nickInfo
         {
             [JsonPropertyName("nick")]
@@ -286,7 +275,7 @@ namespace opentuner
             {
                 string nick = txtNick.Text.Trim();
 
-                if (nick.Length > 0)
+                if (nick.Length > 0 && nick != "NONICK")
                 {
                     client.EmitAsync("setnick", new nickInfo { nick = nick });
                     txtMessage.Enabled = true;
@@ -380,9 +369,11 @@ namespace opentuner
                 txtNick.Text = nickDialog.txtNick.Text;
                 setNick();
 
-                DateTime timeobj = DateTime.Now;
-                AddChat(richChat, timeobj.ToString("HH:mm"), "Chat","You are now known as '" + txtNick.Text + "'");
-
+                if (txtNick.Text.Length > 0 && txtNick.Text != "NONICK")
+                {
+                    DateTime timeobj = DateTime.Now;
+                    AddChat(richChat, timeobj.ToString("HH:mm"), "Chat", "You are now known as '" + txtNick.Text + "'");
+                }
             }
         }
 
@@ -458,7 +449,7 @@ namespace opentuner
             //string signalReport = "SigReport: " + lblServiceName.Text.ToString() + "/" + lblServiceProvider.Text.ToString() + " - " + lbldbMargin.Text.ToString() + " (" + lblMer.Text.ToString() + ") - " + lblSR.Text.ToString() + "" + " - " + (freq).ToString() + " ";
             string signalReport = _settings.sigreport_template.ToString();
 
-            // SigReport: {SN}/{SP} - {DBM} - ({MER}) - {SR} - {FREQ}
+            // SigReport: {SN}/{SP} - D{DBM} - ({MER}) - {SR} - {FREQ}
 
             signalReport = signalReport.Replace("{SN}", data["ServiceName"]);
             signalReport = signalReport.Replace("{SP}", data["ServiceProvider"]);

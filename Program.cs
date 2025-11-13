@@ -3,8 +3,8 @@ using Serilog;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Vortice.Direct2D1;
 
 namespace opentuner
 {
@@ -14,6 +14,13 @@ namespace opentuner
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow([In] IntPtr hWnd, [In] int nCmdShow);
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
         static void Main(string[] args)
         {
             int i = 0;
@@ -34,6 +41,15 @@ namespace opentuner
                             }
                         }
                         i += 1;
+                        break;
+
+                    case "--hideconsolewindow":
+                        // minimize console window
+                        IntPtr handle = GetConsoleWindow();
+                        if (handle != IntPtr.Zero)
+                        {
+                            ShowWindow(handle, 0);
+                        }
                         break;
 
                     default:

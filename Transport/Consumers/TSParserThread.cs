@@ -204,7 +204,6 @@ namespace opentuner
                             else
                             {
                                 // remove the byte and continue
-                                
                                 check = parser_ts_data_queue.Dequeue();
                                 continue;
                             }

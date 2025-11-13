@@ -21,7 +21,7 @@ namespace opentuner.ExtraFeatures.MqttClient
         private int _broker_port;
         private string _clientid;
         private string _maintopic = "dt/opentuner/";
-        private string _cmdtopic = "cmd/opentuner/";
+        //private string _cmdtopic = "cmd/opentuner/";
 
         private IMqttClient _mqtt_client;
 
@@ -132,8 +132,8 @@ namespace opentuner.ExtraFeatures.MqttClient
             Log.Information("Mqtt Connected");
 
             // subscribe to mqtt commands
-            await _mqtt_client.SubscribeAsync(_cmdtopic + "tuner1/#");
-            await _mqtt_client.SubscribeAsync(_cmdtopic + "tuner2/#");
+            // await _mqtt_client.SubscribeAsync(_cmdtopic + "tuner1/#");
+            // await _mqtt_client.SubscribeAsync(_cmdtopic + "tuner2/#");
 
             // subscribe to f5oeoe firmware topics (if available)
             // await _mqtt_client.SubscribeAsync("dt/pluto/#");

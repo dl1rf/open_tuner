@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using Serilog;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.MediaSources;
+using System.Threading;
 
 namespace opentuner
 {
@@ -84,6 +85,24 @@ namespace opentuner
                 btnSigReportTuner3.Enabled = true;
                 btnSigReportTuner4.Enabled = true;
             }
+            int count = 200;
+            while (!client.Connected)
+            {
+                Thread.Sleep(100);
+                count--;
+                if (count == 0)
+                    return;
+            }
+            if (_settings.gui_autologin)
+            {
+                setNick();
+            }
+        }
+
+        private void Client_OnConnected(object sender, EventArgs e)
+        {
+            Log.Information("Connected socketio");
+            lblConnected.Text = "Connected: True";
         }
 
         private void Client_OnDisconnected(object sender, string e)
@@ -193,7 +212,6 @@ namespace opentuner
             }
         }
 
-
         private void initUsers(SocketIOResponse response)
         {
             ClearAll(lbUsers, "");
@@ -261,12 +279,6 @@ namespace opentuner
         {
             [JsonPropertyName("message")]
             public string message { get; set; }
-        }
-
-        private void Client_OnConnected(object sender, EventArgs e)
-        {
-            Log.Information("Connected socketio");
-            lblConnected.Text = "Connected: True";
         }
 
         private void setNick()
@@ -377,9 +389,6 @@ namespace opentuner
             }
         }
 
-
-
-
         private void lbChat_Resize(object sender, EventArgs e)
         {
         }
@@ -449,11 +458,11 @@ namespace opentuner
             //string signalReport = "SigReport: " + lblServiceName.Text.ToString() + "/" + lblServiceProvider.Text.ToString() + " - " + lbldbMargin.Text.ToString() + " (" + lblMer.Text.ToString() + ") - " + lblSR.Text.ToString() + "" + " - " + (freq).ToString() + " ";
             string signalReport = _settings.sigreport_template.ToString();
 
-            // SigReport: {SN}/{SP} - D{DBM} - ({MER}) - {SR} - {FREQ}
+            // SigReport: {SN}/{SP} - {DBM} - ({MER}) - {SR} - {FREQ}
 
             signalReport = signalReport.Replace("{SN}", data["ServiceName"]);
             signalReport = signalReport.Replace("{SP}", data["ServiceProvider"]);
-            signalReport = signalReport.Replace("{DBM}", data["dbMargin"]);
+            signalReport = signalReport.Replace("{DBM}", "D" + data["dbMargin"]);
             signalReport = signalReport.Replace("{MER}", data["Mer"] + " dB");
             signalReport = signalReport.Replace("{SR}", data["SR"] + "");
             signalReport = signalReport.Replace("{FREQ}", data["Frequency"] + "");

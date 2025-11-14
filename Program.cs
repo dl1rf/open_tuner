@@ -1,5 +1,8 @@
-﻿using FlyleafLib;
+﻿using FFmpeg.AutoGen;
+using FlyleafLib;
 using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,6 +16,8 @@ namespace opentuner
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        public static LoggingLevelSwitch levelSwitch;
+
         [DllImport("user32.dll")]
         private static extern bool ShowWindow([In] IntPtr hWnd, [In] int nCmdShow);
 
@@ -24,14 +29,15 @@ namespace opentuner
         static void Main(string[] args)
         {
             int i = 0;
-            int debugLevel = 4;
+            int debugLevel = 3;
+            levelSwitch = new LoggingLevelSwitch();
 
             while (i < args.Length)
             {
                 switch (args[i])
                 {
                     case "--debuglevel":
-                        int new_debug_level = 0;
+                        int new_debug_level = -1;
 
                         if (int.TryParse(args[i + 1], out new_debug_level))
                         {
@@ -39,8 +45,8 @@ namespace opentuner
                             {
                                 debugLevel = new_debug_level;
                             }
+                            i += 1;
                         }
-                        i += 1;
                         break;
 
                     case "--hideconsolewindow":
@@ -62,63 +68,49 @@ namespace opentuner
             switch (debugLevel)
             {
                 case 0: // Verbose
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Verbose()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Verbose;
                     break;
 
                 case 1: // Debug
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Debug()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Debug;
                     break;
 
                 case 2: // Information
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Information()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Information;
                     break;
 
                 case 3: // Warning
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Warning()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Warning;
                     break;
 
                 case 4: // Error
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Error()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Error;
                     break;
 
                 case 5: // Fatal
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Fatal()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Fatal;
                     break;
 
                 default:
-                    Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Error()
-                        .WriteTo.Console()
-                        .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
-                        .CreateLogger();
+                    levelSwitch.MinimumLevel = LogEventLevel.Warning;
                     break;
             }
 
-            Log.Information("Starting OT");
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.ControlledBy(levelSwitch)
+                .WriteTo.Console()
+                .WriteTo.File("logs\\ot_log_" + DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".txt")
+                .CreateLogger();
+
+            // Always log the starting information
+            // swith logging level to Information
+            LogEventLevel lastMinimumLevel = levelSwitch.MinimumLevel;
+            levelSwitch.MinimumLevel = LogEventLevel.Information;
+
+            Log.Information("Starting OpenTuner");
+
+            // swith logging level back
+            levelSwitch.MinimumLevel = lastMinimumLevel;
 
             string logDirectory = AppDomain.CurrentDomain.BaseDirectory + "logs\\";
 
@@ -136,11 +128,11 @@ namespace opentuner
                             try
                             {
                                 File.Delete(file.FullName);
-                                Log.Information("Log file: " + file.Name + " deleted");
+                                Log.Verbose("Program.Main: Log file deleted: " + file.Name);
                             }
                             catch
                             {
-                                Log.Warning("Log file for deletion not found!");
+                                Log.Warning("Program.Main: Log file for deletion not found: " + file.Name);
                             }
                         }
                         i++;
@@ -171,7 +163,7 @@ namespace opentuner
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Uncaught Exception");
+                Log.Fatal("Program.Main: Uncaught Exception: " + ex);
             }
             finally
             {

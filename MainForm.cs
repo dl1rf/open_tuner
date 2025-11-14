@@ -1045,7 +1045,6 @@ namespace opentuner
                     splitContainer5.Panel2Collapsed = true;
                     splitContainer5.Panel2.Hide();
                     break;
-
             }
         }
 

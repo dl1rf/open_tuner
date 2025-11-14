@@ -784,8 +784,6 @@ namespace opentuner.MediaSources.Minitiouner
             hardware_interface?.hw_ts_led(0, false);
             hardware_interface?.hw_ts_led(1, false);
 
-            ts_parser_t?.Abort();
-            ts_parser_2_t?.Abort();
             bool stopped = false;
             ts_thread?.Stop(ref stopped);
             if (!stopped)

@@ -1,5 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using FlyleafLib;
+﻿using FlyleafLib;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -29,7 +28,7 @@ namespace opentuner
         static void Main(string[] args)
         {
             int i = 0;
-            int debugLevel = 3;
+            int debugLevel = 2;
             levelSwitch = new LoggingLevelSwitch();
 
             while (i < args.Length)
@@ -128,7 +127,7 @@ namespace opentuner
                             try
                             {
                                 File.Delete(file.FullName);
-                                Log.Verbose("Program.Main: Log file deleted: " + file.Name);
+                                Log.Information("Program.Main: Log file deleted: " + file.Name);
                             }
                             catch
                             {
@@ -163,7 +162,7 @@ namespace opentuner
             }
             catch (Exception ex)
             {
-                Log.Fatal("Program.Main: Uncaught Exception: " + ex);
+                Log.Fatal(ex, "Program.Main: Uncaught Exception");
             }
             finally
             {

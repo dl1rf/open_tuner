@@ -127,11 +127,11 @@ namespace opentuner
                             try
                             {
                                 File.Delete(file.FullName);
-                                Log.Information("Program.Main: Log file deleted: " + file.Name);
+                                Log.Debug("Log file deleted: " + file.Name);
                             }
                             catch
                             {
-                                Log.Warning("Program.Main: Log file for deletion not found: " + file.Name);
+                                Log.Warning("Log file for deletion not found: " + file.Name);
                             }
                         }
                         i++;

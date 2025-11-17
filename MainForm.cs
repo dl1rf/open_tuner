@@ -93,19 +93,20 @@ namespace opentuner
         {
             int i = 0;
 
-            while ( i < args.Length )
+            while (i < args.Length)
             {
                 switch (args[i])
                 {
                     case "--nosave":
                         _settings_save = false;
                         break;
+
                     case "--autoconnect":
                         _settings.auto_connect = true;
                         break;
 
                     case "--enablebatcspectrum":
-                        _settings.enable_spectrum_checkbox = true; 
+                        _settings.enable_spectrum_checkbox = true;
                         break;
 
                     case "--disablebatcspectrum":
@@ -163,10 +164,9 @@ namespace opentuner
                         break;
 
                     case "--windowwidth":
-                        
                         int new_window_width = 0;
 
-                        if (int.TryParse(args[i+1], out new_window_width))
+                        if (int.TryParse(args[i + 1], out new_window_width))
                         {
                             _settings.gui_window_width = new_window_width;
                         }
@@ -178,7 +178,6 @@ namespace opentuner
                         break;
 
                     case "--windowheight":
-
                         int new_window_height = 0;
 
                         if (int.TryParse(args[i + 1], out new_window_height))
@@ -238,6 +237,13 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid default source parameter. 0-2 Expected");
                         }
+                        i += 1;
+                        break;
+
+                    case "--hideconsolewindow":
+                        break;
+
+                    case "--debuglevel":
                         i += 1;
                         break;
 
@@ -344,7 +350,6 @@ namespace opentuner
             videoSource.ConfigureVideoPlayers(_mediaPlayers);
             videoSource.ConfigureMediaPath(_settings.media_path);
 
-
             // set recorders
             _ts_recorders = ConfigureTSRecorders(videoSource, _settings.media_video_path);
             videoSource.ConfigureTSRecorders(_ts_recorders);
@@ -406,7 +411,6 @@ namespace opentuner
 
         public static void UpdateLB(ListBox LB, Object obj)
         {
-
             if (LB == null)
                 return;
 
@@ -428,12 +432,6 @@ namespace opentuner
                 int i = LB.Items.Add(DateTime.Now.ToShortTimeString() + " : " + obj);
                 LB.TopIndex = i;
             }
-
-        }
-
-        private void debug(string msg)
-        {
-            UpdateLB(dbgListBox, msg);
         }
 
         public void start_video(int video_number)
@@ -515,7 +513,7 @@ namespace opentuner
 
             try
             {
-                if (mqtt_client !=  null)
+                if (mqtt_client != null)
                 {
                     mqtt_client.Disconnect();
                 }
@@ -548,9 +546,8 @@ namespace opentuner
                     _ts_streamers?[c]?.Close();
                 }
 
-
                 // close ts recorders
-                for (int c = 0; c < _ts_recorders.Count; c++) 
+                for (int c = 0; c < _ts_recorders.Count; c++)
                 {
                     _ts_recorders?[c]?.Close();
                 }
@@ -560,7 +557,6 @@ namespace opentuner
                 {
                     _availableSources?[c]?.Close();
                 }
-
             }
             catch ( Exception Ex)
             {

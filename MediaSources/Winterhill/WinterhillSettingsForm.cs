@@ -93,6 +93,11 @@ namespace opentuner.MediaSources.Winterhill
                 MessageBox.Show("Invalid Offset 1");
                 return;
             }
+            if (frequency1 <= offset1)
+            {
+                MessageBox.Show("Invalid Offset 1");
+                return;
+            }
             uint sr1 = 0;
             if (!uint.TryParse(txtTuner1SymbolRate.Text, out sr1))
             {
@@ -108,6 +113,11 @@ namespace opentuner.MediaSources.Winterhill
             }
             uint offset2 = 0;
             if (!uint.TryParse(txtTuner2FreqOffset.Text, out offset2))
+            {
+                MessageBox.Show("Invalid Offset 2");
+                return;
+            }
+            if (frequency2 <= offset2)
             {
                 MessageBox.Show("Invalid Offset 2");
                 return;
@@ -131,6 +141,11 @@ namespace opentuner.MediaSources.Winterhill
                 MessageBox.Show("Invalid Offset 3");
                 return;
             }
+            if (frequency3 <= offset3)
+            {
+                MessageBox.Show("Invalid Offset 3");
+                return;
+            }
             uint sr3 = 0;
             if (!uint.TryParse(txtTuner3SymbolRate.Text, out sr3))
             {
@@ -146,6 +161,11 @@ namespace opentuner.MediaSources.Winterhill
             }
             uint offset4 = 0;
             if (!uint.TryParse(txtTuner4FreqOffset.Text, out offset4))
+            {
+                MessageBox.Show("Invalid Offset 4");
+                return;
+            }
+            if (frequency4 <= offset4)
             {
                 MessageBox.Show("Invalid Offset 4");
                 return;

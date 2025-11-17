@@ -50,6 +50,11 @@ namespace opentuner.MediaSources.Minitiouner
                 MessageBox.Show("Invalid Offset 1");
                 return;
             }
+            if (frequency1 <= offset1)
+            {
+                MessageBox.Show("Invalid Offset 1");
+                return;
+            }
             uint sr1 = 0;
             if (!uint.TryParse(txtTuner1SymbolRate.Text, out sr1))
             {
@@ -65,6 +70,11 @@ namespace opentuner.MediaSources.Minitiouner
             }
             uint offset2 = 0;
             if (!uint.TryParse(txtTuner2FreqOffset.Text, out offset2))
+            {
+                MessageBox.Show("Invalid Offset 2");
+                return;
+            }
+            if (frequency2 <= offset2)
             {
                 MessageBox.Show("Invalid Offset 2");
                 return;

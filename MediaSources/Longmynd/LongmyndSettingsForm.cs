@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Vortice.MediaFoundation;
 
 namespace opentuner.MediaSources.Longmynd
 {
@@ -69,6 +70,12 @@ namespace opentuner.MediaSources.Longmynd
 
             uint offset = 0;
             if (!uint.TryParse(txtTuner1FreqOffset.Text, out offset))
+            {
+                MessageBox.Show("Invalid Offset");
+                return;
+            }
+
+            if (frequency <= offset)
             {
                 MessageBox.Show("Invalid Offset");
                 return;

@@ -502,10 +502,12 @@ namespace opentuner.MediaSources.WinterHill
             {
                 switch (hw_device)
                 {
-                    case 1: WSSetFrequency(device, (int)frequency, (int)symbol_rate);
+                    case 1:
+                        WSSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
 
-                    case 2: UDPSetFrequency(device, (int)frequency, (int)symbol_rate);
+                    case 2:
+                        UDPSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
                 }
             }
@@ -513,10 +515,12 @@ namespace opentuner.MediaSources.WinterHill
             {
                 switch (hw_device)
                 {
-                    case 1: WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
+                    case 1:
+                        WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
 
-                    case 2: UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
+                    case 2:
+                        UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
                 }
             }

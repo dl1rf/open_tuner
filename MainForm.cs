@@ -79,7 +79,6 @@ namespace opentuner
             if (info_object.InvokeRequired)
             {
                 UpdateInfoDelegate ulb = new UpdateInfoDelegate(UpdateInfo);
-
                 info_object?.Invoke(ulb, new object[] { info_object, info });
             }
             else

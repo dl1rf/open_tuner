@@ -70,6 +70,7 @@ namespace opentuner
 
             update_freq(_frequency);
         }
+
         private void LblgHz_MouseWheel(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             scroll_frequency(1000000, e.Delta);
@@ -131,7 +132,6 @@ namespace opentuner
                 btnUpdateFreq.Enabled = true;
             }
         }
-
 
         private void update_offset()
         {

@@ -199,9 +199,20 @@ namespace opentuner.MediaSources.WinterHill
 
         public void UDPSetVoltage(int plug, uint voltage)
         {
-            int base_port = _settings.WinterHillUdpBasePort;
+            int base_port = 0;
+            string base_host = "0.0.0.0";
 
-            IPEndPoint winterhill_end_point = new IPEndPoint(IPAddress.Parse(_settings.WinterHillUdpHost), base_port + 21);
+            if (hw_device == 1) // WinterHill
+            {
+                base_host = _settings.WinterHillWSHost;
+                base_port = _settings.WinterHillWSUdpBasePort;
+            }
+            else    // PicoTunerWH
+            {
+                base_host = _settings.WinterHillUdpHost;
+                base_port = _settings.WinterHillUdpBasePort;
+            }
+            IPEndPoint winterhill_end_point = new IPEndPoint(IPAddress.Parse(base_host), base_port + 21);
 
             string command2 = "";
             string vg = "vgx";

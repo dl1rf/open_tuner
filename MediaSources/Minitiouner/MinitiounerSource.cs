@@ -260,9 +260,17 @@ namespace opentuner.MediaSources.Minitiouner
 
             switch (rf_input)
             {
-                case nim.NIM_INPUT_TOP: Log.Information("RF Input: Nim Input Top Specified"); break;
-                case nim.NIM_INPUT_BOTTOM: Log.Information("RF Input: Nim Input Bottom Specified"); break;
-                default: Log.Information("Error: Invalid RF Input: " + rf_input.ToString()); break;
+                case nim.NIM_INPUT_TOP:
+                    Log.Information("RF Input: Nim Input Top Specified");
+                    break;
+
+                case nim.NIM_INPUT_BOTTOM:
+                    Log.Information("RF Input: Nim Input Bottom Specified");
+                    break;
+
+                default:
+                    Log.Information("Error: Invalid RF Input: " + rf_input.ToString());
+                    break;
             }
 
             TunerConfig newConfig = new TunerConfig();

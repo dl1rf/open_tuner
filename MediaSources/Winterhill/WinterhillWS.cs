@@ -247,7 +247,6 @@ namespace opentuner.MediaSources.WinterHill
         public int rfport;
     }
 
-
     [Serializable]
     public class monitorMessage
     {

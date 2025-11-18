@@ -16,7 +16,6 @@ namespace opentuner.MediaSources
         public delegate void SourceDataChange(int video_nr, OTSourceData properties, string description);
         public abstract event SourceDataChange OnSourceData;
 
-
         // Request the Source Name (eg. Minitiouner)
         public abstract string GetName();
 

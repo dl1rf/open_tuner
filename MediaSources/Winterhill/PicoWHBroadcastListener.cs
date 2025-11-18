@@ -10,7 +10,7 @@ using NAudio.Dmo;
 using Serilog;
 using static opentuner.MediaSources.OTSource;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
     public class PicoWHBroadcastListener
     {

@@ -8,25 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
-    public partial class WinterhillSettingsForm : Form
+    public partial class WinterHillSettingsForm : Form
     {
-        private WinterhillSettings _settings;
+        private WinterHillSettings _settings;
 
-        public WinterhillSettingsForm(WinterhillSettings Settings)
+        public WinterHillSettingsForm(WinterHillSettings Settings)
         {
             InitializeComponent();
 
             _settings = Settings;
 
             comboDefaultInterface.SelectedIndex = _settings.DefaultInterface;
-            txtWHWSIp.Text = _settings.WinterhillWSHost;
-            txtWHWSPort.Text = _settings.WinterhillWSPort.ToString();
-            txtWHWSBaseUdp.Text = _settings.WinterhillWSUdpBasePort.ToString();
+            txtWHWSIp.Text = _settings.WinterHillWSHost;
+            txtWHWSPort.Text = _settings.WinterHillWSPort.ToString();
+            txtWHWSBaseUdp.Text = _settings.WinterHillWSUdpBasePort.ToString();
 
-            txtUDPBasePort.Text = _settings.WinterhillUdpBasePort.ToString();
-            txtUDPIP.Text = _settings.WinterhillUdpHost.ToString();
+            txtUDPBasePort.Text = _settings.WinterHillUdpBasePort.ToString();
+            txtUDPIP.Text = _settings.WinterHillUdpHost.ToString();
 
             txtTuner1Frequency.Text = _settings.DefaultFrequency[0].ToString();
             txtTuner1FreqOffset.Text = _settings.DefaultOffset[0].ToString();
@@ -57,28 +57,28 @@ namespace opentuner.MediaSources.Winterhill
 
             if (!int.TryParse(txtWHWSPort.Text, out wsport))
             {
-                MessageBox.Show("Winterhill WS Port is not valid.");
+                MessageBox.Show("WinterHill WS Port is not valid.");
                 return;
             }
 
             if (!int.TryParse(txtWHWSBaseUdp.Text, out baseport))
             {
-                MessageBox.Show("Winterhill WS Base Port is not valid");
+                MessageBox.Show("WinterHill WS Base Port is not valid");
                 return;
             }
 
             if (!int.TryParse(txtUDPBasePort.Text, out udpbaseport))
             {
-                MessageBox.Show("Winterhill UDP Base Port is not valid");
+                MessageBox.Show("WinterHill UDP Base Port is not valid");
                 return;
             }
 
-            _settings.WinterhillWSHost = txtWHWSIp.Text;
-            _settings.WinterhillWSPort = wsport;
-            _settings.WinterhillWSUdpBasePort = baseport;
+            _settings.WinterHillWSHost = txtWHWSIp.Text;
+            _settings.WinterHillWSPort = wsport;
+            _settings.WinterHillWSUdpBasePort = baseport;
 
-            _settings.WinterhillUdpBasePort = udpbaseport;
-            _settings.WinterhillUdpHost = txtUDPIP.Text;
+            _settings.WinterHillUdpBasePort = udpbaseport;
+            _settings.WinterHillUdpHost = txtUDPIP.Text;
             _settings.DefaultInterface = (byte)comboDefaultInterface.SelectedIndex;
 
             uint frequency1 = 0;

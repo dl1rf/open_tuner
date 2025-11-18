@@ -1,6 +1,6 @@
-﻿namespace opentuner.MediaSources.Winterhill
+﻿namespace opentuner.MediaSources.WinterHill
 {
-    partial class WinterhillSettingsForm
+    partial class WinterHillSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -92,7 +92,7 @@
             this.groupBox1.Size = new System.Drawing.Size(400, 124);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Winterhill Settings";
+            this.groupBox1.Text = "WinterHill Settings";
             // 
             // label3
             // 
@@ -102,7 +102,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 16);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Winterhill Udp Port:";
+            this.label3.Text = "WinterHill Udp Port:";
             // 
             // txtWHWSBaseUdp
             // 
@@ -120,7 +120,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Winterhill WS IP:";
+            this.label1.Text = "WinterHill WS IP:";
             // 
             // txtWHWSIp
             // 
@@ -138,7 +138,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 16);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Winterhill WS Port:";
+            this.label2.Text = "WinterHill WS Port:";
             // 
             // txtWHWSPort
             // 
@@ -514,7 +514,7 @@
             this.label13.TabIndex = 18;
             this.label13.Text = "Tuner 3 Freq Offset:";
             // 
-            // WinterhillSettingsForm
+            // WinterHillSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -531,9 +531,9 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "WinterhillSettingsForm";
+            this.Name = "WinterHillSettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Winterhill Settings";
+            this.Text = "WinterHill Settings";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

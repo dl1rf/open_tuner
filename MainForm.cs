@@ -9,7 +9,7 @@ using opentuner.MediaPlayers.VLC;
 using opentuner.MediaSources;
 using opentuner.MediaSources.Longmynd;
 using opentuner.MediaSources.Minitiouner;
-using opentuner.MediaSources.Winterhill;
+using opentuner.MediaSources.WinterHill;
 using opentuner.Transmit;
 using opentuner.Utilities;
 using Serilog;
@@ -293,7 +293,7 @@ namespace opentuner
             // load available sources
             _availableSources.Add(new MinitiounerSource());
             _availableSources.Add(new LongmyndSource());
-            _availableSources.Add(new WinterhillSource());
+            _availableSources.Add(new WinterHillSource());
 
             comboAvailableSources.Items.Clear();
 

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
-    public partial class ChooseWinterhillHardwareInterfaceForm : Form
+    public partial class ChooseWinterHillHardwareInterfaceForm : Form
     {
-        public ChooseWinterhillHardwareInterfaceForm()
+        public ChooseWinterHillHardwareInterfaceForm()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace opentuner.MediaSources.Winterhill
             DialogResult = DialogResult.OK;
         }
 
-        private void ChooseWinterhillHardwareInterfaceForm_Load(object sender, EventArgs e)
+        private void ChooseWinterHillHardwareInterfaceForm_Load(object sender, EventArgs e)
         {
             comboHardwareInterface.SelectedIndex = 0;
         }

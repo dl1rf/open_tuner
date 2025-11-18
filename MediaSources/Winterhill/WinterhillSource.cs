@@ -11,12 +11,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
-    public partial class WinterhillSource : OTSource
+    public partial class WinterHillSource : OTSource
     {
-        private WinterhillSettings _settings;
-        private SettingsManager<WinterhillSettings> _settingsManager;
+        private WinterHillSettings _settings;
+        private SettingsManager<WinterHillSettings> _settingsManager;
 
         public override event SourceDataChange OnSourceData;
 
@@ -61,11 +61,11 @@ namespace opentuner.MediaSources.Winterhill
 
         int hw_device = 1;
 
-        public WinterhillSource()
+        public WinterHillSource()
         {
             // settings
-            _settings = new WinterhillSettings();
-            _settingsManager = new SettingsManager<WinterhillSettings>("winterhill_settings");
+            _settings = new WinterHillSettings();
+            _settingsManager = new SettingsManager<WinterHillSettings>("winterhill_settings");
             _settings = _settingsManager.LoadSettings(_settings);
         }
 
@@ -74,13 +74,13 @@ namespace opentuner.MediaSources.Winterhill
             _parent = Parent;
             this.VideoChangeCB = VideoChangeCB;
 
-            int udp_port = _settings.WinterhillWSUdpBasePort;
+            int udp_port = _settings.WinterHillWSUdpBasePort;
 
             int defaultInterface = _settings.DefaultInterface;
 
             if (defaultInterface == 0)
             {
-                ChooseWinterhillHardwareInterfaceForm chooseInterfaceForm = new ChooseWinterhillHardwareInterfaceForm();
+                ChooseWinterHillHardwareInterfaceForm chooseInterfaceForm = new ChooseWinterHillHardwareInterfaceForm();
 
                 if (chooseInterfaceForm.ShowDialog() == DialogResult.OK)
                 {
@@ -105,11 +105,11 @@ namespace opentuner.MediaSources.Winterhill
             {
                 if (defaultInterface == 1)
                 {
-                    socket.Connect(_settings.WinterhillWSHost, _settings.WinterhillWSUdpBasePort);
+                    socket.Connect(_settings.WinterHillWSHost, _settings.WinterHillWSUdpBasePort);
                 }
                 else
                 {
-                    socket.Connect(_settings.WinterhillUdpHost, _settings.WinterhillUdpBasePort);
+                    socket.Connect(_settings.WinterHillUdpHost, _settings.WinterHillUdpBasePort);
                 }
                 IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
                 _LocalIp = endPoint.Address.ToString();
@@ -127,7 +127,7 @@ namespace opentuner.MediaSources.Winterhill
             {
                 case 1: // websockets
                     connectWebsockets();
-                    udp_port = _settings.WinterhillWSUdpBasePort;
+                    udp_port = _settings.WinterHillWSUdpBasePort;
                     ts_devices = 4;
                     hw_device = 1;
 
@@ -153,8 +153,8 @@ namespace opentuner.MediaSources.Winterhill
 
                     break;
                 case 2: // udp pico wh
-                    udp_port = _settings.WinterhillUdpBasePort;
-                    ConnectWinterhillUDP(udp_port + 1);
+                    udp_port = _settings.WinterHillUdpBasePort;
+                    ConnectWinterHillUDP(udp_port + 1);
 
                     UDPSetVoltage(0, _settings.LNBVoltage[0]);
                     UDPSetVoltage(1, _settings.LNBVoltage[1]);
@@ -181,8 +181,8 @@ namespace opentuner.MediaSources.Winterhill
                 ts_data_queue[c] = new CircularBuffer(GlobalDefines.CircularBufferStartingCapacity);
 
                 udp_clients[c] = new UDPClient(port, c);
-                udp_clients[c].ConnectionStatusChanged += WinterhillSource_ConnectionStatusChanged;
-                udp_clients[c].DataReceived += WinterhillSource_DataReceived;
+                udp_clients[c].ConnectionStatusChanged += WinterHillSource_ConnectionStatusChanged;
+                udp_clients[c].DataReceived += WinterHillSource_DataReceived;
                 udp_clients[c].Connect();
 
                 FlushTS flush_ts = null;
@@ -265,7 +265,7 @@ namespace opentuner.MediaSources.Winterhill
             return ReadTSGeneric(3, ref data, ref dataRead);
         }
 
-        private void WinterhillSource_DataReceived(object sender, byte[] e)
+        private void WinterHillSource_DataReceived(object sender, byte[] e)
         {
             int device = ((UDPClient)sender).getID();
 
@@ -279,7 +279,7 @@ namespace opentuner.MediaSources.Winterhill
             ts_threads[device].NewDataPresent();
         }
 
-        private void WinterhillSource_ConnectionStatusChanged(object sender, bool connection_status)
+        private void WinterHillSource_ConnectionStatusChanged(object sender, bool connection_status)
         {
             Log.Information("Connection Status " + ((UDPClient)sender).getID() + " : " + (connection_status ? "Connected" : "Disconnected"));
         }
@@ -317,7 +317,7 @@ namespace opentuner.MediaSources.Winterhill
         {
             _Ready = false;
 
-            Log.Information("Closing Winterhill Source");
+            Log.Information("Closing WinterHill Source");
 
             int defaultInterface = _settings.DefaultInterface;
             _settingsManager.SaveSettings(_settings);
@@ -332,7 +332,7 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case 2: // udp pico wh
-                    DisconnectWinterhillUDP();
+                    DisconnectWinterHillUDP();
                     break;
             }
             if (ts_thread_t != null) 
@@ -375,12 +375,12 @@ namespace opentuner.MediaSources.Winterhill
             for (int c = 0; c < TSStreamers.Count; c++)
             {
                 _ts_streamers[c] = TSStreamers[c];
-                _ts_streamers[c].onStreamStatusChange += WinterhillSource_onStreamStatusChange;
+                _ts_streamers[c].onStreamStatusChange += WinterHillSource_onStreamStatusChange;
                 _ts_streamers[c].stream = _settings.DefaultUDPStreaming[c];
             }
         }
 
-        private void WinterhillSource_onStreamStatusChange(object sender, bool e)
+        private void WinterHillSource_onStreamStatusChange(object sender, bool e)
         {
             Log.Information(((TSUdpStreamer)(sender)).ID.ToString() + " streaming status : " + e.ToString());
         }
@@ -390,7 +390,7 @@ namespace opentuner.MediaSources.Winterhill
             for (int c = 0; c < ts_devices; c++)
             {
                 _media_player[c] = MediaPlayers[c];
-                _media_player[c].onVideoOut += WinterhillSource_onVideoOut;
+                _media_player[c].onVideoOut += WinterHillSource_onVideoOut;
                 if (_settings.DefaultMuted[c])
                 {
                     _media_player[c].SetVolume(0);
@@ -402,7 +402,7 @@ namespace opentuner.MediaSources.Winterhill
             }
         }
 
-        private void WinterhillSource_onVideoOut(object sender, MediaStatus e)
+        private void WinterHillSource_onVideoOut(object sender, MediaStatus e)
         {
             int video_id = ((OTMediaPlayer)sender).getID();
 
@@ -422,7 +422,7 @@ namespace opentuner.MediaSources.Winterhill
 
         public override string GetDescription()
         {
-            return "Winterhill Client, Compatible with:" +
+            return "WinterHill Client, Compatible with:" +
                     Environment.NewLine + Environment.NewLine +
                     "ZR6TG - WH Variant (websocket)" +
                     Environment.NewLine +
@@ -435,7 +435,7 @@ namespace opentuner.MediaSources.Winterhill
             switch (hw_device)
             {
                 case 1: 
-                    return "Winterhill (ZR6TG Variant)";
+                    return "WinterHill (ZR6TG Variant)";
 
                 case 2: 
                     return "PicoTuner (G4EWJ Ethernet WH)";
@@ -451,7 +451,7 @@ namespace opentuner.MediaSources.Winterhill
 
         public override string GetName()
         {
-            return "Winterhill Variant";
+            return "WinterHill Variant";
         }
 
         public override void OverrideDefaultMuted(bool Override)
@@ -524,7 +524,7 @@ namespace opentuner.MediaSources.Winterhill
 
         public override void ShowSettings()
         {
-            WinterhillSettingsForm settingsForm = new WinterhillSettingsForm(_settings);
+            WinterHillSettingsForm settingsForm = new WinterHillSettingsForm(_settings);
 
             if (settingsForm.ShowDialog() == DialogResult.OK)
             {
@@ -556,7 +556,7 @@ namespace opentuner.MediaSources.Winterhill
 
         public override void InvokeOnMediaButtonPressed(string key, int function)
         {
-            WinterhillSource_OnMediaButtonPressed(key, function);
+            WinterHillSource_OnMediaButtonPressed(key, function);
         }
 
         public override string GetMoreInfoLink()

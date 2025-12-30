@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -76,7 +75,6 @@
             this.PropertiesPage = new System.Windows.Forms.TabPage();
             this.debugPage = new System.Windows.Forms.TabPage();
             this.dbgListBox = new System.Windows.Forms.ListBox();
-            this.contextSpectrumMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openTunerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripConnectToggle = new System.Windows.Forms.ToolStripMenuItem();
@@ -527,11 +525,6 @@
             this.dbgListBox.FormattingEnabled = true;
             this.dbgListBox.Name = "dbgListBox";
             // 
-            // contextSpectrumMenu
-            // 
-            this.contextSpectrumMenu.Name = "contextSpectrumMenu";
-            resources.ApplyResources(this.contextSpectrumMenu, "contextSpectrumMenu");
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -710,7 +703,6 @@
         private System.Windows.Forms.ListBox dbgListBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem qO100WidebandChatToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextSpectrumMenu;
         private System.Windows.Forms.ToolStripMenuItem plutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemFunctionsToolStripMenuItem;

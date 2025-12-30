@@ -101,19 +101,19 @@ namespace opentuner.MediaSources.Winterhill
 
             // check if tuner is connectable and get local ip
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
-                try
-                {
-                    socket.Connect(_settings.WinterhillWSHost, _settings.WinterhillWSUdpBasePort);
-                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                    _LocalIp = endPoint.Address.ToString();
-                    socket.Close();
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("Socket Connect Exception: " + ex.Message);
-                    return -2;
-                }
-                Log.Information("Local IP used " + _LocalIp);
+            try
+            {
+                socket.Connect(_settings.WinterhillWSHost, _settings.WinterhillWSUdpBasePort);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                _LocalIp = endPoint.Address.ToString();
+                socket.Close();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Socket Connect Exception: " + ex.Message);
+                return -2;
+            }
+            Log.Information("Local IP used " + _LocalIp);
 
             // connect interface
             switch (defaultInterface)
@@ -151,7 +151,6 @@ namespace opentuner.MediaSources.Winterhill
 
                     UDPSetVoltage(0, _settings.LNBVoltage[0]);
                     UDPSetVoltage(1, _settings.LNBVoltage[1]);
-
 
                     ts_devices = 2;
                     hw_device = 2;
@@ -493,10 +492,12 @@ namespace opentuner.MediaSources.Winterhill
             {
                 switch (hw_device)
                 {
-                    case 1: WSSetFrequency(device, (int)frequency, (int)symbol_rate);
+                    case 1:
+                        WSSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
 
-                    case 2: UDPSetFrequency(device, (int)frequency, (int)symbol_rate);
+                    case 2:
+                        UDPSetFrequency(device, (int)frequency, (int)symbol_rate);
                         break;
                 }
             }
@@ -504,10 +505,12 @@ namespace opentuner.MediaSources.Winterhill
             {
                 switch (hw_device)
                 {
-                    case 1: WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
+                    case 1:
+                        WSSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
 
-                    case 2: UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
+                    case 2:
+                        UDPSetFrequency(device, (int)frequency + (int)_current_offset[device], (int)symbol_rate);
                         break;
                 }
             }

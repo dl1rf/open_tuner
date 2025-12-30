@@ -3,7 +3,7 @@
     public class WebChatSettings
     {
         // chat settings        
-        public string sigreport_template = "SigReport: {SN}/{SP} - D{DBM} - ({MER}) - {SR} - {FREQ}";
+        public string sigreport_template = "SigReport: {SN}/{SP} - {DBM} - ({MER}) - {SR} - {FREQ}";
         public string nickname = "NONICK";
         public int chat_font_size = 12;
         public int gui_chat_width = 800;

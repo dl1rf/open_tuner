@@ -115,7 +115,6 @@ namespace opentuner.ExtraFeatures.MqttClient
             return;
         }
 
-
         private Task _mqtt_client_ApplicationMessageReceivedAsync(MqttApplicationMessageReceivedEventArgs arg)
         {
             OnMqttMessageReceived?.Invoke(new MqttMessage(arg.ApplicationMessage.Topic, arg.ApplicationMessage.ConvertPayloadToString()));

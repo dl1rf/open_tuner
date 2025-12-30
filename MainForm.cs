@@ -10,18 +10,12 @@ using opentuner.MediaSources;
 using opentuner.MediaSources.Longmynd;
 using opentuner.MediaSources.Minitiouner;
 using opentuner.MediaSources.Winterhill;
-using opentuner.Properties;
-using opentuner.SettingsManagement;
 using opentuner.Transmit;
 using opentuner.Utilities;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
@@ -85,7 +79,6 @@ namespace opentuner
             if (info_object.InvokeRequired)
             {
                 UpdateInfoDelegate ulb = new UpdateInfoDelegate(UpdateInfo);
-
                 info_object?.Invoke(ulb, new object[] { info_object, info });
             }
             else
@@ -99,19 +92,20 @@ namespace opentuner
         {
             int i = 0;
 
-            while ( i < args.Length )
+            while (i < args.Length)
             {
                 switch (args[i])
                 {
                     case "--nosave":
                         _settings_save = false;
                         break;
+
                     case "--autoconnect":
                         _settings.auto_connect = true;
                         break;
 
                     case "--enablebatcspectrum":
-                        _settings.enable_spectrum_checkbox = true; 
+                        _settings.enable_spectrum_checkbox = true;
                         break;
 
                     case "--disablebatcspectrum":
@@ -169,10 +163,9 @@ namespace opentuner
                         break;
 
                     case "--windowwidth":
-                        
                         int new_window_width = 0;
 
-                        if (int.TryParse(args[i+1], out new_window_width))
+                        if (int.TryParse(args[i + 1], out new_window_width))
                         {
                             _settings.gui_window_width = new_window_width;
                         }
@@ -180,13 +173,10 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window width. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowheight":
-
                         int new_window_height = 0;
 
                         if (int.TryParse(args[i + 1], out new_window_height))
@@ -197,9 +187,7 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window height. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowx":
@@ -213,9 +201,7 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window x. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
                     case "--windowy":
@@ -229,14 +215,10 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid window y. Integer Expected");
                         }
-
                         i += 1;
-
                         break;
 
-
                     case "--defaultsource":
-
                         int new_default_source = 0;
 
                         if (int.TryParse(args[i + 1], out new_default_source))
@@ -254,16 +236,20 @@ namespace opentuner
                         {
                             Log.Error(args[i + 1] + " is not a valid default source parameter. 0-2 Expected");
                         }
-                        
                         i += 1;
+                        break;
 
+                    case "--hideconsolewindow":
+                        break;
+
+                    case "--debuglevel":
+                        i += 1;
                         break;
 
                     default:
                         Log.Warning("Unknown command line param: " + args[i]);
                         break;
                 }
-
                 // grab next param
                 i += 1;
             }
@@ -362,7 +348,6 @@ namespace opentuner
             videoSource.ConfigureVideoPlayers(_mediaPlayers);
             videoSource.ConfigureMediaPath(_settings.media_path);
 
-
             // set recorders
             _ts_recorders = ConfigureTSRecorders(videoSource, _settings.media_video_path);
             videoSource.ConfigureTSRecorders(_ts_recorders);
@@ -424,7 +409,6 @@ namespace opentuner
 
         public static void UpdateLB(ListBox LB, Object obj)
         {
-
             if (LB == null)
                 return;
 
@@ -446,12 +430,6 @@ namespace opentuner
                 int i = LB.Items.Add(DateTime.Now.ToShortTimeString() + " : " + obj);
                 LB.TopIndex = i;
             }
-
-        }
-
-        private void debug(string msg)
-        {
-            UpdateLB(dbgListBox, msg);
         }
 
         public void start_video(int video_number)
@@ -568,9 +546,8 @@ namespace opentuner
                     _ts_streamers?[c]?.Close();
                 }
 
-
                 // close ts recorders
-                for (int c = 0; c < _ts_recorders.Count; c++) 
+                for (int c = 0; c < _ts_recorders.Count; c++)
                 {
                     _ts_recorders?[c]?.Close();
                 }
@@ -580,7 +557,6 @@ namespace opentuner
                 {
                     _availableSources?[c]?.Close();
                 }
-
             }
             catch ( Exception Ex)
             {
@@ -650,7 +626,6 @@ namespace opentuner
             {
                 source_connected = ConnectSelectedSource();
             }
-
             // hide/show video overlay
         }
 
@@ -1066,7 +1041,6 @@ namespace opentuner
                     splitContainer5.Panel2Collapsed = true;
                     splitContainer5.Panel2.Hide();
                     break;
-
             }
         }
 

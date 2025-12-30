@@ -116,7 +116,6 @@ namespace opentuner
                 {
                     binWriter.Close();
                 }
-
             }
         }
     }

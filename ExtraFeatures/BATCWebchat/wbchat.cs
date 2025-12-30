@@ -1,19 +1,10 @@
 ﻿using SocketIOClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json.Serialization;
-using System.Windows.Interop;
-using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
-using System.Diagnostics.Contracts;
-using System.Security.Cryptography;
 using System.Threading;
 using Serilog;
 using opentuner.ExtraFeatures.BATCWebchat;
@@ -45,7 +36,6 @@ namespace opentuner
 
         private void wbchat_Load(object sender, EventArgs e)
         {
-
             if (_settings.nickname.Length > 0)
             {
                 txtNick.Text = _settings.nickname;
@@ -153,7 +143,6 @@ namespace opentuner
             }
             else
             {
-
                 // 204, 204, 204
                 rtb.SelectionStart = rtb.TextLength;
                 rtb.ScrollToCaret();
@@ -161,7 +150,6 @@ namespace opentuner
                 rtb.SelectionColor = Color.FromArgb(204, 204, 204);
                 rtb.SelectionStart = rtb.TextLength;
                 rtb.AppendText(tstr);
-
 
                 rtb.SelectionFont = consoleFontBold;
                 rtb.SelectionStart = rtb.TextLength;
@@ -179,6 +167,7 @@ namespace opentuner
         }
 
         private delegate void ClearRTBDelegate(RichTextBox rtb);
+
         public static void ClearChat(RichTextBox rtb)
         {
             if (rtb.InvokeRequired)
@@ -204,7 +193,6 @@ namespace opentuner
                 LB.Items.Clear();
             }
         }
-
 
         private void initUsers(SocketIOResponse response)
         {
@@ -262,6 +250,7 @@ namespace opentuner
             initUsers(response);
             initHistory(response);
         }
+
         class nickInfo
         {
             [JsonPropertyName("nick")]
@@ -385,9 +374,6 @@ namespace opentuner
 
             }
         }
-
-
-
 
         private void lbChat_Resize(object sender, EventArgs e)
         {

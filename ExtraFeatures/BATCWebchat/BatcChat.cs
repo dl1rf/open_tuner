@@ -1,15 +1,9 @@
 ﻿using opentuner.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using opentuner.MediaSources;
 using Serilog;
 using System.Windows.Forms;
-using opentuner.ExtraFeatures.BATCSpectrum;
-using System.Runtime;
 
 namespace opentuner.ExtraFeatures.BATCWebchat
 {
@@ -18,6 +12,7 @@ namespace opentuner.ExtraFeatures.BATCWebchat
         private WebChatForm _form;
         private WebChatSettings wc_settings;
         SettingsManager<WebChatSettings> wc_settingsManager;
+
         public BATCChat(OTSource Source) {
             // webchat settings
             wc_settings = new WebChatSettings();
@@ -87,14 +82,10 @@ namespace opentuner.ExtraFeatures.BATCWebchat
             _form.Focus();
         }
 
-       
-
         public void Close()
         {
             wc_settingsManager.SaveSettings(wc_settings);
             _form.Close();
         }
-
-
     }
 }

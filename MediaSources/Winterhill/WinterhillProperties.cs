@@ -2,17 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using opentuner.MediaSources.Longmynd;
 using Serilog;
 using System.Globalization;
-using System.Timers;
-using System.Runtime.ConstrainedExecution;
-using opentuner.MediaSources.Minitiouner;
 
 namespace opentuner.MediaSources.Winterhill
 {
@@ -65,7 +59,7 @@ namespace opentuner.MediaSources.Winterhill
                 {
                     _tuner_properties[c].AddItem("rf_input", "RF Input", _genericContextStrip);
                 }
-                
+
                 _tuner_properties[c].AddItem("frequency", "Frequency" ,_genericContextStrip);
                 _tuner_properties[c].AddItem("offset", "Freq Offset", _genericContextStrip);
                 _tuner_properties[c].AddItem("symbol_rate", "Symbol Rate", _genericContextStrip);
@@ -138,7 +132,6 @@ namespace opentuner.MediaSources.Winterhill
                 tunerControl.OnTunerChange += TunerControl_OnTunerChange;
                 _tuner_forms.Add(tunerControl);
             }
-
             return true;
         }
 
@@ -177,7 +170,7 @@ namespace opentuner.MediaSources.Winterhill
 
                 case "rf_input":
                     contextMenuStrip.Items.Add(ConfigureMenuItem("A", LongmyndPropertyCommands.SETRFINPUTA, new int[] { (int)contextMenuStrip.SourceControl.Tag }));
-                    contextMenuStrip.Items.Add(ConfigureMenuItem("B", LongmyndPropertyCommands.SETRFINPUTB, new int[] { (int)contextMenuStrip.SourceControl.Tag  }));
+                    contextMenuStrip.Items.Add(ConfigureMenuItem("B", LongmyndPropertyCommands.SETRFINPUTB, new int[] { (int)contextMenuStrip.SourceControl.Tag }));
                     break;
 
                 case "offset":
@@ -258,7 +251,6 @@ namespace opentuner.MediaSources.Winterhill
                     UDPSetVoltage(1, 18);
                     break;
 
-
                 case LongmyndPropertyCommands.SETRFINPUTA:
                     tuner = option[0];
 
@@ -279,13 +271,17 @@ namespace opentuner.MediaSources.Winterhill
 
                 case LongmyndPropertyCommands.SETOFFSET:
                     tuner = option[0];
-                    
+
                     switch (option[1])
                     {
-                        case 0: _current_offset[tuner] = _settings.DefaultOffset[tuner]; break;
-                        case 1: _current_offset[tuner] = 0; break;
-                    }
+                        case 0:
+                            _current_offset[tuner] = _settings.DefaultOffset[tuner];
+                            break;
 
+                        case 1:
+                            _current_offset[tuner] = 0;
+                            break;
+                    }
                     SetFrequency(tuner, _current_frequency[tuner], (uint)_current_sr[tuner], false);
                     break;
 
@@ -323,7 +319,6 @@ namespace opentuner.MediaSources.Winterhill
                     break;
 
                 case LongmyndPropertyCommands.SETTSLOCAL:
-
                     if (_LocalIp.Length > 0)
                     {
                         Log.Information("Updating TS Ip to " + _LocalIp);
@@ -360,6 +355,7 @@ namespace opentuner.MediaSources.Winterhill
                 case 0: // mute
                     ToggleMute(tuner);
                     break;
+
                 case 1: // snapshot
                     if (playing[tuner])
                     {
@@ -413,12 +409,15 @@ namespace opentuner.MediaSources.Winterhill
                 case "media_controls_0":
                     MediaControlsHandler(0, function);
                     break;
+
                 case "media_controls_1":
                     MediaControlsHandler(1, function);
                     break;
+
                 case "media_controls_2":
                     MediaControlsHandler(2, function);
                     break;
+
                 case "media_controls_3":
                     MediaControlsHandler(3, function);
                     break;
@@ -437,6 +436,7 @@ namespace opentuner.MediaSources.Winterhill
                     _settings.DefaultVolume[0] = (byte)value;
                     _tuner_properties[0].UpdateMuteButtonColor("media_controls_0", Color.Transparent);
                     break;
+
                 case "volume_slider_1":
                     _settings.DefaultMuted[1] = muted[1] = false;
                     if (_media_player.Count() > 1)
@@ -444,6 +444,7 @@ namespace opentuner.MediaSources.Winterhill
                     _settings.DefaultVolume[1] = (byte)value;
                     _tuner_properties[1].UpdateMuteButtonColor("media_controls_1", Color.Transparent);
                     break;
+
                 case "volume_slider_2":
                     _settings.DefaultMuted[2] = muted[2] = false;
                     if (_media_player.Count() > 2)
@@ -451,6 +452,7 @@ namespace opentuner.MediaSources.Winterhill
                     _settings.DefaultVolume[2] = (byte)value;
                     _tuner_properties[2].UpdateMuteButtonColor("media_controls_2", Color.Transparent);
                     break;
+
                 case "volume_slider_3":
                     _settings.DefaultMuted[3] = muted[3] = false;
                     if (_media_player.Count() > 3)
@@ -554,9 +556,11 @@ namespace opentuner.MediaSources.Winterhill
                                 case 0:
                                     _source_properties.UpdateValue(counter == 0 ? "hw_lnba" : "hw_lnbb", "OFF");
                                     break;
+
                                 case 13:
                                     _source_properties.UpdateValue(counter == 0 ? "hw_lnba" : "hw_lnbb", "Vertical (12V)");
                                     break;
+
                                 case 18:
                                     _source_properties.UpdateValue(counter == 0 ? "hw_lnba" : "hw_lnbb", "Horizontal (18V)");
                                     break;

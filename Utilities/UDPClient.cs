@@ -31,7 +31,6 @@ namespace opentuner.Utilities
             udpClient?.Close();
         }
 
-
         public UDPClient(int port)
         {
             this.port = port;

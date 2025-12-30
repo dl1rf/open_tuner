@@ -15,9 +15,7 @@ namespace opentuner.MediaSources.Winterhill
 
         public void ConnectWinterhillUDP(int port)
         {
-
             longmynd_status = new UDPClient(port);
-
             longmynd_status.DataReceived += Longmynd_status_DataReceived;
             longmynd_status.ConnectionStatusChanged += Longmynd_status_ConnectionStatusChanged;
             longmynd_status.Connect();
@@ -30,7 +28,9 @@ namespace opentuner.MediaSources.Winterhill
                 Log.Information("UDP Status Port Connected");
             }
             else
+            {
                 Log.Warning("UDP Status Port Disconnected");
+            }
         }
 
         public void DisconnectWinterhillUDP()
@@ -66,11 +66,9 @@ namespace opentuner.MediaSources.Winterhill
             {
                 string[] dt = status_strings[c].Trim().Split(',');
 
-
                 switch(dt[0])
                 {
                     case "$0":
-
                         int receiver_num = udp_base_port % 100;
 
                         receiver = Convert.ToInt32(dt[1]) - receiver_num;
@@ -80,53 +78,66 @@ namespace opentuner.MediaSources.Winterhill
                             //Log.Information( "receiver: " + receiver.ToString() + " : " + status_strings[c]);
                             return;
                         }
-                        
                         break;
+
                     case "$1":
                         switch(dt[1].Trim())
                         {
                             case "DVB-S2":
                                 mm.rx[receiver].scanstate = 2;
                                 break;
+
                             case "DVB-S":
                                 mm.rx[receiver].scanstate = 3;
                                 break;
+
                             case "header":
                                 mm.rx[receiver].scanstate = 1;
                                 break;
+
                             case "search":
                                 mm.rx[receiver].scanstate = 0;
                                 break;
+
                             case "lost":
                                 mm.rx[receiver].scanstate = 0;
                                 break;
+
                             default:
                                 Log.Warning("WH: Don't know how to decode: " + dt[1]);
                                 mm.rx[receiver].scanstate = 1;
                                 break;
                         }
                         break;
+
                     case "$6":
                         mm.rx[receiver].frequency = dt[1];
                         break;
+
                     case "$9":
                         mm.rx[receiver].symbol_rate = dt[1];
                         break;
+
                     case "$12":
                         mm.rx[receiver].mer = dt[1];
                         break;
+
                     case "$13":
                         mm.rx[receiver].service_name = dt[1]; 
                         break;
+
                     case "$14":
                         mm.rx[receiver].service_provider_name = dt[1]; 
                         break;
+
                     case "$15":
                         mm.rx[receiver].null_percentage = dt[1]; 
                         break;
+
                     case "$18":
                         mm.rx[receiver].modcod = dt[1];
                         break;
+
                     case "$30":
                         mm.rx[receiver].dbmargin = dt[1];
                         break;
@@ -181,12 +192,10 @@ namespace opentuner.MediaSources.Winterhill
             if (mm.rx[receiver].ts_addr == null)
                 mm.rx[receiver].ts_addr = "";
 
-
             mm.rx[receiver].rx = receiver;
 
             UpdateInfo(mm);
         }
-
 
         public void UDPSetVoltage(int plug, uint voltage)
         {
@@ -207,12 +216,18 @@ namespace opentuner.MediaSources.Winterhill
             }
             switch (voltage)
             {
-                case 0: command2 =  ("[to@wh] " + vg + "=OFF"); break;
-                case 13: command2 = ("[to@wh] " + vg + "=LO"); break;
-                case 18: command2 = ("[to@wh] " + vg + "=HI"); break;
-            }
+                case 0:
+                    command2 =  ("[to@wh] " + vg + "=OFF");
+                    break;
 
-            _settings.LNBVoltage[plug] = voltage;
+                case 13:
+                    command2 = ("[to@wh] " + vg + "=LO");
+                    break;
+
+                case 18:
+                    command2 = ("[to@wh] " + vg + "=HI");
+                    break;
+            }
 
             Log.Information(command2);
 
@@ -225,7 +240,6 @@ namespace opentuner.MediaSources.Winterhill
             {
                 Console.WriteLine("Error sending UDP Command");
             }
-
         }
 
         public void UDPSetFrequency(int device, int freq, int sr)
@@ -249,7 +263,6 @@ namespace opentuner.MediaSources.Winterhill
                 Log.Error(ex.Message);
             }
 
-
             string command = "[to@wh] rcv=" + receiver_num.ToString() + ",freq=" + freq.ToString() + ",offset=" + _current_offset[device].ToString() + ",srate=" + sr.ToString()  + ",fplug=" + (_settings.RFPort[device] == 0 ? "A" : "B") + "\n";
 
             Log.Information(command);
@@ -265,6 +278,5 @@ namespace opentuner.MediaSources.Winterhill
                 Console.WriteLine("Error sending UDP Command");
             }
         }
-
     }
 }

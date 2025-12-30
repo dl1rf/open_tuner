@@ -5,10 +5,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Serilog;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.MediaSources;
-using System.Threading;
 
 namespace opentuner
 {

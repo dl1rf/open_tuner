@@ -85,6 +85,18 @@ namespace opentuner
                 btnSigReportTuner3.Enabled = true;
                 btnSigReportTuner4.Enabled = true;
             }
+            int count = 200;
+            while (!client.Connected)
+            {
+                Thread.Sleep(100);
+                count--;
+                if (count == 0)
+                    return;
+            }
+            if (_settings.gui_autologin)
+            {
+                setNick();
+            }
         }
 
         private void Client_OnDisconnected(object sender, string e)
@@ -275,7 +287,7 @@ namespace opentuner
             {
                 string nick = txtNick.Text.Trim();
 
-                if (nick.Length > 0)
+                if (nick.Length > 0 && nick != "NONICK")
                 {
                     client.EmitAsync("setnick", new nickInfo { nick = nick });
                     txtMessage.Enabled = true;
@@ -369,9 +381,11 @@ namespace opentuner
                 txtNick.Text = nickDialog.txtNick.Text;
                 setNick();
 
-                DateTime timeobj = DateTime.Now;
-                AddChat(richChat, timeobj.ToString("HH:mm"), "Chat","You are now known as '" + txtNick.Text + "'");
-
+                if (txtNick.Text.Length > 0 && txtNick.Text != "NONICK")
+                {
+                    DateTime timeobj = DateTime.Now;
+                    AddChat(richChat, timeobj.ToString("HH:mm"), "Chat", "You are now known as '" + txtNick.Text + "'");
+                }
             }
         }
 
@@ -448,7 +462,7 @@ namespace opentuner
 
             signalReport = signalReport.Replace("{SN}", data["ServiceName"]);
             signalReport = signalReport.Replace("{SP}", data["ServiceProvider"]);
-            signalReport = signalReport.Replace("{DBM}", data["dbMargin"]);
+            signalReport = signalReport.Replace("{DBM}", "D" + data["dbMargin"]);
             signalReport = signalReport.Replace("{MER}", data["Mer"] + " dB");
             signalReport = signalReport.Replace("{SR}", data["SR"] + "");
             signalReport = signalReport.Replace("{FREQ}", data["Frequency"] + "");

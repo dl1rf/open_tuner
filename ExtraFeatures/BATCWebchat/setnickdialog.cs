@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace opentuner
@@ -22,6 +15,11 @@ namespace opentuner
             if (txtNick.Text.Length == 0)
             {
                 MessageBox.Show("Your nick is too short...");
+                return;
+            }
+            if (txtNick.Text == "NONICK")
+            {
+                MessageBox.Show("'NONICK' is not a call sign.");
                 return;
             }
 

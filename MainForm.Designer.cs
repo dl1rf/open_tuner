@@ -43,6 +43,9 @@
             this.linkOpenTunerUpdates = new System.Windows.Forms.Label();
             this.linkDocumentation = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LinkDatvReportMoreInfo = new System.Windows.Forms.Label();
+            this.linkDATVReporterSettings = new System.Windows.Forms.Label();
+            this.checkDATVReporter = new System.Windows.Forms.CheckBox();
             this.linkPlutoCtrlSettings = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkPlutoCtrl = new System.Windows.Forms.CheckBox();
@@ -65,6 +68,9 @@
             this.btnSourceConnect = new System.Windows.Forms.Button();
             this.comboAvailableSources = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PropertiesPage = new System.Windows.Forms.TabPage();
+            this.debugPage = new System.Windows.Forms.TabPage();
+            this.dbgListBox = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -72,9 +78,6 @@
             this.ExtraToolsTab = new System.Windows.Forms.TabControl();
             this.ExtraSpectrumTab = new System.Windows.Forms.TabPage();
             this.spectrum = new System.Windows.Forms.PictureBox();
-            this.PropertiesPage = new System.Windows.Forms.TabPage();
-            this.debugPage = new System.Windows.Forms.TabPage();
-            this.dbgListBox = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openTunerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripConnectToggle = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +105,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.debugPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -117,7 +121,6 @@
             this.ExtraToolsTab.SuspendLayout();
             this.ExtraSpectrumTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
-            this.debugPage.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -238,6 +241,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.LinkDatvReportMoreInfo);
+            this.groupBox2.Controls.Add(this.linkDATVReporterSettings);
+            this.groupBox2.Controls.Add(this.checkDATVReporter);
             this.groupBox2.Controls.Add(this.linkPlutoCtrlSettings);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkPlutoCtrl);
@@ -256,6 +262,29 @@
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // LinkDatvReportMoreInfo
+            // 
+            resources.ApplyResources(this.LinkDatvReportMoreInfo, "LinkDatvReportMoreInfo");
+            this.LinkDatvReportMoreInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LinkDatvReportMoreInfo.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.LinkDatvReportMoreInfo.Name = "LinkDatvReportMoreInfo";
+            this.LinkDatvReportMoreInfo.Click += new System.EventHandler(this.LinkDatvReportMoreInfo_Click);
+            // 
+            // linkDATVReporterSettings
+            // 
+            resources.ApplyResources(this.linkDATVReporterSettings, "linkDATVReporterSettings");
+            this.linkDATVReporterSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkDATVReporterSettings.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.linkDATVReporterSettings.Name = "linkDATVReporterSettings";
+            this.linkDATVReporterSettings.Click += new System.EventHandler(this.linkDATVReporterSettings_Click);
+            // 
+            // checkDATVReporter
+            // 
+            resources.ApplyResources(this.checkDATVReporter, "checkDATVReporter");
+            this.checkDATVReporter.Name = "checkDATVReporter";
+            this.checkDATVReporter.UseVisualStyleBackColor = true;
+            this.checkDATVReporter.CheckedChanged += new System.EventHandler(this.checkDATVReporter_CheckedChanged);
             // 
             // linkPlutoCtrlSettings
             // 
@@ -423,6 +452,25 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // PropertiesPage
+            // 
+            resources.ApplyResources(this.PropertiesPage, "PropertiesPage");
+            this.PropertiesPage.BackColor = System.Drawing.Color.Transparent;
+            this.PropertiesPage.Name = "PropertiesPage";
+            // 
+            // debugPage
+            // 
+            this.debugPage.Controls.Add(this.dbgListBox);
+            resources.ApplyResources(this.debugPage, "debugPage");
+            this.debugPage.Name = "debugPage";
+            this.debugPage.UseVisualStyleBackColor = true;
+            // 
+            // dbgListBox
+            // 
+            resources.ApplyResources(this.dbgListBox, "dbgListBox");
+            this.dbgListBox.FormattingEnabled = true;
+            this.dbgListBox.Name = "dbgListBox";
+            // 
             // splitContainer2
             // 
             this.splitContainer2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -505,25 +553,6 @@
             resources.ApplyResources(this.spectrum, "spectrum");
             this.spectrum.Name = "spectrum";
             this.spectrum.TabStop = false;
-            // 
-            // PropertiesPage
-            // 
-            resources.ApplyResources(this.PropertiesPage, "PropertiesPage");
-            this.PropertiesPage.BackColor = System.Drawing.Color.Transparent;
-            this.PropertiesPage.Name = "PropertiesPage";
-            // 
-            // debugPage
-            // 
-            this.debugPage.Controls.Add(this.dbgListBox);
-            resources.ApplyResources(this.debugPage, "debugPage");
-            this.debugPage.Name = "debugPage";
-            this.debugPage.UseVisualStyleBackColor = true;
-            // 
-            // dbgListBox
-            // 
-            resources.ApplyResources(this.dbgListBox, "dbgListBox");
-            this.dbgListBox.FormattingEnabled = true;
-            this.dbgListBox.Name = "dbgListBox";
             // 
             // menuStrip1
             // 
@@ -668,6 +697,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.debugPage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -683,7 +713,6 @@
             this.ExtraToolsTab.ResumeLayout(false);
             this.ExtraSpectrumTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
-            this.debugPage.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -750,6 +779,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuManageFrequencyPresets;
         private System.Windows.Forms.ToolStripMenuItem toolstripConnectToggle;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.Label linkDATVReporterSettings;
+        private System.Windows.Forms.Label LinkDatvReportMoreInfo;
+        private System.Windows.Forms.CheckBox checkDATVReporter;
         private System.Windows.Forms.TabControl ExtraToolsTab;
         private System.Windows.Forms.TabPage ExtraSpectrumTab;
         private System.Windows.Forms.PictureBox spectrum;

@@ -130,7 +130,7 @@ namespace opentuner
                                             continue;
                                         }
                                     }
-                                    catch (Exception ex )
+                                    catch (Exception ex)
                                     {
                                         Log.Warning("TS_TABLE_SDT Exception : " + ex.Message);
                                         continue;

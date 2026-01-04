@@ -611,10 +611,10 @@ namespace opentuner
                     _availableSources?[c]?.Close();
                 }
             }
-            catch ( Exception Ex)
+            catch (Exception ex)
             {
                 // we are closing, we don't really care about exceptions at this point
-                Log.Error( Ex, "Closing Exception");
+                Log.Error(ex, "Closing Exception");
             }
 
             // swith logging level to Information

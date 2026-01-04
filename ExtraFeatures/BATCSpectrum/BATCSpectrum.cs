@@ -390,9 +390,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
             {
                 _spectrum.Parent?.Invoke(new MethodInvoker(delegate () { _spectrum.Image = bmp; _spectrum.Update(); }));
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                Log.Error(Ex.Message);
+                Log.Error(ex.Message);
             }
 
         }
@@ -918,9 +918,9 @@ namespace opentuner.ExtraFeatures.BATCSpectrum
                     }
                 }
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                Log.Error(Ex.Message);
+                Log.Error(ex.Message);
             }
         }
 

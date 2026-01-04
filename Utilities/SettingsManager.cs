@@ -76,9 +76,9 @@ namespace opentuner.Utilities
                 Debug(json_output);
                 File.WriteAllText(_filename_base, json_output);
             }
-            catch ( Exception Ex )
+            catch (Exception ex)
             {
-                Debug("Error saving settings: " + Ex.Message);
+                Debug("Error saving settings: " + ex.Message);
                 return false;
             }
             return true;

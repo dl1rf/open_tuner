@@ -287,9 +287,9 @@ namespace opentuner.MediaSources.Longmynd
                             break;
                     }
                 }
-                catch (Exception Ex)
+                catch (Exception ex)
                 {
-                    debug("Unknown ModCod : " + Ex.Message);
+                    debug("Unknown ModCod : " + ex.Message);
                     debug(mm.packet.rx.modcod.ToString());
                 }
 
@@ -378,9 +378,9 @@ namespace opentuner.MediaSources.Longmynd
 
                 OnSourceData?.Invoke(0, source_data, "Tuner 0");
             }
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                Log.Warning(Ex, "Error");
+                Log.Warning(ex, "Error");
             }
         }
 

@@ -1,25 +1,30 @@
-﻿using opentuner.ExtraFeatures.BATCSpectrum;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+
+using opentuner.MediaSources;
+using opentuner.MediaSources.Minitiouner;
+using opentuner.MediaSources.Longmynd;
+using opentuner.MediaSources.WinterHill;
+
+using opentuner.MediaPlayers;
+using opentuner.MediaPlayers.MPV;
+using opentuner.MediaPlayers.FFMPEG;
+using opentuner.MediaPlayers.VLC;
+
+using opentuner.Utilities;
+using opentuner.Transmit;
+using opentuner.ExtraFeatures.BATCSpectrum;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.ExtraFeatures.MqttClient;
 using opentuner.ExtraFeatures.QuickTuneControl;
 using opentuner.ExtraFeatures.DATVReporter;
-using opentuner.MediaPlayers;
-using opentuner.MediaPlayers.FFMPEG;
-using opentuner.MediaPlayers.MPV;
-using opentuner.MediaPlayers.VLC;
-using opentuner.MediaSources;
-using opentuner.MediaSources.Longmynd;
-using opentuner.MediaSources.Minitiouner;
-using opentuner.MediaSources.WinterHill;
-using opentuner.Transmit;
-using opentuner.Utilities;
+
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using System.Windows.Forms;
-using System.IO;
+using Serilog.Events;
 
 namespace opentuner
 {
@@ -87,7 +92,6 @@ namespace opentuner
             {
                 info_object.UpdateInfo(info);
             }
-
         }
 
         void ParseCommandLineOptions(string[] args)
@@ -164,12 +168,12 @@ namespace opentuner
 
                     case "--hidevideoinfo":
                         for (int j = 0; j < 4; j++)
-                            _settings.show_video_overlays[j] = false;
+                            _settings.show_video_info[j] = false;
                         break;
 
                     case "--showvideoinfo":
                         for (int j = 0; j < 4; j++)
-                            _settings.show_video_overlays[j] = true;
+                            _settings.show_video_info[j] = true;
                         break;
 
                     case "--windowwidth":
@@ -267,6 +271,22 @@ namespace opentuner
 
         public MainForm(string[] args)
         {
+            var compileTime = new DateTime(Builtin.CompileTime, DateTimeKind.Utc);
+            DateTimeFormatInfo usDateFormat = new CultureInfo("en-US", false).DateTimeFormat;
+            string compileTime_usFormat = compileTime.ToString("u", usDateFormat);
+
+            Text = "Open Tuner (ZR6TG) - Version: " + GlobalDefines.Version + " - Build: " + compileTime_usFormat;
+
+            // Always log the version information
+            // swith logging level to Information
+            LogEventLevel lastMinimumLevel = Program.levelSwitch.MinimumLevel;
+            Program.levelSwitch.MinimumLevel = LogEventLevel.Information;
+
+            Log.Information(Text);
+
+            // swith logging level back
+            Program.levelSwitch.MinimumLevel = lastMinimumLevel;
+
             ThreadPool.GetMinThreads(out int workers, out int ports);
             ThreadPool.SetMinThreads(workers + 6, ports + 6);
 
@@ -318,13 +338,6 @@ namespace opentuner
             // load stored presets
             frequenciesManager = new SettingsManager<List<StoredFrequency>>("frequency_presets");
             stored_frequencies = frequenciesManager.LoadSettings(stored_frequencies);
-
-            var compileTime = new DateTime(Builtin.CompileTime, DateTimeKind.Utc);
-            DateTimeFormatInfo usDateFormat = new CultureInfo("en-US", false).DateTimeFormat;
-            string compileTime_usFormat = compileTime.ToString("u", usDateFormat);
-
-            Text = "Open Tuner (ZR6TG) - Version: " + GlobalDefines.Version + " - Build: " + compileTime_usFormat;
-            Log.Information(Text);
         }
 
         /// <summary>
@@ -385,15 +398,45 @@ namespace opentuner
 
         private void VideoSource_OnSourceData(int video_nr, OTSourceData properties, string description)
         {
-            
             if (video_nr < info_display.Count && video_nr >= 0)
             {
                 if (info_display[video_nr] != null)
+                {
                     UpdateInfo(info_display[video_nr], properties);
+                }
+                else
+                {
+                    Log.Error("MainForm.VideoSource_OnSourceData: Info_display[" + video_nr.ToString() + "] is a NULL ponter");
+                }
             }
             else
             {
-                Log.Error("info_display count does not fit video_nr");
+                Log.Error("MainForm.VideoSource_OnSourceData: Info_display count " + info_display.Count.ToString() + " does not fit video number " + video_nr.ToString());
+            }
+
+            if (datv_reporter != null)
+            {
+                if (properties.demod_locked)
+                {
+                    bool result = datv_reporter.SendISawMessage(new ISawMessage(
+                        properties.service_name,
+                        properties.db_margin,
+                        properties.mer,
+                        properties.frequency,
+                        properties.symbol_rate,
+                        videoSource.GetDeviceName()
+                        ));
+
+                    /*
+                    if (!result)
+                    {
+                        if (!datv_reporter.Connected)
+                        {
+                            datv_reporter.Connect();
+                        }
+                    }
+                    */
+                }
             }
 
             if (batc_spectrum != null)
@@ -537,6 +580,9 @@ namespace opentuner
                 if (quickTune_control != null)
                     quickTune_control.Close();
 
+                if (datv_reporter != null)
+                    datv_reporter.Close();
+
                 Log.Information("* Stopping Playing Video");
 
                 if (videoSource != null)
@@ -573,7 +619,15 @@ namespace opentuner
                 // we are closing, we don't really care about exceptions at this point
                 Log.Error( Ex, "Closing Exception");
             }
+
+            // swith logging level to Information
+            LogEventLevel lastMinimumLevel = Program.levelSwitch.MinimumLevel;
+            Program.levelSwitch.MinimumLevel = LogEventLevel.Information;
+
             Log.Information("Bye!");
+
+            // swith logging level back
+            Program.levelSwitch.MinimumLevel = lastMinimumLevel;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -689,7 +743,7 @@ namespace opentuner
             video_volume_display = new VolumeInfoContainer();
             video_volume_display.Tag = nr;
 
-            video_info_display = new StreamInfoContainer(_settings.show_video_overlays[nr]);
+            video_info_display = new StreamInfoContainer(_settings.show_video_info[nr]);
             video_info_display.Tag = nr;
 
 
@@ -836,7 +890,7 @@ namespace opentuner
                         videoSource.InvokeOnMediaButtonPressed("media_controls_" + video_nr.ToString(), 3);
                     }
                     else if (info_display[video_nr] != null)
-                        _settings.show_video_overlays[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
+                        _settings.show_video_info[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
                 }
             }
             else if (e.Button == MouseButtons.Right)
@@ -951,7 +1005,7 @@ namespace opentuner
             {
                 // restore info_display changed by first mouse click
                 if (info_display[video_nr] != null)
-                    _settings.show_video_overlays[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
+                    _settings.show_video_info[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
 
                 if (videoSource.GetVideoSourceCount() > 1 && _settings.mediaplayer_windowed[video_nr] == false)
                     changeView(video_nr);

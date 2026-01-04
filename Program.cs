@@ -1,12 +1,12 @@
 ﻿using FlyleafLib;
-using Serilog;
-using Serilog.Core;
-using Serilog.Events;
 using System;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace opentuner
 {
@@ -28,7 +28,7 @@ namespace opentuner
         static void Main(string[] args)
         {
             int i = 0;
-            int debugLevel = 2;
+            int debugLevel = 3; // Warning
             levelSwitch = new LoggingLevelSwitch();
 
             while (i < args.Length)

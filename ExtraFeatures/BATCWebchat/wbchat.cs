@@ -99,12 +99,6 @@ namespace opentuner
             }
         }
 
-        private void Client_OnConnected(object sender, EventArgs e)
-        {
-            Log.Information("Connected socketio");
-            lblConnected.Text = "Connected: True";
-        }
-
         private void Client_OnDisconnected(object sender, string e)
         {
             lblConnected.Text = "Connected: False";
@@ -279,6 +273,12 @@ namespace opentuner
         {
             [JsonPropertyName("message")]
             public string message { get; set; }
+        }
+
+        private void Client_OnConnected(object sender, EventArgs e)
+        {
+            Log.Information("Connected socketio");
+            lblConnected.Text = "Connected: True";
         }
 
         private void setNick()

@@ -8,11 +8,11 @@
         public int chat_font_size = 12;
         public int gui_chat_width = 800;
         public int gui_chat_height = 600;
-        public int gui_chat_x = 0;
-        public int gui_chat_y = 0;
-        public int gui_chat_windowstate = 0;
         public int gui_chat_seperator = 220;
         public bool gui_autostart = false;
         public bool gui_autologin = false;
+        public int gui_chat_x = 0;
+        public int gui_chat_y = 0;
+        public int gui_chat_windowstate = 0;
     }
 }

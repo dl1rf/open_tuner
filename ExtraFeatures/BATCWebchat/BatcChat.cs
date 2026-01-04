@@ -1,9 +1,9 @@
 ﻿using opentuner.Utilities;
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 using opentuner.MediaSources;
 using Serilog;
-using System.Windows.Forms;
 
 namespace opentuner.ExtraFeatures.BATCWebchat
 {

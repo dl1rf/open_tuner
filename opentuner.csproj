@@ -256,6 +256,15 @@
     <Compile Include="ExtraFeatures\BATCWebchat\WebChatSettngsForm.Designer.cs">
       <DependentUpon>WebChatSettngsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtraFeatures\DATVReporter\DATVReporter.cs" />
+    <Compile Include="ExtraFeatures\DATVReporter\DATVReporterSettings.cs" />
+    <Compile Include="ExtraFeatures\DATVReporter\DATVReporterSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtraFeatures\DATVReporter\DATVReporterSettingsForm.Designer.cs">
+      <DependentUpon>DATVReporterSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtraFeatures\DATVReporter\ISawMessage.cs" />
     <Compile Include="ExtraFeatures\MqttClient\MqttMessage.cs" />
     <Compile Include="ExtraFeatures\MqttClient\MqttManager.cs" />
     <Compile Include="ExtraFeatures\MqttClient\MqttSettings.cs" />
@@ -483,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtraFeatures\BATCWebchat\WebChatSettngsForm.resx">
       <DependentUpon>WebChatSettngsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtraFeatures\DATVReporter\DATVReporterSettingsForm.resx">
+      <DependentUpon>DATVReporterSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtraFeatures\MqttClient\MqttSettingsForm.resx">
       <DependentUpon>MqttSettingsForm.cs</DependentUpon>

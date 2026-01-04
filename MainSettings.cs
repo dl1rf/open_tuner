@@ -19,6 +19,9 @@ namespace opentuner
         public bool enable_chatform_checkbox = true;
         public bool enable_mqtt_checkbox = false;
         public bool enable_quicktune_checkbox = false;
+        public bool enable_datvreporter_checkbox = false;
+
+        // future
         public bool enable_plutoctrl_checkbox = false;
 
         public int default_source = 0;
@@ -30,7 +33,7 @@ namespace opentuner
         public bool hide_ExtraTool = false;  // can also be toggled with CTRL-E
         public bool[] show_video_overlays = { true, true, true, true };
 
-        public int[] mediaplayer_preferences = { 0, 0, 0, 0 };
+        public int[] mediaplayer_preferences = { 0, 1, 1, 1 };
         public bool[] mediaplayer_windowed = { false, false, false, false };
         public string[] streamer_udp_hosts = { "127.0.0.1", "127.0.0.1", "127.0.0.1", "127.0.0.1" };
         public int[] streamer_udp_ports = { 5000, 5001, 5002, 5003 };

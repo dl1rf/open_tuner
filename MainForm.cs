@@ -2,6 +2,7 @@
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.ExtraFeatures.MqttClient;
 using opentuner.ExtraFeatures.QuickTuneControl;
+using opentuner.ExtraFeatures.DATVReporter;
 using opentuner.MediaPlayers;
 using opentuner.MediaPlayers.FFMPEG;
 using opentuner.MediaPlayers.MPV;
@@ -39,6 +40,7 @@ namespace opentuner
         BATCSpectrum batc_spectrum = null;
         BATCChat batc_chat;
         QuickTuneControl quickTune_control;
+        DATVReporter datv_reporter = new DATVReporter();
 
         private static List<OTMediaPlayer> _mediaPlayers;
         private static List<OTSource> _availableSources = new List<OTSource>();
@@ -134,6 +136,14 @@ namespace opentuner
 
                     case "--disablequicktune":
                         _settings.enable_quicktune_checkbox = false;
+                        break;
+
+                    case "--enabledatvreporter":
+                        _settings.enable_datvreporter_checkbox = true;
+                        break;
+
+                    case "--disabledatvreporter":
+                        _settings.enable_datvreporter_checkbox = false;
                         break;
 
                     case "--hideproperties":
@@ -286,6 +296,7 @@ namespace opentuner
             checkBatcChat.Checked = _settings.enable_chatform_checkbox;
             checkMqttClient.Checked = _settings.enable_mqtt_checkbox;
             checkQuicktune.Checked = _settings.enable_quicktune_checkbox;
+            checkDATVReporter.Checked = _settings.enable_datvreporter_checkbox;
             checkPlutoCtrl.Checked = _settings.enable_plutoctrl_checkbox;
             checkPlutoCtrl.Enabled = checkMqttClient.Checked;
 
@@ -1084,6 +1095,14 @@ namespace opentuner
                 mqtt_client = new MqttManager();
             }
 
+            if (checkDATVReporter.Checked)
+            {
+                if (!datv_reporter.Connect())
+                {
+                    Log.Error("DATV Reporter can't connect - check your settings");
+                }
+            }
+
             videoSource.UpdateFrequencyPresets(stored_frequencies);
             videoSource.Start(batc_spectrum);
 
@@ -1357,6 +1376,21 @@ namespace opentuner
             {
                 source_connected = ConnectSelectedSource();
             }
+        }
+
+        private void linkDATVReporterSettings_Click(object sender, EventArgs e)
+        {
+            datv_reporter.ShowSettings();
+        }
+
+        private void checkDATVReporter_CheckedChanged(object sender, EventArgs e)
+        {
+            _settings.enable_datvreporter_checkbox = checkDATVReporter.Checked;
+        }
+
+        private void LinkDatvReportMoreInfo_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.zr6tg.co.za/opentuner-datv-reporter/");
         }
 
         private void ExtraToolsTab_DrawItem(object sender, DrawItemEventArgs e)

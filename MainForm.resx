@@ -447,6 +447,102 @@
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="LinkDatvReportMoreInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>342, 180</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 13</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="LinkDatvReportMoreInfo.Text" xml:space="preserve">
+    <value>More Info ...</value>
+  </data>
+  <data name="&gt;&gt;LinkDatvReportMoreInfo.Name" xml:space="preserve">
+    <value>LinkDatvReportMoreInfo</value>
+  </data>
+  <data name="&gt;&gt;LinkDatvReportMoreInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkDatvReportMoreInfo.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;LinkDatvReportMoreInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="linkDATVReporterSettings.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkDATVReporterSettings.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="linkDATVReporterSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkDATVReporterSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 180</value>
+  </data>
+  <data name="linkDATVReporterSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 13</value>
+  </data>
+  <data name="linkDATVReporterSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="linkDATVReporterSettings.Text" xml:space="preserve">
+    <value>Settings ...</value>
+  </data>
+  <data name="&gt;&gt;linkDATVReporterSettings.Name" xml:space="preserve">
+    <value>linkDATVReporterSettings</value>
+  </data>
+  <data name="&gt;&gt;linkDATVReporterSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkDATVReporterSettings.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;linkDATVReporterSettings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkDATVReporter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkDATVReporter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkDATVReporter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 179</value>
+  </data>
+  <data name="checkDATVReporter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="checkDATVReporter.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="checkDATVReporter.Text" xml:space="preserve">
+    <value>DATV Reporter</value>
+  </data>
+  <data name="&gt;&gt;checkDATVReporter.Name" xml:space="preserve">
+    <value>checkDATVReporter</value>
+  </data>
+  <data name="&gt;&gt;checkDATVReporter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkDATVReporter.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;checkDATVReporter.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="linkPlutoCtrlSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -511,7 +607,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="checkPlutoCtrl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -544,7 +640,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkPlutoCtrl.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="linkQuickTuneSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -577,7 +673,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkQuickTuneSettings.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="linkBatcWebchatSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -610,7 +706,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkBatcWebchatSettings.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="linkBatcSpectrumSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,7 +739,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkBatcSpectrumSettings.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="linkMqttSettings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -676,7 +772,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkMqttSettings.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="linkQuickTuneDocumentation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -709,7 +805,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkQuickTuneDocumentation.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="checkQuicktune.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -736,7 +832,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkQuicktune.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="linkBatcWebchatDocumentation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -769,7 +865,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkBatcWebchatDocumentation.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="linkSpectrumDocumentation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -802,7 +898,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;linkSpectrumDocumentation.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="LinkMqttDocumentation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -832,7 +928,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;LinkMqttDocumentation.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="checkMqttClient.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -859,7 +955,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkMqttClient.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="checkBatcChat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -889,7 +985,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkBatcChat.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="checkBatcSpectrum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -916,7 +1012,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;checkBatcSpectrum.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="groupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1144,7 +1240,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="SourcePage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 1011</value>
+    <value>428, 1146</value>
   </data>
   <data name="SourcePage.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1164,6 +1260,75 @@
   <data name="&gt;&gt;SourcePage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="PropertiesPage.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="PropertiesPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="PropertiesPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="PropertiesPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 1146</value>
+  </data>
+  <data name="PropertiesPage.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="PropertiesPage.Text" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="&gt;&gt;PropertiesPage.Name" xml:space="preserve">
+    <value>PropertiesPage</value>
+  </data>
+  <data name="&gt;&gt;PropertiesPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dbgListBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dbgListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="dbgListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 1140</value>
+  </data>
+  <data name="dbgListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dbgListBox.Name" xml:space="preserve">
+    <value>dbgListBox</value>
+  </data>
+  <data name="&gt;&gt;dbgListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dbgListBox.Parent" xml:space="preserve">
+    <value>debugPage</value>
+  </data>
+  <data name="&gt;&gt;dbgListBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="debugPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="debugPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="debugPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>428, 1146</value>
+  </data>
+  <data name="debugPage.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="debugPage.Text" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="&gt;&gt;debugPage.Name" xml:space="preserve">
+    <value>debugPage</value>
+  </data>
+  <data name="&gt;&gt;debugPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1171,7 +1336,7 @@
     <value>0, 0</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>436, 1037</value>
+    <value>436, 1172</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -1252,7 +1417,7 @@
     <value>1</value>
   </data>
   <data name="splitContainer4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1283, 375</value>
+    <value>1283, 443</value>
   </data>
   <data name="splitContainer4.SplitterDistance" type="System.Int32, mscorlib">
     <value>642</value>
@@ -1318,7 +1483,7 @@
     <value>1</value>
   </data>
   <data name="splitContainer5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1283, 376</value>
+    <value>1283, 443</value>
   </data>
   <data name="splitContainer5.SplitterDistance" type="System.Int32, mscorlib">
     <value>642</value>
@@ -1354,10 +1519,10 @@
     <value>1</value>
   </data>
   <data name="splitContainer3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1283, 755</value>
+    <value>1283, 890</value>
   </data>
   <data name="splitContainer3.SplitterDistance" type="System.Int32, mscorlib">
-    <value>375</value>
+    <value>443</value>
   </data>
   <data name="splitContainer3.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1480,10 +1645,10 @@
     <value>1</value>
   </data>
   <data name="splitContainer2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1283, 1037</value>
+    <value>1283, 1172</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>755</value>
+    <value>890</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1513,7 +1678,7 @@
     <value>1</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1723, 1037</value>
+    <value>1723, 1172</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
     <value>436</value>
@@ -1532,75 +1697,6 @@
   </data>
   <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="PropertiesPage.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="PropertiesPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="PropertiesPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="PropertiesPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 1011</value>
-  </data>
-  <data name="PropertiesPage.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="PropertiesPage.Text" xml:space="preserve">
-    <value>Properties</value>
-  </data>
-  <data name="&gt;&gt;PropertiesPage.Name" xml:space="preserve">
-    <value>PropertiesPage</value>
-  </data>
-  <data name="&gt;&gt;PropertiesPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dbgListBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="dbgListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="dbgListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 1005</value>
-  </data>
-  <data name="dbgListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;dbgListBox.Name" xml:space="preserve">
-    <value>dbgListBox</value>
-  </data>
-  <data name="&gt;&gt;dbgListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dbgListBox.Parent" xml:space="preserve">
-    <value>debugPage</value>
-  </data>
-  <data name="&gt;&gt;dbgListBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="debugPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="debugPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="debugPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>428, 1011</value>
-  </data>
-  <data name="debugPage.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="debugPage.Text" xml:space="preserve">
-    <value>Debug</value>
-  </data>
-  <data name="&gt;&gt;debugPage.Name" xml:space="preserve">
-    <value>debugPage</value>
-  </data>
-  <data name="&gt;&gt;debugPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>157, 17</value>
@@ -1759,7 +1855,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1723, 1061</value>
+    <value>1723, 1196</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2293,7 +2389,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Open Tuner  (ZR6TG) - 0.B Version - 2024/07/09</value>
+    <value>Open Tuner (ZR6TG) - 0.B Version - 2024/07/09</value>
   </data>
   <data name="&gt;&gt;openTunerToolStripMenuItem.Name" xml:space="preserve">
     <value>openTunerToolStripMenuItem</value>

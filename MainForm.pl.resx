@@ -117,96 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Stan przesyłu strumienia</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Kontrola strojenia</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Stan tunera NIM</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 17</value>
+  <data name="radioLnbSupplyHoriz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 21</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Częstotliwość: </value>
+  <data name="radioLnbSupplyHoriz.Text" xml:space="preserve">
+    <value>Pozioma (18V)</value>
   </data>
-  <data name="debugPage.Text" xml:space="preserve">
-    <value>Kontrola błędów</value>
+  <data name="radioLnbSupplyVert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 21</value>
   </data>
-  <data name="openTunerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="openTunerToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Akcje</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ustawienia ...</value>
-  </data>
-  <data name="quitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="quitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Zamknij</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 6</value>
-  </data>
-  <data name="menuConnect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 22</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 16</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Stan połączenia:</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 16</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Liczba błędów  LDPC :</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 17</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Rozdzielczość Video:</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 16</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Wymagana częstotliwość:</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 16</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Stan demodulacji: </value>
-  </data>
-  <data name="menuConnect.Text" xml:space="preserve">
-    <value>&amp;Połączenie</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Pomoc</value>
-  </data>
-  <data name="statusPage.Text" xml:space="preserve">
-    <value>Stan</value>
-  </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Zasilanie LNB</value>
+  <data name="radioLnbSupplyVert.Text" xml:space="preserve">
+    <value>Pionowa (13V)</value>
   </data>
   <data name="radioLnbSupplyOff.Text" xml:space="preserve">
     <value>Od</value>
   </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Sterowanie multimediami</value>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Zasilanie LNB</value>
   </data>
   <data name="btnSnapshot.Text" xml:space="preserve">
     <value>Zrzut ekranu</value>
@@ -214,8 +142,8 @@
   <data name="btnMute.Text" xml:space="preserve">
     <value>Wycisz</value>
   </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Status Multimediów</value>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Sterowanie multimediami</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 17</value>
@@ -226,11 +154,20 @@
   <data name="label27.Text" xml:space="preserve">
     <value>Kodek Audio:</value>
   </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 17</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Rozdzielczość Video:</value>
+  </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Kodek Wideo:</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Status Multimediów</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
@@ -250,6 +187,30 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Nazwa Serwisu:</value>
   </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Stan przesyłu strumienia</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Częstotliwość: </value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Kontrola strojenia</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 16</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Wymagana częstotliwość:</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 16</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Stan połączenia:</value>
+  </data>
   <data name="lblFreqCar.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 299</value>
   </data>
@@ -258,6 +219,12 @@
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Przemieszczenie częstotliwości nośnej (offset):</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 16</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Liczba błędów  LDPC :</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 16</value>
@@ -271,20 +238,53 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Zysk LNA:</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 16</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Stan demodulacji: </value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Stan tunera NIM</value>
+  </data>
+  <data name="statusPage.Text" xml:space="preserve">
+    <value>Stan</value>
+  </data>
+  <data name="debugPage.Text" xml:space="preserve">
+    <value>Kontrola błędów</value>
+  </data>
+  <data name="menuConnect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="menuConnect.Text" xml:space="preserve">
+    <value>&amp;Połączenie</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Ustawienia ...</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 6</value>
+  </data>
+  <data name="quitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="quitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Zamknij</value>
+  </data>
+  <data name="openTunerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="openTunerToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Akcje</value>
+  </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 20</value>
   </data>
-  <data name="radioLnbSupplyHoriz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 21</value>
-  </data>
-  <data name="radioLnbSupplyHoriz.Text" xml:space="preserve">
-    <value>Pozioma (18V)</value>
-  </data>
-  <data name="radioLnbSupplyVert.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 21</value>
-  </data>
-  <data name="radioLnbSupplyVert.Text" xml:space="preserve">
-    <value>Pionowa (13V)</value>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Pomoc</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="hidePanelToolStripMenuItem.Text1" type="System.Resources.ResXNullRef, System.Windows.Forms">

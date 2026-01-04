@@ -9,7 +9,6 @@ using Serilog;
 
 namespace opentuner.Utilities
 {
-      
     public class SettingsManager<T>
     {
         private string _settings_name;
@@ -39,7 +38,6 @@ namespace opentuner.Utilities
 
         public T LoadSettings(object _settings_reference)
         {
-            
             if (!File.Exists(_filename_base))
             {
                 Debug("Base settings doesn't exist, creating new one with defaults");
@@ -49,9 +47,7 @@ namespace opentuner.Utilities
 
             Debug("Loading Settings...");
             string json_input = File.ReadAllText(_filename_base);
-            
             Debug(json_input);
-
             T settings_object = default(T);
 
             try
@@ -68,7 +64,6 @@ namespace opentuner.Utilities
                 Debug("File possibly faulty - returning defaults");
                 return (T)_settings_reference;
             }
-
             return settings_object;
         }
 
@@ -80,14 +75,12 @@ namespace opentuner.Utilities
                 Debug("Saving...");
                 Debug(json_output);
                 File.WriteAllText(_filename_base, json_output);
-                
             }
             catch ( Exception Ex )
             {
                 Debug("Error saving settings: " + Ex.Message);
                 return false;
             }
-
             return true;
         }
     }

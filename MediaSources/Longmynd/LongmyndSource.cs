@@ -217,7 +217,7 @@ namespace opentuner.MediaSources.Longmynd
         {
             _Ready = false;
 
-            Log.Information("Closing Winterhill Source");
+            Log.Information("Closing WinterHill Source");
 
             int defaultInterface = _settings.DefaultInterface;
             _settingsManager.SaveSettings(_settings);

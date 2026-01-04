@@ -1,25 +1,30 @@
-﻿using opentuner.ExtraFeatures.BATCSpectrum;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
+
+using opentuner.MediaSources;
+using opentuner.MediaSources.Minitiouner;
+using opentuner.MediaSources.Longmynd;
+using opentuner.MediaSources.WinterHill;
+
+using opentuner.MediaPlayers;
+using opentuner.MediaPlayers.MPV;
+using opentuner.MediaPlayers.FFMPEG;
+using opentuner.MediaPlayers.VLC;
+
+using opentuner.Utilities;
+using opentuner.Transmit;
+using opentuner.ExtraFeatures.BATCSpectrum;
 using opentuner.ExtraFeatures.BATCWebchat;
 using opentuner.ExtraFeatures.MqttClient;
 using opentuner.ExtraFeatures.QuickTuneControl;
 using opentuner.ExtraFeatures.DATVReporter;
-using opentuner.MediaPlayers;
-using opentuner.MediaPlayers.FFMPEG;
-using opentuner.MediaPlayers.MPV;
-using opentuner.MediaPlayers.VLC;
-using opentuner.MediaSources;
-using opentuner.MediaSources.Longmynd;
-using opentuner.MediaSources.Minitiouner;
-using opentuner.MediaSources.Winterhill;
-using opentuner.Transmit;
-using opentuner.Utilities;
+
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
-using System.Windows.Forms;
-using System.IO;
+using Serilog.Events;
 
 namespace opentuner
 {
@@ -302,7 +307,7 @@ namespace opentuner
             // load available sources
             _availableSources.Add(new MinitiounerSource());
             _availableSources.Add(new LongmyndSource());
-            _availableSources.Add(new WinterhillSource());
+            _availableSources.Add(new WinterHillSource());
 
             comboAvailableSources.Items.Clear();
 
@@ -393,6 +398,31 @@ namespace opentuner
             else
             {
                 Log.Error("info_display count does not fit video_nr");
+            }
+
+            if (datv_reporter != null)
+            {
+                if (properties.demod_locked)
+                {
+                    bool result = datv_reporter.SendISawMessage(new ISawMessage(
+                        properties.service_name,
+                        properties.db_margin,
+                        properties.mer,
+                        properties.frequency,
+                        properties.symbol_rate,
+                        videoSource.GetDeviceName()
+                        ));
+
+                    /*
+                    if (!result)
+                    {
+                        if (!datv_reporter.Connected)
+                        {
+                            datv_reporter.Connect();
+                        }
+                    }
+                    */
+                }
             }
 
             if (batc_spectrum != null)
@@ -537,6 +567,9 @@ namespace opentuner
 
                 if (quickTune_control != null)
                     quickTune_control.Close();
+
+                if (datv_reporter != null)
+                    datv_reporter.Close();
 
                 Log.Information("* Stopping Playing Video");
 

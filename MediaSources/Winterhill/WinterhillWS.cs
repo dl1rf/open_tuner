@@ -10,9 +10,9 @@ using System.Windows.Interop;
 using Vortice.MediaFoundation;
 using WebSocketSharp;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
-    public partial class WinterhillSource
+    public partial class WinterHillSource
     {
         // ws interface
         private WebSocket controlWS;        // longmynd control ws websocket
@@ -51,7 +51,7 @@ namespace opentuner.MediaSources.Winterhill
 
         private void connectWebsockets()
         {
-            string url = "ws://" + _settings.WinterhillWSHost + ":" + _settings.WinterhillWSPort.ToString() + "/ ";
+            string url = "ws://" + _settings.WinterHillWSHost + ":" + _settings.WinterHillWSPort.ToString() + "/ ";
 
             monitorWS = new WebSocket(url, "monitor");
             monitorWS.OnOpen += Monitorws_OnOpen;

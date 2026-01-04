@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Threading;
 using Serilog;
 
-namespace opentuner.MediaSources.Winterhill
+namespace opentuner.MediaSources.WinterHill
 {
     public class PicoWHBroadcastListener
     {

@@ -168,12 +168,12 @@ namespace opentuner
 
                     case "--hidevideoinfo":
                         for (int j = 0; j < 4; j++)
-                            _settings.show_video_overlays[j] = false;
+                            _settings.show_video_info[j] = false;
                         break;
 
                     case "--showvideoinfo":
                         for (int j = 0; j < 4; j++)
-                            _settings.show_video_overlays[j] = true;
+                            _settings.show_video_info[j] = true;
                         break;
 
                     case "--windowwidth":
@@ -740,7 +740,7 @@ namespace opentuner
             video_volume_display = new VolumeInfoContainer();
             video_volume_display.Tag = nr;
 
-            video_info_display = new StreamInfoContainer(_settings.show_video_overlays[nr]);
+            video_info_display = new StreamInfoContainer(_settings.show_video_info[nr]);
             video_info_display.Tag = nr;
 
 
@@ -887,7 +887,7 @@ namespace opentuner
                         videoSource.InvokeOnMediaButtonPressed("media_controls_" + video_nr.ToString(), 3);
                     }
                     else if (info_display[video_nr] != null)
-                        _settings.show_video_overlays[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
+                        _settings.show_video_info[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
                 }
             }
             else if (e.Button == MouseButtons.Right)
@@ -1002,7 +1002,7 @@ namespace opentuner
             {
                 // restore info_display changed by first mouse click
                 if (info_display[video_nr] != null)
-                    _settings.show_video_overlays[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
+                    _settings.show_video_info[video_nr] = info_display[video_nr].Visible = !info_display[video_nr].Visible;
 
                 if (videoSource.GetVideoSourceCount() > 1 && _settings.mediaplayer_windowed[video_nr] == false)
                     changeView(video_nr);

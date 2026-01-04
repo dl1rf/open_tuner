@@ -494,9 +494,9 @@ namespace opentuner.MediaSources.WinterHill
                             _current_frequency[c] = Convert.ToUInt32((sent_freq * 1000) - _current_offset[c]);
                         }
                     }
-                    catch (Exception Ex)
+                    catch (Exception ex)
                     {
-                        Log.Error(Ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
+                        Log.Error(ex, "Frequency Parse Error : " + rx.frequency + " - " + (10.5f).ToString(CultureInfo.InvariantCulture));
                     }
 
                     uint symbol_rate = 0;
@@ -637,9 +637,9 @@ namespace opentuner.MediaSources.WinterHill
                     OnSourceData?.Invoke(c, source_data, "Tuner " + c.ToString());
                 }
             }
-            catch ( Exception Ex)
+            catch (Exception ex)
             {
-                Log.Warning(Ex, "Error");
+                Log.Warning(ex, "Error");
             }
         }
 
